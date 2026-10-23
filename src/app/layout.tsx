@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "HoopStats — Player points",
+  title: "hoopstats — Player points",
   description: "NBA player points: season avg, month avg, last 5 games.",
 };
 

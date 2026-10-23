@@ -8,7 +8,7 @@ export function AppNav() {
         <span className={styles.brandMark} aria-hidden>
           ●
         </span>
-        <span className={styles.brandText}>HoopStats</span>
+        <span className={styles.brandText}>hoopstats</span>
       </div>
       <div className={styles.season} aria-label="Season">
         2026-27
