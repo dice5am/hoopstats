@@ -95,6 +95,7 @@
 .pts {
   position: absolute;
   left: 50%;
+  bottom: var(--lift-m, 100%);
   transform: translateX(-50%);
   z-index: 1;
   font-family: var(--font-display);
@@ -196,6 +197,9 @@
   }
   .bar.newest {
     box-shadow: inset 0 0 0 1px var(--hw-ink);
+  }
+  .pts {
+    bottom: var(--lift-d, 100%);
   }
   /* 1440 only: missed also gets the dashed 40% box (390 is the dash alone). */
   .missed::after {

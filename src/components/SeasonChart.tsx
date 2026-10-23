@@ -134,9 +134,23 @@ export function SeasonChart({
     const pts = Math.round(g.pts ?? 0);
     const label = newest || pts > SCALE_MAX;
     const barFrac = Math.min(pts, SCALE_MAX) / SCALE_MAX;
-    // Newest number sits above its bar, or above the avg line when the bar is below it.
-    const lift =
-      newest && avgFrac !== null && barFrac < avgFrac ? avgFrac : barFrac;
+    // Newest number sits above its bar, or above the avg line when the bar is
+    // below it (6px clear at 390, 8px at 1440). At 390 it also clears the
+    // tallest bar within 2 columns either side.
+    const lifted = newest && avgFrac !== null && barFrac < avgFrac;
+    const liftD = lifted ? avgFrac! : barFrac;
+    let liftM = liftD;
+    if (newest && col >= 1 && col <= D) {
+      for (let j = Math.max(0, col - 3); j <= Math.min(D - 1, col + 1); j++) {
+        const n = dated[j];
+        if (n && n.status === "played" && j !== col - 1) {
+          liftM = Math.max(liftM, Math.min(n.pts ?? 0, SCALE_MAX) / SCALE_MAX);
+        }
+      }
+    }
+    // +2px when clearing the avg line: its 2px stroke sits above its position.
+    const gapM = liftM > barFrac ? (liftM === avgFrac ? 8 : 6) : 3;
+    const gapD = lifted ? 10 : 3;
     return (
       <div key={key} className={styles.col} style={place}>
         {pts === 0 ? (
@@ -150,9 +164,12 @@ export function SeasonChart({
         {label ? (
           <span
             className={styles.pts}
-            style={{
-              bottom: `calc(${pct(lift)} + ${lift > barFrac ? 7 : 3}px)`,
-            }}
+            style={
+              {
+                "--lift-m": `calc(${pct(liftM)} + ${gapM}px)`,
+                "--lift-d": `calc(${pct(liftD)} + ${gapD}px)`,
+              } as React.CSSProperties
+            }
           >
             {pts}
           </span>
