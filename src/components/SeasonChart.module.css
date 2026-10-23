@@ -4,9 +4,34 @@
   margin-top: 26px;
 }
 
+.head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-bottom: 6px;
+}
+
+.avgKey {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--hw-ink);
+}
+
+.avgRule {
+  display: inline-block;
+  width: 18px;
+  height: 0;
+  border-top: 2px solid var(--hw-key);
+}
+
 .lab {
   display: block;
-  margin-bottom: 6px;
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 13px;
@@ -15,21 +40,13 @@
 }
 
 .frame {
-  display: flex;
-  align-items: stretch;
-  gap: 10px;
-}
-
-.main {
   position: relative;
-  flex: 1 1 auto;
-  min-width: 0;
 }
 
 .plot {
   position: relative;
   display: grid;
-  gap: 1px;
+  column-gap: 1px;
   height: 120px;
   align-items: end;
   padding-top: 22px;
@@ -95,35 +112,33 @@
   white-space: nowrap;
 }
 
-.avg {
-  position: absolute;
-  left: 0;
-  height: 0;
-  border-top: 2px solid var(--hw-key);
+.avgSpan {
+  position: relative;
+  align-self: stretch;
   pointer-events: none;
 }
 
-.avgLab {
+.avg {
   position: absolute;
-  left: 100%;
-  bottom: 2px;
-  margin-left: 4px;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 13px;
-  line-height: 1;
-  color: var(--hw-ink);
-  white-space: nowrap;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: 2px solid var(--hw-key);
 }
 
-.baseline {
+.baselines,
+.outs,
+.ticks {
+  display: grid;
+  column-gap: 1px;
+}
+
+.baselines span {
   height: 3px;
   background: var(--hw-line);
 }
 
 .outs {
-  display: grid;
-  gap: 1px;
   height: 7px;
   margin-top: 3px;
 }
@@ -131,42 +146,33 @@
 .outDash {
   display: block;
   height: 3px;
-  margin: 0 auto;
   width: 100%;
   max-width: 10px;
+  justify-self: center;
   background: rgba(43, 29, 18, 0.55);
 }
 
 .ticks {
-  position: relative;
-  height: 16px;
   margin-top: 2px;
+  min-height: 16px;
 }
 
 .tick {
-  position: absolute;
-  top: 0;
-  transform: translateX(-50%);
+  justify-self: center;
   font-size: 11px;
   font-weight: 700;
   color: var(--hw-ink-2);
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
-.cup {
-  position: relative;
-  flex: 0 0 22px;
-  display: flex;
-  flex-direction: column;
-}
-
-.cupLab {
-  margin-top: 2px;
-  font-size: 10px;
+.group {
+  justify-self: end;
+  margin-top: 1px;
+  font-size: 10.5px;
   font-weight: 700;
-  line-height: 1.1;
-  text-align: center;
   color: var(--hw-ink-2);
+  white-space: nowrap;
 }
 
 .key {
@@ -187,11 +193,13 @@
 }
 
 @media (min-width: 1000px) {
+  .plot,
+  .baselines,
+  .outs,
+  .ticks {
+    column-gap: 3px;
+  }
   .plot {
     height: 160px;
-    gap: 3px;
-  }
-  .outs {
-    gap: 3px;
   }
 }

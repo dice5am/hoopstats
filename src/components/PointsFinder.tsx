@@ -353,7 +353,11 @@ function PointsCard({ row }: { row: PointsRow }) {
         </div>
       </div>
 
-      <LastGamesChart games={row.teamGames.filter(isPastGame)} />
+      <LastGamesChart
+        games={row.teamGames
+          .filter(isPastGame)
+          .sort((a, b) => a.date.localeCompare(b.date) || a.seq - b.seq)}
+      />
       <div className={styles.seasonArea}>
         <SeasonChart
           games={row.teamGames}
