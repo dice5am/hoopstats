@@ -1,15 +1,25 @@
-/* Hardwood season chart. Values from the Hardwood pack; provisional until the Spec frames pass. */
+/* Hardwood season chart — values from the passed spec frames (01-hardwood-season-chart, d01_missed.py). */
 .season {
+  --out: #9d8464; /* 40% ink on maple */
+  --inset: 0.5px;
+  --avg-clear: 6px;
   position: relative;
   margin-top: 26px;
 }
 
 .head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 4px 14px;
-  margin-bottom: 6px;
+  gap: 14px;
+}
+
+.lab {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .avgKey {
@@ -18,198 +28,343 @@
   gap: 6px;
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 14px;
-  letter-spacing: 0.02em;
+  font-size: 17px;
+  line-height: 1;
   color: var(--hw-ink);
 }
 
 .avgRule {
   display: inline-block;
   width: 18px;
-  height: 0;
-  border-top: 2px solid var(--hw-key);
+  height: 4px;
+  background: var(--hw-key);
+  box-shadow:
+    0 -1px 0 var(--hw-ink),
+    0 1px 0 var(--hw-ink);
 }
 
-.lab {
+.sub {
   display: block;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--hw-ink-2);
 }
 
 .frame {
   position: relative;
+  margin-top: 8px;
+  padding-left: 22px;
+}
+
+.markers {
+  position: relative;
+  height: 16px;
+}
+
+.markers span {
+  position: absolute;
+  bottom: 2px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--hw-ink);
+  white-space: nowrap;
 }
 
 .plot {
   position: relative;
-  display: grid;
-  column-gap: 1px;
-  height: 120px;
-  align-items: end;
-  padding-top: 22px;
+  height: 118px;
+  margin-top: 16px;
+}
+
+.gridline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: 1px dashed rgba(255, 248, 238, 0.9);
+}
+
+.axis {
+  position: absolute;
+  left: -22px;
+  width: 18px;
+  text-align: right;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--hw-ink-2);
+  transform: translateY(50%);
 }
 
 .col {
-  position: relative;
-  height: 100%;
-  display: flex;
-  align-items: flex-end;
+  position: absolute;
+  top: 0;
+  bottom: 0;
 }
 
-.bar {
-  position: relative;
-  width: 100%;
+.bar,
+.zero {
+  position: absolute;
+  bottom: 0;
+  left: var(--inset);
+  right: var(--inset);
   background: var(--hw-ink);
 }
 
-/* 390: newest bar gets a 1.5px ink cap; 1440: full ink outline. */
-.bar.newest {
+.zero {
+  height: 3px;
+}
+
+/* 390: newest bar gets a 1.5px ink top cap; 1440: 1.5px inset ink outline. */
+.bar.newest,
+.zero.newest {
   background: var(--hw-key);
   box-shadow: inset 0 1.5px 0 var(--hw-ink);
 }
 
-.zero {
-  position: relative;
-  width: 100%;
-  height: 3px;
-  background: var(--hw-ink);
-}
-
-.zero.newest {
-  background: var(--hw-key);
-}
-
-.future::after {
-  content: "";
+.future {
   position: absolute;
-  left: 25%;
-  right: 25%;
   bottom: 0;
-  height: 6px;
-  background: rgba(255, 248, 238, 0.55);
+  left: 50%;
+  width: 1px;
+  height: 5px;
+  margin-left: -0.5px;
+  background: rgba(255, 248, 238, 0.85);
+}
+
+/* 1440 only: missed also gets a dashed 40% box down the column (390 = dash only). */
+.outBox {
+  position: absolute;
+  left: var(--inset);
+  right: var(--inset);
+  top: 0;
+  bottom: 6px;
+  border: 1.5px dashed var(--out);
+  display: none;
+}
+
+.outBox.newest {
+  border-color: var(--hw-key);
 }
 
 .pts {
   position: absolute;
   left: 50%;
-  bottom: var(--lift-m, 100%);
+  z-index: 3;
   transform: translateX(-50%);
-  z-index: 1;
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1;
   white-space: nowrap;
 }
 
-.avgSpan {
-  position: relative;
-  align-self: stretch;
-  pointer-events: none;
+.ptsL {
+  left: 0;
+  transform: none;
+}
+
+.ptsR {
+  left: auto;
+  right: 0;
+  transform: none;
 }
 
 .avg {
   position: absolute;
   left: 0;
-  right: 0;
-  height: 0;
-  border-top: 2px solid var(--hw-key);
+  z-index: 2;
+  height: 4px;
+  background: var(--hw-key);
+  box-shadow:
+    0 -1px 0 var(--hw-ink),
+    0 1px 0 var(--hw-ink);
+  transform: translateY(50%);
+  pointer-events: none;
 }
 
-.baselines,
-.outs,
-.ticks {
-  display: grid;
-  column-gap: 1px;
+.trade {
+  position: absolute;
+  top: -16px;
+  bottom: -9px;
+  z-index: 2;
+  width: 0;
+  border-left: 1.5px solid var(--hw-ink);
 }
 
-.baselines span {
+.baseline {
   height: 3px;
   background: var(--hw-line);
 }
 
-.outs {
-  height: 7px;
-  margin-top: 3px;
+.under {
+  position: relative;
+  height: 9px;
 }
 
-.outDash {
-  display: block;
+.under i {
+  position: absolute;
+  top: 3px;
   height: 3px;
-  width: 100%;
-  max-width: 10px;
-  justify-self: center;
-  background: rgba(43, 29, 18, 0.55);
+  background: var(--hw-ink-2);
 }
 
 .ticks {
-  margin-top: 2px;
-  min-height: 16px;
+  position: relative;
+  height: 16px;
 }
 
-.tick {
-  justify-self: center;
-  font-size: 11px;
-  font-weight: 700;
+.ticks span {
+  position: absolute;
+  top: 0;
+  padding-top: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
   color: var(--hw-ink-2);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+  transform: translateX(-50%);
 }
 
-.group {
-  justify-self: end;
-  margin-top: 1px;
-  font-size: 10.5px;
-  font-weight: 700;
-  color: var(--hw-ink-2);
-  white-space: nowrap;
-}
-
-.key {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 6px 0 0;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--hw-dim);
-}
-
-.keyDash {
-  display: inline-block;
-  width: 10px;
+.ticks span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
   height: 3px;
-  background: rgba(43, 29, 18, 0.55);
+  background: var(--hw-ink-2);
+}
+
+.ticks .tickL {
+  transform: none;
+}
+
+.ticks .tickL::before {
+  left: 0;
+}
+
+.ticks .tickR {
+  transform: translateX(-100%);
+}
+
+.ticks .tickR::before {
+  left: auto;
+  right: 0;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-top: 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--hw-ink);
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend i {
+  display: inline-block;
+  flex: none;
+}
+
+.lgPlayed {
+  width: 5px;
+  height: 14px;
+  background: var(--hw-ink);
+}
+
+.lgNew {
+  width: 5px;
+  height: 14px;
+  background: var(--hw-key);
+  box-shadow: inset 0 1.5px 0 var(--hw-ink);
+}
+
+.lgZero {
+  width: 7px;
+  height: 3px;
+  background: var(--hw-ink);
+  align-self: flex-end;
+  margin-bottom: 3px;
+}
+
+.lgOut {
+  width: 9px;
+  height: 3px;
+  background: var(--hw-ink-2);
+}
+
+.lgFut {
+  width: 1px;
+  height: 6px;
+  background: var(--hw-line);
+  box-shadow: 0 0 0 0.5px rgba(43, 29, 18, 0.25);
+}
+
+.lgAvg {
+  width: 16px;
+  height: 4px;
+  background: var(--hw-key);
+  box-shadow:
+    0 -1px 0 var(--hw-ink),
+    0 1px 0 var(--hw-ink);
 }
 
 @media (min-width: 1000px) {
-  .plot,
-  .baselines,
-  .outs,
-  .ticks {
-    column-gap: 3px;
+  .season {
+    --inset: 1.5px;
+    --avg-clear: 8px;
+    margin-top: 34px;
+  }
+  .avgKey {
+    font-size: 20px;
+  }
+  .avgRule {
+    width: 24px;
+  }
+  .frame {
+    padding-left: 30px;
+  }
+  .axis {
+    left: -30px;
+    width: 24px;
+    font-size: 12px;
   }
   .plot {
-    height: 160px;
+    height: 210px;
+    margin-top: 20px;
   }
-  .bar.newest {
-    box-shadow: inset 0 0 0 1px var(--hw-ink);
+  .outBox {
+    display: block;
   }
   .pts {
-    bottom: var(--lift-d, 100%);
+    font-size: 17px;
   }
-  /* 1440 only: missed also gets the dashed 40% box (390 is the dash alone). */
-  .missed::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border: 1px dashed rgba(43, 29, 18, 0.4);
-    border-bottom: 0;
+  .bar.newest,
+  .zero.newest {
+    box-shadow: inset 0 0 0 1.5px var(--hw-ink);
   }
-  .missed.newest::after {
-    border-color: var(--hw-key);
+  .zero {
+    height: 4px;
+  }
+  .future {
+    height: 7px;
+  }
+  .markers span,
+  .ticks span {
+    font-size: 12px;
+  }
+  .legend {
+    font-size: 13px;
+    gap: 8px 22px;
   }
 }

@@ -203,8 +203,9 @@ function Num({ value }: { value: number | null }) {
 
 const SCALE_MAX = 50;
 
-function oppLabel(g: { homeAway: "home" | "away"; opp: string }): string {
-  return `${g.homeAway === "home" ? "vs" : "@"} ${g.opp}`;
+function oppLabel(g: PastGame): string {
+  if (g.isCupFinal) return "Cup final";
+  return `${g.homeAway === "home" ? "vs" : "@"} ${g.opp ?? ""}`;
 }
 
 /**
@@ -228,7 +229,9 @@ function LastGamesChart({ games }: { games: PastGame[] }) {
   const newestIdx = ordered.length - 1;
   const summary = ordered
     .map((g) => {
-      const where = `${formatPlainDate(g.date)} ${g.homeAway === "home" ? "vs" : "at"} ${g.opp}`;
+      const where = g.isCupFinal
+        ? `${formatPlainDate(g.date)} Cup final`
+        : `${formatPlainDate(g.date)} ${g.homeAway === "home" ? "vs" : "at"} ${g.opp}`;
       return g.status === "missed" || g.pts === null
         ? `${where}: out`
         : `${where}: ${Math.round(g.pts)} points`;
@@ -238,7 +241,7 @@ function LastGamesChart({ games }: { games: PastGame[] }) {
   return (
     <div className={styles.chart}>
       <span className={`${styles.lab} ${styles.chartLab}`}>
-        Last {ordered.length}
+        Last {ordered.length} team games
       </span>
       <div className={styles.plot} role="img" aria-label={summary}>
         {slots.map((g, i) => {
@@ -279,7 +282,10 @@ function LastGamesChart({ games }: { games: PastGame[] }) {
       <ul className={styles.caps} aria-hidden>
         {slots.map((g, i) =>
           g ? (
-            <li key={g.slotKey} className={styles.cap}>
+            <li
+              key={g.slotKey}
+              className={`${styles.cap}${g.status === "missed" ? ` ${styles.capOut}` : ""}`}
+            >
               <b>{oppLabel(g)}</b>
               <span>{formatPlainDate(g.date)}</span>
             </li>

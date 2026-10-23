@@ -21,19 +21,19 @@ export type TeamGame = {
   isCupFinal: boolean;
 };
 
-/** A past game with an opponent (played or missed) — what the last 5 draws. */
+/**
+ * A dated past game (played or missed) — what the last 5 draws. Has an
+ * opponent, except a Cup final may not (its cap reads "Cup final").
+ */
 export type PastGame = TeamGame & {
   status: "played" | "missed";
   date: string;
-  opp: string;
-  homeAway: "home" | "away";
 };
 
 export function isPastGame(g: TeamGame): g is PastGame {
   return (
     (g.status === "played" || g.status === "missed") &&
     g.date !== null &&
-    g.opp !== null &&
-    g.homeAway !== null
+    (g.isCupFinal || (g.opp !== null && g.homeAway !== null))
   );
 }

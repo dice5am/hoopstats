@@ -3,11 +3,11 @@ import { formatPlainDate } from "@/lib/dates";
 import styles from "./SeasonChart.module.css";
 
 const SCALE_MAX = 50;
-const GAP = "10px";
+/** Empty cells before the Cup · TBD pair and before an undated Cup final. */
+const GAP_CELLS = 2;
 
-function pct(n: number): string {
-  return `${(n * 100).toFixed(4)}%`;
-}
+const pct = (n: number) => `${n.toFixed(4)}%`;
+const frac = (pts: number) => (Math.min(pts, SCALE_MAX) / SCALE_MAX) * 100;
 
 /** Ticks over the dated run only: 1, 20, 40, 60 and his last dated slot. */
 function tickSlots(dated: number): number[] {
@@ -21,22 +21,26 @@ function slotLabel(g: TeamGame): string {
   const where =
     g.date && g.opp
       ? `${formatPlainDate(g.date)} ${g.homeAway === "home" ? "vs" : "at"} ${g.opp}`
-      : "Cup final";
+      : g.date
+        ? `${formatPlainDate(g.date)} Cup final`
+        : "Cup final";
   if (g.status === "played")
     return `${where}: ${Math.round(g.pts ?? 0)} points`;
   if (g.status === "missed") return `${where}: out`;
   return "";
 }
 
-const isPast = (g: TeamGame | null) =>
+const isPast = (g: TeamGame | null): g is TeamGame =>
   !!g && (g.status === "played" || g.status === "missed");
 
+type Cell = { ci: number; g: TeamGame | null; key: string };
+
 /**
- * His whole season, one column per slot on a fixed 0–50 scale. Dated run
- * first (played bar, real-0 marker, missed = dash under the axis, scheduled =
- * faint court tick), then after a gap the undated Cup pair ("Cup · TBD"),
- * then the Cup final column if his team reaches it. Flat key-orange line at
- * the season average over the played range; its label lives in the header.
+ * His whole season, one equal cell per slot on a fixed 0–50 scale. Dated run
+ * first in date order (dated Cup games and a dated Cup final included), then
+ * after a 2-cell gap the undated "Cup · TBD" pair, then (only if undated) the
+ * Cup final after another 2-cell gap. Flat key-orange line at the season
+ * average over game 1 → newest; its value lives in the header.
  */
 export function SeasonChart({
   games,
@@ -47,110 +51,127 @@ export function SeasonChart({
   slotTotal: number;
   seasonAvg: number | null;
 }) {
-  const cupFinal = games.find((g) => g.isCupFinal) ?? null;
-  // Only games with no date sit in the Cup · TBD pair; any game with a date
-  // takes its place in date order on the dated run.
+  const undatedFinal = games.find((g) => g.isCupFinal && !g.date) ?? null;
   const tbd = games.filter((g) => !g.isCupFinal && !g.date);
   const dated: (TeamGame | null)[] = games
-    .filter((g) => !g.isCupFinal && !!g.date)
+    .filter((g) => !!g.date)
     .sort(
       (a, b) =>
         (a.date as string).localeCompare(b.date as string) || a.seq - b.seq,
     );
   // Never draw fewer than Data's slot_total (pads only if the file is short).
-  const shortBy = slotTotal - dated.length - tbd.length - (cupFinal ? 1 : 0);
+  const shortBy =
+    slotTotal - dated.length - tbd.length - (undatedFinal ? 1 : 0);
   for (let k = 0; k < shortBy; k++) dated.push(null);
   const D = dated.length;
   const T = tbd.length;
-  if (D + T + (cupFinal ? 1 : 0) === 0) return null;
 
-  // Grid tracks: dated run | gap | TBD pair | gap | Cup final.
-  const tracks = [`repeat(${D}, minmax(0, 1fr))`];
-  const tbdStart = D + 2; // 1-based grid line after the gap track
-  if (T > 0) tracks.push(GAP, `repeat(${T}, minmax(0, 1fr))`);
-  const cupCol = D + (T > 0 ? T + 1 : 0) + 2;
-  if (cupFinal) tracks.push(GAP, "minmax(0, 1fr)");
-  const template = { gridTemplateColumns: tracks.join(" ") };
+  const cells: Cell[] = dated.map((g, i) => ({
+    ci: i,
+    g,
+    key: g?.slotKey ?? `pad-${i}`,
+  }));
+  let c = D;
+  const pairStart = T > 0 ? c + GAP_CELLS : null;
+  if (pairStart !== null) {
+    tbd.forEach((g, i) => cells.push({ ci: pairStart + i, g, key: g.slotKey }));
+    c = pairStart + T;
+  }
+  const finalCell = undatedFinal ? c + GAP_CELLS : null;
+  if (finalCell !== null) {
+    cells.push({ ci: finalCell, g: undatedFinal, key: undatedFinal!.slotKey });
+    c = finalCell + 1;
+  }
+  const C = c;
+  if (C === 0) return null;
 
-  const lastPastIdx = dated.reduce((acc, g, i) => (isPast(g) ? i : acc), -1);
-  // Newest = latest-dated past game (the Cup final can sit mid-season by date).
-  const newestKey =
-    games
-      .filter((g) => isPast(g) && g.date)
-      .reduce<TeamGame | null>(
-        (a, g) => (!a || (g.date as string) >= (a.date as string) ? g : a),
-        null,
-      )?.slotKey ?? null;
-  const all = [...dated, ...tbd, cupFinal];
+  const slotCount = cells.length;
+  const all = cells.map((x) => x.g);
   const pastCount = all.filter(isPast).length;
   const playedCount = all.filter((g) => g?.status === "played").length;
   const missedCount = pastCount - playedCount;
-  const slotCount = D + T + (cupFinal ? 1 : 0);
 
   // Team hasn't played yet: no season chart, the last-5 block says "No games yet".
   if (pastCount === 0) return null;
 
+  const pos = (ci: number) => (ci * 100) / C;
+  const w = 100 / C;
+
+  const lastPastIdx = dated.reduce((acc, g, i) => (isPast(g) ? i : acc), -1);
+  const newestCi = lastPastIdx >= 0 ? lastPastIdx : null;
+
   const showAvg = seasonAvg !== null && playedCount > 0;
-  const showLine = showAvg && lastPastIdx >= 0;
-  const avgFrac = showLine ? Math.min(seasonAvg!, SCALE_MAX) / SCALE_MAX : null;
+  const avgPct = showAvg ? frac(seasonAvg!) : null;
+
+  // Traded tick: a team change between consecutive dated games.
+  const trades: { ci: number; team: string }[] = [];
+  let prevTeam: string | null = null;
+  dated.forEach((g, i) => {
+    if (!g?.team) return;
+    if (prevTeam && g.team !== prevTeam) trades.push({ ci: i, team: g.team });
+    prevTeam = g.team;
+  });
+
+  const datedFinals = cells.filter((x) => x.g?.isCupFinal && x.g.date);
 
   const summary = [
     `Season so far: ${playedCount} played, ${missedCount} out, ${slotCount - pastCount} to come.`,
     showAvg ? `Season average ${seasonAvg!.toFixed(1)}.` : "",
     all
       .filter(isPast)
-      .map((g) => slotLabel(g!))
+      .map((g) => slotLabel(g))
       .join("; "),
   ]
     .filter(Boolean)
     .join(" ");
 
-  const column = (
-    g: TeamGame | null,
-    col: number,
-    newest: boolean,
-    key: string,
-  ) => {
-    const place = { gridColumn: `${col}`, gridRow: "1" };
+  const playedPct = (ci: number) => {
+    const g = cells.find((x) => x.ci === ci)?.g;
+    return g?.status === "played" ? frac(g.pts ?? 0) : null;
+  };
+
+  const column = ({ ci, g, key }: Cell) => {
+    const place = { left: pct(pos(ci)), width: pct(w) };
     if (!g || g.status === "scheduled" || g.status === "tbd") {
       return (
-        <div
-          key={key}
-          className={`${styles.col} ${styles.future}`}
-          style={place}
-        />
+        <div key={key} className={styles.col} style={place}>
+          <div className={styles.future} />
+        </div>
       );
     }
+    const newest = ci === newestCi;
     const nw = newest ? ` ${styles.newest}` : "";
     if (g.status === "missed") {
       return (
-        <div
-          key={key}
-          className={`${styles.col} ${styles.missed}${nw}`}
-          style={place}
-        />
+        <div key={key} className={styles.col} style={place}>
+          <div className={`${styles.outBox}${nw}`} />
+        </div>
       );
     }
     const pts = Math.round(g.pts ?? 0);
-    const label = newest || pts > SCALE_MAX;
-    const barFrac = Math.min(pts, SCALE_MAX) / SCALE_MAX;
-    // Newest number sits above its bar, or above the avg line when the bar is
-    // below it (6px clear at 390, 8px at 1440). At 390 it also clears the
-    // tallest bar within 2 columns either side.
-    const lifted = newest && avgFrac !== null && barFrac < avgFrac;
-    const liftD = lifted ? avgFrac! : barFrac;
-    let liftM = liftD;
-    if (newest && col >= 1 && col <= D) {
-      for (let j = Math.max(0, col - 3); j <= Math.min(D - 1, col + 1); j++) {
-        const n = dated[j];
-        if (n && n.status === "played" && j !== col - 1) {
-          liftM = Math.max(liftM, Math.min(n.pts ?? 0, SCALE_MAX) / SCALE_MAX);
-        }
+    let label: React.ReactNode = null;
+    if (newest || pts > SCALE_MAX) {
+      // The number is wider than a column: its bottom clears the tallest
+      // played bar within 2 cells either side by 4px. If that is below the
+      // average, it sits above the line: line top edge (centre + 3px) plus
+      // var(--avg-clear) (6px at 390, 8px at 1440).
+      let top = 0;
+      for (let j = ci - 2; j <= ci + 2; j++) {
+        const h = playedPct(j);
+        if (h !== null) top = Math.max(top, h);
       }
+      const p = pos(ci);
+      const align = p < 4 ? ` ${styles.ptsL}` : p > 95 ? ` ${styles.ptsR}` : "";
+      const bottom =
+        newest && avgPct !== null && top < avgPct
+          ? `calc(${pct(avgPct)} + 3px + var(--avg-clear))`
+          : `calc(${pct(top)} + 4px)`;
+      label = (
+        <span className={`${styles.pts}${align}`} style={{ bottom }}>
+          {pts}
+        </span>
+      );
     }
-    // +2px when clearing the avg line: its 2px stroke sits above its position.
-    const gapM = liftM > barFrac ? (liftM === avgFrac ? 8 : 6) : 3;
-    const gapD = lifted ? 10 : 3;
     return (
       <div key={key} className={styles.col} style={place}>
         {pts === 0 ? (
@@ -158,124 +179,149 @@ export function SeasonChart({
         ) : (
           <div
             className={`${styles.bar}${nw}`}
-            style={{ height: pct(barFrac) }}
+            style={{ height: pct(frac(pts)) }}
           />
         )}
-        {label ? (
-          <span
-            className={styles.pts}
-            style={
-              {
-                "--lift-m": `calc(${pct(liftM)} + ${gapM}px)`,
-                "--lift-d": `calc(${pct(liftD)} + ${gapD}px)`,
-              } as React.CSSProperties
-            }
-          >
-            {pts}
-          </span>
-        ) : null}
+        {label}
       </div>
     );
   };
 
-  const keyOf = (g: TeamGame | null, i: number) => g?.slotKey ?? `pad-${i}`;
-  const outDash = (g: TeamGame | null, col: number, key: string) =>
-    g?.status === "missed" ? (
-      <span
-        key={key}
-        className={styles.outDash}
-        style={{ gridColumn: `${col}` }}
-      />
-    ) : null;
+  const sub =
+    `Game ${pastCount} of ${slotCount}` +
+    (playedCount !== pastCount ? ` · ${playedCount} played` : "");
 
   return (
     <div className={styles.season}>
       <div className={styles.head}>
-        <span className={styles.lab}>
-          Season · {pastCount} of {slotCount}
-        </span>
+        <span className={styles.lab}>2026-27 season · team games</span>
         {showAvg ? (
           <span className={styles.avgKey}>
-            <span className={styles.avgRule} aria-hidden />
+            <i className={styles.avgRule} aria-hidden />
             {seasonAvg!.toFixed(1)} avg
           </span>
         ) : null}
       </div>
+      <small className={styles.sub}>{sub}</small>
       <div className={styles.frame} role="img" aria-label={summary}>
-        <div className={styles.plot} style={template}>
-          {dated.map((g, i) =>
-            column(g, i + 1, !!g && g.slotKey === newestKey, keyOf(g, i)),
-          )}
-          {tbd.map((g, i) => column(g, tbdStart + i, false, g.slotKey))}
-          {cupFinal
-            ? column(
-                cupFinal,
-                cupCol,
-                cupFinal.slotKey === newestKey,
-                cupFinal.slotKey,
-              )
-            : null}
-          {showLine ? (
-            <div
-              className={styles.avgSpan}
-              style={{ gridColumn: `1 / ${lastPastIdx + 2}`, gridRow: "1" }}
-            >
-              <div
-                className={styles.avg}
-                style={{
-                  bottom: pct(Math.min(seasonAvg!, SCALE_MAX) / SCALE_MAX),
-                }}
-              />
-            </div>
-          ) : null}
-        </div>
-        <div className={styles.baselines} style={template}>
-          <span style={{ gridColumn: `1 / ${D + 1}` }} />
-          {T > 0 ? (
-            <span style={{ gridColumn: `${tbdStart} / ${tbdStart + T}` }} />
-          ) : null}
-          {cupFinal ? <span style={{ gridColumn: `${cupCol}` }} /> : null}
-        </div>
-        <div className={styles.outs} style={template}>
-          {dated.map((g, i) => outDash(g, i + 1, keyOf(g, i)))}
-          {cupFinal ? outDash(cupFinal, cupCol, cupFinal.slotKey) : null}
-        </div>
-        <div className={styles.ticks} style={template}>
-          {tickSlots(D).map((t) => (
-            <span
-              key={t}
-              className={styles.tick}
-              style={{ gridColumn: `${t}`, gridRow: "1" }}
-            >
-              {t}
+        <div className={styles.markers} aria-hidden>
+          {trades.map((t) => {
+            const x = pos(t.ci);
+            return (
+              <span
+                key={`tr-${t.ci}`}
+                style={
+                  x < 70
+                    ? { left: `calc(${pct(x)} + 4px)` }
+                    : { right: `calc(${pct(100 - x)} + 4px)` }
+                }
+              >
+                Traded to {t.team}
+              </span>
+            );
+          })}
+          {datedFinals.map((x) => (
+            <span key={`cf-${x.key}`} style={{ left: pct(pos(x.ci)) }}>
+              Cup final
             </span>
           ))}
-          {T > 0 ? (
-            <span
-              className={styles.group}
-              style={{
-                gridColumn: `${tbdStart} / ${tbdStart + T}`,
-                gridRow: "2",
-              }}
-            >
+          {finalCell !== null ? (
+            <span style={{ right: 0 }}>Cup final</span>
+          ) : null}
+          {pairStart !== null ? (
+            <span style={{ right: pct(100 - pos(pairStart + T)) }}>
               Cup · TBD
             </span>
           ) : null}
-          {cupFinal ? (
+        </div>
+        <div className={styles.plot}>
+          {[25, 50].map((v) => (
+            <div
+              key={`g${v}`}
+              className={styles.gridline}
+              style={{ bottom: `${v * 2}%` }}
+            />
+          ))}
+          {[0, 25, 50].map((v) => (
             <span
-              className={styles.group}
-              style={{ gridColumn: `${cupCol}`, gridRow: T > 0 ? "3" : "2" }}
+              key={`a${v}`}
+              className={styles.axis}
+              style={{ bottom: `${v * 2}%` }}
+              aria-hidden
             >
-              Cup final
+              {v}
             </span>
+          ))}
+          {cells.map(column)}
+          {avgPct !== null && lastPastIdx >= 0 ? (
+            <div
+              className={styles.avg}
+              style={{ bottom: pct(avgPct), width: pct(pos(lastPastIdx + 1)) }}
+            />
           ) : null}
+          {trades.map((t) => (
+            <div
+              key={`tl-${t.ci}`}
+              className={styles.trade}
+              style={{ left: pct(pos(t.ci)) }}
+            />
+          ))}
+        </div>
+        <div className={styles.baseline} />
+        <div className={styles.under}>
+          {cells
+            .filter((x) => x.g?.status === "missed")
+            .map((x) => (
+              <i key={x.key} style={{ left: pct(pos(x.ci)), width: pct(w) }} />
+            ))}
+        </div>
+        <div className={styles.ticks} aria-hidden>
+          {tickSlots(D).map((t) => {
+            const edge =
+              t === 1
+                ? ` ${styles.tickL}`
+                : t === D && pairStart === null && finalCell === null
+                  ? ` ${styles.tickR}`
+                  : "";
+            return (
+              <span
+                key={t}
+                className={edge.trim() ? edge.trim() : undefined}
+                style={{ left: pct(pos(t - 1) + w / 2) }}
+              >
+                {t}
+              </span>
+            );
+          })}
         </div>
       </div>
-      {missedCount > 0 ? (
-        <p className={styles.key}>
-          <span className={styles.keyDash} aria-hidden /> Out
-        </p>
-      ) : null}
+      <div className={styles.legend} aria-hidden>
+        <span>
+          <i className={styles.lgPlayed} />
+          Played
+        </span>
+        <span>
+          <i className={styles.lgNew} />
+          Newest
+        </span>
+        <span>
+          <i className={styles.lgZero} />0 pts
+        </span>
+        <span>
+          <i className={styles.lgOut} />
+          Out
+        </span>
+        <span>
+          <i className={styles.lgFut} />
+          Not played yet
+        </span>
+        {showAvg ? (
+          <span>
+            <i className={styles.lgAvg} />
+            Season avg
+          </span>
+        ) : null}
+      </div>
     </div>
   );
 }

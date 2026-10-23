@@ -320,30 +320,32 @@
   box-shadow: inset 0 0 0 2px var(--hw-ink);
 }
 
-/* Missed game: empty slot, dashed ink outline ~40%, "Out". Never on the baseline like a real 0. */
+/* Missed game: empty slot, 2px dashed 40% ink outline stopping 12px above the
+   baseline, "Out". Never on the baseline like a real 0. */
 .out {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border: 2px dashed rgba(43, 29, 18, 0.4);
-  border-bottom: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 12px;
+  border: 2px dashed #9d8464;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
 }
 
 .out.newest {
-  border-color: var(--hw-key);
+  border: 2.5px dashed var(--hw-key);
 }
 
 .outLab {
-  margin-bottom: 8px;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 15px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--hw-dim);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--hw-ink-2);
+}
+
+.out.newest .outLab {
+  color: var(--hw-ink);
 }
 
 .pts {
@@ -387,6 +389,10 @@
   font-size: 17px;
   letter-spacing: 0.03em;
   white-space: nowrap;
+}
+
+.capOut b {
+  color: var(--hw-ink-2);
 }
 
 .cap span {
@@ -545,6 +551,10 @@
 
   .cap span {
     font-size: 13px;
+  }
+
+  .outLab {
+    font-size: 15px;
   }
 
   .empty {
