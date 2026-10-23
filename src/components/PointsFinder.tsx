@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import type { PointsGame, PointsRow } from "@/lib/betting";
+import type { PointsRow, TeamGame } from "@/lib/betting";
 import { foldDiacritics, nameMatches } from "@/lib/normalize";
 import {
   clientMonthKey,
@@ -202,12 +202,15 @@ function Num({ value }: { value: number | null }) {
 
 const SCALE_MAX = 50;
 
-function oppLabel(g: PointsGame): string {
+function oppLabel(g: { homeAway: "home" | "away"; opp: string }): string {
   return `${g.homeAway === "home" ? "vs" : "@"} ${g.opp}`;
 }
 
-/** Last-games columns: fixed 0–50, oldest left → newest right, 5 slots. */
-function LastGamesChart({ games }: { games: PointsGame[] }) {
+/**
+ * Team's last 5 games while he was on the roster: fixed 0–50, oldest left →
+ * newest right, 5 slots from the left. Missed = dashed "Out" slot (never 0).
+ */
+function LastGamesChart({ games }: { games: TeamGame[] }) {
   if (games.length === 0) {
     return (
       <div className={styles.chart}>
@@ -216,17 +219,19 @@ function LastGamesChart({ games }: { games: PointsGame[] }) {
       </div>
     );
   }
-  const ordered = [...games].slice(0, 5).reverse(); // data is newest first
-  const slots: (PointsGame | null)[] = Array.from(
+  const ordered = games.slice(-5); // data is oldest first
+  const slots: (TeamGame | null)[] = Array.from(
     { length: 5 },
     (_, i) => ordered[i] ?? null,
   );
   const newestIdx = ordered.length - 1;
   const summary = ordered
-    .map(
-      (g) =>
-        `${formatPlainDate(g.date)} ${g.homeAway === "home" ? "vs" : "at"} ${g.opp}: ${Math.round(g.pts)} points`,
-    )
+    .map((g) => {
+      const where = `${formatPlainDate(g.date)} ${g.homeAway === "home" ? "vs" : "at"} ${g.opp}`;
+      return g.status === "missed" || g.pts === null
+        ? `${where}: out`
+        : `${where}: ${Math.round(g.pts)} points`;
+    })
     .join("; ");
 
   return (
@@ -238,9 +243,19 @@ function LastGamesChart({ games }: { games: PointsGame[] }) {
         {slots.map((g, i) => {
           if (!g) return <div key={`empty-${i}`} className={styles.slot} />;
           const nw = i === newestIdx ? ` ${styles.newest}` : "";
+          const key = `${g.date}-${g.opp}`;
+          if (g.status === "missed" || g.pts === null) {
+            return (
+              <div key={key} className={styles.slot}>
+                <div className={`${styles.out}${nw}`}>
+                  <span className={styles.outLab}>Out</span>
+                </div>
+              </div>
+            );
+          }
           const pts = Math.round(g.pts);
           return (
-            <div key={`${g.date}-${g.opp}`} className={styles.slot}>
+            <div key={key} className={styles.slot}>
               {pts === 0 ? (
                 <div className={`${styles.zero}${nw}`}>
                   <span className={styles.pts}>0</span>
@@ -302,7 +317,6 @@ function PointsCard({ row }: { row: PointsRow }) {
       ? gamesText(row.last_season_gp)
       : "No 2025-26 games";
 
-  const games = played ? row.last : [];
   const teamLine = [row.team_abbreviation ?? "Free agent", row.position]
     .filter(Boolean)
     .join(" · ");
@@ -338,7 +352,7 @@ function PointsCard({ row }: { row: PointsRow }) {
         </div>
       </div>
 
-      <LastGamesChart games={games} />
+      <LastGamesChart games={row.teamGames} />
 
       <p className={styles.stamp}>
         Updated {row.pulled_at_utc ? formatLocalDate(row.pulled_at_utc) : "n/a"}

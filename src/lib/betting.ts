@@ -9,6 +9,17 @@ export type PointsGame = {
   homeAway: "home" | "away";
 };
 
+/** One team game while he was on the roster (`player_team_games_2026_27_v1`), oldest first. */
+export type TeamGame = {
+  seq: number;
+  date: string; // YYYY-MM-DD
+  opp: string;
+  homeAway: "home" | "away";
+  team: string;
+  status: "played" | "missed";
+  pts: number | null; // null when missed; a real 0 stays 0
+};
+
 /** Slim projection of a `player_points_betting` row — points only. */
 export type PointsRow = {
   player_id: string;
@@ -27,6 +38,7 @@ export type PointsRow = {
   last_season_gp: number | null;
   n_last: number | null;
   last: PointsGame[];
+  teamGames: TeamGame[];
   data_as_of_game_date: string | null;
   pulled_at_utc: string | null;
 };
@@ -34,6 +46,39 @@ export type PointsRow = {
 type RawRow = Record<string, unknown>;
 
 const DATA_FILE = path.join(process.cwd(), "data", "betting_points.json");
+const TEAM_GAMES_FILE = path.join(process.cwd(), "data", "player_team_games.json");
+
+function toTeamGames(raw: unknown): TeamGame[] {
+  if (!Array.isArray(raw)) return [];
+  const out: TeamGame[] = [];
+  for (const g of raw as RawRow[]) {
+    const date = str(g.game_date);
+    const opp = str(g.opponent_abbreviation);
+    const team = str(g.team_abbreviation);
+    const ha = g.home_away;
+    const status = g.status;
+    if (!date || !opp || !team || (ha !== "home" && ha !== "away")) continue;
+    if (status !== "played" && status !== "missed") continue;
+    out.push({
+      seq: num(g.game_seq) ?? out.length + 1,
+      date: date.slice(0, 10),
+      opp,
+      homeAway: ha,
+      team,
+      status,
+      pts: status === "played" ? num(g.pts) : null,
+    });
+  }
+  return out.sort((a, b) => a.date.localeCompare(b.date) || a.seq - b.seq);
+}
+
+function loadTeamGames(): Map<string, TeamGame[]> {
+  const m = new Map<string, TeamGame[]>();
+  if (!fs.existsSync(TEAM_GAMES_FILE)) return m;
+  const raw = JSON.parse(fs.readFileSync(TEAM_GAMES_FILE, "utf8")) as RawRow[];
+  for (const r of raw) m.set(String(r.player_id), toTeamGames(r.games));
+  return m;
+}
 
 function str(v: unknown): string | null {
   return typeof v === "string" && v.length > 0 ? v : null;
@@ -73,6 +118,7 @@ function toRow(r: RawRow): PointsRow {
     last_season_gp: num(r.last_season_gp),
     n_last: nLast,
     last,
+    teamGames: [],
     data_as_of_game_date: str(r.data_as_of_game_date)?.slice(0, 10) ?? null,
     pulled_at_utc: str(r.pulled_at_utc),
   };
@@ -82,8 +128,13 @@ function toRow(r: RawRow): PointsRow {
 export function loadPointsRows(): PointsRow[] {
   if (!fs.existsSync(DATA_FILE)) return [];
   const raw = JSON.parse(fs.readFileSync(DATA_FILE, "utf8")) as RawRow[];
+  const teamGames = loadTeamGames();
   return raw
-    .map(toRow)
+    .map((r) => {
+      const row = toRow(r);
+      row.teamGames = teamGames.get(row.player_id) ?? [];
+      return row;
+    })
     .filter((r) => r.full_name)
     .sort((a, b) => a.full_name.localeCompare(b.full_name));
 }
