@@ -9,11 +9,11 @@ function pct(n: number): string {
   return `${(n * 100).toFixed(4)}%`;
 }
 
-/** Ticks over the dated run only: 1, 20, 41, 62 and his last dated slot. */
+/** Ticks over the dated run only: 1, 20, 40, 60 and his last dated slot. */
 function tickSlots(dated: number): number[] {
   if (dated <= 0) return [];
   return Array.from(
-    new Set([...[1, 20, 41, 62].filter((t) => t < dated - 4), dated]),
+    new Set([...[1, 20, 40, 60].filter((t) => t < dated - 4), dated]),
   );
 }
 
@@ -81,6 +81,9 @@ export function SeasonChart({
   const playedCount = all.filter((g) => g?.status === "played").length;
   const missedCount = pastCount - playedCount;
   const slotCount = D + T + (cupFinal ? 1 : 0);
+
+  // Team hasn't played yet: no season chart, the last-5 block says "No games yet".
+  if (pastCount === 0) return null;
 
   const showAvg = seasonAvg !== null && playedCount > 0;
   const showLine = showAvg && lastPastIdx >= 0;

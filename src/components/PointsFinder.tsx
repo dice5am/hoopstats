@@ -301,13 +301,18 @@ function PointsCard({ row }: { row: PointsRow }) {
 
   const played = row.has_season_games;
   const seasonAvg = played ? row.pts_season_avg : null;
+  // Team has played but he hasn't: "n/a · 0 games"; team hasn't played: "No games yet".
+  const teamPlayed = row.teamGames.some(
+    (g) => g.status === "played" || g.status === "missed",
+  );
+  const noGames = teamPlayed ? "0 games" : "No games yet";
   const seasonSub =
-    played && row.gp_season ? gamesText(row.gp_season) : "No games yet";
+    played && row.gp_season ? gamesText(row.gp_season) : noGames;
 
   const sameMonth = clientMonth === row.month_key;
   const monthAvg = played && sameMonth ? row.pts_month_avg : null;
   const monthSub = !played
-    ? "No games yet"
+    ? noGames
     : sameMonth && row.gp_month
       ? gamesText(row.gp_month)
       : "0 games";
