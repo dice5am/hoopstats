@@ -241,7 +241,7 @@ function LastGamesChart({ games }: { games: PastGame[] }) {
   return (
     <div className={styles.chart}>
       <span className={`${styles.lab} ${styles.chartLab}`}>
-        Last {ordered.length} team games
+        Last {ordered.length} team {ordered.length === 1 ? "game" : "games"}
       </span>
       <div className={styles.plot} role="img" aria-label={summary}>
         {slots.map((g, i) => {
