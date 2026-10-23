@@ -67,8 +67,10 @@ function toTeamGames(raw: unknown): TeamGame[] {
     if (!STATUSES.includes(status)) continue;
     const ha =
       g.home_away === "home" || g.home_away === "away" ? g.home_away : null;
+    const seq = num(g.game_seq) ?? out.length + 1;
     out.push({
-      seq: num(g.game_seq) ?? out.length + 1,
+      seq,
+      slotKey: str(g.slot_key) ?? str(g.game_id) ?? `slot-${seq}`,
       gameId: str(g.game_id),
       date: str(g.game_date)?.slice(0, 10) ?? null,
       opp: str(g.opponent_abbreviation),
@@ -101,6 +103,7 @@ function loadTeamGames(): Map<string, TeamGamesEntry> {
       for (let k = regular; k < V1_SEASON_GAMES; k++) {
         games.push({
           seq: games.length + 1,
+          slotKey: `slot-${games.length + 1}`,
           gameId: null,
           date: null,
           opp: null,

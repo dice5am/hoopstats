@@ -79,13 +79,14 @@ export function SeasonChart({
     .join(" ");
 
   const column = (g: TeamGame | null, i: number, newest: boolean) => {
+    const k = g?.slotKey ?? `empty-${i}`;
     if (!g || g.status === "scheduled" || g.status === "tbd") {
-      return <div key={i} className={`${styles.col} ${styles.future}`} />;
+      return <div key={k} className={`${styles.col} ${styles.future}`} />;
     }
     if (g.status === "missed") {
       return (
         <div
-          key={i}
+          key={k}
           className={`${styles.col} ${styles.missed}${newest ? ` ${styles.newest}` : ""}`}
         />
       );
@@ -94,7 +95,7 @@ export function SeasonChart({
     const label = newest || pts > SCALE_MAX;
     const nw = newest ? ` ${styles.newest}` : "";
     return (
-      <div key={i} className={styles.col}>
+      <div key={k} className={styles.col}>
         {pts === 0 ? (
           <div className={`${styles.zero}${nw}`}>
             {label ? <span className={styles.pts}>0</span> : null}
@@ -143,7 +144,7 @@ export function SeasonChart({
           >
             {slots.map((g, i) => (
               <span
-                key={i}
+                key={g?.slotKey ?? `empty-${i}`}
                 className={g?.status === "missed" ? styles.outDash : undefined}
               />
             ))}

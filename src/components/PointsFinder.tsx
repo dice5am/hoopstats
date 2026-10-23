@@ -244,7 +244,7 @@ function LastGamesChart({ games }: { games: PastGame[] }) {
         {slots.map((g, i) => {
           if (!g) return <div key={`empty-${i}`} className={styles.slot} />;
           const nw = i === newestIdx ? ` ${styles.newest}` : "";
-          const key = `${g.date}-${g.opp}`;
+          const key = g.slotKey;
           if (g.status === "missed" || g.pts === null) {
             return (
               <div key={key} className={styles.slot}>
@@ -279,7 +279,7 @@ function LastGamesChart({ games }: { games: PastGame[] }) {
       <ul className={styles.caps} aria-hidden>
         {slots.map((g, i) =>
           g ? (
-            <li key={`${g.date}-${g.opp}`} className={styles.cap}>
+            <li key={g.slotKey} className={styles.cap}>
               <b>{oppLabel(g)}</b>
               <span>{formatPlainDate(g.date)}</span>
             </li>

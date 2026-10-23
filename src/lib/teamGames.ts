@@ -9,6 +9,8 @@ export type SlotStatus = "played" | "missed" | "scheduled" | "tbd";
 
 export type TeamGame = {
   seq: number;
+  /** Stable column key: game_id for real games, e.g. `OKC-tbd-1` for placeholders. */
+  slotKey: string;
   gameId: string | null;
   date: string | null; // YYYY-MM-DD; null for tbd
   opp: string | null;
