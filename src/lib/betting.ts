@@ -23,6 +23,8 @@ export type PointsRow = {
   month_key: string;
   gp_month: number | null;
   pts_month_avg: number | null;
+  last_season_pts_avg: number | null;
+  last_season_gp: number | null;
   n_last: number | null;
   last: PointsGame[];
   data_as_of_game_date: string | null;
@@ -67,6 +69,8 @@ function toRow(r: RawRow): PointsRow {
     month_key: String(r.month_key ?? ""),
     gp_month: num(r.gp_month),
     pts_month_avg: num(r.pts_month_avg),
+    last_season_pts_avg: num(r.last_season_pts_avg),
+    last_season_gp: num(r.last_season_gp),
     n_last: nLast,
     last,
     data_as_of_game_date: str(r.data_as_of_game_date)?.slice(0, 10) ?? null,

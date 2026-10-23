@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import type { PointsRow } from "@/lib/betting";
+import type { PointsGame, PointsRow } from "@/lib/betting";
 import { foldDiacritics, nameMatches } from "@/lib/normalize";
-import { getTeamColors } from "@/lib/teamColors";
-import { TeamMarkPip } from "@/components/TeamMarkPip";
 import {
   clientMonthKey,
   formatLocalDate,
@@ -108,15 +106,15 @@ export function PointsFinder({ rows }: { rows: PointsRow[] }) {
       : undefined;
 
   return (
-    <main className={styles.wrap}>
-      <header className={styles.header}>
+    <main>
+      <section className={styles.intro}>
         <div>
           <h1 className={styles.title}>Player points</h1>
           <p className={styles.subtitle}>
-            Season, month and last 5 · points only
+            Season, month, 2025-26 and last 5 · points only
           </p>
         </div>
-        <div className={styles.searchWrap} ref={wrapRef}>
+        <div className={styles.search} ref={wrapRef}>
           <input
             ref={inputRef}
             type="text"
@@ -137,7 +135,7 @@ export function PointsFinder({ rows }: { rows: PointsRow[] }) {
             onChange={(e) => {
               setQuery(e.target.value);
               setOpen(true);
-              setActive(-1);
+              setActive(0); // Hardwood: first result shows as active
             }}
             onKeyDown={onKeyDown}
           />
@@ -152,6 +150,7 @@ export function PointsFinder({ rows }: { rows: PointsRow[] }) {
                   <button
                     key={row.player_id}
                     id={`${listId}-opt-${i}`}
+                    className={styles.opt}
                     type="button"
                     role="option"
                     tabIndex={-1}
@@ -163,7 +162,7 @@ export function PointsFinder({ rows }: { rows: PointsRow[] }) {
                     onMouseEnter={() => setActive(i)}
                     onClick={() => pick(row)}
                   >
-                    <span className={styles.optName}>{row.full_name}</span>
+                    <span>{row.full_name}</span>
                     <span className={styles.optMeta}>
                       {[row.team_abbreviation ?? "Free agent", row.position]
                         .filter(Boolean)
@@ -175,42 +174,104 @@ export function PointsFinder({ rows }: { rows: PointsRow[] }) {
             </div>
           ) : null}
         </div>
-      </header>
+      </section>
 
       {picked ? (
         <PointsCard row={picked} />
       ) : (
-        <section className={`${styles.panel} ${styles.empty}`}>
-          Search a player to see his points: season avg, month avg and last 5
-          games.
+        <section className={`${styles.court} ${styles.empty}`}>
+          <div className={styles.half} aria-hidden />
+          <div className={styles.circle} aria-hidden />
+          <p>
+            Search a player to see season avg, month avg, 2025-26 avg and last
+            5 games
+          </p>
         </section>
       )}
     </main>
   );
 }
 
-function Na() {
-  return <span className={`${styles.val} ${styles.na}`}>n/a</span>;
+function Num({ value }: { value: number | null }) {
+  return value === null ? (
+    <span className={`${styles.num} ${styles.na}`}>n/a</span>
+  ) : (
+    <span className={styles.num}>{value.toFixed(1)}</span>
+  );
 }
 
-function AvgTile({
-  label,
-  avg,
-  sub,
-}: {
-  label: string;
-  avg: number | null;
-  sub: string;
-}) {
+const SCALE_MAX = 50;
+
+function oppLabel(g: PointsGame): string {
+  return `${g.homeAway === "home" ? "vs" : "@"} ${g.opp}`;
+}
+
+/** Last-games columns: fixed 0–50, oldest left → newest right, 5 slots. */
+function LastGamesChart({ games }: { games: PointsGame[] }) {
+  if (games.length === 0) {
+    return (
+      <div className={styles.chart}>
+        <span className={`${styles.lab} ${styles.chartLab}`}>Last games</span>
+        <p className={styles.noGames}>No games yet</p>
+      </div>
+    );
+  }
+  const ordered = [...games].slice(0, 5).reverse(); // data is newest first
+  const slots: (PointsGame | null)[] = Array.from(
+    { length: 5 },
+    (_, i) => ordered[i] ?? null,
+  );
+  const newestIdx = ordered.length - 1;
+  const summary = ordered
+    .map(
+      (g) =>
+        `${formatPlainDate(g.date)} ${g.homeAway === "home" ? "vs" : "at"} ${g.opp}: ${Math.round(g.pts)} points`,
+    )
+    .join("; ");
+
   return (
-    <div className={styles.metricCard}>
-      <span className={styles.metricLabel}>{label}</span>
-      {avg === null ? (
-        <Na />
-      ) : (
-        <span className={styles.val}>{avg.toFixed(1)}</span>
-      )}
-      <span className={styles.games}>{sub}</span>
+    <div className={styles.chart}>
+      <span className={`${styles.lab} ${styles.chartLab}`}>
+        Last {ordered.length}
+      </span>
+      <div className={styles.plot} role="img" aria-label={summary}>
+        {slots.map((g, i) => {
+          if (!g) return <div key={`empty-${i}`} className={styles.slot} />;
+          const nw = i === newestIdx ? ` ${styles.newest}` : "";
+          const pts = Math.round(g.pts);
+          return (
+            <div key={`${g.date}-${g.opp}`} className={styles.slot}>
+              {pts === 0 ? (
+                <div className={`${styles.zero}${nw}`}>
+                  <span className={styles.pts}>0</span>
+                </div>
+              ) : (
+                <div
+                  className={`${styles.bar}${nw}`}
+                  style={{
+                    height: `${(Math.min(pts, SCALE_MAX) / SCALE_MAX) * 100}%`,
+                  }}
+                >
+                  <span className={styles.pts}>{pts}</span>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+      <div className={styles.baseline} aria-hidden />
+      <ul className={styles.caps} aria-hidden>
+        {slots.map((g, i) =>
+          g ? (
+            <li key={`${g.date}-${g.opp}`} className={styles.cap}>
+              <b>{oppLabel(g)}</b>
+              <span>{formatPlainDate(g.date)}</span>
+            </li>
+          ) : (
+            <li key={`empty-${i}`} className={styles.cap} />
+          ),
+        )}
+      </ul>
     </div>
   );
 }
@@ -221,7 +282,6 @@ function PointsCard({ row }: { row: PointsRow }) {
     setMonthKey(clientMonthKey());
   }, []);
   const clientMonth = monthKey ?? row.month_key;
-  const color = getTeamColors(row.team_abbreviation)?.chartPrimary ?? null;
 
   const played = row.has_season_games;
   const seasonAvg = played ? row.pts_season_avg : null;
@@ -236,74 +296,51 @@ function PointsCard({ row }: { row: PointsRow }) {
       ? gamesText(row.gp_month)
       : "0 games";
 
+  const lastAvg = row.last_season_pts_avg;
+  const lastSub =
+    lastAvg !== null && row.last_season_gp
+      ? gamesText(row.last_season_gp)
+      : "No 2025-26 games";
+
   const games = played ? row.last : [];
   const teamLine = [row.team_abbreviation ?? "Free agent", row.position]
     .filter(Boolean)
     .join(" · ");
 
   return (
-    <section className={styles.panel} aria-live="polite">
-      <h2 className={`${styles.title} ${styles.titleWithPip}`}>
-        <TeamMarkPip color={color} size={8} />
-        {row.full_name}
-      </h2>
-      <p className={styles.meta}>
-        {teamLine}
-        {row.team_changed_vs_last_game && row.last_game_team_abbreviation ? (
-          <span className={styles.traded}>
-            {" "}
-            · last game with {row.last_game_team_abbreviation}
-          </span>
-        ) : null}
-      </p>
+    <section className={styles.court} aria-live="polite">
+      <div className={styles.circle} aria-hidden />
+      <div className={styles.who}>
+        <h2 className={styles.name}>{row.full_name}</h2>
+        <p className={styles.meta}>
+          {teamLine}
+          {row.team_changed_vs_last_game && row.last_game_team_abbreviation
+            ? ` · last game with ${row.last_game_team_abbreviation}`
+            : null}
+        </p>
+      </div>
 
-      <div className={styles.grid}>
-        <div className={styles.avgs}>
-          <AvgTile label="Season avg" avg={seasonAvg} sub={seasonSub} />
-          <AvgTile
-            label={`${monthShort(clientMonth)} avg`}
-            avg={monthAvg}
-            sub={monthSub}
-          />
+      <div className={styles.zones}>
+        <div className={`${styles.zone} ${styles.key}`}>
+          <span className={styles.lab}>Season avg</span>
+          <Num value={seasonAvg} />
+          <span className={styles.sub}>{seasonSub}</span>
         </div>
-
-        <div>
-          <p className={styles.recentLabel}>
-            {games.length > 0 ? `Last ${games.length}` : "Last games"}
-          </p>
-          <ul className={styles.games_list}>
-            {games.length === 0 ? (
-              <li className={`${styles.gameRow} ${styles.noGames}`}>
-                No games yet this season
-              </li>
-            ) : (
-              games.map((g) => (
-                <li key={`${g.date}-${g.opp}`} className={styles.gameRow}>
-                  <span className={styles.gameDate}>
-                    {formatPlainDate(g.date)}
-                  </span>
-                  <span
-                    className={styles.gameOpp}
-                    aria-label={
-                      g.homeAway === "home"
-                        ? `home vs ${g.opp}`
-                        : `away at ${g.opp}`
-                    }
-                  >
-                    {g.homeAway === "home" ? "vs" : "@"} {g.opp}
-                  </span>
-                  <span className={styles.gamePts}>
-                    {Math.round(g.pts)}
-                    <span className={styles.ptsUnit}> pts</span>
-                  </span>
-                </li>
-              ))
-            )}
-          </ul>
+        <div className={`${styles.zone} ${styles.elbow}`}>
+          <span className={styles.lab}>{monthShort(clientMonth)} avg</span>
+          <Num value={monthAvg} />
+          <span className={styles.sub}>{monthSub}</span>
+        </div>
+        <div className={`${styles.zone} ${styles.wing}`}>
+          <span className={styles.lab}>2025-26 avg</span>
+          <Num value={lastAvg} />
+          <span className={styles.sub}>{lastSub}</span>
         </div>
       </div>
 
-      <p className={styles.updated}>
+      <LastGamesChart games={games} />
+
+      <p className={styles.stamp}>
         Updated {row.pulled_at_utc ? formatLocalDate(row.pulled_at_utc) : "n/a"}
         {" · games through "}
         {row.data_as_of_game_date

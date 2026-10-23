@@ -1,63 +1,45 @@
-/* From fantasyhoops AppNav.module.css (tabs removed). */
 .nav {
-  position: relative;
-  z-index: 40;
-  overflow: visible;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 0.75rem 1.25rem;
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 1rem 1rem 0;
-  min-width: 0;
+  gap: 12px;
 }
 
 .brand {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 9px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 30px;
+  letter-spacing: -0.01em;
+  line-height: 1;
 }
 
-.brandMark {
-  width: 8px;
-  height: 8px;
+.ball {
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background: var(--fh-champagne-pop);
-  box-shadow: 0 0 10px var(--fh-champagne-glow);
-  font-size: 0;
-  display: inline-block;
-}
-
-.brandText {
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--fh-champagne-text);
-  text-shadow: 0 0 18px var(--fh-champagne-soft);
-  white-space: nowrap;
+  background: var(--hw-key);
+  box-shadow: inset 0 0 0 2px var(--hw-ink);
 }
 
 .season {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   min-height: 36px;
-  padding: 0.3rem 0.7rem;
-  border-radius: 999px;
-  border: 1px solid var(--fh-border);
-  color: var(--fh-text-muted);
-  font-size: 0.8rem;
-  font-weight: 600;
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  padding: 7px 12px;
+  border: 2.5px solid var(--hw-line);
+  background: rgba(255, 248, 238, 0.35);
+  color: var(--hw-ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.06em;
 }
 
-@media (max-width: 480px) {
-  .nav {
-    padding: 0.65rem 0.65rem 0;
-    gap: 0.5rem;
-  }
-
-  .brandText {
-    font-size: 0.95rem;
+@media (min-width: 1000px) {
+  .brand {
+    font-size: 36px;
   }
 }
