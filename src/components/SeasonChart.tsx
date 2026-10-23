@@ -153,7 +153,7 @@ export function SeasonChart({
     if (newest || pts > SCALE_MAX) {
       // The number is wider than a column: its bottom clears the tallest
       // played bar within 2 cells either side by 4px. If that is below the
-      // average, it sits above the line: line top edge (centre + 3px) plus
+      // average or within var(--avg-clear) of the line, it sits above the line: line top edge (centre + 3px) plus
       // var(--avg-clear) (6px at 390, 8px at 1440).
       let top = 0;
       for (let j = ci - 2; j <= ci + 2; j++) {
@@ -162,9 +162,11 @@ export function SeasonChart({
       }
       const p = pos(ci);
       const align = p < 4 ? ` ${styles.ptsL}` : p > 95 ? ` ${styles.ptsR}` : "";
+      // The newest number never sits closer to the line than --avg-clear,
+      // including when its bar ties or barely tops the average.
       const bottom =
-        newest && avgPct !== null && top < avgPct
-          ? `calc(${pct(avgPct)} + 3px + var(--avg-clear))`
+        newest && avgPct !== null
+          ? `max(calc(${pct(top)} + 4px), calc(${pct(avgPct)} + 3px + var(--avg-clear)))`
           : `calc(${pct(top)} + 4px)`;
       label = (
         <span className={`${styles.pts}${align}`} style={{ bottom }}>
