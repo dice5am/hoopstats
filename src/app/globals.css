@@ -1,0 +1,258 @@
+:root {
+  /* Voids */
+  --fh-void-0: #0c0c0e;
+  --fh-void-1: #121214;
+  --fh-void-2: #1a1a1c;
+
+  /* Champagne ladder (Design Pack v3 — LOCK) */
+  --fh-champagne: #F7E7CE;
+  --fh-champagne-pop: #FFFCF5;
+  --fh-champagne-soft: rgba(247, 231, 206, 0.22);
+  --fh-champagne-glow: rgba(247, 231, 206, 0.66);
+  --fh-champagne-text: #FFFCF8;
+  --fh-text-muted: #D4C4AE;
+  --fh-champagne-deep: #B8956A; /* pressed only */
+
+  /* Borders 0.18 / 0.42 */
+  --fh-border: rgba(247, 231, 206, 0.18);
+  --fh-border-strong: rgba(247, 231, 206, 0.42);
+
+  /* Surfaces / text */
+  --fh-surface: rgba(30, 30, 34, 0.55);
+  --fh-surface-mid: rgba(30, 30, 34, 0.64);
+  --fh-surface-strong: rgba(30, 30, 34, 0.72);
+  --fh-text: #F5EEE4;
+  --fh-text-dim: #9A8A76;
+  --fh-body: #F5EEE4;
+
+  /* Chrome aliases → champagne (no invented hexes) */
+  --fh-neon: var(--fh-champagne);
+  --fh-neon-soft: var(--fh-champagne-soft);
+  --fh-neon-glow: var(--fh-champagne-glow);
+  --fh-accent: var(--fh-champagne);
+  --fh-accent-deep: var(--fh-champagne-deep);
+
+  /* Glass recipe */
+  --fh-glass-blur: 22px;
+  --fh-glass-blur-hero: 28px;
+  --fh-glass-saturate: 145%;
+  --fh-edge-top: inset 0 1px 0 rgba(255, 252, 245, 0.45);
+  --fh-edge-left: inset 1px 0 0 rgba(255, 252, 245, 0.16);
+  --fh-hero-outer: 0 0 40px rgba(247, 231, 206, 0.18);
+  --fh-selected-bloom: 0 0 28px rgba(247, 231, 206, 0.28);
+  --fh-motion: 180ms;
+  --fh-motion-drill: 240ms;
+
+  --background: var(--fh-void-0);
+  --foreground: var(--fh-text);
+  --orange: var(--fh-accent);
+  --cyan: var(--fh-champagne);
+  --magenta: var(--fh-champagne-deep);
+}
+
+html,
+body {
+  max-width: 100%;
+  min-height: 100%;
+  overflow-x: clip;
+}
+
+/*
+ * Page back — Design Pack v3:
+ * gradients + soft diagonal streaks + optional faint mesh ONLY.
+ * NO bokeh / random circles / speckles / corner dots / orbs.
+ */
+body {
+  color: var(--foreground);
+  background-color: var(--fh-void-0);
+  background-image:
+    /* faint mesh (optional, ultra-low) */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 27px,
+      rgba(247, 231, 206, 0.025) 27px,
+      rgba(247, 231, 206, 0.025) 28px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 35px,
+      rgba(255, 252, 245, 0.02) 35px,
+      rgba(255, 252, 245, 0.02) 36px
+    ),
+    /* soft diagonal light streaks */
+    linear-gradient(
+      115deg,
+      transparent 0%,
+      transparent 34%,
+      rgba(255, 252, 245, 0.045) 38%,
+      transparent 42%,
+      transparent 100%
+    ),
+    linear-gradient(
+      115deg,
+      transparent 0%,
+      transparent 58%,
+      rgba(247, 231, 206, 0.035) 63%,
+      transparent 68%,
+      transparent 100%
+    ),
+    linear-gradient(
+      -65deg,
+      transparent 0%,
+      transparent 72%,
+      rgba(255, 252, 245, 0.028) 76%,
+      transparent 80%,
+      transparent 100%
+    ),
+    /* champagne ↔ void washes (linear, not radial orbs) */
+    linear-gradient(
+      180deg,
+      rgba(247, 231, 206, 0.11) 0%,
+      transparent 32%
+    ),
+    linear-gradient(
+      90deg,
+      transparent 55%,
+      rgba(255, 252, 245, 0.035) 100%
+    ),
+    linear-gradient(
+      180deg,
+      transparent 62%,
+      rgba(8, 8, 10, 0.88) 100%
+    ),
+    linear-gradient(
+      180deg,
+      var(--fh-void-1) 0%,
+      var(--fh-void-0) 48%,
+      #08080a 100%
+    );
+  background-attachment: fixed;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.011em;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--fh-champagne-pop);
+  outline-offset: 2px;
+}
+
+code {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  color: var(--fh-champagne);
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+  transition:
+    background-color var(--fh-motion) ease,
+    border-color var(--fh-motion) ease,
+    color var(--fh-motion) ease,
+    box-shadow var(--fh-motion) ease,
+    opacity var(--fh-motion) ease,
+    transform var(--fh-motion) ease;
+}
+
+/* —— Glass elevation L0–L3 (shared recipe) —— */
+.fh-glass,
+.fh-glass-l0,
+.fh-glass-l1,
+.fh-glass-l2,
+.fh-glass-l3 {
+  border-radius: 16px;
+  border: 1px solid var(--fh-border);
+  background: var(--fh-surface);
+  backdrop-filter: blur(var(--fh-glass-blur)) saturate(var(--fh-glass-saturate));
+  -webkit-backdrop-filter: blur(var(--fh-glass-blur)) saturate(var(--fh-glass-saturate));
+  box-shadow:
+    var(--fh-edge-top),
+    var(--fh-edge-left),
+    0 8px 28px rgba(0, 0, 0, 0.32);
+}
+
+.fh-glass-l0 {
+  background: rgba(28, 28, 30, 0.55);
+  backdrop-filter: blur(18px) saturate(var(--fh-glass-saturate));
+  -webkit-backdrop-filter: blur(18px) saturate(var(--fh-glass-saturate));
+  box-shadow:
+    var(--fh-edge-top),
+    var(--fh-edge-left),
+    0 4px 16px rgba(0, 0, 0, 0.24);
+}
+
+.fh-glass-l1 {
+  background: var(--fh-surface-mid);
+  border-color: var(--fh-border);
+}
+
+.fh-glass-l2 {
+  background: var(--fh-surface-strong);
+  border-color: rgba(247, 231, 206, 0.28);
+  backdrop-filter: blur(var(--fh-glass-blur-hero)) saturate(var(--fh-glass-saturate));
+  -webkit-backdrop-filter: blur(var(--fh-glass-blur-hero)) saturate(var(--fh-glass-saturate));
+  box-shadow:
+    var(--fh-edge-top),
+    var(--fh-edge-left),
+    var(--fh-hero-outer),
+    0 12px 36px rgba(0, 0, 0, 0.38);
+}
+
+.fh-glass-l3 {
+  background: rgba(22, 22, 26, 0.82);
+  border-color: var(--fh-border-strong);
+  backdrop-filter: blur(32px) saturate(var(--fh-glass-saturate));
+  -webkit-backdrop-filter: blur(32px) saturate(var(--fh-glass-saturate));
+  box-shadow:
+    var(--fh-edge-top),
+    var(--fh-edge-left),
+    0 20px 48px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 800px) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
+html.prod #__next-build-watcher,
+html.prod [data-nextjs-toast],
+html.prod [data-nextjs-dialog-overlay],
+html.prod nextjs-portal {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 800px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  body {
+    letter-spacing: -0.014em;
+  }
+}

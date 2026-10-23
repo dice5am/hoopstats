@@ -1,0 +1,8 @@
+/* TEAM_MARK_UX.md — 6–8px circle + soft glow; exact chartPrimary, no wash */
+.pip {
+  display: inline-block;
+  flex-shrink: 0;
+  border-radius: 50%;
+  vertical-align: middle;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--fh-pip-color, #94a3b8) 35%, transparent);
+}
