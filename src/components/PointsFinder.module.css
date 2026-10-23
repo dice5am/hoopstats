@@ -464,6 +464,7 @@
     grid-template-areas:
       "who who"
       "zones chart"
+      "season season"
       "stamp stamp";
     padding: 30px 34px 28px;
   }
@@ -486,6 +487,10 @@
     grid-area: chart;
     margin-top: 22px;
     align-self: end;
+  }
+
+  .seasonArea {
+    grid-area: season;
   }
 
   .stamp {

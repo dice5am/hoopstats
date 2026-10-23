@@ -9,16 +9,9 @@ export type PointsGame = {
   homeAway: "home" | "away";
 };
 
-/** One team game while he was on the roster (`player_team_games_2026_27_v1`), oldest first. */
-export type TeamGame = {
-  seq: number;
-  date: string; // YYYY-MM-DD
-  opp: string;
-  homeAway: "home" | "away";
-  team: string;
-  status: "played" | "missed";
-  pts: number | null; // null when missed; a real 0 stays 0
-};
+import type { SlotStatus, TeamGame } from "./teamGames";
+
+export type { PastGame, SlotStatus, TeamGame } from "./teamGames";
 
 /** Slim projection of a `player_points_betting` row — points only. */
 export type PointsRow = {
@@ -39,6 +32,8 @@ export type PointsRow = {
   n_last: number | null;
   last: PointsGame[];
   teamGames: TeamGame[];
+  /** Columns on the season chart. From Data's `slot_total` (v2+). */
+  slotTotal: number;
   data_as_of_game_date: string | null;
   pulled_at_utc: string | null;
 };
@@ -46,37 +41,80 @@ export type PointsRow = {
 type RawRow = Record<string, unknown>;
 
 const DATA_FILE = path.join(process.cwd(), "data", "betting_points.json");
-const TEAM_GAMES_FILE = path.join(process.cwd(), "data", "player_team_games.json");
+/**
+ * Team-games export. Swap point: copy Data's gated file here and record its
+ * sha in data/SOURCES.md. Only this loader reads it.
+ */
+const TEAM_GAMES_FILE = path.join(
+  process.cwd(),
+  "data",
+  "player_team_games.json",
+);
+/** Fallback only while the file has no `slot_total` (v1): 82 regular-season games. */
+const V1_SEASON_GAMES = 82;
+const STATUSES: readonly SlotStatus[] = [
+  "played",
+  "missed",
+  "scheduled",
+  "tbd",
+];
 
 function toTeamGames(raw: unknown): TeamGame[] {
   if (!Array.isArray(raw)) return [];
   const out: TeamGame[] = [];
   for (const g of raw as RawRow[]) {
-    const date = str(g.game_date);
-    const opp = str(g.opponent_abbreviation);
-    const team = str(g.team_abbreviation);
-    const ha = g.home_away;
-    const status = g.status;
-    if (!date || !opp || !team || (ha !== "home" && ha !== "away")) continue;
-    if (status !== "played" && status !== "missed") continue;
+    const status = g.status as SlotStatus;
+    if (!STATUSES.includes(status)) continue;
+    const ha =
+      g.home_away === "home" || g.home_away === "away" ? g.home_away : null;
     out.push({
       seq: num(g.game_seq) ?? out.length + 1,
-      date: date.slice(0, 10),
-      opp,
+      gameId: str(g.game_id),
+      date: str(g.game_date)?.slice(0, 10) ?? null,
+      opp: str(g.opponent_abbreviation),
       homeAway: ha,
-      team,
+      team: str(g.team_abbreviation),
       status,
       pts: status === "played" ? num(g.pts) : null,
+      isCupFinal: g.is_cup_final === true,
     });
   }
-  return out.sort((a, b) => a.date.localeCompare(b.date) || a.seq - b.seq);
+  // File order is the season order (tbd slots have no date), so keep it by seq.
+  return out.sort((a, b) => a.seq - b.seq);
 }
 
-function loadTeamGames(): Map<string, TeamGame[]> {
-  const m = new Map<string, TeamGame[]>();
+type TeamGamesEntry = { games: TeamGame[]; slotTotal: number };
+
+function loadTeamGames(): Map<string, TeamGamesEntry> {
+  const m = new Map<string, TeamGamesEntry>();
   if (!fs.existsSync(TEAM_GAMES_FILE)) return m;
   const raw = JSON.parse(fs.readFileSync(TEAM_GAMES_FILE, "utf8")) as RawRow[];
-  for (const r of raw) m.set(String(r.player_id), toTeamGames(r.games));
+  for (const r of raw) {
+    const games = toTeamGames(r.games);
+    const fromFile = num(r.slot_total);
+    let slotTotal: number;
+    if (fromFile !== null) {
+      slotTotal = Math.max(fromFile, games.length);
+    } else {
+      // v1 has past games only: pad with scheduled slots to 82 (exact while nobody is traded).
+      const regular = games.filter((g) => !g.isCupFinal).length;
+      for (let k = regular; k < V1_SEASON_GAMES; k++) {
+        games.push({
+          seq: games.length + 1,
+          gameId: null,
+          date: null,
+          opp: null,
+          homeAway: null,
+          team: null,
+          status: "scheduled",
+          pts: null,
+          isCupFinal: false,
+        });
+      }
+      slotTotal = games.length;
+    }
+    m.set(String(r.player_id), { games, slotTotal });
+  }
   return m;
 }
 
@@ -119,6 +157,7 @@ function toRow(r: RawRow): PointsRow {
     n_last: nLast,
     last,
     teamGames: [],
+    slotTotal: 0,
     data_as_of_game_date: str(r.data_as_of_game_date)?.slice(0, 10) ?? null,
     pulled_at_utc: str(r.pulled_at_utc),
   };
@@ -132,7 +171,9 @@ export function loadPointsRows(): PointsRow[] {
   return raw
     .map((r) => {
       const row = toRow(r);
-      row.teamGames = teamGames.get(row.player_id) ?? [];
+      const tg = teamGames.get(row.player_id);
+      row.teamGames = tg?.games ?? [];
+      row.slotTotal = tg?.slotTotal ?? 0;
       return row;
     })
     .filter((r) => r.full_name)

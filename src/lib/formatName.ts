@@ -14,15 +14,7 @@
  *
  * Keep `fullName` for PlayerExplorer detail headers / titles.
  */
-const NAME_SUFFIXES = new Set([
-  "jr",
-  "jr.",
-  "sr",
-  "sr.",
-  "ii",
-  "iii",
-  "iv",
-]);
+const NAME_SUFFIXES = new Set(["jr", "jr.", "sr", "sr.", "ii", "iii", "iv"]);
 
 function isSuffix(token: string): boolean {
   return NAME_SUFFIXES.has(token.toLowerCase());

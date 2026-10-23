@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import type { PointsRow, TeamGame } from "@/lib/betting";
+import type { PointsRow } from "@/lib/betting";
+import { isPastGame, type PastGame } from "@/lib/teamGames";
+import { SeasonChart } from "./SeasonChart";
 import { foldDiacritics, nameMatches } from "@/lib/normalize";
 import {
   clientMonthKey,
@@ -15,7 +17,7 @@ const MAX_RESULTS = 8;
 
 function lastNameOf(full: string): string {
   const parts = foldDiacritics(full).split(/\s+/);
-  return parts.length > 1 ? parts.slice(1).join(" ") : parts[0] ?? "";
+  return parts.length > 1 ? parts.slice(1).join(" ") : (parts[0] ?? "");
 }
 
 function rankMatches(rows: PointsRow[], query: string): PointsRow[] {
@@ -30,8 +32,7 @@ function rankMatches(rows: PointsRow[], query: string): PointsRow[] {
     scored.push({ row, rank });
   }
   scored.sort(
-    (a, b) =>
-      a.rank - b.rank || a.row.full_name.localeCompare(b.row.full_name),
+    (a, b) => a.rank - b.rank || a.row.full_name.localeCompare(b.row.full_name),
   );
   return scored.slice(0, MAX_RESULTS).map((s) => s.row);
 }
@@ -183,8 +184,8 @@ export function PointsFinder({ rows }: { rows: PointsRow[] }) {
           <div className={styles.half} aria-hidden />
           <div className={styles.circle} aria-hidden />
           <p>
-            Search a player to see season avg, month avg, 2025-26 avg and last
-            5 games
+            Search a player to see season avg, month avg, 2025-26 avg and last 5
+            games
           </p>
         </section>
       )}
@@ -210,7 +211,7 @@ function oppLabel(g: { homeAway: "home" | "away"; opp: string }): string {
  * Team's last 5 games while he was on the roster: fixed 0–50, oldest left →
  * newest right, 5 slots from the left. Missed = dashed "Out" slot (never 0).
  */
-function LastGamesChart({ games }: { games: TeamGame[] }) {
+function LastGamesChart({ games }: { games: PastGame[] }) {
   if (games.length === 0) {
     return (
       <div className={styles.chart}>
@@ -220,7 +221,7 @@ function LastGamesChart({ games }: { games: TeamGame[] }) {
     );
   }
   const ordered = games.slice(-5); // data is oldest first
-  const slots: (TeamGame | null)[] = Array.from(
+  const slots: (PastGame | null)[] = Array.from(
     { length: 5 },
     (_, i) => ordered[i] ?? null,
   );
@@ -352,7 +353,14 @@ function PointsCard({ row }: { row: PointsRow }) {
         </div>
       </div>
 
-      <LastGamesChart games={row.teamGames} />
+      <LastGamesChart games={row.teamGames.filter(isPastGame)} />
+      <div className={styles.seasonArea}>
+        <SeasonChart
+          games={row.teamGames}
+          slotTotal={row.slotTotal}
+          seasonAvg={seasonAvg}
+        />
+      </div>
 
       <p className={styles.stamp}>
         Updated {row.pulled_at_utc ? formatLocalDate(row.pulled_at_utc) : "n/a"}
