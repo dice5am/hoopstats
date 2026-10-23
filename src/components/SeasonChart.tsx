@@ -48,10 +48,15 @@ export function SeasonChart({
   seasonAvg: number | null;
 }) {
   const cupFinal = games.find((g) => g.isCupFinal) ?? null;
-  const tbd = games.filter((g) => !g.isCupFinal && g.status === "tbd");
-  const dated: (TeamGame | null)[] = games.filter(
-    (g) => !g.isCupFinal && g.status !== "tbd",
-  );
+  // Only games with no date sit in the Cup · TBD pair; any game with a date
+  // takes its place in date order on the dated run.
+  const tbd = games.filter((g) => !g.isCupFinal && !g.date);
+  const dated: (TeamGame | null)[] = games
+    .filter((g) => !g.isCupFinal && !!g.date)
+    .sort(
+      (a, b) =>
+        (a.date as string).localeCompare(b.date as string) || a.seq - b.seq,
+    );
   // Never draw fewer than Data's slot_total (pads only if the file is short).
   const shortBy = slotTotal - dated.length - tbd.length - (cupFinal ? 1 : 0);
   for (let k = 0; k < shortBy; k++) dated.push(null);
@@ -87,6 +92,7 @@ export function SeasonChart({
 
   const showAvg = seasonAvg !== null && playedCount > 0;
   const showLine = showAvg && lastPastIdx >= 0;
+  const avgFrac = showLine ? Math.min(seasonAvg!, SCALE_MAX) / SCALE_MAX : null;
 
   const summary = [
     `Season so far: ${playedCount} played, ${missedCount} out, ${slotCount - pastCount} to come.`,
@@ -127,20 +133,30 @@ export function SeasonChart({
     }
     const pts = Math.round(g.pts ?? 0);
     const label = newest || pts > SCALE_MAX;
+    const barFrac = Math.min(pts, SCALE_MAX) / SCALE_MAX;
+    // Newest number sits above its bar, or above the avg line when the bar is below it.
+    const lift =
+      newest && avgFrac !== null && barFrac < avgFrac ? avgFrac : barFrac;
     return (
       <div key={key} className={styles.col} style={place}>
         {pts === 0 ? (
-          <div className={`${styles.zero}${nw}`}>
-            {label ? <span className={styles.pts}>0</span> : null}
-          </div>
+          <div className={`${styles.zero}${nw}`} />
         ) : (
           <div
             className={`${styles.bar}${nw}`}
-            style={{ height: pct(Math.min(pts, SCALE_MAX) / SCALE_MAX) }}
-          >
-            {label ? <span className={styles.pts}>{pts}</span> : null}
-          </div>
+            style={{ height: pct(barFrac) }}
+          />
         )}
+        {label ? (
+          <span
+            className={styles.pts}
+            style={{
+              bottom: `calc(${pct(lift)} + ${lift > barFrac ? 7 : 3}px)`,
+            }}
+          >
+            {pts}
+          </span>
+        ) : null}
       </div>
     );
   };

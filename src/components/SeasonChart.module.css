@@ -95,9 +95,8 @@
 .pts {
   position: absolute;
   left: 50%;
-  bottom: 100%;
-  margin-bottom: 3px;
   transform: translateX(-50%);
+  z-index: 1;
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 15px;
