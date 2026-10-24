@@ -399,3 +399,75 @@
     gap: 8px 22px;
   }
 }
+
+/* All-Out finished season: the key reads a dim n/a, no orange rule. */
+.avgNa {
+  color: var(--hw-dim);
+}
+
+/* ---- Pending (loading / failed): same box as the drawn chart ---- */
+.hold {
+  visibility: hidden;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Axis line: slow pulse 100% ↔ 60% while loading, held back ~150ms so a
+   fast fetch never flashes it. Nothing moves under reduced motion. */
+.pending:not(.failed) .pulse {
+  animation: axisPulse 1.2s ease-in-out 150ms infinite;
+}
+
+@keyframes axisPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pending .pulse {
+    animation: none;
+  }
+}
+
+.failMsg {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3em;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--hw-ink-2);
+  text-align: center;
+}
+
+.retry {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--hw-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.retry:focus-visible {
+  outline: 2px solid var(--hw-ink);
+  outline-offset: 2px;
+}

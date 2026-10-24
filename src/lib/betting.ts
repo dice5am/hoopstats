@@ -9,9 +9,22 @@ export type PointsGame = {
   homeAway: "home" | "away";
 };
 
-import type { SlotStatus, TeamGame } from "./teamGames";
+import { isPastGame } from "./teamGames";
+import type {
+  PastGame,
+  PlayerSlots,
+  SeasonSlots,
+  SlotStatus,
+  TeamGame,
+} from "./teamGames";
 
-export type { PastGame, SlotStatus, TeamGame } from "./teamGames";
+export type {
+  PastGame,
+  PlayerSlots,
+  SeasonSlots,
+  SlotStatus,
+  TeamGame,
+} from "./teamGames";
 
 /** Slim projection of a `player_points_betting` row — points only. */
 export type PointsRow = {
@@ -31,18 +44,28 @@ export type PointsRow = {
   last_season_gp: number | null;
   n_last: number | null;
   last: PointsGame[];
-  teamGames: TeamGame[];
-  /** Columns on the season chart. From Data's `slot_total` (v2+). */
-  slotTotal: number;
   /**
-   * 2025-26 (complete) season slots. `null` = no 2025-26 slot file loaded
-   * (chart hidden); `[]` = file loaded but he has no 2025-26 games.
+   * His team's last 5 dated past games (played or missed) while on the
+   * roster, oldest first — from the 2026-27 slots, precomputed so the last-5
+   * chart renders with the tiles. The season charts load /slots/<id>.json.
    */
-  teamGames2526: TeamGame[] | null;
-  slotTotal2526: number;
+  last5: PastGame[];
+  /** His team has a final 2026-27 game (played or missed) on his chart. */
+  teamPlayed: boolean;
+  /**
+   * His 2025-26 slot_total. `null` = no 2025-26 slot file at build (section
+   * hidden); `0` = no 2025-26 games ("No 2025-26 games"); `> 0` = chart,
+   * even if every slot is Out. Drives the 2025-26 tile before any fetch.
+   */
+  slotTotal2526: number | null;
+  /** Legend/header shape of each chart, so the loading frame keeps its size. */
+  shape: { cur: ChartShape; prev: ChartShape | null };
   data_as_of_game_date: string | null;
   pulled_at_utc: string | null;
 };
+
+/** What decides the season chart's header and legend rows. */
+export type ChartShape = { played: boolean; notOn: boolean };
 
 type RawRow = Record<string, unknown>;
 
@@ -80,7 +103,14 @@ const STATUS_ALIASES: Record<string, SlotStatus> = {
   offteam: "not_on_team",
 };
 
-function toTeamGames(raw: unknown): TeamGame[] {
+/**
+ * Normalise one player row's `games` into chart slots. Played counts come
+ * only from `status === "played"` (0-minute rows arrive as non-played).
+ * `trade_marker` may be per-slot (`true`) or, from v1.1/v2.2, a per-player
+ * list of `{game_seq, game_date, from_team, to_team}` — one entry for the
+ * first slot on each new team (1-based `game_seq`); `[]` = never traded.
+ */
+export function toTeamGames(raw: unknown, tradeList?: unknown): TeamGame[] {
   if (!Array.isArray(raw)) return [];
   const out: TeamGame[] = [];
   for (const g of raw as RawRow[]) {
@@ -107,10 +137,49 @@ function toTeamGames(raw: unknown): TeamGame[] {
     });
   }
   // File order is the season order (tbd slots have no date), so keep it by seq.
-  return out.sort((a, b) => a.seq - b.seq);
+  out.sort((a, b) => a.seq - b.seq);
+  if (Array.isArray(tradeList)) applyTradeList(out, tradeList as RawRow[]);
+  return out;
 }
 
-type TeamGamesEntry = { games: TeamGame[]; slotTotal: number };
+/** "2026-02-07" or "02-07" (month-day) — does `iso` fall on that date? */
+function sameDate(iso: string | null, d: string | null): boolean {
+  if (!iso || !d) return false;
+  return d.length <= 5 ? iso.slice(5) === d.padStart(5, "0") : iso === d.slice(0, 10);
+}
+
+/**
+ * List-form markers replace any per-slot flags: each entry marks the slot at
+ * `game_seq` (cross-checked with `game_date` when given; if they disagree
+ * the date wins, else the next slot from that seq), labelled `to_team`.
+ */
+function applyTradeList(games: TeamGame[], list: RawRow[]): void {
+  for (const g of games) {
+    delete g.tradeMarker;
+    delete g.tradeTo;
+  }
+  for (const t of list) {
+    const seq = num(t.game_seq);
+    const date = str(t.game_date);
+    let hit = seq !== null ? games.find((g) => g.seq === seq) : undefined;
+    if (date && (!hit || (hit.date && !sameDate(hit.date, date)))) {
+      hit = games.find((g) => sameDate(g.date, date)) ?? hit;
+    }
+    if (!hit && seq !== null) hit = games.find((g) => g.seq >= seq);
+    if (!hit) continue;
+    hit.tradeMarker = true;
+    const to = str(t.to_team) ?? hit.team;
+    if (to) hit.tradeTo = to;
+  }
+}
+
+type TeamGamesEntry = SeasonSlots;
+
+function seasonOf(r: RawRow, games: TeamGame[], slotTotal: number): SeasonSlots {
+  return Array.isArray(r.trade_marker)
+    ? { games, slotTotal, explicitTrades: true }
+    : { games, slotTotal };
+}
 
 /**
  * A completed season (2025-26): slots are exactly what Data ships, no
@@ -121,15 +190,14 @@ function loadCompleteSeason(file: string): Map<string, TeamGamesEntry> | null {
   const m = new Map<string, TeamGamesEntry>();
   const raw = JSON.parse(fs.readFileSync(file, "utf8")) as RawRow[];
   for (const r of raw) {
-    const games = toTeamGames(r.games).filter(
+    const games = toTeamGames(r.games, r.trade_marker).filter(
       (g) => g.status !== "scheduled" && g.status !== "tbd",
     );
-    if (games.length === 0) continue;
-    const fromFile = num(r.slot_total);
-    m.set(String(r.player_id), {
-      games,
-      slotTotal: Math.max(fromFile ?? 0, games.length),
-    });
+    // Every player has an entry (v1.1); slot_total 0 means "No 2025-26
+    // games". An entry with every slot Out still draws (all-Out chart).
+    const slotTotal = Math.max(num(r.slot_total) ?? 0, games.length);
+    if (slotTotal === 0 || games.length === 0) continue;
+    m.set(String(r.player_id), seasonOf(r, games, slotTotal));
   }
   return m;
 }
@@ -139,7 +207,7 @@ function loadTeamGames(): Map<string, TeamGamesEntry> {
   if (!fs.existsSync(TEAM_GAMES_FILE)) return m;
   const raw = JSON.parse(fs.readFileSync(TEAM_GAMES_FILE, "utf8")) as RawRow[];
   for (const r of raw) {
-    const games = toTeamGames(r.games);
+    const games = toTeamGames(r.games, r.trade_marker);
     const fromFile = num(r.slot_total);
     let slotTotal: number;
     if (fromFile !== null) {
@@ -161,7 +229,7 @@ function loadTeamGames(): Map<string, TeamGamesEntry> {
       }
       slotTotal = games.length;
     }
-    m.set(String(r.player_id), { games, slotTotal });
+    m.set(String(r.player_id), seasonOf(r, games, slotTotal));
   }
   return m;
 }
@@ -204,16 +272,51 @@ function toRow(r: RawRow): PointsRow {
     last_season_gp: num(r.last_season_gp),
     n_last: nLast,
     last,
-    teamGames: [],
-    slotTotal: 0,
-    teamGames2526: null,
-    slotTotal2526: 0,
+    last5: [],
+    teamPlayed: false,
+    slotTotal2526: null,
+    shape: { cur: { played: false, notOn: false }, prev: null },
     data_as_of_game_date: str(r.data_as_of_game_date)?.slice(0, 10) ?? null,
     pulled_at_utc: str(r.pulled_at_utc),
   };
 }
 
-/** Read the static export committed to the repo. Missing file ⇒ empty list. */
+function shapeOf(s: SeasonSlots | undefined): ChartShape {
+  const g = s?.games ?? [];
+  return {
+    played: g.some((x) => x.status === "played"),
+    notOn: g.some((x) => x.status === "not_on_team"),
+  };
+}
+
+const EMPTY_SEASON: SeasonSlots = { games: [], slotTotal: 0 };
+
+/**
+ * Every player's season-chart slots, keyed by player_id — what
+ * scripts/build-player-slots.mjs writes to public/slots/<id>.json. Same
+ * loaders and normalisation the page used to embed.
+ */
+export function loadPlayerSlots(): Map<string, PlayerSlots> {
+  const out = new Map<string, PlayerSlots>();
+  if (!fs.existsSync(DATA_FILE)) return out;
+  const raw = JSON.parse(fs.readFileSync(DATA_FILE, "utf8")) as RawRow[];
+  const teamGames = loadTeamGames();
+  const season2526 = loadCompleteSeason(TEAM_GAMES_2025_26_FILE);
+  for (const r of raw) {
+    if (!r.full_name) continue;
+    const id = String(r.player_id);
+    out.set(id, {
+      cur: teamGames.get(id) ?? EMPTY_SEASON,
+      prev: season2526 ? (season2526.get(id) ?? EMPTY_SEASON) : null,
+    });
+  }
+  return out;
+}
+
+/**
+ * Page payload: search index + tiles + last 5. Season-chart slots are not
+ * embedded (fetched per player from /slots/<id>.json).
+ */
 export function loadPointsRows(): PointsRow[] {
   if (!fs.existsSync(DATA_FILE)) return [];
   const raw = JSON.parse(fs.readFileSync(DATA_FILE, "utf8")) as RawRow[];
@@ -223,13 +326,17 @@ export function loadPointsRows(): PointsRow[] {
     .map((r) => {
       const row = toRow(r);
       const tg = teamGames.get(row.player_id);
-      row.teamGames = tg?.games ?? [];
-      row.slotTotal = tg?.slotTotal ?? 0;
-      if (season2526) {
-        const s25 = season2526.get(row.player_id);
-        row.teamGames2526 = s25?.games ?? [];
-        row.slotTotal2526 = s25?.slotTotal ?? 0;
-      }
+      const games = tg?.games ?? [];
+      row.teamPlayed = games.some(
+        (g) => g.status === "played" || g.status === "missed",
+      );
+      row.last5 = games
+        .filter(isPastGame)
+        .sort((a, b) => a.date.localeCompare(b.date) || a.seq - b.seq)
+        .slice(-5);
+      const s25 = season2526?.get(row.player_id);
+      row.slotTotal2526 = season2526 ? (s25?.slotTotal ?? 0) : null;
+      row.shape = { cur: shapeOf(tg), prev: s25 ? shapeOf(s25) : null };
       return row;
     })
     .filter((r) => r.full_name)

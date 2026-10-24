@@ -1,4 +1,4 @@
-import type { TeamGame } from "@/lib/teamGames";
+import { tradeTicks, type TeamGame } from "@/lib/teamGames";
 import { formatPlainDate } from "@/lib/dates";
 import styles from "./SeasonChart.module.css";
 
@@ -53,12 +53,15 @@ export function SeasonChart({
   slotTotal,
   seasonAvg,
   complete = false,
+  explicitTrades = false,
 }: {
   title: string;
   games: TeamGame[];
   slotTotal: number;
   seasonAvg: number | null;
   complete?: boolean;
+  /** Data shipped a per-player trade list: draw only those markers. */
+  explicitTrades?: boolean;
 }) {
   // A completed season has nothing still to come: drop any future/tbd rows.
   const rows = complete
@@ -117,23 +120,12 @@ export function SeasonChart({
   const showAvg = seasonAvg !== null && playedCount > 0;
   const avgPct = showAvg ? frac(seasonAvg!) : null;
 
-  // Traded tick: Data's trade marker when the file has one; otherwise a team
-  // change between consecutive dated slots. In a complete season the new
-  // team's Not on team slots (before his debut) already belong to the new
-  // stint, so the tick sits at the stint change, not at his debut.
-  const trades: { ci: number; team: string }[] = [];
-  if (dated.some((g) => g?.tradeMarker)) {
-    dated.forEach((g, i) => {
-      if (g?.tradeMarker && g.team) trades.push({ ci: i, team: g.team });
-    });
-  } else {
-    let prevTeam: string | null = null;
-    dated.forEach((g, i) => {
-      if (!g?.team || (!complete && g.status === "not_on_team")) return;
-      if (prevTeam && g.team !== prevTeam) trades.push({ ci: i, team: g.team });
-      prevTeam = g.team;
-    });
-  }
+  // Traded ticks: Data's trade markers (list-form or per-slot) when the
+  // file has them; otherwise a team change between consecutive dated slots.
+  const trades = tradeTicks(dated, complete, explicitTrades);
+  // A finished season with an entry but no played game: every slot Out, no
+  // line, and the key reads a dim n/a (never 0.0).
+  const allOut = complete && playedCount === 0;
 
   const notOnText = notOnCount > 0 ? `, ${notOnCount} not on team` : "";
   const summary = [
@@ -233,6 +225,10 @@ export function SeasonChart({
           <span className={styles.avgKey}>
             <i className={styles.avgRule} aria-hidden />
             {seasonAvg!.toFixed(1)} avg
+          </span>
+        ) : allOut ? (
+          <span className={styles.avgKey}>
+            <span className={styles.avgNa}>n/a</span> avg
           </span>
         ) : null}
       </div>
@@ -348,9 +344,11 @@ export function SeasonChart({
             Newest
           </span>
         )}
-        <span>
-          <i className={styles.lgZero} />0 pts
-        </span>
+        {allOut ? null : (
+          <span>
+            <i className={styles.lgZero} />0 pts
+          </span>
+        )}
         <span>
           <i className={styles.lgOut} />
           Out
@@ -368,6 +366,124 @@ export function SeasonChart({
           </span>
         )}
         {showAvg ? (
+          <span>
+            <i className={styles.lgAvg} />
+            Season avg
+          </span>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * A season chart whose slots are still loading (or failed to load): same
+ * box as the drawn chart so nothing shifts when it lands. Title, an empty
+ * maple plot, the axis line and only the "1" tick; the sub-line, avg key
+ * and legend hold their space invisibly. Loading: the axis line pulses
+ * (after ~150ms, none under reduced motion). Failed: one line in the plot
+ * with a Retry button.
+ */
+export function SeasonChartPending({
+  title,
+  complete = false,
+  failed = false,
+  onRetry,
+  avgKey,
+  notOn,
+  played,
+}: {
+  title: string;
+  complete?: boolean;
+  failed?: boolean;
+  onRetry?: () => void;
+  /** The drawn chart will have an avg key in its header. */
+  avgKey: boolean;
+  /** The drawn chart's legend will have "Not on team". */
+  notOn: boolean;
+  /** He has a played game (legend keeps "0 pts" / "Season avg"). */
+  played: boolean;
+}) {
+  const allOut = complete && !played;
+  return (
+    <div
+      className={`${styles.season} ${styles.pending}${complete ? ` ${styles.complete}` : ""}${failed ? ` ${styles.failed}` : ""}`}
+      aria-busy={!failed}
+    >
+      <div className={styles.head}>
+        <span className={styles.lab}>{title}</span>
+        {avgKey ? (
+          <span className={`${styles.avgKey} ${styles.hold}`} aria-hidden>
+            <i className={styles.avgRule} />
+            00.0 avg
+          </span>
+        ) : null}
+      </div>
+      <small className={`${styles.sub} ${styles.hold}`} aria-hidden>
+        82 games · 0 played
+      </small>
+      <div className={styles.frame}>
+        <div className={styles.markers} aria-hidden />
+        <div className={styles.plot}>
+          {failed ? (
+            <p className={styles.failMsg} role="status">
+              Couldn&rsquo;t load games ·{" "}
+              <button
+                type="button"
+                className={styles.retry}
+                onClick={onRetry}
+                disabled={!onRetry}
+              >
+                Retry
+              </button>
+            </p>
+          ) : (
+            <span className={styles.srOnly} role="status">
+              Loading games
+            </span>
+          )}
+        </div>
+        <div className={`${styles.baseline} ${styles.pulse}`} aria-hidden />
+        <div className={styles.under} aria-hidden />
+        <div className={styles.ticks} aria-hidden>
+          <span className={styles.tickL} style={{ left: "0.6%" }}>
+            1
+          </span>
+        </div>
+      </div>
+      <div className={`${styles.legend} ${styles.hold}`} aria-hidden>
+        <span>
+          <i className={styles.lgPlayed} />
+          Played
+        </span>
+        {complete ? null : (
+          <span>
+            <i className={styles.lgNew} />
+            Newest
+          </span>
+        )}
+        {allOut ? null : (
+          <span>
+            <i className={styles.lgZero} />0 pts
+          </span>
+        )}
+        <span>
+          <i className={styles.lgOut} />
+          Out
+        </span>
+        {notOn ? (
+          <span>
+            <i className={styles.lgNotOn} />
+            Not on team
+          </span>
+        ) : null}
+        {complete ? null : (
+          <span>
+            <i className={styles.lgFut} />
+            Not played yet
+          </span>
+        )}
+        {played && avgKey ? (
           <span>
             <i className={styles.lgAvg} />
             Season avg

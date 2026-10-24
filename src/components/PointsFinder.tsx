@@ -2,8 +2,9 @@
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import type { PointsRow } from "@/lib/betting";
-import { isPastGame, type PastGame } from "@/lib/teamGames";
-import { SeasonChart } from "./SeasonChart";
+import type { PastGame } from "@/lib/teamGames";
+import { useSlots } from "@/lib/useSlots";
+import { SeasonChart, SeasonChartPending } from "./SeasonChart";
 import { foldDiacritics, nameMatches } from "@/lib/normalize";
 import {
   clientMonthKey,
@@ -314,10 +315,9 @@ function PointsCard({ row }: { row: PointsRow }) {
 
   const played = row.has_season_games;
   const seasonAvg = played ? row.pts_season_avg : null;
+  const slots = useSlots(row.player_id);
   // Team has played but he hasn't: "n/a · 0 games"; team hasn't played: "No games yet".
-  const teamPlayed = row.teamGames.some(
-    (g) => g.status === "played" || g.status === "missed",
-  );
+  const teamPlayed = row.teamPlayed;
   const noGames = teamPlayed ? "0 games" : "No games yet";
   const seasonSub =
     played && row.gp_season ? gamesText(row.gp_season) : noGames;
@@ -330,11 +330,19 @@ function PointsCard({ row }: { row: PointsRow }) {
       ? gamesText(row.gp_month)
       : "0 games";
 
-  const lastAvg = row.last_season_pts_avg;
+  // 2025-26: same pattern as the 2026-27 tile — slot_total > 0 but no
+  // played game reads "n/a · 0 games" (never 0.0); slot_total 0 (or no
+  // 2025-26 games at all) reads "No 2025-26 games".
+  const lastGp = row.last_season_gp ?? 0;
+  const lastAvg = lastGp > 0 ? row.last_season_pts_avg : null;
   const lastSub =
-    lastAvg !== null && row.last_season_gp
-      ? gamesText(row.last_season_gp)
-      : "No 2025-26 games";
+    lastAvg !== null
+      ? gamesText(lastGp)
+      : (row.slotTotal2526 ?? 0) > 0
+        ? "0 games"
+        : "No 2025-26 games";
+  const curTitle = "2026-27 season · team games";
+  const prevTitle = "2025-26 season · team games";
 
   const teamLine = [row.team_abbreviation ?? "Free agent", row.position]
     .filter(Boolean)
@@ -371,28 +379,47 @@ function PointsCard({ row }: { row: PointsRow }) {
         </div>
       </div>
 
-      <LastGamesChart
-        games={row.teamGames
-          .filter(isPastGame)
-          .sort((a, b) => a.date.localeCompare(b.date) || a.seq - b.seq)}
-      />
+      <LastGamesChart games={row.last5} />
       <div className={styles.seasonArea}>
-        <SeasonChart
-          title="2026-27 season · team games"
-          games={row.teamGames}
-          slotTotal={row.slotTotal}
-          seasonAvg={seasonAvg}
-        />
-        {row.teamGames2526 === null ? null : row.teamGames2526.length > 0 ? (
+        {!teamPlayed ? null : slots.status === "ready" ? (
+          <SeasonChart
+            title={curTitle}
+            games={slots.slots.cur.games}
+            slotTotal={slots.slots.cur.slotTotal}
+            explicitTrades={slots.slots.cur.explicitTrades}
+            seasonAvg={seasonAvg}
+          />
+        ) : (
+          <SeasonChartPending
+            title={curTitle}
+            failed={slots.status === "failed"}
+            onRetry={slots.status === "failed" ? slots.retry : undefined}
+            avgKey={seasonAvg !== null && row.shape.cur.played}
+            notOn={row.shape.cur.notOn}
+            played={row.shape.cur.played}
+          />
+        )}
+        {row.slotTotal2526 === null ? null : row.slotTotal2526 === 0 ? (
+          <NoSeasonChart title={prevTitle} />
+        ) : slots.status === "ready" && slots.slots.prev ? (
           <SeasonChart
             complete
-            title="2025-26 season · team games"
-            games={row.teamGames2526}
-            slotTotal={row.slotTotal2526}
+            title={prevTitle}
+            games={slots.slots.prev.games}
+            slotTotal={slots.slots.prev.slotTotal}
+            explicitTrades={slots.slots.prev.explicitTrades}
             seasonAvg={lastAvg}
           />
         ) : (
-          <NoSeasonChart title="2025-26 season · team games" />
+          <SeasonChartPending
+            complete
+            title={prevTitle}
+            failed={slots.status !== "loading"}
+            onRetry={slots.status === "failed" ? slots.retry : undefined}
+            avgKey
+            notOn={row.shape.prev?.notOn ?? false}
+            played={row.shape.prev?.played ?? false}
+          />
         )}
       </div>
 
