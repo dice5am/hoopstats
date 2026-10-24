@@ -401,8 +401,9 @@
 }
 
 /* All-Out finished season: the key reads a dim n/a, no orange rule. */
-.avgNa {
+.avgKey.avgNa {
   color: var(--hw-dim);
+  font-weight: 700;
 }
 
 /* ---- Pending (loading / failed): same box as the drawn chart ---- */
@@ -436,7 +437,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pending .pulse {
+  .pending:not(.failed) .pulse {
     animation: none;
   }
 }

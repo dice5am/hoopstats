@@ -9,7 +9,12 @@ export type PointsGame = {
   homeAway: "home" | "away";
 };
 
-import { isPastGame } from "./teamGames";
+import {
+  chartCells,
+  isPastGame,
+  layoutTradeLabels,
+  tradeTicks,
+} from "./teamGames";
 import type {
   PastGame,
   PlayerSlots,
@@ -65,7 +70,7 @@ export type PointsRow = {
 };
 
 /** What decides the season chart's header and legend rows. */
-export type ChartShape = { played: boolean; notOn: boolean };
+export type ChartShape = { played: boolean; notOn: boolean; rows: number };
 
 type RawRow = Record<string, unknown>;
 
@@ -275,17 +280,20 @@ function toRow(r: RawRow): PointsRow {
     last5: [],
     teamPlayed: false,
     slotTotal2526: null,
-    shape: { cur: { played: false, notOn: false }, prev: null },
+    shape: { cur: { played: false, notOn: false, rows: 1 }, prev: null },
     data_as_of_game_date: str(r.data_as_of_game_date)?.slice(0, 10) ?? null,
     pulled_at_utc: str(r.pulled_at_utc),
   };
 }
 
-function shapeOf(s: SeasonSlots | undefined): ChartShape {
+function shapeOf(s: SeasonSlots | undefined, complete: boolean): ChartShape {
   const g = s?.games ?? [];
+  const { dated, C } = chartCells(g, s?.slotTotal ?? 0, complete);
+  const trades = tradeTicks(dated, complete, s?.explicitTrades);
   return {
     played: g.some((x) => x.status === "played"),
     notOn: g.some((x) => x.status === "not_on_team"),
+    rows: layoutTradeLabels(trades, C).rows,
   };
 }
 
@@ -336,7 +344,10 @@ export function loadPointsRows(): PointsRow[] {
         .slice(-5);
       const s25 = season2526?.get(row.player_id);
       row.slotTotal2526 = season2526 ? (s25?.slotTotal ?? 0) : null;
-      row.shape = { cur: shapeOf(tg), prev: s25 ? shapeOf(s25) : null };
+      row.shape = {
+        cur: shapeOf(tg, false),
+        prev: s25 ? shapeOf(s25, true) : null,
+      };
       return row;
     })
     .filter((r) => r.full_name)

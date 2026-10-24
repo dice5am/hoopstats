@@ -6,7 +6,7 @@ import assert from "node:assert/strict";
 import { loadLib } from "./lib/load-ts.mjs";
 
 const { toTeamGames } = await loadLib("betting");
-const { tradeTicks, encodePlayerSlots, decodePlayerSlots } = await loadLib("teamGames");
+const { tradeTicks, layoutTradeLabels, encodePlayerSlots, decodePlayerSlots } = await loadLib("teamGames");
 
 /** 82 dated slots; team by seq; status by seq (default played, 10 pts). */
 function player({ n = 82, team, status = () => "played", extra = () => ({}) }) {
@@ -134,6 +134,33 @@ check("wire round-trip keeps markers, to_team and explicit flag", () => {
   assert.deepEqual(back.cur.games, games);
   assert.equal(back.cur.explicitTrades, true);
   assert.deepEqual(ticks(back.cur.games, true), [{ ci: 53, team: "LAL" }]);
+});
+
+check("labels: two close trades stack — second one row up, both end at their ticks", () => {
+  // Kyle Anderson shape: 83 slots, UTA → MEM before slot 52, → MIN before slot 63.
+  const raw = player({ n: 83, team: (s) => (s < 52 ? "UTA" : s < 63 ? "MEM" : "MIN") });
+  const g = toTeamGames(raw, [
+    { game_seq: 52, game_date: dateOf(raw, 52), from_team: "UTA", to_team: "MEM" },
+    { game_seq: 63, game_date: dateOf(raw, 63), from_team: "MEM", to_team: "MIN" },
+  ]);
+  const t = ticks(g, true);
+  assert.deepEqual(t.map((x) => x.ci + 1), [52, 63]);
+  const { labels, rows } = layoutTradeLabels(t, 83);
+  assert.equal(rows, 2);
+  assert.deepEqual(labels.map((l) => [l.text, l.row, l.align]), [
+    ["Traded to MEM", 0, "right"],
+    ["Traded to MIN", 1, "right"],
+  ]);
+});
+
+check("labels: three close trades take three rows; far trades stay on row 0", () => {
+  const close3 = layoutTradeLabels([{ ci: 49, team: "CHA" }, { ci: 50, team: "DAL" }, { ci: 60, team: "DEN" }], 80);
+  assert.deepEqual(close3.labels.map((l) => l.row), [0, 1, 2]);
+  const far = layoutTradeLabels([{ ci: 10, team: "PHI" }, { ci: 50, team: "BOS" }], 82);
+  assert.deepEqual(far.labels.map((l) => [l.row, l.align]), [[0, "left"], [0, "left"]]);
+  assert.equal(far.rows, 1);
+  const lone = layoutTradeLabels([{ ci: 70, team: "BOS" }], 82);
+  assert.deepEqual(lone.labels.map((l) => [l.row, l.align]), [[0, "right"]]);
 });
 
 console.log(results.join("\n"));

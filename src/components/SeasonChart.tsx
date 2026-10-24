@@ -1,10 +1,19 @@
-import { tradeTicks, type TeamGame } from "@/lib/teamGames";
+import {
+  chartCells,
+  layoutTradeLabels,
+  tradeTicks,
+  type ChartCell,
+  type TeamGame,
+} from "@/lib/teamGames";
 import { formatPlainDate } from "@/lib/dates";
 import styles from "./SeasonChart.module.css";
 
 const SCALE_MAX = 50;
-/** Empty cells before the Cup · TBD pair. */
-const GAP_CELLS = 2;
+
+/** Each stacked trade-label row adds 15px above the 16px marker row. */
+const ROW_PX = 15;
+const markerRowsStyle = (rows: number) =>
+  rows > 1 ? { height: `${16 + (rows - 1) * ROW_PX}px` } : undefined;
 
 const pct = (n: number) => `${n.toFixed(4)}%`;
 const frac = (pts: number) => (Math.min(pts, SCALE_MAX) / SCALE_MAX) * 100;
@@ -30,7 +39,7 @@ function slotLabel(g: TeamGame): string {
 const isPast = (g: TeamGame | null): g is TeamGame =>
   !!g && (g.status === "played" || g.status === "missed");
 
-type Cell = { ci: number; g: TeamGame | null; key: string };
+type Cell = ChartCell;
 
 /**
  * His whole regular season, one equal cell per slot on a fixed 0–50 scale.
@@ -63,35 +72,11 @@ export function SeasonChart({
   /** Data shipped a per-player trade list: draw only those markers. */
   explicitTrades?: boolean;
 }) {
-  // A completed season has nothing still to come: drop any future/tbd rows.
-  const rows = complete
-    ? games.filter((g) => g.status !== "scheduled" && g.status !== "tbd")
-    : games;
-  const tbd = rows.filter((g) => !g.date);
-  const dated: (TeamGame | null)[] = rows
-    .filter((g) => !!g.date)
-    .sort(
-      (a, b) =>
-        (a.date as string).localeCompare(b.date as string) || a.seq - b.seq,
-    );
-  // Never draw fewer than Data's slot_total (pads only if the file is short).
-  const shortBy = slotTotal - dated.length - tbd.length;
-  for (let k = 0; k < shortBy; k++) dated.push(null);
-  const D = dated.length;
-  const T = tbd.length;
-
-  const cells: Cell[] = dated.map((g, i) => ({
-    ci: i,
-    g,
-    key: g?.slotKey ?? `pad-${i}`,
-  }));
-  let c = D;
-  const pairStart = T > 0 ? c + GAP_CELLS : null;
-  if (pairStart !== null) {
-    tbd.forEach((g, i) => cells.push({ ci: pairStart + i, g, key: g.slotKey }));
-    c = pairStart + T;
-  }
-  const C = c;
+  const { dated, cells, D, T, pairStart, C } = chartCells(
+    games,
+    slotTotal,
+    complete,
+  );
   if (C === 0) return null;
 
   const slotCount = cells.length;
@@ -123,6 +108,7 @@ export function SeasonChart({
   // Traded ticks: Data's trade markers (list-form or per-slot) when the
   // file has them; otherwise a team change between consecutive dated slots.
   const trades = tradeTicks(dated, complete, explicitTrades);
+  const { labels, rows: labelRows } = layoutTradeLabels(trades, C);
   // A finished season with an entry but no played game: every slot Out, no
   // line, and the key reads a dim n/a (never 0.0).
   const allOut = complete && playedCount === 0;
@@ -227,26 +213,29 @@ export function SeasonChart({
             {seasonAvg!.toFixed(1)} avg
           </span>
         ) : allOut ? (
-          <span className={styles.avgKey}>
-            <span className={styles.avgNa}>n/a</span> avg
-          </span>
+          <span className={`${styles.avgKey} ${styles.avgNa}`}>n/a</span>
         ) : null}
       </div>
       <small className={styles.sub}>{sub}</small>
       <div className={styles.frame} role="img" aria-label={summary}>
-        <div className={styles.markers} aria-hidden>
-          {trades.map((t) => {
+        <div
+          className={styles.markers}
+          style={markerRowsStyle(labelRows)}
+          aria-hidden
+        >
+          {labels.map((t) => {
             const x = pos(t.ci);
             return (
               <span
                 key={`tr-${t.ci}`}
-                style={
-                  x < 70
+                style={{
+                  ...(t.align === "left"
                     ? { left: `calc(${pct(x)} + 4px)` }
-                    : { right: `calc(${pct(100 - x)} + 4px)` }
-                }
+                    : { right: `calc(${pct(100 - x)} + 4px)` }),
+                  ...(t.row ? { bottom: `${2 + t.row * ROW_PX}px` } : {}),
+                }}
               >
-                Traded to {t.team}
+                {t.text}
               </span>
             );
           })}
@@ -285,11 +274,14 @@ export function SeasonChart({
               }}
             />
           ) : null}
-          {trades.map((t) => (
+          {labels.map((t) => (
             <div
               key={`tl-${t.ci}`}
               className={styles.trade}
-              style={{ left: pct(pos(t.ci)) }}
+              style={{
+                left: pct(pos(t.ci)),
+                ...(t.row ? { top: `${-(16 + t.row * ROW_PX)}px` } : {}),
+              }}
             />
           ))}
         </div>
@@ -333,45 +325,12 @@ export function SeasonChart({
           })}
         </div>
       </div>
-      <div className={styles.legend} aria-hidden>
-        <span>
-          <i className={styles.lgPlayed} />
-          Played
-        </span>
-        {complete ? null : (
-          <span>
-            <i className={styles.lgNew} />
-            Newest
-          </span>
-        )}
-        {allOut ? null : (
-          <span>
-            <i className={styles.lgZero} />0 pts
-          </span>
-        )}
-        <span>
-          <i className={styles.lgOut} />
-          Out
-        </span>
-        {notOnCount > 0 ? (
-          <span>
-            <i className={styles.lgNotOn} />
-            Not on team
-          </span>
-        ) : null}
-        {complete ? null : (
-          <span>
-            <i className={styles.lgFut} />
-            Not played yet
-          </span>
-        )}
-        {showAvg ? (
-          <span>
-            <i className={styles.lgAvg} />
-            Season avg
-          </span>
-        ) : null}
-      </div>
+      <Legend
+        complete={complete}
+        allOut={allOut}
+        notOn={notOnCount > 0}
+        showAvg={showAvg}
+      />
     </div>
   );
 }
@@ -392,6 +351,7 @@ export function SeasonChartPending({
   avgKey,
   notOn,
   played,
+  markerRows = 1,
 }: {
   title: string;
   complete?: boolean;
@@ -403,6 +363,8 @@ export function SeasonChartPending({
   notOn: boolean;
   /** He has a played game (legend keeps "0 pts" / "Season avg"). */
   played: boolean;
+  /** Trade-label rows the drawn chart will use (stacked labels). */
+  markerRows?: number;
 }) {
   const allOut = complete && !played;
   return (
@@ -423,7 +385,11 @@ export function SeasonChartPending({
         82 games · 0 played
       </small>
       <div className={styles.frame}>
-        <div className={styles.markers} aria-hidden />
+        <div
+          className={styles.markers}
+          style={markerRowsStyle(markerRows)}
+          aria-hidden
+        />
         <div className={styles.plot}>
           {failed ? (
             <p className={styles.failMsg} role="status">
@@ -451,45 +417,80 @@ export function SeasonChartPending({
           </span>
         </div>
       </div>
-      <div className={`${styles.legend} ${styles.hold}`} aria-hidden>
-        <span>
-          <i className={styles.lgPlayed} />
-          Played
-        </span>
-        {complete ? null : (
+      <Legend
+        hold
+        complete={complete}
+        allOut={allOut}
+        notOn={notOn}
+        showAvg={played && avgKey}
+      />
+    </div>
+  );
+}
+
+/** Legend. A finished season with no played game shows only "Out". */
+function Legend({
+  complete,
+  allOut,
+  notOn,
+  showAvg,
+  hold = false,
+}: {
+  complete: boolean;
+  allOut: boolean;
+  notOn: boolean;
+  showAvg: boolean;
+  hold?: boolean;
+}) {
+  const out = (
+    <span>
+      <i className={styles.lgOut} />
+      Out
+    </span>
+  );
+  return (
+    <div
+      className={`${styles.legend}${hold ? ` ${styles.hold}` : ""}`}
+      aria-hidden
+    >
+      {allOut ? (
+        out
+      ) : (
+        <>
           <span>
-            <i className={styles.lgNew} />
-            Newest
+            <i className={styles.lgPlayed} />
+            Played
           </span>
-        )}
-        {allOut ? null : (
+          {complete ? null : (
+            <span>
+              <i className={styles.lgNew} />
+              Newest
+            </span>
+          )}
           <span>
             <i className={styles.lgZero} />0 pts
           </span>
-        )}
-        <span>
-          <i className={styles.lgOut} />
-          Out
-        </span>
-        {notOn ? (
-          <span>
-            <i className={styles.lgNotOn} />
-            Not on team
-          </span>
-        ) : null}
-        {complete ? null : (
-          <span>
-            <i className={styles.lgFut} />
-            Not played yet
-          </span>
-        )}
-        {played && avgKey ? (
-          <span>
-            <i className={styles.lgAvg} />
-            Season avg
-          </span>
-        ) : null}
-      </div>
+          {out}
+          {notOn ? (
+            <span>
+              <i className={styles.lgNotOn} />
+              Not on team
+            </span>
+          ) : null}
+          {complete ? null : (
+            <span>
+              <i className={styles.lgFut} />
+              Not played yet
+            </span>
+          )}
+          {showAvg ? (
+            <span>
+              <i className={styles.lgAvg} />
+              Season avg
+            </span>
+          ) : null}
+        </>
+      )}
     </div>
   );
 }

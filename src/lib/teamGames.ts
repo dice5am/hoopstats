@@ -98,6 +98,114 @@ export function tradeTicks(
   return trades;
 }
 
+/** Empty cells before the Cup · TBD pair. */
+export const GAP_CELLS = 2;
+
+export type ChartCell = { ci: number; g: TeamGame | null; key: string };
+
+/**
+ * Column layout of a season chart: dated run in date order (padded to
+ * slot_total), then after a 2-cell gap the undated Cup · TBD pair. A
+ * completed season drops future/tbd rows. `C` = total cells.
+ */
+export function chartCells(
+  games: TeamGame[],
+  slotTotal: number,
+  complete: boolean,
+) {
+  const rows = complete
+    ? games.filter((g) => g.status !== "scheduled" && g.status !== "tbd")
+    : games;
+  const tbd = rows.filter((g) => !g.date);
+  const dated: (TeamGame | null)[] = rows
+    .filter((g) => !!g.date)
+    .sort(
+      (a, b) =>
+        (a.date as string).localeCompare(b.date as string) || a.seq - b.seq,
+    );
+  // Never draw fewer than Data's slot_total (pads only if the file is short).
+  const shortBy = slotTotal - dated.length - tbd.length;
+  for (let k = 0; k < shortBy; k++) dated.push(null);
+  const D = dated.length;
+  const T = tbd.length;
+  const cells: ChartCell[] = dated.map((g, i) => ({
+    ci: i,
+    g,
+    key: g?.slotKey ?? `pad-${i}`,
+  }));
+  let c = D;
+  const pairStart = T > 0 ? c + GAP_CELLS : null;
+  if (pairStart !== null) {
+    tbd.forEach((g, i) => cells.push({ ci: pairStart + i, g, key: g.slotKey }));
+    c = pairStart + T;
+  }
+  return { dated, tbd, cells, D, T, pairStart, C: c };
+}
+
+/**
+ * Estimated width of a "Traded to XXX" label as % of the plot, at the
+ * narrowest plot (296px at 390; 10.5px Inter 700 ≈ 6.5px/char + 4px gap),
+ * floored at the spec's 30%. Layout uses the same estimate at every width
+ * so 390 and 1440 stack identically (as in the Kyle Anderson frame).
+ */
+function labelWidthPct(text: string): number {
+  return Math.max(30, ((text.length * 6.5 + 4) / 296) * 100);
+}
+
+export type TradeLabel = {
+  ci: number;
+  team: string;
+  text: string;
+  /** 0 = the normal marker row; each row above adds 15px. */
+  row: number;
+  align: "left" | "right";
+};
+
+/**
+ * Lay out trade labels over the plot (x in % of C cells). A lone label sits
+ * right of its tick (left of it past 70%). When labels are within a label
+ * width of each other, every label in that group ends at its own tick
+ * (right-aligned; left-aligned when the tick is in the first 25%) and each
+ * takes the lowest row with no overlapping label already on it.
+ */
+export function layoutTradeLabels(
+  trades: { ci: number; team: string }[],
+  C: number,
+): { labels: TradeLabel[]; rows: number } {
+  const x = (ci: number) => (C > 0 ? (ci * 100) / C : 0);
+  const items = trades.map((t) => ({ ...t, text: `Traded to ${t.team}` }));
+  const placed: TradeLabel[] = [];
+  items.forEach((t, i) => {
+    const xi = x(t.ci);
+    const w = labelWidthPct(t.text);
+    const close = items.some(
+      (o, j) => j !== i && Math.abs(x(o.ci) - xi) < Math.max(w, labelWidthPct(o.text)),
+    );
+    const align: "left" | "right" = close
+      ? xi > 25
+        ? "right"
+        : "left"
+      : xi < 70
+        ? "left"
+        : "right";
+    let row = 0;
+    while (
+      placed.some(
+        (p) =>
+          p.row === row &&
+          Math.abs(x(p.ci) - xi) < Math.max(w, labelWidthPct(p.text)),
+      )
+    ) {
+      row++;
+    }
+    placed.push({ ci: t.ci, team: t.team, text: t.text, row, align });
+  });
+  return {
+    labels: placed,
+    rows: placed.reduce((m, p) => Math.max(m, p.row + 1), 1),
+  };
+}
+
 /* ---- /slots/<id>.json wire format (compact; decoded on the client) ---- */
 
 const CODE = {

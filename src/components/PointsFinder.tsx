@@ -397,6 +397,7 @@ function PointsCard({ row }: { row: PointsRow }) {
             avgKey={seasonAvg !== null && row.shape.cur.played}
             notOn={row.shape.cur.notOn}
             played={row.shape.cur.played}
+            markerRows={row.shape.cur.rows}
           />
         )}
         {row.slotTotal2526 === null ? null : row.slotTotal2526 === 0 ? (
@@ -419,6 +420,7 @@ function PointsCard({ row }: { row: PointsRow }) {
             avgKey
             notOn={row.shape.prev?.notOn ?? false}
             played={row.shape.prev?.played ?? false}
+            markerRows={row.shape.prev?.rows ?? 1}
           />
         )}
       </div>
