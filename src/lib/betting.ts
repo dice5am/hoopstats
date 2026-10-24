@@ -10,6 +10,7 @@ export type PointsGame = {
 };
 
 import {
+  DEFAULT_SOURCE,
   chartCells,
   isPastGame,
   exitReasonOf,
@@ -83,13 +84,12 @@ type RawRow = Record<string, unknown>;
 const DATA_FILE = path.join(process.cwd(), "data", "betting_points.json");
 /**
  * Team-games export. Swap point: copy Data's gated file here and record its
- * sha in data/SOURCES.md. Only this loader reads it.
+ * sha in data/SOURCES.md, or point HOOPSTATS_TEAM_GAMES_2026_27 at it at build
+ * time (e.g. to test an ungated file). Only this loader reads it.
  */
-const TEAM_GAMES_FILE = path.join(
-  process.cwd(),
-  "data",
-  "player_team_games.json",
-);
+const TEAM_GAMES_FILE =
+  process.env.HOOPSTATS_TEAM_GAMES_2026_27 ||
+  path.join(process.cwd(), "data", "player_team_games.json");
 /**
  * 2025-26 team-games export (complete season, same row shape plus
  * `not_on_team` slots and `trade_marker`). Swap point: drop Data's gated file
@@ -100,9 +100,11 @@ const TEAM_GAMES_2025_26_FILE =
   process.env.HOOPSTATS_TEAM_GAMES_2025_26 ||
   path.join(process.cwd(), "data", "player_team_games_2025_26.json");
 /**
- * Per-row provenance field in the team-games exports (e.g. `"source":
- * "Basketball-Reference"` on some 2025-26 Out rows). The one place to rename
- * it if Data settles on another key. Data-only: carried to /slots, never drawn.
+ * Per-row provenance field in both seasons' team-games exports (from
+ * 2025-26 v1.3 / 2026-27 v2.4 every row has one: DEFAULT_SOURCE in
+ * teamGames.ts, or e.g. "basketball-reference"; missing → DEFAULT_SOURCE).
+ * The one place to rename it if Data changes the key. Data-only: carried to
+ * /slots (non-default only), never drawn.
  */
 export const SOURCE_FIELD = "source";
 /** Fallback only while the file has no `slot_total` (v1): 82 regular-season games. */
@@ -144,7 +146,6 @@ export function toTeamGames(
     const ha =
       g.home_away === "home" || g.home_away === "away" ? g.home_away : null;
     const seq = num(g.game_seq) ?? out.length + 1;
-    const source = sourceOf(g[SOURCE_FIELD]);
     out.push({
       seq,
       slotKey: str(g.slot_key) ?? str(g.game_id) ?? `slot-${seq}`,
@@ -156,7 +157,7 @@ export function toTeamGames(
       status,
       pts: status === "played" ? num(g.pts) : null,
       ...(g.trade_marker === true ? { tradeMarker: true } : {}),
-      ...(source ? { source } : {}),
+      source: sourceOf(g[SOURCE_FIELD]),
     });
   }
   // File order is the season order (tbd slots have no date), so keep it by seq.
@@ -274,6 +275,7 @@ function loadTeamGames(): Map<string, TeamGamesEntry> {
           team: null,
           status: "scheduled",
           pts: null,
+          source: DEFAULT_SOURCE,
         });
       }
       slotTotal = games.length;
@@ -287,9 +289,9 @@ function str(v: unknown): string | null {
   return typeof v === "string" && v.length > 0 ? v : null;
 }
 
-/** Row provenance: trimmed non-empty string, else none. */
-function sourceOf(v: unknown): string | undefined {
-  return typeof v === "string" ? v.trim() || undefined : undefined;
+/** Row provenance: trimmed non-empty string; missing/blank → DEFAULT_SOURCE. */
+function sourceOf(v: unknown): string {
+  return (typeof v === "string" && v.trim()) || DEFAULT_SOURCE;
 }
 
 function num(v: unknown): number | null {

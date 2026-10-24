@@ -35,12 +35,21 @@ export type TeamGame = {
   /** Exit markers drawn before this slot (first Not on team slot after a stint). */
   exits?: ExitMark[];
   /**
-   * Data-only provenance of this row (e.g. "Basketball-Reference"); never
-   * rendered. Absent when the row has none. Read from the row field named by
-   * SOURCE_FIELD in betting.ts; travels as `c` in /slots/<id>.json.
+   * Data-only provenance of this row (e.g. "basketball-reference"); never
+   * rendered. Read from the row field named by SOURCE_FIELD in betting.ts.
+   * A missing value means DEFAULT_SOURCE (the loader and the decoder fill it
+   * in). On /slots/<id>.json it travels as `c` only when it is not
+   * DEFAULT_SOURCE. Optional only so the page payload (last5) can omit it.
    */
   source?: string;
 };
+
+/**
+ * Default row source (both seasons; Gate 9: 2025-26 v1.3 / 2026-27 v2.4).
+ * A row without a source is this; it is never written to /slots — only other
+ * sources are. The one place to change it if Data's default changes.
+ */
+export const DEFAULT_SOURCE = "nba.com";
 
 export type JoinReason = "trade" | "signed";
 export type ExitMark = { team: string; reason: "waived" | "left" };
@@ -537,7 +546,7 @@ export type WireSlot = {
   r?: "t" | "s";
   /** exit markers before this slot: [team, w = waived | l = left] */
   z?: [string, "w" | "l"][];
-  /** source (data-only provenance), only when the row has one */
+  /** source (data-only provenance), only when it is not DEFAULT_SOURCE */
   c?: string;
 };
 export type WireSeason = { t: number; g: WireSlot[]; e?: 1 };
@@ -560,7 +569,7 @@ function encodeSeason(s: SeasonSlots): WireSeason {
     if (x.exits?.length) {
       w.z = x.exits.map((e) => [e.team, e.reason === "waived" ? "w" : "l"]);
     }
-    if (x.source) w.c = x.source;
+    if (x.source && x.source !== DEFAULT_SOURCE) w.c = x.source;
     return w;
   });
   return { t: s.slotTotal, g, ...(s.explicitTrades ? { e: 1 as const } : {}) };
@@ -586,7 +595,7 @@ function decodeSeason(w: WireSeason): SeasonSlots {
     if (x.z?.length) {
       g.exits = x.z.map(([team, r]) => ({ team, reason: r === "w" ? "waived" : "left" }));
     }
-    if (typeof x.c === "string" && x.c) g.source = x.c;
+    g.source = typeof x.c === "string" && x.c ? x.c : DEFAULT_SOURCE;
     return g;
   });
   return { games, slotTotal: w.t, ...(w.e ? { explicitTrades: true } : {}) };
