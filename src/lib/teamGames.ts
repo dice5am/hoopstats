@@ -26,11 +26,48 @@ export type TeamGame = {
   team: string | null;
   status: SlotStatus;
   pts: number | null; // only when played; a real 0 stays 0
-  /** Data's trade marker: this slot opens a new team stint ("Traded to {team}"). */
+  /** Join marker: this slot opens a new team stint (list-form `trade_marker`). */
   tradeMarker?: boolean;
-  /** Team named on the marker (list-form `trade_marker.to_team`); else `team`. */
+  /** Team named on the join marker (list-form `trade_marker.to_team`); else `team`. */
   tradeTo?: string;
+  /** Join reason; absent/unknown → "Joined {team}". */
+  joinReason?: JoinReason;
+  /** Exit markers drawn before this slot (first Not on team slot after a stint). */
+  exits?: ExitMark[];
 };
+
+export type JoinReason = "trade" | "signed";
+export type ExitMark = { team: string; reason: "waived" | "left" };
+
+const norm = (v: unknown) =>
+  typeof v === "string" ? v.trim().toLowerCase().replace(/[\s_]+/g, "_") : "";
+
+/** `trade_marker[].reason` → join wording; null/missing/unknown → undefined ("Joined"). */
+export function joinReasonOf(v: unknown): JoinReason | undefined {
+  const r = norm(v);
+  return r === "trade" ? "trade" : r === "signed" ? "signed" : undefined;
+}
+
+const LEFT_REASONS = new Set(["contract_end", "contract_ended", "ten_day_end", "left"]);
+/** `exit_marker[].reason` → exit kind; null/missing/unknown → null (no tick, no label). */
+export function exitReasonOf(v: unknown): ExitMark["reason"] | null {
+  const r = norm(v);
+  return r === "waived" ? "waived" : LEFT_REASONS.has(r) ? "left" : null;
+}
+
+export function joinText(team: string, reason?: JoinReason): string {
+  return reason === "trade"
+    ? `Traded to ${team}`
+    : reason === "signed"
+      ? `Signed with ${team}`
+      : `Joined ${team}`;
+}
+export function exitText(e: ExitMark): string {
+  return e.reason === "waived" ? `Waived by ${e.team}` : `Left ${e.team}`;
+}
+
+/** One stint marker over the chart: a hairline tick before slot `ci` with its label. */
+export type StintTick = { ci: number; team: string; kind: "join" | "exit"; text: string };
 
 /**
  * A dated past game (played or missed) with an opponent and home/away —
@@ -71,31 +108,40 @@ export type PlayerSlots = {
 };
 
 /**
- * Trade ticks over the dated run: Data's markers when present (list-form or
- * per-slot), else a team change between consecutive dated slots. In a
- * complete season the new team's Not on team slots (before his debut)
- * already belong to the new stint, so the tick sits at the stint change.
+ * Stint ticks over the dated run. Joins: Data's markers when present
+ * (list-form or per-slot), else a team change between consecutive dated
+ * slots. In a complete season the new team's Not on team slots (before his
+ * debut) already belong to the new stint, so the tick sits at the stint
+ * change. Exits: Data's `exit_marker` entries with a known reason only.
+ * Within a slot the exit comes before the join.
  */
 export function tradeTicks(
   dated: (TeamGame | null)[],
   complete: boolean,
   explicit = false,
-): { ci: number; team: string }[] {
-  const trades: { ci: number; team: string }[] = [];
-  if (explicit || dated.some((g) => g?.tradeMarker)) {
-    dated.forEach((g, i) => {
-      const team = g?.tradeTo ?? g?.team;
-      if (g?.tradeMarker && team) trades.push({ ci: i, team });
-    });
-    return trades;
-  }
+): StintTick[] {
+  const ticks: StintTick[] = [];
+  const useMarkers = explicit || dated.some((g) => g?.tradeMarker);
   let prevTeam: string | null = null;
   dated.forEach((g, i) => {
-    if (!g?.team || (!complete && g.status === "not_on_team")) return;
-    if (prevTeam && g.team !== prevTeam) trades.push({ ci: i, team: g.team });
+    for (const e of g?.exits ?? []) {
+      ticks.push({ ci: i, team: e.team, kind: "exit", text: exitText(e) });
+    }
+    if (!g) return;
+    if (useMarkers) {
+      const team = g.tradeTo ?? g.team;
+      if (g.tradeMarker && team) {
+        ticks.push({ ci: i, team, kind: "join", text: joinText(team, g.joinReason) });
+      }
+      return;
+    }
+    if (!g.team || (!complete && g.status === "not_on_team")) return;
+    if (prevTeam && g.team !== prevTeam) {
+      ticks.push({ ci: i, team: g.team, kind: "join", text: joinText(g.team) });
+    }
     prevTeam = g.team;
   });
-  return trades;
+  return ticks;
 }
 
 /** Empty cells before the Cup · TBD pair. */
@@ -142,19 +188,33 @@ export function chartCells(
   return { dated, tbd, cells, D, T, pairStart, C: c };
 }
 
+/** Rows a season chart's marker band reserves whenever it draws any tick (Design lock). */
+export const MARKER_BAND_ROWS = 3;
+
 /**
- * Estimated width of a "Traded to XXX" label as % of the plot, at the
- * narrowest plot (296px at 390; 10.5px Inter 700 ≈ 6.5px/char + 4px gap),
- * floored at the spec's 30%. Layout uses the same estimate at every width
- * so 390 and 1440 stack identically (as in the Kyle Anderson frame).
+ * Pixel metrics the label layout runs on: plot width, the horizontal gap
+ * kept between labels (6px at 390, 8px at ≥1000px), and each label's width.
+ * The chart measures the real ones after its first layout pass; the
+ * defaults are the 390 frame (296px plot, Inter 700 10.5px ≈ 6.4px/char).
  */
-function labelWidthPct(text: string): number {
-  return Math.max(30, ((text.length * 6.5 + 4) / 296) * 100);
-}
+export type LabelMetrics = {
+  plotPx: number;
+  gapPx: number;
+  widthPx: (text: string) => number;
+};
+export const LABEL_METRICS_390: LabelMetrics = {
+  plotPx: 296,
+  gapPx: 6,
+  widthPx: (t) => t.length * 6.4,
+};
+
+/** Space between a hairline and the label it ends at. */
+const TICK_PAD_PX = 4;
 
 export type TradeLabel = {
   ci: number;
   team: string;
+  kind: "join" | "exit";
   text: string;
   /** 0 = the normal marker row; each row above adds 15px. */
   row: number;
@@ -162,47 +222,81 @@ export type TradeLabel = {
 };
 
 /**
- * Lay out trade labels over the plot (x in % of C cells). A lone label sits
- * right of its tick (left of it past 70%). When labels are within a label
- * width of each other, every label in that group ends at its own tick
- * (right-aligned; left-aligned when the tick is in the first 25%) and each
- * takes the lowest row with no overlapping label already on it.
+ * Lay out stint labels (joins and exits share rows) over the plot. A lone
+ * label sits right of its tick (left of it when it would run past the plot
+ * edge). Labels within a label width (+ gap) of another end at their own
+ * tick (right-aligned; left-aligned when that would run past the left edge).
+ * In tick order each label takes the LOWEST row where it keeps `gapPx` clear
+ * of every label already placed. `rows` is what the layout needs; rows past
+ * MARKER_BAND_ROWS are not drawn (clamped to the top row) and flagged as
+ * `overflow` so they can be reported.
  */
 export function layoutTradeLabels(
-  trades: { ci: number; team: string }[],
+  trades: { ci: number; team: string; kind?: "join" | "exit"; text?: string }[],
   C: number,
-): { labels: TradeLabel[]; rows: number } {
-  const x = (ci: number) => (C > 0 ? (ci * 100) / C : 0);
-  const items = trades.map((t) => ({ ...t, text: `Traded to ${t.team}` }));
-  const placed: TradeLabel[] = [];
+  m: LabelMetrics = LABEL_METRICS_390,
+): { labels: TradeLabel[]; rows: number; overflow: boolean } {
+  const x = (ci: number) => (C > 0 ? (ci / C) * m.plotPx : 0);
+  const items = trades.map((t) => {
+    const text = t.text ?? joinText(t.team);
+    return {
+      ci: t.ci,
+      team: t.team,
+      kind: t.kind ?? ("join" as const),
+      text,
+      w: m.widthPx(text),
+    };
+  });
+  const placed: (TradeLabel & { a: number; b: number; need: number })[] = [];
+  let need = 0;
   items.forEach((t, i) => {
     const xi = x(t.ci);
-    const w = labelWidthPct(t.text);
     const close = items.some(
-      (o, j) => j !== i && Math.abs(x(o.ci) - xi) < Math.max(w, labelWidthPct(o.text)),
+      (o, j) => j !== i && Math.abs(x(o.ci) - xi) < Math.max(t.w, o.w) + m.gapPx,
     );
+    const fitsRight = xi + TICK_PAD_PX + t.w <= m.plotPx;
+    const fitsLeft = xi - TICK_PAD_PX - t.w >= 0;
     const align: "left" | "right" = close
-      ? xi > 25
+      ? fitsLeft
         ? "right"
         : "left"
-      : xi < 70
+      : fitsRight || !fitsLeft
         ? "left"
         : "right";
+    const a = align === "left" ? xi + TICK_PAD_PX : xi - TICK_PAD_PX - t.w;
+    const b = a + t.w;
     let row = 0;
     while (
       placed.some(
-        (p) =>
-          p.row === row &&
-          Math.abs(x(p.ci) - xi) < Math.max(w, labelWidthPct(p.text)),
+        (p) => p.need === row && a < p.b + m.gapPx && p.a < b + m.gapPx,
       )
     ) {
       row++;
     }
-    placed.push({ ci: t.ci, team: t.team, text: t.text, row, align });
+    need = Math.max(need, row + 1);
+    placed.push({
+      ci: t.ci,
+      team: t.team,
+      kind: t.kind,
+      text: t.text,
+      row: Math.min(row, MARKER_BAND_ROWS - 1),
+      need: row,
+      align,
+      a,
+      b,
+    });
   });
   return {
-    labels: placed,
-    rows: placed.reduce((m, p) => Math.max(m, p.row + 1), 1),
+    labels: placed.map(({ ci, team, kind, text, row, align }) => ({
+      ci,
+      team,
+      kind,
+      text,
+      row,
+      align,
+    })),
+    rows: Math.max(need, 1),
+    overflow: need > MARKER_BAND_ROWS,
   };
 }
 
@@ -237,6 +331,10 @@ export type WireSlot = {
   x?: 1;
   /** trade-to team, only when it differs from `m` */
   y?: string;
+  /** join reason: t = trade, s = signed */
+  r?: "t" | "s";
+  /** exit markers before this slot: [team, w = waived | l = left] */
+  z?: [string, "w" | "l"][];
 };
 export type WireSeason = { t: number; g: WireSlot[]; e?: 1 };
 export type WireFile = { v: 1; a: WireSeason; b: WireSeason | null };
@@ -254,6 +352,10 @@ function encodeSeason(s: SeasonSlots): WireSeason {
     if (x.pts !== null) w.p = x.pts;
     if (x.tradeMarker) w.x = 1;
     if (x.tradeTo && x.tradeTo !== x.team) w.y = x.tradeTo;
+    if (x.joinReason) w.r = x.joinReason === "trade" ? "t" : "s";
+    if (x.exits?.length) {
+      w.z = x.exits.map((e) => [e.team, e.reason === "waived" ? "w" : "l"]);
+    }
     return w;
   });
   return { t: s.slotTotal, g, ...(s.explicitTrades ? { e: 1 as const } : {}) };
@@ -275,6 +377,10 @@ function decodeSeason(w: WireSeason): SeasonSlots {
     };
     if (x.x) g.tradeMarker = true;
     if (x.y || (x.x && x.m)) g.tradeTo = x.y ?? x.m;
+    if (x.r) g.joinReason = x.r === "t" ? "trade" : "signed";
+    if (x.z?.length) {
+      g.exits = x.z.map(([team, r]) => ({ team, reason: r === "w" ? "waived" : "left" }));
+    }
     return g;
   });
   return { games, slotTotal: w.t, ...(w.e ? { explicitTrades: true } : {}) };

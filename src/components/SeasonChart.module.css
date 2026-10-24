@@ -62,6 +62,11 @@
   height: 16px;
 }
 
+/* Fixed marker band: any drawn tick reserves the base row + 2 rows (15px each). */
+.markers.band {
+  height: calc(16px + var(--band-rows, 2) * 15px);
+}
+
 .markers span {
   position: absolute;
   bottom: 2px;
@@ -393,6 +398,10 @@
   .markers span,
   .ticks span {
     font-size: 12px;
+  }
+  /* 12px labels are ~1px taller: keep the top row inside the band. */
+  .markers.band {
+    height: calc(18px + var(--band-rows, 2) * 15px);
   }
   .legend {
     font-size: 13px;

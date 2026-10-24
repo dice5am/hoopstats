@@ -12,7 +12,8 @@ export type PointsGame = {
 import {
   chartCells,
   isPastGame,
-  layoutTradeLabels,
+  exitReasonOf,
+  joinReasonOf,
   tradeTicks,
 } from "./teamGames";
 import type {
@@ -70,7 +71,12 @@ export type PointsRow = {
 };
 
 /** What decides the season chart's header and legend rows. */
-export type ChartShape = { played: boolean; notOn: boolean; rows: number };
+export type ChartShape = {
+  played: boolean;
+  notOn: boolean;
+  /** Draws at least one stint tick → the marker band reserves MARKER_BAND_ROWS. */
+  hasMarkers: boolean;
+};
 
 type RawRow = Record<string, unknown>;
 
@@ -115,7 +121,11 @@ const STATUS_ALIASES: Record<string, SlotStatus> = {
  * list of `{game_seq, game_date, from_team, to_team}` — one entry for the
  * first slot on each new team (1-based `game_seq`); `[]` = never traded.
  */
-export function toTeamGames(raw: unknown, tradeList?: unknown): TeamGame[] {
+export function toTeamGames(
+  raw: unknown,
+  tradeList?: unknown,
+  exitList?: unknown,
+): TeamGame[] {
   if (!Array.isArray(raw)) return [];
   const out: TeamGame[] = [];
   for (const g of raw as RawRow[]) {
@@ -144,6 +154,7 @@ export function toTeamGames(raw: unknown, tradeList?: unknown): TeamGame[] {
   // File order is the season order (tbd slots have no date), so keep it by seq.
   out.sort((a, b) => a.seq - b.seq);
   if (Array.isArray(tradeList)) applyTradeList(out, tradeList as RawRow[]);
+  if (Array.isArray(exitList)) applyExitList(out, exitList as RawRow[]);
   return out;
 }
 
@@ -158,23 +169,48 @@ function sameDate(iso: string | null, d: string | null): boolean {
  * `game_seq` (cross-checked with `game_date` when given; if they disagree
  * the date wins, else the next slot from that seq), labelled `to_team`.
  */
+function findSlot(games: TeamGame[], t: RawRow): TeamGame | undefined {
+  const seq = num(t.game_seq);
+  const date = str(t.game_date);
+  let hit = seq !== null ? games.find((g) => g.seq === seq) : undefined;
+  if (date && (!hit || (hit.date && !sameDate(hit.date, date)))) {
+    hit = games.find((g) => sameDate(g.date, date)) ?? hit;
+  }
+  if (!hit && seq !== null) hit = games.find((g) => g.seq >= seq);
+  return hit;
+}
+
 function applyTradeList(games: TeamGame[], list: RawRow[]): void {
   for (const g of games) {
     delete g.tradeMarker;
     delete g.tradeTo;
+    delete g.joinReason;
   }
   for (const t of list) {
-    const seq = num(t.game_seq);
-    const date = str(t.game_date);
-    let hit = seq !== null ? games.find((g) => g.seq === seq) : undefined;
-    if (date && (!hit || (hit.date && !sameDate(hit.date, date)))) {
-      hit = games.find((g) => sameDate(g.date, date)) ?? hit;
-    }
-    if (!hit && seq !== null) hit = games.find((g) => g.seq >= seq);
+    const hit = findSlot(games, t);
     if (!hit) continue;
     hit.tradeMarker = true;
     const to = str(t.to_team) ?? hit.team;
     if (to) hit.tradeTo = to;
+    const reason = joinReasonOf(t.reason);
+    if (reason) hit.joinReason = reason;
+  }
+}
+
+/**
+ * `exit_marker`: per-player list of `{game_seq, game_date, team, reason}`,
+ * each the first Not on team slot after a stint. Only known reasons draw
+ * (waived → "Waived by", contract end / ten-day end / left → "Left");
+ * a null, missing or unknown reason draws nothing.
+ */
+function applyExitList(games: TeamGame[], list: RawRow[]): void {
+  for (const t of list) {
+    const reason = exitReasonOf(t.reason);
+    const team = str(t.team);
+    if (!reason || !team) continue;
+    const hit = findSlot(games, t);
+    if (!hit) continue;
+    (hit.exits ??= []).push({ team, reason });
   }
 }
 
@@ -195,7 +231,7 @@ function loadCompleteSeason(file: string): Map<string, TeamGamesEntry> | null {
   const m = new Map<string, TeamGamesEntry>();
   const raw = JSON.parse(fs.readFileSync(file, "utf8")) as RawRow[];
   for (const r of raw) {
-    const games = toTeamGames(r.games, r.trade_marker).filter(
+    const games = toTeamGames(r.games, r.trade_marker, r.exit_marker).filter(
       (g) => g.status !== "scheduled" && g.status !== "tbd",
     );
     // Every player has an entry (v1.1); slot_total 0 means "No 2025-26
@@ -212,7 +248,7 @@ function loadTeamGames(): Map<string, TeamGamesEntry> {
   if (!fs.existsSync(TEAM_GAMES_FILE)) return m;
   const raw = JSON.parse(fs.readFileSync(TEAM_GAMES_FILE, "utf8")) as RawRow[];
   for (const r of raw) {
-    const games = toTeamGames(r.games, r.trade_marker);
+    const games = toTeamGames(r.games, r.trade_marker, r.exit_marker);
     const fromFile = num(r.slot_total);
     let slotTotal: number;
     if (fromFile !== null) {
@@ -280,7 +316,7 @@ function toRow(r: RawRow): PointsRow {
     last5: [],
     teamPlayed: false,
     slotTotal2526: null,
-    shape: { cur: { played: false, notOn: false, rows: 1 }, prev: null },
+    shape: { cur: { played: false, notOn: false, hasMarkers: false }, prev: null },
     data_as_of_game_date: str(r.data_as_of_game_date)?.slice(0, 10) ?? null,
     pulled_at_utc: str(r.pulled_at_utc),
   };
@@ -288,12 +324,12 @@ function toRow(r: RawRow): PointsRow {
 
 function shapeOf(s: SeasonSlots | undefined, complete: boolean): ChartShape {
   const g = s?.games ?? [];
-  const { dated, C } = chartCells(g, s?.slotTotal ?? 0, complete);
+  const { dated } = chartCells(g, s?.slotTotal ?? 0, complete);
   const trades = tradeTicks(dated, complete, s?.explicitTrades);
   return {
     played: g.some((x) => x.status === "played"),
     notOn: g.some((x) => x.status === "not_on_team"),
-    rows: layoutTradeLabels(trades, C).rows,
+    hasMarkers: trades.length > 0,
   };
 }
 

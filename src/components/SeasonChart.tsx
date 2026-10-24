@@ -1,7 +1,11 @@
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   chartCells,
+  LABEL_METRICS_390,
   layoutTradeLabels,
+  MARKER_BAND_ROWS,
   tradeTicks,
+  type LabelMetrics,
   type ChartCell,
   type TeamGame,
 } from "@/lib/teamGames";
@@ -10,10 +14,74 @@ import styles from "./SeasonChart.module.css";
 
 const SCALE_MAX = 50;
 
-/** Each stacked trade-label row adds 15px above the 16px marker row. */
+/** Each stacked label row adds 15px above the 16px marker row. */
 const ROW_PX = 15;
-const markerRowsStyle = (rows: number) =>
-  rows > 1 ? { height: `${16 + (rows - 1) * ROW_PX}px` } : undefined;
+/** Fixed band: any drawn tick reserves MARKER_BAND_ROWS rows; none keeps the plain row. */
+const markerBandStyle = (hasMarkers: boolean) =>
+  hasMarkers
+    ? ({
+        "--band-rows": MARKER_BAND_ROWS - 1,
+      } as React.CSSProperties)
+    : undefined;
+
+const useIsoLayoutEffect =
+  typeof window === "undefined" ? useEffect : useLayoutEffect;
+
+type Measured = { plotPx: number; gapPx: number; widths: Record<string, number> };
+
+/**
+ * Real label metrics for the stacking rule: the marker band's width, the
+ * 6px/8px gap for the breakpoint, and each rendered label's width. Measured
+ * before paint (and on resize), so the first visible frame is already laid
+ * out; the band height is fixed, so re-layout never shifts the page.
+ */
+function useLabelMetrics(
+  band: React.RefObject<HTMLDivElement | null>,
+  active: boolean,
+  dep: string,
+): LabelMetrics {
+  const [m, setM] = useState<Measured | null>(null);
+  useIsoLayoutEffect(() => {
+    const el = band.current;
+    if (!active || !el) return;
+    const measure = () => {
+      const widths: Record<string, number> = {};
+      el.querySelectorAll<HTMLElement>("span[data-stint]").forEach((sp) => {
+        widths[sp.textContent ?? ""] = sp.getBoundingClientRect().width;
+      });
+      const next: Measured = {
+        plotPx: el.getBoundingClientRect().width,
+        gapPx: window.matchMedia("(min-width: 1000px)").matches ? 8 : 6,
+        widths,
+      };
+      setM((prev) =>
+        prev &&
+        Math.abs(prev.plotPx - next.plotPx) < 0.5 &&
+        prev.gapPx === next.gapPx &&
+        Object.keys(next.widths).every(
+          (k) => Math.abs((prev.widths[k] ?? -1) - next.widths[k]) < 0.5,
+        )
+          ? prev
+          : next,
+      );
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [active, dep]);
+  return useMemo(
+    () =>
+      m
+        ? {
+            plotPx: m.plotPx,
+            gapPx: m.gapPx,
+            widthPx: (t: string) => m.widths[t] ?? LABEL_METRICS_390.widthPx(t),
+          }
+        : LABEL_METRICS_390,
+    [m],
+  );
+}
 
 const pct = (n: number) => `${n.toFixed(4)}%`;
 const frac = (pts: number) => (Math.min(pts, SCALE_MAX) / SCALE_MAX) * 100;
@@ -77,6 +145,18 @@ export function SeasonChart({
     slotTotal,
     complete,
   );
+  // Stint ticks: joins from Data's trade markers (list-form or per-slot),
+  // else a team change; exits from Data's exit_marker (known reasons only).
+  // Joins and exits share one label-row stack.
+  const trades = tradeTicks(dated, complete, explicitTrades);
+  const hasMarkers = trades.length > 0;
+  const bandRef = useRef<HTMLDivElement>(null);
+  const metrics = useLabelMetrics(
+    bandRef,
+    hasMarkers,
+    trades.map((t) => `${t.ci}:${t.text}`).join("|"),
+  );
+  const { labels } = layoutTradeLabels(trades, C, metrics);
   if (C === 0) return null;
 
   const slotCount = cells.length;
@@ -105,10 +185,6 @@ export function SeasonChart({
   const showAvg = seasonAvg !== null && playedCount > 0;
   const avgPct = showAvg ? frac(seasonAvg!) : null;
 
-  // Traded ticks: Data's trade markers (list-form or per-slot) when the
-  // file has them; otherwise a team change between consecutive dated slots.
-  const trades = tradeTicks(dated, complete, explicitTrades);
-  const { labels, rows: labelRows } = layoutTradeLabels(trades, C);
   // A finished season with an entry but no played game: every slot Out, no
   // line, and the key reads a dim n/a (never 0.0).
   const allOut = complete && playedCount === 0;
@@ -219,15 +295,17 @@ export function SeasonChart({
       <small className={styles.sub}>{sub}</small>
       <div className={styles.frame} role="img" aria-label={summary}>
         <div
-          className={styles.markers}
-          style={markerRowsStyle(labelRows)}
+          ref={bandRef}
+          className={`${styles.markers}${hasMarkers ? ` ${styles.band}` : ""}`}
+          style={markerBandStyle(hasMarkers)}
           aria-hidden
         >
-          {labels.map((t) => {
+          {labels.map((t, i) => {
             const x = pos(t.ci);
             return (
               <span
-                key={`tr-${t.ci}`}
+                key={`tr-${t.kind}-${t.ci}-${i}`}
+                data-stint={t.kind}
                 style={{
                   ...(t.align === "left"
                     ? { left: `calc(${pct(x)} + 4px)` }
@@ -274,9 +352,9 @@ export function SeasonChart({
               }}
             />
           ) : null}
-          {labels.map((t) => (
+          {labels.map((t, i) => (
             <div
-              key={`tl-${t.ci}`}
+              key={`tl-${t.kind}-${t.ci}-${i}`}
               className={styles.trade}
               style={{
                 left: pct(pos(t.ci)),
@@ -351,7 +429,7 @@ export function SeasonChartPending({
   avgKey,
   notOn,
   played,
-  markerRows = 1,
+  hasMarkers = false,
 }: {
   title: string;
   complete?: boolean;
@@ -363,8 +441,8 @@ export function SeasonChartPending({
   notOn: boolean;
   /** He has a played game (legend keeps "0 pts" / "Season avg"). */
   played: boolean;
-  /** Trade-label rows the drawn chart will use (stacked labels). */
-  markerRows?: number;
+  /** The drawn chart has stint ticks (page index `hasMarkers`) → reserve the band. */
+  hasMarkers?: boolean;
 }) {
   const allOut = complete && !played;
   return (
@@ -386,8 +464,8 @@ export function SeasonChartPending({
       </small>
       <div className={styles.frame}>
         <div
-          className={styles.markers}
-          style={markerRowsStyle(markerRows)}
+          className={`${styles.markers}${hasMarkers ? ` ${styles.band}` : ""}`}
+          style={markerBandStyle(hasMarkers)}
           aria-hidden
         />
         <div className={styles.plot}>
@@ -454,7 +532,15 @@ function Legend({
       aria-hidden
     >
       {allOut ? (
-        out
+        <>
+          {out}
+          {notOn ? (
+            <span>
+              <i className={styles.lgNotOn} />
+              Not on team
+            </span>
+          ) : null}
+        </>
       ) : (
         <>
           <span>
