@@ -3,7 +3,7 @@ import { formatPlainDate } from "@/lib/dates";
 import styles from "./SeasonChart.module.css";
 
 const SCALE_MAX = 50;
-/** Empty cells before the Cup · TBD pair and before an undated Cup final. */
+/** Empty cells before the Cup · TBD pair. */
 const GAP_CELLS = 2;
 
 const pct = (n: number) => `${n.toFixed(4)}%`;
@@ -18,12 +18,9 @@ function tickSlots(dated: number): number[] {
 }
 
 function slotLabel(g: TeamGame): string {
-  const where =
-    g.date && g.opp
-      ? `${formatPlainDate(g.date)} ${g.homeAway === "home" ? "vs" : "at"} ${g.opp}`
-      : g.date
-        ? `${formatPlainDate(g.date)} Cup final`
-        : "Cup final";
+  const where = g.date
+    ? `${formatPlainDate(g.date)}${g.opp ? ` ${g.homeAway === "home" ? "vs" : "at"} ${g.opp}` : ""}`
+    : "TBD";
   if (g.status === "played")
     return `${where}: ${Math.round(g.pts ?? 0)} points`;
   if (g.status === "missed") return `${where}: out`;
@@ -36,32 +33,45 @@ const isPast = (g: TeamGame | null): g is TeamGame =>
 type Cell = { ci: number; g: TeamGame | null; key: string };
 
 /**
- * His whole season, one equal cell per slot on a fixed 0–50 scale. Dated run
- * first in date order (dated Cup games and a dated Cup final included), then
- * after a 2-cell gap the undated "Cup · TBD" pair, then (only if undated) the
- * Cup final after another 2-cell gap. Flat key-orange line at the season
- * average over game 1 → newest; its value lives in the header.
+ * His whole regular season, one equal cell per slot on a fixed 0–50 scale.
+ * Dated run first in date order (dated Cup group/knockout games sit in date
+ * order like any game), then after a 2-cell gap the undated "Cup · TBD" pair.
+ * The NBA Cup final is never a slot (the loader drops it). Flat key-orange
+ * line at the season average over game 1 → newest; its value lives in the
+ * header.
+ *
+ * `complete`: a finished past season — no newest highlight (numbers only over
+ * 50), no future/tbd slots, sub-header "{n} games · {played} played".
+ * `not_on_team` slots (before/after his stint) are empty cells with only a
+ * faint court tick under the axis; they count toward the slot total, never
+ * as missed.
  */
 export function SeasonChart({
+  title,
   games,
   slotTotal,
   seasonAvg,
+  complete = false,
 }: {
+  title: string;
   games: TeamGame[];
   slotTotal: number;
   seasonAvg: number | null;
+  complete?: boolean;
 }) {
-  const undatedFinal = games.find((g) => g.isCupFinal && !g.date) ?? null;
-  const tbd = games.filter((g) => !g.isCupFinal && !g.date);
-  const dated: (TeamGame | null)[] = games
+  // A completed season has nothing still to come: drop any future/tbd rows.
+  const rows = complete
+    ? games.filter((g) => g.status !== "scheduled" && g.status !== "tbd")
+    : games;
+  const tbd = rows.filter((g) => !g.date);
+  const dated: (TeamGame | null)[] = rows
     .filter((g) => !!g.date)
     .sort(
       (a, b) =>
         (a.date as string).localeCompare(b.date as string) || a.seq - b.seq,
     );
   // Never draw fewer than Data's slot_total (pads only if the file is short).
-  const shortBy =
-    slotTotal - dated.length - tbd.length - (undatedFinal ? 1 : 0);
+  const shortBy = slotTotal - dated.length - tbd.length;
   for (let k = 0; k < shortBy; k++) dated.push(null);
   const D = dated.length;
   const T = tbd.length;
@@ -77,11 +87,6 @@ export function SeasonChart({
     tbd.forEach((g, i) => cells.push({ ci: pairStart + i, g, key: g.slotKey }));
     c = pairStart + T;
   }
-  const finalCell = undatedFinal ? c + GAP_CELLS : null;
-  if (finalCell !== null) {
-    cells.push({ ci: finalCell, g: undatedFinal, key: undatedFinal!.slotKey });
-    c = finalCell + 1;
-  }
   const C = c;
   if (C === 0) return null;
 
@@ -90,6 +95,7 @@ export function SeasonChart({
   const pastCount = all.filter(isPast).length;
   const playedCount = all.filter((g) => g?.status === "played").length;
   const missedCount = pastCount - playedCount;
+  const notOnCount = all.filter((g) => g?.status === "not_on_team").length;
 
   // Team hasn't played yet: no season chart, the last-5 block says "No games yet".
   if (pastCount === 0) return null;
@@ -98,7 +104,7 @@ export function SeasonChart({
   const w = 100 / C;
 
   const lastPastIdx = dated.reduce((acc, g, i) => (isPast(g) ? i : acc), -1);
-  const newestCi = lastPastIdx >= 0 ? lastPastIdx : null;
+  const newestCi = !complete && lastPastIdx >= 0 ? lastPastIdx : null;
 
   const showAvg = seasonAvg !== null && playedCount > 0;
   const avgPct = showAvg ? frac(seasonAvg!) : null;
@@ -107,15 +113,16 @@ export function SeasonChart({
   const trades: { ci: number; team: string }[] = [];
   let prevTeam: string | null = null;
   dated.forEach((g, i) => {
-    if (!g?.team) return;
+    if (!g?.team || g.status === "not_on_team") return;
     if (prevTeam && g.team !== prevTeam) trades.push({ ci: i, team: g.team });
     prevTeam = g.team;
   });
 
-  const datedFinals = cells.filter((x) => x.g?.isCupFinal && x.g.date);
-
+  const notOnText = notOnCount > 0 ? `, ${notOnCount} not on team` : "";
   const summary = [
-    `Season so far: ${playedCount} played, ${missedCount} out, ${slotCount - pastCount} to come.`,
+    complete
+      ? `Season: ${slotCount} games, ${playedCount} played, ${missedCount} out${notOnText}.`
+      : `Season so far: ${playedCount} played, ${missedCount} out${notOnText}, ${slotCount - pastCount - notOnCount} to come.`,
     showAvg ? `Season average ${seasonAvg!.toFixed(1)}.` : "",
     all
       .filter(isPast)
@@ -132,6 +139,11 @@ export function SeasonChart({
 
   const column = ({ ci, g, key }: Cell) => {
     const place = { left: pct(pos(ci)), width: pct(w) };
+    // Not on team (or a pad in a completed season): empty cell; its faint
+    // court tick is drawn under the axis.
+    if (g?.status === "not_on_team" || (!g && complete)) {
+      return <div key={key} className={styles.col} style={place} />;
+    }
     if (!g || g.status === "scheduled" || g.status === "tbd") {
       return (
         <div key={key} className={styles.col} style={place}>
@@ -189,14 +201,15 @@ export function SeasonChart({
     );
   };
 
-  const sub =
-    `Game ${pastCount} of ${slotCount}` +
-    (playedCount !== pastCount ? ` · ${playedCount} played` : "");
+  const sub = complete
+    ? `${slotCount} games · ${playedCount} played`
+    : `Game ${pastCount} of ${slotCount}` +
+      (playedCount !== pastCount ? ` · ${playedCount} played` : "");
 
   return (
     <div className={styles.season}>
       <div className={styles.head}>
-        <span className={styles.lab}>2026-27 season · team games</span>
+        <span className={styles.lab}>{title}</span>
         {showAvg ? (
           <span className={styles.avgKey}>
             <i className={styles.avgRule} aria-hidden />
@@ -222,14 +235,6 @@ export function SeasonChart({
               </span>
             );
           })}
-          {datedFinals.map((x) => (
-            <span key={`cf-${x.key}`} style={{ left: pct(pos(x.ci)) }}>
-              Cup final
-            </span>
-          ))}
-          {finalCell !== null ? (
-            <span style={{ right: 0 }}>Cup final</span>
-          ) : null}
           {pairStart !== null ? (
             <span style={{ right: pct(100 - pos(pairStart + T)) }}>
               Cup · TBD
@@ -276,13 +281,25 @@ export function SeasonChart({
             .map((x) => (
               <i key={x.key} style={{ left: pct(pos(x.ci)), width: pct(w) }} />
             ))}
+          {cells
+            .filter(
+              (x) =>
+                x.g?.status === "not_on_team" || (complete && x.g === null),
+            )
+            .map((x) => (
+              <span
+                key={x.key}
+                className={styles.notOn}
+                style={{ left: pct(pos(x.ci)), width: pct(w) }}
+              />
+            ))}
         </div>
         <div className={styles.ticks} aria-hidden>
           {tickSlots(D).map((t) => {
             const edge =
               t === 1
                 ? ` ${styles.tickL}`
-                : t === D && pairStart === null && finalCell === null
+                : t === D && pairStart === null
                   ? ` ${styles.tickR}`
                   : "";
             return (
@@ -302,10 +319,12 @@ export function SeasonChart({
           <i className={styles.lgPlayed} />
           Played
         </span>
-        <span>
-          <i className={styles.lgNew} />
-          Newest
-        </span>
+        {complete ? null : (
+          <span>
+            <i className={styles.lgNew} />
+            Newest
+          </span>
+        )}
         <span>
           <i className={styles.lgZero} />0 pts
         </span>
@@ -313,10 +332,18 @@ export function SeasonChart({
           <i className={styles.lgOut} />
           Out
         </span>
-        <span>
-          <i className={styles.lgFut} />
-          Not played yet
-        </span>
+        {notOnCount > 0 ? (
+          <span>
+            <i className={styles.lgNotOn} />
+            Not on team
+          </span>
+        ) : null}
+        {complete ? null : (
+          <span>
+            <i className={styles.lgFut} />
+            Not played yet
+          </span>
+        )}
         {showAvg ? (
           <span>
             <i className={styles.lgAvg} />

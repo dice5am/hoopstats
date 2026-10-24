@@ -210,6 +210,24 @@
   background: var(--hw-ink-2);
 }
 
+/* Not on team: no box, no dash — only a faint court tick under the axis. */
+.under .notOn {
+  position: absolute;
+  top: 0;
+  height: 5px;
+}
+
+.under .notOn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  margin-left: -0.5px;
+  background: rgba(255, 248, 238, 0.85);
+}
+
 .ticks {
   position: relative;
   height: 16px;
@@ -310,6 +328,13 @@
   box-shadow: 0 0 0 0.5px rgba(43, 29, 18, 0.25);
 }
 
+.lgNotOn {
+  width: 1px;
+  height: 6px;
+  background: rgba(255, 248, 238, 0.85);
+  box-shadow: 0 0 0 0.5px rgba(43, 29, 18, 0.25);
+}
+
 .lgAvg {
   width: 16px;
   height: 4px;
@@ -356,7 +381,8 @@
   .zero {
     height: 4px;
   }
-  .future {
+  .future,
+  .under .notOn {
     height: 7px;
   }
   .markers span,

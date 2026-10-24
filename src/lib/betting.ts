@@ -57,12 +57,16 @@ const STATUSES: readonly SlotStatus[] = [
   "missed",
   "scheduled",
   "tbd",
+  "not_on_team",
 ];
 
 function toTeamGames(raw: unknown): TeamGame[] {
   if (!Array.isArray(raw)) return [];
   const out: TeamGame[] = [];
   for (const g of raw as RawRow[]) {
+    // Regular season only: the NBA Cup final never counts (Cup group and
+    // knockout games do). Dropped defensively until Data ships files without it.
+    if (g.is_cup_final === true) continue;
     const status = g.status as SlotStatus;
     if (!STATUSES.includes(status)) continue;
     const ha =
@@ -78,7 +82,6 @@ function toTeamGames(raw: unknown): TeamGame[] {
       team: str(g.team_abbreviation),
       status,
       pts: status === "played" ? num(g.pts) : null,
-      isCupFinal: g.is_cup_final === true,
     });
   }
   // File order is the season order (tbd slots have no date), so keep it by seq.
@@ -99,8 +102,7 @@ function loadTeamGames(): Map<string, TeamGamesEntry> {
       slotTotal = Math.max(fromFile, games.length);
     } else {
       // v1 has past games only: pad with scheduled slots to 82 (exact while nobody is traded).
-      const regular = games.filter((g) => !g.isCupFinal).length;
-      for (let k = regular; k < V1_SEASON_GAMES; k++) {
+      while (games.length < V1_SEASON_GAMES) {
         games.push({
           seq: games.length + 1,
           slotKey: `slot-${games.length + 1}`,
@@ -111,7 +113,6 @@ function loadTeamGames(): Map<string, TeamGamesEntry> {
           team: null,
           status: "scheduled",
           pts: null,
-          isCupFinal: false,
         });
       }
       slotTotal = games.length;

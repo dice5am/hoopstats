@@ -204,8 +204,7 @@ function Num({ value }: { value: number | null }) {
 const SCALE_MAX = 50;
 
 function oppLabel(g: PastGame): string {
-  if (g.isCupFinal) return "Cup final";
-  return `${g.homeAway === "home" ? "vs" : "@"} ${g.opp ?? ""}`;
+  return `${g.homeAway === "home" ? "vs" : "@"} ${g.opp}`;
 }
 
 /**
@@ -229,9 +228,7 @@ function LastGamesChart({ games }: { games: PastGame[] }) {
   const newestIdx = ordered.length - 1;
   const summary = ordered
     .map((g) => {
-      const where = g.isCupFinal
-        ? `${formatPlainDate(g.date)} Cup final`
-        : `${formatPlainDate(g.date)} ${g.homeAway === "home" ? "vs" : "at"} ${g.opp}`;
+      const where = `${formatPlainDate(g.date)} ${g.homeAway === "home" ? "vs" : "at"} ${g.opp}`;
       return g.status === "missed" || g.pts === null
         ? `${where}: out`
         : `${where}: ${Math.round(g.pts)} points`;
@@ -371,6 +368,7 @@ function PointsCard({ row }: { row: PointsRow }) {
       />
       <div className={styles.seasonArea}>
         <SeasonChart
+          title="2026-27 season · team games"
           games={row.teamGames}
           slotTotal={row.slotTotal}
           seasonAvg={seasonAvg}
