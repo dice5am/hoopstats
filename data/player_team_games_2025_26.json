@@ -5,6 +5,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -13,6 +14,7 @@
   "team_abbreviation": "MIL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -1174,9 +1176,11 @@
     "game_seq": 51,
     "game_date": "2026-02-07",
     "from_team": "WAS",
-    "to_team": "DAL"
+    "to_team": "DAL",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -2320,6 +2324,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -2328,6 +2333,7 @@
   "team_abbreviation": "DEN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -3485,6 +3491,7 @@
   "team_abbreviation": "IND",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -4642,6 +4649,7 @@
   "team_abbreviation": "OKC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -5799,6 +5807,7 @@
   "team_abbreviation": "UTA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -6956,6 +6965,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -6964,6 +6974,7 @@
   "team_abbreviation": "PHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -8121,6 +8132,7 @@
   "team_abbreviation": "LAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -9278,6 +9290,7 @@
   "team_abbreviation": "OKC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -10435,6 +10448,7 @@
   "team_abbreviation": "GSW",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -11592,6 +11606,7 @@
   "team_abbreviation": "OKC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -12749,6 +12764,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -12756,7 +12772,16 @@
   "player_name": "Alex Morales",
   "team_abbreviation": "ORL",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 54,
+    "game_date": "2026-02-19",
+    "from_team": "ORL",
+    "to_team": "ORL",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -13914,6 +13939,7 @@
   "team_abbreviation": "WAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -15071,6 +15097,7 @@
   "team_abbreviation": "TOR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -16228,6 +16255,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -16236,6 +16264,7 @@
   "team_abbreviation": "HOU",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -17393,6 +17422,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -17401,6 +17431,7 @@
   "team_abbreviation": "BOS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -18558,6 +18589,7 @@
   "team_abbreviation": "HOU",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -19715,6 +19747,7 @@
   "team_abbreviation": "PHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -20872,6 +20905,7 @@
   "team_abbreviation": "IND",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -22029,6 +22063,7 @@
   "team_abbreviation": "MIA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -23190,9 +23225,11 @@
     "game_seq": 52,
     "game_date": "2026-02-05",
     "from_team": "BOS",
-    "to_team": "CHI"
+    "to_team": "CHI",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -24350,6 +24387,7 @@
   "team_abbreviation": "ORL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -25511,9 +25549,11 @@
     "game_seq": 52,
     "game_date": "2026-02-07",
     "from_team": "DAL",
-    "to_team": "WAS"
+    "to_team": "WAS",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -26685,6 +26725,7 @@
   "team_abbreviation": "MIN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -27842,6 +27883,7 @@
   "team_abbreviation": "WAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -28999,6 +29041,7 @@
   "team_abbreviation": "NYK",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -30156,6 +30199,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -30164,6 +30208,7 @@
   "team_abbreviation": "ATL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -31321,6 +31366,7 @@
   "team_abbreviation": "DET",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -32478,6 +32524,7 @@
   "team_abbreviation": "LAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -33639,9 +33686,11 @@
     "game_seq": 53,
     "game_date": "2026-02-06",
     "from_team": "CHI",
-    "to_team": "MIN"
+    "to_team": "MIN",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -34799,6 +34848,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -34807,6 +34857,7 @@
   "team_abbreviation": "MIA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -35964,6 +36015,7 @@
   "team_abbreviation": "BOS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -37121,6 +37173,7 @@
   "team_abbreviation": "BKN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -38278,6 +38331,7 @@
   "team_abbreviation": "IND",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -39435,6 +39489,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -39447,9 +39502,11 @@
     "game_seq": 52,
     "game_date": "2026-02-06",
     "from_team": "IND",
-    "to_team": "LAC"
+    "to_team": "LAC",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -40621,6 +40678,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -40629,6 +40687,7 @@
   "team_abbreviation": "WAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -41786,6 +41845,7 @@
   "team_abbreviation": "MIL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -42943,6 +43003,7 @@
   "team_abbreviation": "LAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -44100,6 +44161,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -44108,6 +44170,7 @@
   "team_abbreviation": "MIN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -45265,6 +45328,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -45273,6 +45337,7 @@
   "team_abbreviation": "LAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -46430,6 +46495,7 @@
   "team_abbreviation": "OKC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -47587,6 +47653,7 @@
   "team_abbreviation": "GSW",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -48744,6 +48811,7 @@
   "team_abbreviation": "TOR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -49901,6 +49969,7 @@
   "team_abbreviation": "CHA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -51058,6 +51127,7 @@
   "team_abbreviation": "DAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -52215,6 +52285,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -52223,6 +52294,7 @@
   "team_abbreviation": "UTA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -53380,6 +53452,7 @@
   "team_abbreviation": "LAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -54537,6 +54610,7 @@
   "team_abbreviation": "LAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -55694,6 +55768,7 @@
   "team_abbreviation": "OKC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -56851,6 +56926,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -56859,6 +56935,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -56867,6 +56944,7 @@
   "team_abbreviation": "NOP",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -58024,6 +58102,7 @@
   "team_abbreviation": "WAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -59185,7 +59264,16 @@
     "game_seq": 53,
     "game_date": "2026-02-07",
     "from_team": "GSW",
-    "to_team": "ATL"
+    "to_team": "ATL",
+    "reason": "trade"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 52,
+    "game_date": "2026-02-05",
+    "team": "GSW",
+    "reason": null
    }
   ],
   "games": [
@@ -60335,9 +60423,11 @@
     "game_seq": 37,
     "game_date": "2026-01-09",
     "from_team": "WAS",
-    "to_team": "ATL"
+    "to_team": "ATL",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -61453,6 +61543,7 @@
   "team_abbreviation": "DET",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -62610,6 +62701,7 @@
   "team_abbreviation": "POR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -63767,6 +63859,7 @@
   "team_abbreviation": "DAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -64924,6 +65017,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -64932,6 +65026,7 @@
   "team_abbreviation": "LAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -66089,6 +66184,7 @@
   "team_abbreviation": "MEM",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -67246,6 +67342,7 @@
   "team_abbreviation": "WAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -68403,6 +68500,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -68411,6 +68509,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -68419,6 +68518,7 @@
   "team_abbreviation": "DEN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -69576,6 +69676,7 @@
   "team_abbreviation": "DET",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -70733,6 +70834,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -70741,6 +70843,7 @@
   "team_abbreviation": "SAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -71898,6 +72001,7 @@
   "team_abbreviation": "OKC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -73055,6 +73159,7 @@
   "team_abbreviation": "MEM",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -74211,7 +74316,16 @@
   "player_name": "Chaney Johnson",
   "team_abbreviation": "BKN",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 29,
+    "game_date": "2025-12-27",
+    "from_team": "BKN",
+    "to_team": "BKN",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -75370,22 +75484,46 @@
   "slot_total": 82,
   "trade_marker": [
    {
+    "game_seq": 4,
+    "game_date": "2025-10-27",
+    "from_team": "MEM",
+    "to_team": "MEM",
+    "reason": "signed"
+   },
+   {
     "game_seq": 44,
     "game_date": "2026-01-26",
     "from_team": "MEM",
-    "to_team": "PHI"
+    "to_team": "PHI",
+    "reason": "signed"
    },
    {
     "game_seq": 68,
     "game_date": "2026-03-16",
     "from_team": "PHI",
-    "to_team": "BOS"
+    "to_team": "BOS",
+    "reason": "signed"
    },
    {
     "game_seq": 78,
     "game_date": "2026-04-05",
     "from_team": "BOS",
-    "to_team": "GSW"
+    "to_team": "GSW",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 10,
+    "game_date": "2025-11-07",
+    "team": "MEM",
+    "reason": "contract_end"
+   },
+   {
+    "game_seq": 54,
+    "game_date": "2026-02-19",
+    "team": "PHI",
+    "reason": "contract_end"
    }
   ],
   "games": [
@@ -76545,6 +76683,7 @@
   "team_abbreviation": "DET",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -77702,6 +77841,7 @@
   "team_abbreviation": "OKC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -78859,6 +78999,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -78867,6 +79008,7 @@
   "team_abbreviation": "LAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -80028,7 +80170,16 @@
     "game_seq": 64,
     "game_date": "2026-03-04",
     "from_team": "OKC",
-    "to_team": "POR"
+    "to_team": "POR",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 53,
+    "game_date": "2026-02-07",
+    "team": "OKC",
+    "reason": "waived"
    }
   ],
   "games": [
@@ -81202,6 +81353,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -81210,6 +81362,7 @@
   "team_abbreviation": "DEN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -82367,6 +82520,7 @@
   "team_abbreviation": "HOU",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -83528,9 +83682,11 @@
     "game_seq": 52,
     "game_date": "2026-02-05",
     "from_team": "CHI",
-    "to_team": "CHA"
+    "to_team": "CHA",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -84688,6 +84844,7 @@
   "team_abbreviation": "UTA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -85845,6 +86002,7 @@
   "team_abbreviation": "ORL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -87002,6 +87160,7 @@
   "team_abbreviation": "PHX",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -88159,6 +88318,7 @@
   "team_abbreviation": "TOR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -89320,9 +89480,11 @@
     "game_seq": 52,
     "game_date": "2026-02-05",
     "from_team": "CHA",
-    "to_team": "CHI"
+    "to_team": "CHI",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -90480,6 +90642,7 @@
   "team_abbreviation": "DAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -91641,9 +91804,11 @@
     "game_seq": 37,
     "game_date": "2026-01-09",
     "from_team": "WAS",
-    "to_team": "ATL"
+    "to_team": "ATL",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -92758,7 +92923,16 @@
   "player_name": "Cormac Ryan",
   "team_abbreviation": "MIL",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 58,
+    "game_date": "2026-02-27",
+    "from_team": "MIL",
+    "to_team": "MIL",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -93916,6 +94090,7 @@
   "team_abbreviation": "CLE",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -95073,6 +95248,7 @@
   "team_abbreviation": "DEN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -96230,6 +96406,7 @@
   "team_abbreviation": "SAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -97387,6 +97564,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -97395,6 +97573,7 @@
   "team_abbreviation": "POR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -98552,6 +98731,7 @@
   "team_abbreviation": "DAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -99709,6 +99889,7 @@
   "team_abbreviation": "DET",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -100866,6 +101047,7 @@
   "team_abbreviation": "BKN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -102023,6 +102205,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -102035,9 +102218,11 @@
     "game_seq": 52,
     "game_date": "2026-02-04",
     "from_team": "CLE",
-    "to_team": "LAC"
+    "to_team": "LAC",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -103223,6 +103408,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -103231,6 +103417,7 @@
   "team_abbreviation": "SAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -104388,6 +104575,7 @@
   "team_abbreviation": "MIA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -105545,6 +105733,7 @@
   "team_abbreviation": "BKN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -106702,6 +106891,7 @@
   "team_abbreviation": "SAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -107863,9 +108053,11 @@
     "game_seq": 51,
     "game_date": "2026-02-01",
     "from_team": "CLE",
-    "to_team": "SAC"
+    "to_team": "SAC",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -109023,6 +109215,7 @@
   "team_abbreviation": "GSW",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -110179,7 +110372,16 @@
   "player_name": "DeAndre Jordan",
   "team_abbreviation": "NOP",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 2,
+    "game_date": "2025-10-24",
+    "from_team": "NOP",
+    "to_team": "NOP",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -111337,6 +111539,7 @@
   "team_abbreviation": "SAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -112494,6 +112697,7 @@
   "team_abbreviation": "CLE",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -113651,6 +113855,7 @@
   "team_abbreviation": "LAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -114808,6 +115013,7 @@
   "team_abbreviation": "NOP",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -115965,6 +116171,7 @@
   "team_abbreviation": "POR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -117126,9 +117333,11 @@
     "game_seq": 51,
     "game_date": "2026-02-01",
     "from_team": "SAC",
-    "to_team": "CLE"
+    "to_team": "CLE",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -118286,6 +118495,7 @@
   "team_abbreviation": "DAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -119443,6 +119653,7 @@
   "team_abbreviation": "NOP",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -120600,6 +120811,7 @@
   "team_abbreviation": "LAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -121757,6 +121969,7 @@
   "team_abbreviation": "BOS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -122914,6 +123127,7 @@
   "team_abbreviation": "ORL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -124071,6 +124285,7 @@
   "team_abbreviation": "PHX",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -125228,6 +125443,7 @@
   "team_abbreviation": "SAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -126385,6 +126601,7 @@
   "team_abbreviation": "SAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -127542,6 +127759,7 @@
   "team_abbreviation": "PHX",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -128699,6 +128917,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -128707,6 +128926,7 @@
   "team_abbreviation": "SAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -129864,6 +130084,7 @@
   "team_abbreviation": "PHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -131021,6 +131242,7 @@
   "team_abbreviation": "POR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -132178,6 +132400,7 @@
   "team_abbreviation": "CLE",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -133335,6 +133558,7 @@
   "team_abbreviation": "MIN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -134492,6 +134716,7 @@
   "team_abbreviation": "HOU",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -135649,6 +135874,7 @@
   "team_abbreviation": "BKN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -136806,6 +137032,7 @@
   "team_abbreviation": "GSW",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -137962,7 +138189,16 @@
   "player_name": "Drew Timme",
   "team_abbreviation": "LAL",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 17,
+    "game_date": "2025-11-25",
+    "from_team": "LAL",
+    "to_team": "LAL",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -139120,6 +139356,7 @@
   "team_abbreviation": "MIA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -140277,6 +140514,7 @@
   "team_abbreviation": "DET",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -141438,7 +141676,22 @@
     "game_seq": 51,
     "game_date": "2026-02-03",
     "from_team": "POR",
-    "to_team": "ATL"
+    "to_team": "ATL",
+    "reason": "trade"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 50,
+    "game_date": "2026-02-01",
+    "team": "POR",
+    "reason": null
+   },
+   {
+    "game_seq": 52,
+    "game_date": "2026-02-05",
+    "team": "ATL",
+    "reason": "waived"
    }
   ],
   "games": [
@@ -142584,6 +142837,7 @@
   "team_abbreviation": "SAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -143741,6 +143995,7 @@
   "team_abbreviation": "SAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -144898,6 +145153,7 @@
   "team_abbreviation": "ATL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -146055,6 +146311,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -146063,6 +146320,7 @@
   "team_abbreviation": "BKN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -147220,6 +147478,7 @@
   "team_abbreviation": "UTA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -148377,6 +148636,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -148385,6 +148645,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -148393,6 +148654,7 @@
   "team_abbreviation": "CLE",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -149550,6 +149812,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -149558,6 +149821,7 @@
   "team_abbreviation": "ORL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -150715,6 +150979,7 @@
   "team_abbreviation": "HOU",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -151872,6 +152137,7 @@
   "team_abbreviation": "MEM",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -153029,6 +153295,7 @@
   "team_abbreviation": "GSW",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -154186,6 +154453,7 @@
   "team_abbreviation": "MIL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -155347,7 +155615,16 @@
     "game_seq": 52,
     "game_date": "2026-02-04",
     "from_team": "UTA",
-    "to_team": "MEM"
+    "to_team": "MEM",
+    "reason": "trade"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 53,
+    "game_date": "2026-02-06",
+    "team": "MEM",
+    "reason": "waived"
    }
   ],
   "games": [
@@ -156549,6 +156826,7 @@
   "team_abbreviation": "MIL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -157706,6 +157984,7 @@
   "team_abbreviation": "ORL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -158863,6 +159142,7 @@
   "team_abbreviation": "TOR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -160020,6 +160300,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -160027,7 +160308,23 @@
   "player_name": "Grant Nelson",
   "team_abbreviation": "BKN",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 59,
+    "game_date": "2026-02-27",
+    "from_team": "BKN",
+    "to_team": "BKN",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 64,
+    "game_date": "2026-03-09",
+    "team": "BKN",
+    "reason": "contract_end"
+   }
+  ],
   "games": [
    {
     "game_seq": 1,
@@ -161185,6 +161482,7 @@
   "team_abbreviation": "CHA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -162342,6 +162640,7 @@
   "team_abbreviation": "PHX",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -163499,6 +163798,7 @@
   "team_abbreviation": "GSW",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -164656,6 +164956,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -164664,6 +164965,7 @@
   "team_abbreviation": "SAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -165821,6 +166123,7 @@
   "team_abbreviation": "SAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -166978,6 +167281,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -166986,6 +167290,7 @@
   "team_abbreviation": "NOP",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -168143,6 +168448,7 @@
   "team_abbreviation": "BOS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -169300,6 +169606,7 @@
   "team_abbreviation": "TOR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -170461,7 +170768,29 @@
     "game_seq": 9,
     "game_date": "2025-11-07",
     "from_team": "SAC",
-    "to_team": "DET"
+    "to_team": "DET",
+    "reason": null
+   },
+   {
+    "game_seq": 53,
+    "game_date": "2026-02-11",
+    "from_team": "DET",
+    "to_team": "DET",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 8,
+    "game_date": "2025-11-05",
+    "team": "SAC",
+    "reason": "waived"
+   },
+   {
+    "game_seq": 50,
+    "game_date": "2026-02-05",
+    "team": "DET",
+    "reason": "waived"
    }
   ],
   "games": [
@@ -171621,6 +171950,7 @@
   "team_abbreviation": "CHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -172778,6 +173108,7 @@
   "team_abbreviation": "UTA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -173935,6 +174266,7 @@
   "team_abbreviation": "HOU",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -175092,6 +175424,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -175100,6 +175433,7 @@
   "team_abbreviation": "OKC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -176261,9 +176595,11 @@
     "game_seq": 52,
     "game_date": "2026-02-06",
     "from_team": "IND",
-    "to_team": "LAC"
+    "to_team": "LAC",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -177435,6 +177771,7 @@
   "team_abbreviation": "OKC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -178592,6 +178929,7 @@
   "team_abbreviation": "DET",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -179753,9 +180091,11 @@
     "game_seq": 51,
     "game_date": "2026-02-06",
     "from_team": "LAC",
-    "to_team": "IND"
+    "to_team": "IND",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -180899,6 +181239,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -180907,6 +181248,7 @@
   "team_abbreviation": "MEM",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -182064,6 +182406,7 @@
   "team_abbreviation": "TOR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -183221,6 +183564,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -183229,6 +183573,7 @@
   "team_abbreviation": "HOU",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -184386,6 +184731,7 @@
   "team_abbreviation": "PHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -185543,6 +185889,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -185551,6 +185898,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -185563,9 +185911,11 @@
     "game_seq": 52,
     "game_date": "2026-02-07",
     "from_team": "DAL",
-    "to_team": "WAS"
+    "to_team": "WAS",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -186737,6 +187087,7 @@
   "team_abbreviation": "MIN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -187894,6 +188245,7 @@
   "team_abbreviation": "HOU",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -189050,7 +189402,16 @@
   "player_name": "Jahmai Mashack",
   "team_abbreviation": "MEM",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 15,
+    "game_date": "2025-11-18",
+    "from_team": "MEM",
+    "to_team": "MEM",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -190208,6 +190569,7 @@
   "team_abbreviation": "MIA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -191365,6 +191727,7 @@
   "team_abbreviation": "LAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -192522,6 +192885,7 @@
   "team_abbreviation": "TOR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -193679,6 +194043,7 @@
   "team_abbreviation": "NYK",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -194836,6 +195201,7 @@
   "team_abbreviation": "DET",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -195993,6 +196359,7 @@
   "team_abbreviation": "PHX",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -197150,6 +197517,7 @@
   "team_abbreviation": "ATL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -198307,6 +198675,7 @@
   "team_abbreviation": "DEN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -199463,7 +199832,16 @@
   "player_name": "Jalen Slawson",
   "team_abbreviation": "IND",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 61,
+    "game_date": "2026-03-01",
+    "from_team": "IND",
+    "to_team": "IND",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -200621,6 +200999,7 @@
   "team_abbreviation": "CHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -201778,6 +202157,7 @@
   "team_abbreviation": "ORL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -202935,6 +203315,7 @@
   "team_abbreviation": "OKC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -204092,6 +204473,7 @@
   "team_abbreviation": "BKN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -205249,6 +205631,7 @@
   "team_abbreviation": "ORL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -206406,6 +206789,7 @@
   "team_abbreviation": "DEN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -207563,6 +207947,7 @@
   "team_abbreviation": "TOR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -208719,7 +209104,16 @@
   "player_name": "Jamaree Bouyea",
   "team_abbreviation": "PHX",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 15,
+    "game_date": "2025-11-18",
+    "from_team": "PHX",
+    "to_team": "PHX",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -209881,9 +210275,11 @@
     "game_seq": 50,
     "game_date": "2026-02-04",
     "from_team": "LAC",
-    "to_team": "CLE"
+    "to_team": "CLE",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -211012,7 +211408,29 @@
   "player_name": "James Wiseman",
   "team_abbreviation": "IND",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 28,
+    "game_date": "2025-12-20",
+    "from_team": "IND",
+    "to_team": "IND",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 4,
+    "game_date": "2025-10-29",
+    "team": "IND",
+    "reason": "waived"
+   },
+   {
+    "game_seq": 31,
+    "game_date": "2025-12-26",
+    "team": "IND",
+    "reason": null
+   }
+  ],
   "games": [
    {
     "game_seq": 1,
@@ -212170,6 +212588,7 @@
   "team_abbreviation": "WAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -213327,6 +213746,7 @@
   "team_abbreviation": "TOR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -214484,6 +214904,7 @@
   "team_abbreviation": "IND",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -215645,7 +216066,16 @@
     "game_seq": 52,
     "game_date": "2026-02-07",
     "from_team": "PHI",
-    "to_team": "OKC"
+    "to_team": "OKC",
+    "reason": "trade"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 51,
+    "game_date": "2026-02-05",
+    "team": "PHI",
+    "reason": null
    }
   ],
   "games": [
@@ -216795,7 +217225,16 @@
     "game_seq": 50,
     "game_date": "2026-02-05",
     "from_team": "MEM",
-    "to_team": "UTA"
+    "to_team": "UTA",
+    "reason": "trade"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 49,
+    "game_date": "2026-02-04",
+    "team": "MEM",
+    "reason": null
    }
   ],
   "games": [
@@ -217927,6 +218366,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -217935,6 +218375,7 @@
   "team_abbreviation": "LAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -219092,6 +219533,7 @@
   "team_abbreviation": "CLE",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -220249,6 +220691,7 @@
   "team_abbreviation": "ORL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -221406,6 +221849,7 @@
   "team_abbreviation": "MEM",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -222563,6 +223007,7 @@
   "team_abbreviation": "DET",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -223720,6 +224165,7 @@
   "team_abbreviation": "LAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -224877,6 +225323,7 @@
   "team_abbreviation": "IND",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -226034,6 +226481,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -226042,6 +226490,7 @@
   "team_abbreviation": "BOS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -227199,6 +227648,7 @@
   "team_abbreviation": "MIN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -228356,6 +228806,7 @@
   "team_abbreviation": "MEM",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -229513,6 +229964,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -229521,6 +229973,7 @@
   "team_abbreviation": "OKC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -230678,6 +231131,7 @@
   "team_abbreviation": "CLE",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -231834,7 +232288,16 @@
   "player_name": "Jayson Kent",
   "team_abbreviation": "POR",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 63,
+    "game_date": "2026-03-04",
+    "from_team": "POR",
+    "to_team": "POR",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -232992,6 +233455,7 @@
   "team_abbreviation": "BOS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -234149,6 +234613,7 @@
   "team_abbreviation": "POR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -235306,6 +235771,7 @@
   "team_abbreviation": "NOP",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -236463,6 +236929,7 @@
   "team_abbreviation": "MIL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -237620,6 +238087,7 @@
   "team_abbreviation": "ORL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -238781,7 +239249,16 @@
     "game_seq": 53,
     "game_date": "2026-02-07",
     "from_team": "CHI",
-    "to_team": "ORL"
+    "to_team": "ORL",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 51,
+    "game_date": "2026-02-03",
+    "team": "CHI",
+    "reason": "waived"
    }
   ],
   "games": [
@@ -239969,6 +240446,7 @@
   "team_abbreviation": "GSW",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -241126,6 +241604,7 @@
   "team_abbreviation": "MIN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -242287,7 +242766,16 @@
     "game_seq": 50,
     "game_date": "2026-02-05",
     "from_team": "MEM",
-    "to_team": "ATL"
+    "to_team": "ATL",
+    "reason": "trade"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 49,
+    "game_date": "2026-02-04",
+    "team": "MEM",
+    "reason": null
    }
   ],
   "games": [
@@ -243405,6 +243893,7 @@
   "team_abbreviation": "PHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -244562,6 +245051,7 @@
   "team_abbreviation": "LAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -245723,7 +246213,16 @@
     "game_seq": 53,
     "game_date": "2026-02-06",
     "from_team": "UTA",
-    "to_team": "BOS"
+    "to_team": "BOS",
+    "reason": "trade"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 52,
+    "game_date": "2026-02-05",
+    "team": "UTA",
+    "reason": null
    }
   ],
   "games": [
@@ -246897,6 +247396,7 @@
   "team_abbreviation": "IND",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -248054,6 +248554,7 @@
   "team_abbreviation": "ORL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -249215,7 +249716,16 @@
     "game_seq": 53,
     "game_date": "2026-02-07",
     "from_team": "GSW",
-    "to_team": "ATL"
+    "to_team": "ATL",
+    "reason": "trade"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 52,
+    "game_date": "2026-02-05",
+    "team": "GSW",
+    "reason": null
    }
   ],
   "games": [
@@ -250361,6 +250871,7 @@
   "team_abbreviation": "TOR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -251518,6 +252029,7 @@
   "team_abbreviation": "NYK",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -252675,6 +253187,7 @@
   "team_abbreviation": "PHX",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -253832,6 +254345,7 @@
   "team_abbreviation": "NOP",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -254989,6 +255503,7 @@
   "team_abbreviation": "SAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -256146,6 +256661,7 @@
   "team_abbreviation": "LAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -257303,6 +257819,7 @@
   "team_abbreviation": "NOP",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -258460,6 +258977,7 @@
   "team_abbreviation": "BOS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -259621,9 +260139,11 @@
     "game_seq": 54,
     "game_date": "2026-02-06",
     "from_team": "NOP",
-    "to_team": "NYK"
+    "to_team": "NYK",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -260809,6 +261329,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -260817,6 +261338,7 @@
   "team_abbreviation": "CHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -261974,6 +262496,7 @@
   "team_abbreviation": "CHA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -263131,6 +263654,7 @@
   "team_abbreviation": "NYK",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -264292,7 +264816,16 @@
     "game_seq": 53,
     "game_date": "2026-02-07",
     "from_team": "BOS",
-    "to_team": "BKN"
+    "to_team": "BKN",
+    "reason": "trade"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 52,
+    "game_date": "2026-02-06",
+    "team": "BOS",
+    "reason": null
    }
   ],
   "games": [
@@ -265480,6 +266013,7 @@
   "team_abbreviation": "HOU",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -266637,6 +267171,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -266645,6 +267180,7 @@
   "team_abbreviation": "POR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -267802,6 +268338,7 @@
   "team_abbreviation": "SAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -268963,9 +269500,11 @@
     "game_seq": 53,
     "game_date": "2026-02-06",
     "from_team": "CHI",
-    "to_team": "MIN"
+    "to_team": "MIN",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -270122,7 +270661,16 @@
   "player_name": "Julian Reese",
   "team_abbreviation": "WAS",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 60,
+    "game_date": "2026-03-02",
+    "from_team": "WAS",
+    "to_team": "WAS",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -271280,6 +271828,7 @@
   "team_abbreviation": "DEN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -272437,6 +272986,7 @@
   "team_abbreviation": "MIN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -273594,6 +274144,7 @@
   "team_abbreviation": "WAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -274751,6 +275302,7 @@
   "team_abbreviation": "PHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -275908,6 +276460,7 @@
   "team_abbreviation": "UTA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -277065,6 +277618,7 @@
   "team_abbreviation": "IND",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -278222,6 +278776,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -278230,6 +278785,7 @@
   "team_abbreviation": "NYK",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -279387,6 +279943,7 @@
   "team_abbreviation": "NOP",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -280544,6 +281101,7 @@
   "team_abbreviation": "MIA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -281701,6 +282259,7 @@
   "team_abbreviation": "LAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -282858,6 +283417,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -282866,6 +283426,7 @@
   "team_abbreviation": "SAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -284023,6 +284584,7 @@
   "team_abbreviation": "MIA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -285180,6 +285742,7 @@
   "team_abbreviation": "SAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -286337,6 +286900,7 @@
   "team_abbreviation": "PHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -287494,6 +288058,7 @@
   "team_abbreviation": "OKC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -288651,6 +289216,7 @@
   "team_abbreviation": "MEM",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -289812,9 +290378,11 @@
     "game_seq": 51,
     "game_date": "2026-02-01",
     "from_team": "SAC",
-    "to_team": "CLE"
+    "to_team": "CLE",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -290972,6 +291540,7 @@
   "team_abbreviation": "MIA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -292130,10 +292699,26 @@
   "slot_total": 81,
   "trade_marker": [
    {
+    "game_seq": 51,
+    "game_date": "2026-02-07",
+    "from_team": "WAS",
+    "to_team": "WAS",
+    "reason": "signed"
+   },
+   {
     "game_seq": 62,
     "game_date": "2026-03-04",
     "from_team": "WAS",
-    "to_team": "ATL"
+    "to_team": "ATL",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 54,
+    "game_date": "2026-02-19",
+    "team": "WAS",
+    "reason": "contract_end"
    }
   ],
   "games": [
@@ -293279,6 +293864,7 @@
   "team_abbreviation": "HOU",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -294440,9 +295026,11 @@
     "game_seq": 52,
     "game_date": "2026-02-05",
     "from_team": "CHI",
-    "to_team": "DET"
+    "to_team": "DET",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -295628,6 +296216,7 @@
   "team_abbreviation": "NYK",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -296785,6 +297374,7 @@
   "team_abbreviation": "NOP",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -297942,6 +298532,7 @@
   "team_abbreviation": "UTA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -299099,6 +299690,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -299107,6 +299699,7 @@
   "team_abbreviation": "PHX",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -300268,9 +300861,11 @@
     "game_seq": 51,
     "game_date": "2026-02-07",
     "from_team": "WAS",
-    "to_team": "DAL"
+    "to_team": "DAL",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -301414,6 +302009,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -301422,6 +302018,7 @@
   "team_abbreviation": "DAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -302579,6 +303176,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -302591,9 +303189,11 @@
     "game_seq": 51,
     "game_date": "2026-02-06",
     "from_team": "LAC",
-    "to_team": "IND"
+    "to_team": "IND",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -303737,6 +304337,7 @@
   "team_abbreviation": "LAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -304894,6 +305495,7 @@
   "team_abbreviation": "CHA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -306051,6 +306653,7 @@
   "team_abbreviation": "LAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -307208,6 +307811,7 @@
   "team_abbreviation": "POR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -308369,9 +308973,11 @@
     "game_seq": 53,
     "game_date": "2026-02-05",
     "from_team": "ATL",
-    "to_team": "GSW"
+    "to_team": "GSW",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -309543,6 +310149,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -309555,13 +310162,23 @@
     "game_seq": 52,
     "game_date": "2026-02-04",
     "from_team": "UTA",
-    "to_team": "MEM"
+    "to_team": "MEM",
+    "reason": "trade"
    },
    {
     "game_seq": 63,
     "game_date": "2026-03-03",
     "from_team": "MEM",
-    "to_team": "MIN"
+    "to_team": "MIN",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 61,
+    "game_date": "2026-02-27",
+    "team": "MEM",
+    "reason": "waived"
    }
   ],
   "games": [
@@ -310735,6 +311352,7 @@
   "team_abbreviation": "UTA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -311892,6 +312510,7 @@
   "team_abbreviation": "MIL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -313049,6 +313668,7 @@
   "team_abbreviation": "DAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -314206,6 +314826,7 @@
   "team_abbreviation": "WAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -315362,7 +315983,16 @@
   "player_name": "LJ Cryer",
   "team_abbreviation": "GSW",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 22,
+    "game_date": "2025-12-02",
+    "from_team": "GSW",
+    "to_team": "GSW",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -316520,6 +317150,7 @@
   "team_abbreviation": "CHA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -317677,6 +318308,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -317685,6 +318317,7 @@
   "team_abbreviation": "NYK",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -318842,6 +319475,7 @@
   "team_abbreviation": "CLE",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -319999,6 +320633,7 @@
   "team_abbreviation": "UTA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -321156,6 +321791,7 @@
   "team_abbreviation": "LAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -322312,7 +322948,16 @@
   "player_name": "Leaky Black",
   "team_abbreviation": "WAS",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 57,
+    "game_date": "2026-02-24",
+    "from_team": "WAS",
+    "to_team": "WAS",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -323474,7 +324119,16 @@
     "game_seq": 54,
     "game_date": "2026-02-07",
     "from_team": "MIN",
-    "to_team": "CHI"
+    "to_team": "CHI",
+    "reason": "trade"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 53,
+    "game_date": "2026-02-06",
+    "team": "MIN",
+    "reason": null
    }
   ],
   "games": [
@@ -324648,6 +325302,7 @@
   "team_abbreviation": "CHA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -325805,6 +326460,7 @@
   "team_abbreviation": "OKC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -326962,6 +327618,7 @@
   "team_abbreviation": "LAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -328119,6 +328776,7 @@
   "team_abbreviation": "BOS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -329280,9 +329938,11 @@
     "game_seq": 54,
     "game_date": "2026-02-07",
     "from_team": "ATL",
-    "to_team": "LAL"
+    "to_team": "LAL",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -330482,6 +331142,7 @@
   "team_abbreviation": "SAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -331638,7 +332299,16 @@
   "player_name": "Malachi Smith",
   "team_abbreviation": "BKN",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 67,
+    "game_date": "2026-03-14",
+    "from_team": "BKN",
+    "to_team": "BKN",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -332795,7 +333465,16 @@
   "player_name": "Malevy Leons",
   "team_abbreviation": "GSW",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 26,
+    "game_date": "2025-12-12",
+    "from_team": "GSW",
+    "to_team": "GSW",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -333953,6 +334632,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -333961,6 +334641,7 @@
   "team_abbreviation": "SAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -335118,6 +335799,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -335126,6 +335808,7 @@
   "team_abbreviation": "DET",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -336283,6 +336966,7 @@
   "team_abbreviation": "LAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -337440,6 +338124,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -337448,6 +338133,7 @@
   "team_abbreviation": "PHX",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -338609,9 +339295,11 @@
     "game_seq": 51,
     "game_date": "2026-02-07",
     "from_team": "WAS",
-    "to_team": "DAL"
+    "to_team": "DAL",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -339755,6 +340443,7 @@
   "team_abbreviation": "CHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -340912,6 +341601,7 @@
   "team_abbreviation": "POR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -342069,6 +342759,7 @@
   "team_abbreviation": "DAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -343226,6 +343917,7 @@
   "team_abbreviation": "CLE",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -344383,6 +345075,7 @@
   "team_abbreviation": "SAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -345540,6 +346233,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -345547,7 +346241,16 @@
   "player_name": "Micah Potter",
   "team_abbreviation": "IND",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 31,
+    "game_date": "2025-12-26",
+    "from_team": "IND",
+    "to_team": "IND",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -346705,6 +347408,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -346713,6 +347417,7 @@
   "team_abbreviation": "BKN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -347870,6 +348575,7 @@
   "team_abbreviation": "NYK",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -349026,7 +349732,23 @@
   "player_name": "Mike Conley",
   "team_abbreviation": "MIN",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 57,
+    "game_date": "2026-02-20",
+    "from_team": "MIN",
+    "to_team": "MIN",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 52,
+    "game_date": "2026-02-04",
+    "team": "MIN",
+    "reason": null
+   }
+  ],
   "games": [
    {
     "game_seq": 1,
@@ -350184,6 +350906,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -350192,6 +350915,7 @@
   "team_abbreviation": "CHA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -351349,6 +352073,7 @@
   "team_abbreviation": "NYK",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -352506,6 +353231,7 @@
   "team_abbreviation": "NYK",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -353664,10 +354390,32 @@
   "slot_total": 83,
   "trade_marker": [
    {
+    "game_seq": 34,
+    "game_date": "2025-12-29",
+    "from_team": "TOR",
+    "to_team": "TOR",
+    "reason": "signed"
+   },
+   {
     "game_seq": 60,
     "game_date": "2026-02-26",
     "from_team": "TOR",
-    "to_team": "UTA"
+    "to_team": "UTA",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 38,
+    "game_date": "2026-01-07",
+    "team": "TOR",
+    "reason": "waived"
+   },
+   {
+    "game_seq": 68,
+    "game_date": "2026-03-13",
+    "team": "UTA",
+    "reason": null
    }
   ],
   "games": [
@@ -354841,6 +355589,7 @@
   "team_abbreviation": "NYK",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -355998,6 +356747,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -356006,6 +356756,7 @@
   "team_abbreviation": "ORL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -357163,6 +357914,7 @@
   "team_abbreviation": "GSW",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -358320,6 +359072,7 @@
   "team_abbreviation": "ATL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -359477,6 +360230,7 @@
   "team_abbreviation": "DAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -360634,6 +361388,7 @@
   "team_abbreviation": "CHA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -361791,6 +362546,7 @@
   "team_abbreviation": "MIL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -362948,6 +363704,7 @@
   "team_abbreviation": "MIA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -364105,6 +364862,7 @@
   "team_abbreviation": "CLE",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -365262,6 +366020,7 @@
   "team_abbreviation": "DAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -366419,6 +367178,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -366427,6 +367187,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -366435,6 +367196,7 @@
   "team_abbreviation": "MIN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -367592,6 +368354,7 @@
   "team_abbreviation": "BOS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -368749,6 +369512,7 @@
   "team_abbreviation": "BKN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -369906,6 +370670,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -369918,9 +370683,11 @@
     "game_seq": 53,
     "game_date": "2026-02-07",
     "from_team": "PHX",
-    "to_team": "CHI"
+    "to_team": "CHI",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -371078,6 +371845,7 @@
   "team_abbreviation": "ATL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -372235,6 +373003,7 @@
   "team_abbreviation": "DEN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -373392,6 +374161,7 @@
   "team_abbreviation": "MIA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -374549,6 +375319,7 @@
   "team_abbreviation": "OKC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -375710,7 +376481,16 @@
     "game_seq": 53,
     "game_date": "2026-02-06",
     "from_team": "CHI",
-    "to_team": "BOS"
+    "to_team": "BOS",
+    "reason": "trade"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 52,
+    "game_date": "2026-02-05",
+    "team": "CHI",
+    "reason": null
    }
   ],
   "games": [
@@ -376884,6 +377664,7 @@
   "team_abbreviation": "SAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -378041,6 +378822,7 @@
   "team_abbreviation": "CHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -379198,6 +379980,7 @@
   "team_abbreviation": "BKN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -380355,6 +381138,7 @@
   "team_abbreviation": "ORL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -381512,6 +382296,7 @@
   "team_abbreviation": "BKN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -382669,6 +383454,7 @@
   "team_abbreviation": "MIA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -383826,6 +384612,7 @@
   "team_abbreviation": "NYK",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -384983,6 +385770,7 @@
   "team_abbreviation": "IND",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -386140,6 +386928,7 @@
   "team_abbreviation": "MEM",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -387297,6 +388086,7 @@
   "team_abbreviation": "ATL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -388454,6 +389244,7 @@
   "team_abbreviation": "UTA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -389611,6 +390402,7 @@
   "team_abbreviation": "PHX",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -390768,6 +391560,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -390780,13 +391573,23 @@
     "game_seq": 53,
     "game_date": "2026-02-05",
     "from_team": "OKC",
-    "to_team": "CHI"
+    "to_team": "CHI",
+    "reason": "trade"
    },
    {
     "game_seq": 54,
     "game_date": "2026-02-06",
     "from_team": "CHI",
-    "to_team": "MIL"
+    "to_team": "MIL",
+    "reason": "trade"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 52,
+    "game_date": "2026-02-04",
+    "team": "OKC",
+    "reason": null
    }
   ],
   "games": [
@@ -392002,6 +392805,7 @@
   "team_abbreviation": "DAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -393163,7 +393967,16 @@
     "game_seq": 31,
     "game_date": "2025-12-26",
     "from_team": "MEM",
-    "to_team": "CHA"
+    "to_team": "CHA",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 15,
+    "game_date": "2025-11-18",
+    "team": "MEM",
+    "reason": "waived"
    }
   ],
   "games": [
@@ -394323,6 +395136,7 @@
   "team_abbreviation": "NYK",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -395480,6 +396294,7 @@
   "team_abbreviation": "ORL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -396637,6 +397452,7 @@
   "team_abbreviation": "IND",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -397794,6 +398610,7 @@
   "team_abbreviation": "GSW",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -398951,6 +399768,7 @@
   "team_abbreviation": "CHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -400108,6 +400926,7 @@
   "team_abbreviation": "PHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -401265,6 +402084,7 @@
   "team_abbreviation": "DET",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -402422,6 +403242,7 @@
   "team_abbreviation": "BOS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -403579,6 +404400,7 @@
   "team_abbreviation": "MIA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -404736,6 +405558,7 @@
   "team_abbreviation": "MIL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -405893,6 +406716,7 @@
   "team_abbreviation": "DEN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -407049,7 +407873,16 @@
   "player_name": "Precious Achiuwa",
   "team_abbreviation": "SAC",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 8,
+    "game_date": "2025-11-05",
+    "from_team": "SAC",
+    "to_team": "SAC",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -408207,6 +409040,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -408215,6 +409049,7 @@
   "team_abbreviation": "PHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -409372,6 +410207,7 @@
   "team_abbreviation": "IND",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -410529,6 +411365,7 @@
   "team_abbreviation": "GSW",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -411686,6 +412523,7 @@
   "team_abbreviation": "TOR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -412843,6 +413681,7 @@
   "team_abbreviation": "PHX",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -414004,13 +414843,29 @@
     "game_seq": 23,
     "game_date": "2025-12-05",
     "from_team": "IND",
-    "to_team": "LAC"
+    "to_team": "LAC",
+    "reason": "signed"
    },
    {
     "game_seq": 34,
     "game_date": "2026-01-02",
     "from_team": "LAC",
-    "to_team": "ATL"
+    "to_team": "ATL",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 21,
+    "game_date": "2025-12-01",
+    "team": "IND",
+    "reason": "waived"
+   },
+   {
+    "game_seq": 31,
+    "game_date": "2025-12-28",
+    "team": "LAC",
+    "reason": "waived"
    }
   ],
   "games": [
@@ -415146,7 +416001,16 @@
     "game_seq": 59,
     "game_date": "2026-02-23",
     "from_team": "POR",
-    "to_team": "MEM"
+    "to_team": "MEM",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 58,
+    "game_date": "2026-02-22",
+    "team": "POR",
+    "reason": "waived"
    }
   ],
   "games": [
@@ -416348,6 +417212,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -416356,6 +417221,7 @@
   "team_abbreviation": "HOU",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -417517,7 +418383,16 @@
     "game_seq": 55,
     "game_date": "2026-02-19",
     "from_team": "SAS",
-    "to_team": "CLE"
+    "to_team": "CLE",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 25,
+    "game_date": "2025-12-13",
+    "team": "SAS",
+    "reason": "waived"
    }
   ],
   "games": [
@@ -418663,6 +419538,7 @@
   "team_abbreviation": "POR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -419820,6 +420696,7 @@
   "team_abbreviation": "MIN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -420977,6 +421854,7 @@
   "team_abbreviation": "BOS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -422134,6 +423012,7 @@
   "team_abbreviation": "DET",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -423291,6 +424170,7 @@
   "team_abbreviation": "PHX",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -424448,6 +425328,7 @@
   "team_abbreviation": "MIN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -425605,6 +426486,7 @@
   "team_abbreviation": "LAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -426762,6 +427644,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -426770,6 +427653,7 @@
   "team_abbreviation": "PHX",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -427927,6 +428811,7 @@
   "team_abbreviation": "CHA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -429084,6 +429969,7 @@
   "team_abbreviation": "DAL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -430241,6 +431127,7 @@
   "team_abbreviation": "MIL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -431398,6 +432285,7 @@
   "team_abbreviation": "NOP",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -432555,6 +433443,7 @@
   "team_abbreviation": "BOS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -433712,6 +434601,7 @@
   "team_abbreviation": "CLE",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -434869,6 +435759,7 @@
   "team_abbreviation": "TOR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -436026,6 +436917,7 @@
   "team_abbreviation": "MEM",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -437183,6 +438075,7 @@
   "team_abbreviation": "POR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -438340,6 +439233,7 @@
   "team_abbreviation": "TOR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -439497,6 +440391,7 @@
   "team_abbreviation": "MEM",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -440654,6 +441549,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -440662,6 +441558,7 @@
   "team_abbreviation": "POR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -441819,6 +442716,7 @@
   "team_abbreviation": "OKC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -442976,6 +443874,7 @@
   "team_abbreviation": "POR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -444133,6 +445032,7 @@
   "team_abbreviation": "MIA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -445290,6 +446190,7 @@
   "team_abbreviation": "CHA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -446447,6 +447348,7 @@
   "team_abbreviation": "DEN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -447604,6 +448506,7 @@
   "team_abbreviation": "GSW",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -448761,6 +449664,7 @@
   "team_abbreviation": "SAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -449918,6 +450822,7 @@
   "team_abbreviation": "HOU",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -451075,6 +451980,7 @@
   "team_abbreviation": "UTA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -452232,6 +453138,7 @@
   "team_abbreviation": "IND",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -453389,6 +454296,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -453397,6 +454305,7 @@
   "team_abbreviation": "HOU",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -454554,6 +455463,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -454562,6 +455472,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -454570,6 +455481,7 @@
   "team_abbreviation": "MIL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -455731,9 +456643,11 @@
     "game_seq": 52,
     "game_date": "2026-02-04",
     "from_team": "UTA",
-    "to_team": "MEM"
+    "to_team": "MEM",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -456933,6 +457847,7 @@
   "team_abbreviation": "BKN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -458090,6 +459005,7 @@
   "team_abbreviation": "MIN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -459247,6 +460163,7 @@
   "team_abbreviation": "CLE",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -460404,6 +461321,7 @@
   "team_abbreviation": "OKC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -461561,6 +462479,7 @@
   "team_abbreviation": "CHA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -462718,6 +463637,7 @@
   "team_abbreviation": "DEN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -463875,6 +464795,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -463883,6 +464804,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -463891,6 +464813,7 @@
   "team_abbreviation": "DET",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -465048,6 +465971,7 @@
   "team_abbreviation": "DET",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -466206,10 +467130,32 @@
   "slot_total": 82,
   "trade_marker": [
    {
+    "game_seq": 38,
+    "game_date": "2026-01-08",
+    "from_team": "IND",
+    "to_team": "IND",
+    "reason": "signed"
+   },
+   {
     "game_seq": 79,
     "game_date": "2026-04-06",
     "from_team": "IND",
-    "to_team": "ATL"
+    "to_team": "ATL",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 37,
+    "game_date": "2026-01-06",
+    "team": "IND",
+    "reason": "waived"
+   },
+   {
+    "game_seq": 49,
+    "game_date": "2026-01-31",
+    "team": "IND",
+    "reason": "contract_end"
    }
   ],
   "games": [
@@ -467369,6 +468315,7 @@
   "team_abbreviation": "POR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -468530,9 +469477,11 @@
     "game_seq": 40,
     "game_date": "2026-01-09",
     "from_team": "ATL",
-    "to_team": "WAS"
+    "to_team": "WAS",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -469736,7 +470685,16 @@
     "game_seq": 54,
     "game_date": "2026-02-08",
     "from_team": "GSW",
-    "to_team": "TOR"
+    "to_team": "TOR",
+    "reason": "trade"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 53,
+    "game_date": "2026-02-07",
+    "team": "GSW",
+    "reason": null
    }
   ],
   "games": [
@@ -470896,6 +471854,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -470904,6 +471863,7 @@
   "team_abbreviation": "WAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -472061,6 +473021,7 @@
   "team_abbreviation": "CHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -473218,6 +474179,7 @@
   "team_abbreviation": "CHA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -474375,6 +475337,7 @@
   "team_abbreviation": "PHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -475532,6 +476495,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -475540,6 +476504,7 @@
   "team_abbreviation": "NOP",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -476697,6 +477662,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -476705,6 +477671,7 @@
   "team_abbreviation": "NOP",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -477861,7 +478828,16 @@
   "player_name": "Tristan Enaruna",
   "team_abbreviation": "CLE",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 49,
+    "game_date": "2026-01-28",
+    "from_team": "CLE",
+    "to_team": "CLE",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -479019,6 +479995,7 @@
   "team_abbreviation": "WAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -480176,6 +481153,7 @@
   "team_abbreviation": "ORL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -481333,6 +482311,7 @@
   "team_abbreviation": "MEM",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -482490,6 +483469,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -482498,6 +483478,7 @@
   "team_abbreviation": "MIA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -483655,6 +484636,7 @@
   "team_abbreviation": "NYK",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -484812,6 +485794,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -484820,6 +485803,7 @@
   "team_abbreviation": "IND",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -485977,6 +486961,7 @@
   "team_abbreviation": "PHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -487134,6 +488119,7 @@
   "team_abbreviation": "CLE",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -488295,19 +489281,30 @@
     "game_seq": 50,
     "game_date": "2026-02-05",
     "from_team": "ORL",
-    "to_team": "CHA"
+    "to_team": "CHA",
+    "reason": "trade"
    },
    {
     "game_seq": 51,
     "game_date": "2026-02-07",
     "from_team": "CHA",
-    "to_team": "DAL"
+    "to_team": "DAL",
+    "reason": "trade"
    },
    {
     "game_seq": 61,
     "game_date": "2026-03-05",
     "from_team": "DAL",
-    "to_team": "DEN"
+    "to_team": "DEN",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [
+   {
+    "game_seq": 59,
+    "game_date": "2026-03-01",
+    "team": "DAL",
+    "reason": "waived"
    }
   ],
   "games": [
@@ -489439,6 +490436,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -489447,6 +490445,7 @@
   "team_abbreviation": "PHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -490604,6 +491603,7 @@
   "team_abbreviation": "SAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -491761,6 +492761,7 @@
   "team_abbreviation": "MIA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -492922,9 +493923,11 @@
     "game_seq": 52,
     "game_date": "2026-02-01",
     "from_team": "ATL",
-    "to_team": "POR"
+    "to_team": "POR",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -494110,6 +495113,7 @@
   "team_abbreviation": "UTA",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -495271,9 +496275,11 @@
     "game_seq": 52,
     "game_date": "2026-02-04",
     "from_team": "UTA",
-    "to_team": "MEM"
+    "to_team": "MEM",
+    "reason": "trade"
    }
   ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -496473,6 +497479,7 @@
   "team_abbreviation": "ORL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -497630,6 +498637,7 @@
   "team_abbreviation": "GSW",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -498787,6 +499795,7 @@
   "team_abbreviation": "WAS",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -499944,6 +500953,7 @@
   "team_abbreviation": "POR",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -501101,6 +502111,7 @@
   "team_abbreviation": "LAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -502258,6 +503269,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -502266,6 +503278,7 @@
   "team_abbreviation": "NOP",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -503423,6 +504436,7 @@
   "team_abbreviation": "ATL",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -504580,6 +505594,7 @@
   "team_abbreviation": "CHI",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -505737,6 +506752,7 @@
   "team_abbreviation": "MEM",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -506894,6 +507910,7 @@
   "team_abbreviation": "SAC",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -508051,6 +509068,7 @@
   "team_abbreviation": "DEN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -509208,6 +510226,7 @@
   "team_abbreviation": "BKN",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -510365,6 +511384,7 @@
   "team_abbreviation": "NOP",
   "slot_total": 82,
   "trade_marker": [],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -511522,6 +512542,7 @@
   "team_abbreviation": null,
   "slot_total": 0,
   "trade_marker": [],
+  "exit_marker": [],
   "games": []
  },
  {
@@ -511529,7 +512550,16 @@
   "player_name": "Zyon Pullin",
   "team_abbreviation": "MIN",
   "slot_total": 82,
-  "trade_marker": [],
+  "trade_marker": [
+   {
+    "game_seq": 62,
+    "game_date": "2026-03-03",
+    "from_team": "MIN",
+    "to_team": "MIN",
+    "reason": "signed"
+   }
+  ],
+  "exit_marker": [],
   "games": [
    {
     "game_seq": 1,
