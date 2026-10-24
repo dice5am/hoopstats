@@ -4,6 +4,7 @@
   "player_name": "AJ Dybantsa",
   "team_abbreviation": "WAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -14,7 +15,7 @@
     "home_away": "home",
     "matchup": "WAS vs. MIL",
     "team_abbreviation": "WAS",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -1160,6 +1161,7 @@
   "player_name": "AJ Green",
   "team_abbreviation": "MIL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -2316,6 +2318,7 @@
   "player_name": "AJ Johnson",
   "team_abbreviation": "NOP",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -2326,7 +2329,7 @@
     "home_away": "home",
     "matchup": "NOP vs. IND",
     "team_abbreviation": "NOP",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -3472,6 +3475,7 @@
   "player_name": "AK Okereke",
   "team_abbreviation": "LAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -3482,7 +3486,7 @@
     "home_away": "home",
     "matchup": "LAL vs. GSW",
     "team_abbreviation": "LAL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -4628,6 +4632,7 @@
   "player_name": "Aaron Gordon",
   "team_abbreviation": "DEN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -5784,6 +5789,7 @@
   "player_name": "Aaron Nesmith",
   "team_abbreviation": "IND",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -5794,7 +5800,7 @@
     "home_away": "away",
     "matchup": "IND @ NOP",
     "team_abbreviation": "IND",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -6940,6 +6946,7 @@
   "player_name": "Aaron Wiggins",
   "team_abbreviation": "ATL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -8096,6 +8103,7 @@
   "player_name": "Ace Bailey",
   "team_abbreviation": "UTA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -9252,6 +9260,7 @@
   "player_name": "Aday Mara",
   "team_abbreviation": "OKC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -10408,6 +10417,7 @@
   "player_name": "Adem Bona",
   "team_abbreviation": "PHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -11564,6 +11574,7 @@
   "player_name": "Adou Thiero",
   "team_abbreviation": "LAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -11574,7 +11585,7 @@
     "home_away": "home",
     "matchup": "LAL vs. GSW",
     "team_abbreviation": "LAL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -12720,6 +12731,7 @@
   "player_name": "Ajay Mitchell",
   "team_abbreviation": "OKC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -13876,6 +13888,7 @@
   "player_name": "Al Horford",
   "team_abbreviation": "GSW",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -15032,6 +15045,7 @@
   "player_name": "Alex Caruso",
   "team_abbreviation": "OKC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -16188,6 +16202,7 @@
   "player_name": "Alex Karaban",
   "team_abbreviation": "SAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -17344,6 +17359,7 @@
   "player_name": "Alex Morales",
   "team_abbreviation": "ORL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -17354,7 +17370,7 @@
     "home_away": "home",
     "matchup": "ORL vs. ATL",
     "team_abbreviation": "ORL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -18500,6 +18516,7 @@
   "player_name": "Alex Sarr",
   "team_abbreviation": "WAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -19656,6 +19673,7 @@
   "player_name": "Alijah Martin",
   "team_abbreviation": "TOR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -20812,6 +20830,7 @@
   "player_name": "Allen Graves",
   "team_abbreviation": "TOR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -21968,6 +21987,7 @@
   "player_name": "Alperen Sengun",
   "team_abbreviation": "HOU",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -23124,6 +23144,7 @@
   "player_name": "Alpha Diallo",
   "team_abbreviation": "DEN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -24280,6 +24301,7 @@
   "player_name": "Amari Williams",
   "team_abbreviation": "BOS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -24290,7 +24312,7 @@
     "home_away": "away",
     "matchup": "BOS @ DET",
     "team_abbreviation": "BOS",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -25436,6 +25458,7 @@
   "player_name": "Amen Thompson",
   "team_abbreviation": "HOU",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -26592,6 +26615,7 @@
   "player_name": "Andre Drummond",
   "team_abbreviation": "NYK",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -27748,6 +27772,7 @@
   "player_name": "Andrew Nembhard",
   "team_abbreviation": "IND",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -28904,6 +28929,7 @@
   "player_name": "Andrew Wiggins",
   "team_abbreviation": "MIA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -30060,6 +30086,7 @@
   "player_name": "Anfernee Simons",
   "team_abbreviation": "PHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -31216,6 +31243,7 @@
   "player_name": "Anthony Black",
   "team_abbreviation": "ORL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -31226,7 +31254,7 @@
     "home_away": "home",
     "matchup": "ORL vs. ATL",
     "team_abbreviation": "ORL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -32372,6 +32400,7 @@
   "player_name": "Anthony Davis",
   "team_abbreviation": "WAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -33528,6 +33557,7 @@
   "player_name": "Anthony Edwards",
   "team_abbreviation": "MIN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -34684,6 +34714,7 @@
   "player_name": "Anthony Gill",
   "team_abbreviation": "WAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -34694,7 +34725,7 @@
     "home_away": "home",
     "matchup": "WAS vs. MIL",
     "team_abbreviation": "WAS",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -35840,6 +35871,7 @@
   "player_name": "Ariel Hukporti",
   "team_abbreviation": "PHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -35850,7 +35882,7 @@
     "home_away": "away",
     "matchup": "PHI @ NYK",
     "team_abbreviation": "PHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -35864,7 +35896,7 @@
     "home_away": "home",
     "matchup": "PHI vs. CLE",
     "team_abbreviation": "PHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -36996,6 +37028,7 @@
   "player_name": "Arthur Kaluma",
   "team_abbreviation": "LAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -37006,7 +37039,7 @@
     "home_away": "home",
     "matchup": "LAL vs. GSW",
     "team_abbreviation": "LAL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -38152,6 +38185,7 @@
   "player_name": "Asa Newell",
   "team_abbreviation": "ATL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -38162,7 +38196,7 @@
     "home_away": "away",
     "matchup": "ATL @ ORL",
     "team_abbreviation": "ATL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -39308,6 +39342,7 @@
   "player_name": "Ausar Thompson",
   "team_abbreviation": "DET",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -40464,6 +40499,7 @@
   "player_name": "Austin Reaves",
   "team_abbreviation": "LAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -41620,6 +41656,7 @@
   "player_name": "Ayo Dosunmu",
   "team_abbreviation": "MIN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -42776,6 +42813,7 @@
   "player_name": "Baba Miller",
   "team_abbreviation": "LAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -43932,6 +43970,7 @@
   "player_name": "Bam Adebayo",
   "team_abbreviation": "MIA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -45088,6 +45127,7 @@
   "player_name": "Baylor Scheierman",
   "team_abbreviation": "BOS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -46244,6 +46284,7 @@
   "player_name": "Ben Saraf",
   "team_abbreviation": "BKN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -46254,7 +46295,7 @@
     "home_away": "home",
     "matchup": "BKN vs. CHA",
     "team_abbreviation": "BKN",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -47400,6 +47441,7 @@
   "player_name": "Ben Sheppard",
   "team_abbreviation": "IND",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -48556,6 +48598,7 @@
   "player_name": "Ben Simmons",
   "team_abbreviation": "SAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -48566,7 +48609,7 @@
     "home_away": "away",
     "matchup": "SAC @ LAC",
     "team_abbreviation": "SAC",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -49712,6 +49755,7 @@
   "player_name": "Bennedict Mathurin",
   "team_abbreviation": "NOP",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -50868,6 +50912,7 @@
   "player_name": "Bennett Stirtz",
   "team_abbreviation": "OKC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -52024,6 +52069,7 @@
   "player_name": "Bilal Coulibaly",
   "team_abbreviation": "WAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -53180,6 +53226,7 @@
   "player_name": "Bobby Portis Jr.",
   "team_abbreviation": "MIA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -54336,6 +54383,7 @@
   "player_name": "Bogdan Bogdanović",
   "team_abbreviation": "HOU",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -55492,6 +55540,7 @@
   "player_name": "Bogoljub Marković",
   "team_abbreviation": "MIL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -55502,7 +55551,7 @@
     "home_away": "away",
     "matchup": "MIL @ WAS",
     "team_abbreviation": "MIL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -56648,6 +56697,7 @@
   "player_name": "Bones Hyland",
   "team_abbreviation": "MIN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -57804,6 +57854,7 @@
   "player_name": "Braden Smith",
   "team_abbreviation": "IND",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -57814,7 +57865,7 @@
     "home_away": "away",
     "matchup": "IND @ NOP",
     "team_abbreviation": "IND",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -58960,6 +59011,7 @@
   "player_name": "Bradley Beal",
   "team_abbreviation": "LAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -58970,7 +59022,7 @@
     "home_away": "home",
     "matchup": "LAC vs. SAC",
     "team_abbreviation": "LAC",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -60116,6 +60168,7 @@
   "player_name": "Branden Carlson",
   "team_abbreviation": "POR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -60126,7 +60179,7 @@
     "home_away": "home",
     "matchup": "POR vs. PHX",
     "team_abbreviation": "POR",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -61272,6 +61325,7 @@
   "player_name": "Brandin Podziemski",
   "team_abbreviation": "GSW",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -61282,7 +61336,7 @@
     "home_away": "away",
     "matchup": "GSW @ LAL",
     "team_abbreviation": "GSW",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -62428,6 +62482,7 @@
   "player_name": "Brandon Ingram",
   "team_abbreviation": "LAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -62438,7 +62493,7 @@
     "home_away": "home",
     "matchup": "LAC vs. SAC",
     "team_abbreviation": "LAC",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -63584,6 +63639,7 @@
   "player_name": "Brandon Miller",
   "team_abbreviation": "CHA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -64740,6 +64796,7 @@
   "player_name": "Brandon Williams",
   "team_abbreviation": "GSW",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -65896,6 +65953,7 @@
   "player_name": "Brayden Burries",
   "team_abbreviation": "MIL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -67052,6 +67110,7 @@
   "player_name": "Brice Sensabaugh",
   "team_abbreviation": "UTA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -68208,6 +68267,7 @@
   "player_name": "Bronny James",
   "team_abbreviation": "LAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -69364,6 +69424,7 @@
   "player_name": "Brook Lopez",
   "team_abbreviation": "LAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -70520,6 +70581,7 @@
   "player_name": "Brooks Barnhizer",
   "team_abbreviation": "OKC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -71676,6 +71738,7 @@
   "player_name": "Bruce Thornton",
   "team_abbreviation": "HOU",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -72832,6 +72895,7 @@
   "player_name": "Bryce Hopkins",
   "team_abbreviation": "DEN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -73988,6 +74052,7 @@
   "player_name": "Bryce McGowens",
   "team_abbreviation": "NOP",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -73998,7 +74063,7 @@
     "home_away": "home",
     "matchup": "NOP vs. IND",
     "team_abbreviation": "NOP",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -75144,6 +75209,7 @@
   "player_name": "Bub Carrington",
   "team_abbreviation": "WAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -76300,6 +76366,7 @@
   "player_name": "Buddy Hield",
   "team_abbreviation": "CHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -77456,6 +77523,7 @@
   "player_name": "CJ McCollum",
   "team_abbreviation": "ATL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -78612,6 +78680,7 @@
   "player_name": "Cade Cunningham",
   "team_abbreviation": "DET",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -79768,6 +79837,7 @@
   "player_name": "Caleb Love",
   "team_abbreviation": "PHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -79778,7 +79848,7 @@
     "home_away": "away",
     "matchup": "PHI @ NYK",
     "team_abbreviation": "PHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -79792,7 +79862,7 @@
     "home_away": "home",
     "matchup": "PHI vs. CLE",
     "team_abbreviation": "PHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -80924,6 +80994,7 @@
   "player_name": "Caleb Martin",
   "team_abbreviation": "DAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -80934,7 +81005,7 @@
     "home_away": "away",
     "matchup": "DAL @ HOU",
     "team_abbreviation": "DAL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -82080,6 +82151,7 @@
   "player_name": "Caleb Wilson",
   "team_abbreviation": "CHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -83236,6 +83308,7 @@
   "player_name": "Cam Christie",
   "team_abbreviation": "LAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -84392,6 +84465,7 @@
   "player_name": "Cam Spencer",
   "team_abbreviation": "MEM",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -85548,6 +85622,7 @@
   "player_name": "Cam Whitmore",
   "team_abbreviation": "DEN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -85558,7 +85633,7 @@
     "home_away": "away",
     "matchup": "DEN @ OKC",
     "team_abbreviation": "DEN",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -86704,6 +86779,7 @@
   "player_name": "Cameron Boozer",
   "team_abbreviation": "MEM",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -87860,6 +87936,7 @@
   "player_name": "Cameron Carr",
   "team_abbreviation": "LAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -87870,7 +87947,7 @@
     "home_away": "home",
     "matchup": "LAL vs. GSW",
     "team_abbreviation": "LAL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -89016,6 +89093,7 @@
   "player_name": "Cameron Johnson",
   "team_abbreviation": "DEN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -90172,6 +90250,7 @@
   "player_name": "Caris LeVert",
   "team_abbreviation": "MIL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -90182,7 +90261,7 @@
     "home_away": "away",
     "matchup": "MIL @ WAS",
     "team_abbreviation": "MIL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -91328,6 +91407,7 @@
   "player_name": "Carson Cooper",
   "team_abbreviation": "MEM",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -91338,7 +91418,7 @@
     "home_away": "home",
     "matchup": "MEM vs. UTA",
     "team_abbreviation": "MEM",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -92484,6 +92564,7 @@
   "player_name": "Carter Bryant",
   "team_abbreviation": "SAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -93640,6 +93721,7 @@
   "player_name": "Cason Wallace",
   "team_abbreviation": "OKC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -94796,6 +94878,7 @@
   "player_name": "Cedric Coward",
   "team_abbreviation": "MEM",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -95952,6 +96035,7 @@
   "player_name": "Chaney Johnson",
   "team_abbreviation": "BKN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -97108,6 +97192,7 @@
   "player_name": "Charles Bassey",
   "team_abbreviation": "GSW",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -97118,7 +97203,7 @@
     "home_away": "away",
     "matchup": "GSW @ LAL",
     "team_abbreviation": "GSW",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -98264,6 +98349,7 @@
   "player_name": "Chaz Lanier",
   "team_abbreviation": "DET",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -98274,7 +98360,7 @@
     "home_away": "home",
     "matchup": "DET vs. BOS",
     "team_abbreviation": "DET",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -99420,6 +99506,7 @@
   "player_name": "Chet Holmgren",
   "team_abbreviation": "OKC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -100576,6 +100663,7 @@
   "player_name": "Chris Cenac Jr.",
   "team_abbreviation": "BOS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -100586,7 +100674,7 @@
     "home_away": "away",
     "matchup": "BOS @ DET",
     "team_abbreviation": "BOS",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -101732,6 +101820,7 @@
   "player_name": "Chris Mañon",
   "team_abbreviation": "LAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -102888,6 +102977,7 @@
   "player_name": "Chris Youngblood",
   "team_abbreviation": "POR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -102898,7 +102988,7 @@
     "home_away": "home",
     "matchup": "POR vs. PHX",
     "team_abbreviation": "POR",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -104044,6 +104134,7 @@
   "player_name": "Christian Anderson",
   "team_abbreviation": "CHA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -105200,6 +105291,7 @@
   "player_name": "Christian Braun",
   "team_abbreviation": "DEN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -106356,6 +106448,7 @@
   "player_name": "Clint Capela",
   "team_abbreviation": "HOU",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -107512,6 +107605,7 @@
   "player_name": "Coby White",
   "team_abbreviation": "CHA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -107522,7 +107616,7 @@
     "home_away": "away",
     "matchup": "CHA @ BKN",
     "team_abbreviation": "CHA",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -108668,6 +108762,7 @@
   "player_name": "Cody Williams",
   "team_abbreviation": "MIN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -109824,6 +109919,7 @@
   "player_name": "Colin Castleton",
   "team_abbreviation": "ORL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -109834,7 +109930,7 @@
     "home_away": "home",
     "matchup": "ORL vs. ATL",
     "team_abbreviation": "ORL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -110980,6 +111076,7 @@
   "player_name": "Collin Gillespie",
   "team_abbreviation": "PHX",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -112136,6 +112233,7 @@
   "player_name": "Collin Murray-Boyles",
   "team_abbreviation": "TOR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -113292,6 +113390,7 @@
   "player_name": "Collin Sexton",
   "team_abbreviation": "LAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -113302,7 +113401,7 @@
     "home_away": "home",
     "matchup": "LAL vs. GSW",
     "team_abbreviation": "LAL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -114448,6 +114547,7 @@
   "player_name": "Cooper Flagg",
   "team_abbreviation": "DAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -115604,6 +115704,7 @@
   "player_name": "Corey Kispert",
   "team_abbreviation": "ATL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -115614,7 +115715,7 @@
     "home_away": "away",
     "matchup": "ATL @ ORL",
     "team_abbreviation": "ATL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -116760,6 +116861,7 @@
   "player_name": "Cormac Ryan",
   "team_abbreviation": "MIL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -116770,7 +116872,7 @@
     "home_away": "away",
     "matchup": "MIL @ WAS",
     "team_abbreviation": "MIL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -117916,6 +118018,7 @@
   "player_name": "Craig Porter Jr.",
   "team_abbreviation": "CLE",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -119072,6 +119175,7 @@
   "player_name": "DaRon Holmes II",
   "team_abbreviation": "DEN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -120228,6 +120332,7 @@
   "player_name": "Daeqwon Plowden",
   "team_abbreviation": "SAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -121384,6 +121489,7 @@
   "player_name": "Dailyn Swain",
   "team_abbreviation": "CHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -121394,7 +121500,7 @@
     "home_away": "away",
     "matchup": "CHI @ TOR",
     "team_abbreviation": "CHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -122540,6 +122646,7 @@
   "player_name": "Damian Lillard",
   "team_abbreviation": "POR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -123696,6 +123803,7 @@
   "player_name": "Daniel Gafford",
   "team_abbreviation": "DAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -124852,6 +124960,7 @@
   "player_name": "Daniss Jenkins",
   "team_abbreviation": "DET",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -126008,6 +126117,7 @@
   "player_name": "Danny Wolf",
   "team_abbreviation": "BKN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -126018,7 +126128,7 @@
     "home_away": "home",
     "matchup": "BKN vs. CHA",
     "team_abbreviation": "BKN",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -127164,6 +127274,7 @@
   "player_name": "Darius Acuff Jr.",
   "team_abbreviation": "SAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -128320,6 +128431,7 @@
   "player_name": "Darius Garland",
   "team_abbreviation": "LAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -129476,6 +129588,7 @@
   "player_name": "Darryn Peterson",
   "team_abbreviation": "UTA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -130632,6 +130745,7 @@
   "player_name": "David Jones Garcia",
   "team_abbreviation": "SAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -131788,6 +131902,7 @@
   "player_name": "Davion Mitchell",
   "team_abbreviation": "MIA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -132944,6 +133059,7 @@
   "player_name": "Day'Ron Sharpe",
   "team_abbreviation": "BKN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -134100,6 +134216,7 @@
   "player_name": "De'Aaron Fox",
   "team_abbreviation": "SAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -135256,6 +135373,7 @@
   "player_name": "De'Andre Hunter",
   "team_abbreviation": "SAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -136412,6 +136530,7 @@
   "player_name": "De'Anthony Melton",
   "team_abbreviation": "GSW",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -137568,6 +137687,7 @@
   "player_name": "DeAndre Jordan",
   "team_abbreviation": "NOP",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -137578,7 +137698,7 @@
     "home_away": "home",
     "matchup": "NOP vs. IND",
     "team_abbreviation": "NOP",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -138724,6 +138844,7 @@
   "player_name": "DeMar DeRozan",
   "team_abbreviation": "DEN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -139880,6 +140001,7 @@
   "player_name": "Dean Wade",
   "team_abbreviation": "PHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -139890,7 +140012,7 @@
     "home_away": "away",
     "matchup": "PHI @ NYK",
     "team_abbreviation": "PHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -139904,7 +140026,7 @@
     "home_away": "home",
     "matchup": "PHI vs. CLE",
     "team_abbreviation": "PHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -141036,6 +141158,7 @@
   "player_name": "Deandre Ayton",
   "team_abbreviation": "WAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -142192,6 +142315,7 @@
   "player_name": "Dejounte Murray",
   "team_abbreviation": "NOP",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -143348,6 +143472,7 @@
   "player_name": "Deni Avdija",
   "team_abbreviation": "POR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -144504,6 +144629,7 @@
   "player_name": "Dennis Schröder",
   "team_abbreviation": "CHA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -145660,6 +145786,7 @@
   "player_name": "Dereck Lively II",
   "team_abbreviation": "DAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -145670,7 +145797,7 @@
     "home_away": "away",
     "matchup": "DAL @ HOU",
     "team_abbreviation": "DAL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -146816,6 +146943,7 @@
   "player_name": "Derik Queen",
   "team_abbreviation": "NOP",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -147972,6 +148100,7 @@
   "player_name": "Derrick Jones Jr.",
   "team_abbreviation": "LAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -149128,6 +149257,7 @@
   "player_name": "Derrick White",
   "team_abbreviation": "BOS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -150284,6 +150414,7 @@
   "player_name": "Desmond Bane",
   "team_abbreviation": "ORL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -151440,6 +151571,7 @@
   "player_name": "Devin Booker",
   "team_abbreviation": "PHX",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -152596,6 +152728,7 @@
   "player_name": "Devin Carter",
   "team_abbreviation": "BOS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -152606,7 +152739,7 @@
     "home_away": "away",
     "matchup": "BOS @ DET",
     "team_abbreviation": "BOS",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -153752,6 +153885,7 @@
   "player_name": "Devin Vassell",
   "team_abbreviation": "SAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -154908,6 +155042,7 @@
   "player_name": "Dillon Brooks",
   "team_abbreviation": "PHX",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -156064,6 +156199,7 @@
   "player_name": "Dillon Mitchell",
   "team_abbreviation": "BOS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -156074,7 +156210,7 @@
     "home_away": "away",
     "matchup": "BOS @ DET",
     "team_abbreviation": "BOS",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -157220,6 +157356,7 @@
   "player_name": "Domantas Sabonis",
   "team_abbreviation": "SAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -158376,6 +158513,7 @@
   "player_name": "Dominick Barlow",
   "team_abbreviation": "PHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -158386,7 +158524,7 @@
     "home_away": "away",
     "matchup": "PHI @ NYK",
     "team_abbreviation": "PHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -158400,7 +158538,7 @@
     "home_away": "home",
     "matchup": "PHI vs. CLE",
     "team_abbreviation": "PHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -159532,6 +159670,7 @@
   "player_name": "Donovan Clingan",
   "team_abbreviation": "POR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -160688,6 +160827,7 @@
   "player_name": "Donovan Mitchell",
   "team_abbreviation": "CLE",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -161844,6 +161984,7 @@
   "player_name": "Donte DiVincenzo",
   "team_abbreviation": "MIN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -161854,7 +161995,7 @@
     "home_away": "away",
     "matchup": "MIN @ MIA",
     "team_abbreviation": "MIN",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -163000,6 +163141,7 @@
   "player_name": "Dorian Finney-Smith",
   "team_abbreviation": "ATL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -163010,7 +163152,7 @@
     "home_away": "away",
     "matchup": "ATL @ ORL",
     "team_abbreviation": "ATL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -164156,6 +164298,7 @@
   "player_name": "Drake Powell",
   "team_abbreviation": "BKN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -164166,7 +164309,7 @@
     "home_away": "home",
     "matchup": "BKN vs. CHA",
     "team_abbreviation": "BKN",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -165312,6 +165455,7 @@
   "player_name": "Draymond Green",
   "team_abbreviation": "GSW",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -166468,6 +166612,7 @@
   "player_name": "Drew Timme",
   "team_abbreviation": "PHX",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -166478,7 +166623,7 @@
     "home_away": "away",
     "matchup": "PHX @ POR",
     "team_abbreviation": "PHX",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -167624,6 +167769,7 @@
   "player_name": "Dru Smith",
   "team_abbreviation": "MIA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -167634,7 +167780,7 @@
     "home_away": "home",
     "matchup": "MIA vs. MIN",
     "team_abbreviation": "MIA",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -168780,6 +168926,7 @@
   "player_name": "Duncan Robinson",
   "team_abbreviation": "DET",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -169936,6 +170083,7 @@
   "player_name": "Duop Reath",
   "team_abbreviation": "PHX",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -171092,6 +171240,7 @@
   "player_name": "Dylan Cardwell",
   "team_abbreviation": "SAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -171102,7 +171251,7 @@
     "home_away": "away",
     "matchup": "SAC @ LAC",
     "team_abbreviation": "SAC",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -172248,6 +172397,7 @@
   "player_name": "Dylan Harper",
   "team_abbreviation": "SAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -173404,6 +173554,7 @@
   "player_name": "Dyson Daniels",
   "team_abbreviation": "ATL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -174560,6 +174711,7 @@
   "player_name": "Ebuka Okorie",
   "team_abbreviation": "DET",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -174570,7 +174722,7 @@
     "home_away": "home",
     "matchup": "DET vs. BOS",
     "team_abbreviation": "DET",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -175716,6 +175868,7 @@
   "player_name": "Egor Dëmin",
   "team_abbreviation": "BKN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -176872,6 +177025,7 @@
   "player_name": "Elijah Harkless",
   "team_abbreviation": "DET",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -176882,7 +177036,7 @@
     "home_away": "home",
     "matchup": "DET vs. BOS",
     "team_abbreviation": "DET",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -178028,6 +178182,7 @@
   "player_name": "Emanuel Sharp",
   "team_abbreviation": "SAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -179184,6 +179339,7 @@
   "player_name": "Ernest Udeh, Jr.",
   "team_abbreviation": "CLE",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -179194,7 +179350,7 @@
     "home_away": "away",
     "matchup": "CLE @ PHI",
     "team_abbreviation": "CLE",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -180340,6 +180496,7 @@
   "player_name": "Evan Mobley",
   "team_abbreviation": "CLE",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -181496,6 +181653,7 @@
   "player_name": "Felix Okpara",
   "team_abbreviation": "WAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -181506,7 +181664,7 @@
     "home_away": "home",
     "matchup": "WAS vs. MIL",
     "team_abbreviation": "WAS",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -182652,6 +182810,7 @@
   "player_name": "Franz Wagner",
   "team_abbreviation": "ORL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -183808,6 +183967,7 @@
   "player_name": "Fred VanVleet",
   "team_abbreviation": "HOU",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -184964,6 +185124,7 @@
   "player_name": "GG Jackson",
   "team_abbreviation": "MEM",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -186120,6 +186281,7 @@
   "player_name": "Gary Payton II",
   "team_abbreviation": "GSW",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -187276,6 +187438,7 @@
   "player_name": "Gary Trent Jr.",
   "team_abbreviation": "MIL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -187286,7 +187449,7 @@
     "home_away": "away",
     "matchup": "MIL @ WAS",
     "team_abbreviation": "MIL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -188432,6 +188595,7 @@
   "player_name": "Georges Niang",
   "team_abbreviation": "GSW",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -189588,6 +189752,7 @@
   "player_name": "Giannis Antetokounmpo",
   "team_abbreviation": "MIA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -190744,6 +190909,7 @@
   "player_name": "Goga Bitadze",
   "team_abbreviation": "ORL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -191900,6 +192066,7 @@
   "player_name": "Gradey Dick",
   "team_abbreviation": "LAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -193056,6 +193223,7 @@
   "player_name": "Graham Ike",
   "team_abbreviation": "GSW",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -194212,6 +194380,7 @@
   "player_name": "Grant Nelson",
   "team_abbreviation": "BKN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -194222,7 +194391,7 @@
     "home_away": "home",
     "matchup": "BKN vs. CHA",
     "team_abbreviation": "BKN",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -195368,6 +195537,7 @@
   "player_name": "Grant Williams",
   "team_abbreviation": "CHA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -195378,7 +195548,7 @@
     "home_away": "away",
     "matchup": "CHA @ BKN",
     "team_abbreviation": "CHA",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -196524,6 +196694,7 @@
   "player_name": "Grayson Allen",
   "team_abbreviation": "CHA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -197680,6 +197851,7 @@
   "player_name": "Gui Santos",
   "team_abbreviation": "GSW",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -198836,6 +199008,7 @@
   "player_name": "Hannes Steinbach",
   "team_abbreviation": "CHA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -198846,7 +199019,7 @@
     "home_away": "away",
     "matchup": "CHA @ BKN",
     "team_abbreviation": "CHA",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -199992,6 +200165,7 @@
   "player_name": "Harrison Barnes",
   "team_abbreviation": "SAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -201148,6 +201322,7 @@
   "player_name": "Harrison Ingram",
   "team_abbreviation": "UTA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -201158,7 +201333,7 @@
     "home_away": "away",
     "matchup": "UTA @ MEM",
     "team_abbreviation": "UTA",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -202304,6 +202479,7 @@
   "player_name": "Henri Veesaar",
   "team_abbreviation": "ATL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -202314,7 +202490,7 @@
     "home_away": "away",
     "matchup": "ATL @ ORL",
     "team_abbreviation": "ATL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -203460,6 +203636,7 @@
   "player_name": "Herbert Jones",
   "team_abbreviation": "NOP",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -204616,6 +204793,7 @@
   "player_name": "Hugo González",
   "team_abbreviation": "BOS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -205772,6 +205950,7 @@
   "player_name": "Immanuel Quickley",
   "team_abbreviation": "TOR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -206928,6 +207107,7 @@
   "player_name": "Isaac Jones",
   "team_abbreviation": "DET",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -206938,7 +207118,7 @@
     "home_away": "home",
     "matchup": "DET vs. BOS",
     "team_abbreviation": "DET",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -208084,6 +208264,7 @@
   "player_name": "Isaac Okoro",
   "team_abbreviation": "CHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -209240,6 +209421,7 @@
   "player_name": "Isaiah Collier",
   "team_abbreviation": "UTA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -210396,6 +210578,7 @@
   "player_name": "Isaiah Crawford",
   "team_abbreviation": "HOU",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -211552,6 +211735,7 @@
   "player_name": "Isaiah Evans",
   "team_abbreviation": "MIN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -212708,6 +212892,7 @@
   "player_name": "Isaiah Hartenstein",
   "team_abbreviation": "OKC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -213864,6 +214049,7 @@
   "player_name": "Isaiah Jackson",
   "team_abbreviation": "LAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -215020,6 +215206,7 @@
   "player_name": "Isaiah Joe",
   "team_abbreviation": "DET",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -216176,6 +216363,7 @@
   "player_name": "Isaiah Stewart",
   "team_abbreviation": "MEM",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -216186,7 +216374,7 @@
     "home_away": "home",
     "matchup": "MEM vs. UTA",
     "team_abbreviation": "MEM",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -217332,6 +217520,7 @@
   "player_name": "Ivica Zubac",
   "team_abbreviation": "IND",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -218488,6 +218677,7 @@
   "player_name": "Izaiyah Nelson",
   "team_abbreviation": "ORL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -218498,7 +218688,7 @@
     "home_away": "home",
     "matchup": "ORL vs. ATL",
     "team_abbreviation": "ORL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -219644,6 +219834,7 @@
   "player_name": "Ja Morant",
   "team_abbreviation": "POR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -220800,6 +220991,7 @@
   "player_name": "Ja'Kobe Walter",
   "team_abbreviation": "TOR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -221956,6 +222148,7 @@
   "player_name": "Ja'Kobi Gillespie",
   "team_abbreviation": "SAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -223112,6 +223305,7 @@
   "player_name": "Jabari Smith Jr.",
   "team_abbreviation": "HOU",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -224268,6 +224462,7 @@
   "player_name": "Jabari Walker",
   "team_abbreviation": "PHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -225424,6 +225619,7 @@
   "player_name": "Jaden Akins",
   "team_abbreviation": "NYK",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -225434,7 +225630,7 @@
     "home_away": "home",
     "matchup": "NYK vs. PHI",
     "team_abbreviation": "NYK",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -226580,6 +226776,7 @@
   "player_name": "Jaden Bradley",
   "team_abbreviation": "TOR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -227736,6 +227933,7 @@
   "player_name": "Jaden Hardy",
   "team_abbreviation": "LAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -228892,6 +229090,7 @@
   "player_name": "Jaden McDaniels",
   "team_abbreviation": "MIN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -230048,6 +230247,7 @@
   "player_name": "Jae'Sean Tate",
   "team_abbreviation": "HOU",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -231204,6 +231404,7 @@
   "player_name": "Jahmai Mashack",
   "team_abbreviation": "MEM",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -231214,7 +231415,7 @@
     "home_away": "home",
     "matchup": "MEM vs. UTA",
     "team_abbreviation": "MEM",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -232360,6 +232561,7 @@
   "player_name": "Jaime Jaquez Jr.",
   "team_abbreviation": "MIL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -233516,6 +233718,7 @@
   "player_name": "Jake LaRavia",
   "team_abbreviation": "LAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -234672,6 +234875,7 @@
   "player_name": "Jakob Poeltl",
   "team_abbreviation": "TOR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -235828,6 +236032,7 @@
   "player_name": "Jalen Brunson",
   "team_abbreviation": "NYK",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -236984,6 +237189,7 @@
   "player_name": "Jalen Duren",
   "team_abbreviation": "DET",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -238140,6 +238346,7 @@
   "player_name": "Jalen Green",
   "team_abbreviation": "PHX",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -239296,6 +239503,7 @@
   "player_name": "Jalen Johnson",
   "team_abbreviation": "ATL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -240452,6 +240660,7 @@
   "player_name": "Jalen Pickett",
   "team_abbreviation": "LAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -241608,6 +241817,7 @@
   "player_name": "Jalen Slawson",
   "team_abbreviation": "IND",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -241618,7 +241828,7 @@
     "home_away": "away",
     "matchup": "IND @ NOP",
     "team_abbreviation": "IND",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -242764,6 +242974,7 @@
   "player_name": "Jalen Smith",
   "team_abbreviation": "CHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -243920,6 +244131,7 @@
   "player_name": "Jalen Suggs",
   "team_abbreviation": "ORL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -245076,6 +245288,7 @@
   "player_name": "Jalen Williams",
   "team_abbreviation": "OKC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -246232,6 +246445,7 @@
   "player_name": "Jalen Wilson",
   "team_abbreviation": "ATL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -246242,7 +246456,7 @@
     "home_away": "away",
     "matchup": "ATL @ ORL",
     "team_abbreviation": "ATL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -247388,6 +247602,7 @@
   "player_name": "Jamal Cain",
   "team_abbreviation": "ORL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -248544,6 +248759,7 @@
   "player_name": "Jamal Murray",
   "team_abbreviation": "DEN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -249700,6 +249916,7 @@
   "player_name": "Jamal Shead",
   "team_abbreviation": "TOR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -250856,6 +251073,7 @@
   "player_name": "Jamaree Bouyea",
   "team_abbreviation": "PHX",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -252012,6 +252230,7 @@
   "player_name": "James Harden",
   "team_abbreviation": "CLE",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -253168,6 +253387,7 @@
   "player_name": "James Wiseman",
   "team_abbreviation": "NYK",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -253178,7 +253398,7 @@
     "home_away": "home",
     "matchup": "NYK vs. PHI",
     "team_abbreviation": "NYK",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -254324,6 +254544,7 @@
   "player_name": "Jamir Watkins",
   "team_abbreviation": "WAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -254334,7 +254555,7 @@
     "home_away": "home",
     "matchup": "WAS vs. MIL",
     "team_abbreviation": "WAS",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -255480,6 +255701,7 @@
   "player_name": "Jamison Battle",
   "team_abbreviation": "TOR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -256636,6 +256858,7 @@
   "player_name": "Jarace Walker",
   "team_abbreviation": "IND",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -257792,6 +258015,7 @@
   "player_name": "Jared McCain",
   "team_abbreviation": "OKC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -258948,6 +259172,7 @@
   "player_name": "Jaren Jackson Jr.",
   "team_abbreviation": "UTA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -260104,6 +260329,7 @@
   "player_name": "Jaron Pierre Jr.",
   "team_abbreviation": "NOP",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -260114,7 +260340,7 @@
     "home_away": "home",
     "matchup": "NOP vs. IND",
     "team_abbreviation": "NOP",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -261260,6 +261486,7 @@
   "player_name": "Jarred Vanderbilt",
   "team_abbreviation": "LAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -261270,7 +261497,7 @@
     "home_away": "home",
     "matchup": "LAL vs. GSW",
     "team_abbreviation": "LAL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -262416,6 +262643,7 @@
   "player_name": "Jarrett Allen",
   "team_abbreviation": "CLE",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -263572,6 +263800,7 @@
   "player_name": "Jase Richardson",
   "team_abbreviation": "ORL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -264728,6 +264957,7 @@
   "player_name": "Javon Small",
   "team_abbreviation": "MEM",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -264738,7 +264968,7 @@
     "home_away": "home",
     "matchup": "MEM vs. UTA",
     "team_abbreviation": "MEM",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -265884,6 +266114,7 @@
   "player_name": "Javonte Green",
   "team_abbreviation": "DET",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -267040,6 +267271,7 @@
   "player_name": "Jaxson Hayes",
   "team_abbreviation": "UTA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -268196,6 +268428,7 @@
   "player_name": "Jay Huff",
   "team_abbreviation": "IND",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -268206,7 +268439,7 @@
     "home_away": "away",
     "matchup": "IND @ NOP",
     "team_abbreviation": "IND",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -269352,6 +269585,7 @@
   "player_name": "Jayden Quaintance",
   "team_abbreviation": "SAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -269362,7 +269596,7 @@
     "home_away": "home",
     "matchup": "SAS vs. OKC",
     "team_abbreviation": "SAS",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -270508,6 +270742,7 @@
   "player_name": "Jaylen Brown",
   "team_abbreviation": "PHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -271664,6 +271899,7 @@
   "player_name": "Jaylen Clark",
   "team_abbreviation": "MIN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -272820,6 +273056,7 @@
   "player_name": "Jaylen Wells",
   "team_abbreviation": "MEM",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -273976,6 +274213,7 @@
   "player_name": "Jaylin Sellers",
   "team_abbreviation": "CHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -275132,6 +275370,7 @@
   "player_name": "Jaylin Williams",
   "team_abbreviation": "OKC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -276288,6 +276527,7 @@
   "player_name": "Jaylon Tyson",
   "team_abbreviation": "CLE",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -277444,6 +277684,7 @@
   "player_name": "Jayson Kent",
   "team_abbreviation": "POR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -278600,6 +278841,7 @@
   "player_name": "Jayson Tatum",
   "team_abbreviation": "BOS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -279756,6 +279998,7 @@
   "player_name": "Jerami Grant",
   "team_abbreviation": "MEM",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -280912,6 +281155,7 @@
   "player_name": "Jeremiah Fears",
   "team_abbreviation": "NOP",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -282068,6 +282312,7 @@
   "player_name": "Jericho Sims",
   "team_abbreviation": "MIL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -283224,6 +283469,7 @@
   "player_name": "Jett Howard",
   "team_abbreviation": "DAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -283234,7 +283480,7 @@
     "home_away": "away",
     "matchup": "DAL @ HOU",
     "team_abbreviation": "DAL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -284380,6 +284626,7 @@
   "player_name": "Jevon Carter",
   "team_abbreviation": "ORL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -284390,7 +284637,7 @@
     "home_away": "home",
     "matchup": "ORL vs. ATL",
     "team_abbreviation": "ORL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -285536,6 +285783,7 @@
   "player_name": "Jimmy Butler III",
   "team_abbreviation": "GSW",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -285546,7 +285794,7 @@
     "home_away": "away",
     "matchup": "GSW @ LAL",
     "team_abbreviation": "GSW",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -286692,6 +286940,7 @@
   "player_name": "Joan Beringer",
   "team_abbreviation": "MIN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -287848,6 +288097,7 @@
   "player_name": "Jock Landale",
   "team_abbreviation": "ATL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -289004,6 +289254,7 @@
   "player_name": "Joel Embiid",
   "team_abbreviation": "PHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -290160,6 +290411,7 @@
   "player_name": "John Collins",
   "team_abbreviation": "DET",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -291316,6 +291568,7 @@
   "player_name": "John Tonje",
   "team_abbreviation": "POR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -291326,7 +291579,7 @@
     "home_away": "home",
     "matchup": "POR vs. PHX",
     "team_abbreviation": "POR",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -292472,6 +292725,7 @@
   "player_name": "Johnny Furphy",
   "team_abbreviation": "IND",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -292482,7 +292736,7 @@
     "home_away": "away",
     "matchup": "IND @ NOP",
     "team_abbreviation": "IND",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -293628,6 +293882,7 @@
   "player_name": "Jonathan Isaac",
   "team_abbreviation": "ORL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -293638,7 +293893,7 @@
     "home_away": "home",
     "matchup": "ORL vs. ATL",
     "team_abbreviation": "ORL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -294784,6 +295039,7 @@
   "player_name": "Jonathan Kuminga",
   "team_abbreviation": "MIN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -295940,6 +296196,7 @@
   "player_name": "Jonathan Mogbo",
   "team_abbreviation": "SAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -297096,6 +297353,7 @@
   "player_name": "Jordan Clarkson",
   "team_abbreviation": "NYK",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -298252,6 +298510,7 @@
   "player_name": "Jordan Goodwin",
   "team_abbreviation": "PHX",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -299408,6 +299667,7 @@
   "player_name": "Jordan Hawkins",
   "team_abbreviation": "CHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -299418,7 +299678,7 @@
     "home_away": "away",
     "matchup": "CHI @ TOR",
     "team_abbreviation": "CHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -300564,6 +300824,7 @@
   "player_name": "Jordan McLaughlin",
   "team_abbreviation": "SAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -300574,7 +300835,7 @@
     "home_away": "home",
     "matchup": "SAS vs. OKC",
     "team_abbreviation": "SAS",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -301720,6 +301981,7 @@
   "player_name": "Jordan Miller",
   "team_abbreviation": "LAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -301730,7 +301992,7 @@
     "home_away": "home",
     "matchup": "LAC vs. SAC",
     "team_abbreviation": "LAC",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -302876,6 +303138,7 @@
   "player_name": "Jordan Poole",
   "team_abbreviation": "NOP",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -304032,6 +304295,7 @@
   "player_name": "Jordan Walsh",
   "team_abbreviation": "BOS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -305188,6 +305452,7 @@
   "player_name": "Jose Alvarado",
   "team_abbreviation": "NYK",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -306344,6 +306609,7 @@
   "player_name": "Josh Dix",
   "team_abbreviation": "OKC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -306354,7 +306620,7 @@
     "home_away": "away",
     "matchup": "OKC @ SAS",
     "team_abbreviation": "OKC",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -306368,7 +306634,7 @@
     "home_away": "home",
     "matchup": "OKC vs. DEN",
     "team_abbreviation": "OKC",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -307500,6 +307766,7 @@
   "player_name": "Josh Giddey",
   "team_abbreviation": "CHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -308656,6 +308923,7 @@
   "player_name": "Josh Green",
   "team_abbreviation": "UTA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -308666,7 +308934,7 @@
     "home_away": "away",
     "matchup": "UTA @ MEM",
     "team_abbreviation": "UTA",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -309812,6 +310080,7 @@
   "player_name": "Josh Hart",
   "team_abbreviation": "NYK",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -310968,6 +311237,7 @@
   "player_name": "Josh Minott",
   "team_abbreviation": "BKN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -310978,7 +311248,7 @@
     "home_away": "home",
     "matchup": "BKN vs. CHA",
     "team_abbreviation": "BKN",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -312124,6 +312394,7 @@
   "player_name": "Josh Okogie",
   "team_abbreviation": "UTA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -313280,6 +313551,7 @@
   "player_name": "Joshua Jefferson",
   "team_abbreviation": "BKN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -313290,7 +313562,7 @@
     "home_away": "home",
     "matchup": "BKN vs. CHA",
     "team_abbreviation": "BKN",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -314436,6 +314708,7 @@
   "player_name": "Jrue Holiday",
   "team_abbreviation": "POR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -315592,6 +315865,7 @@
   "player_name": "Julian Champagnie",
   "team_abbreviation": "SAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -316748,6 +317022,7 @@
   "player_name": "Julian Phillips",
   "team_abbreviation": "HOU",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -316758,7 +317033,7 @@
     "home_away": "home",
     "matchup": "HOU vs. DAL",
     "team_abbreviation": "HOU",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -317904,6 +318179,7 @@
   "player_name": "Julian Reese",
   "team_abbreviation": "NOP",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -317914,7 +318190,7 @@
     "home_away": "home",
     "matchup": "NOP vs. IND",
     "team_abbreviation": "NOP",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -319060,6 +319336,7 @@
   "player_name": "Julian Strawther",
   "team_abbreviation": "DEN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -319070,7 +319347,7 @@
     "home_away": "away",
     "matchup": "DEN @ OKC",
     "team_abbreviation": "DEN",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -320216,6 +320493,7 @@
   "player_name": "Julius Randle",
   "team_abbreviation": "BKN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -321372,6 +321650,7 @@
   "player_name": "Justin Champagnie",
   "team_abbreviation": "WAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -322528,6 +322807,7 @@
   "player_name": "Justin Edwards",
   "team_abbreviation": "PHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -322538,7 +322818,7 @@
     "home_away": "away",
     "matchup": "PHI @ NYK",
     "team_abbreviation": "PHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -322552,7 +322832,7 @@
     "home_away": "home",
     "matchup": "PHI vs. CLE",
     "team_abbreviation": "PHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -323684,6 +323964,7 @@
   "player_name": "Jusuf Nurkić",
   "team_abbreviation": "UTA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -323694,7 +323975,7 @@
     "home_away": "away",
     "matchup": "UTA @ MEM",
     "team_abbreviation": "UTA",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -324840,6 +325121,7 @@
   "player_name": "Kam Jones",
   "team_abbreviation": "MIL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -324850,7 +325132,7 @@
     "home_away": "away",
     "matchup": "MIL @ WAS",
     "team_abbreviation": "MIL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -325996,6 +326278,7 @@
   "player_name": "Karim López",
   "team_abbreviation": "MEM",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -326006,7 +326289,7 @@
     "home_away": "home",
     "matchup": "MEM vs. UTA",
     "team_abbreviation": "MEM",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -327152,6 +327435,7 @@
   "player_name": "Karl-Anthony Towns",
   "team_abbreviation": "NYK",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -328308,6 +328592,7 @@
   "player_name": "Karlo Matković",
   "team_abbreviation": "NOP",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -328318,7 +328603,7 @@
     "home_away": "home",
     "matchup": "NOP vs. IND",
     "team_abbreviation": "NOP",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -329464,6 +329749,7 @@
   "player_name": "Kasparas Jakučionis",
   "team_abbreviation": "MIL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -330620,6 +330906,7 @@
   "player_name": "Kawhi Leonard",
   "team_abbreviation": "TOR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -331776,6 +332063,7 @@
   "player_name": "Keaton Wagler",
   "team_abbreviation": "LAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -332932,6 +333220,7 @@
   "player_name": "Keegan Murray",
   "team_abbreviation": "SAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -334088,6 +334377,7 @@
   "player_name": "Kel'el Ware",
   "team_abbreviation": "MIL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -335244,6 +335534,7 @@
   "player_name": "Keldon Johnson",
   "team_abbreviation": "SAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -336400,6 +336691,7 @@
   "player_name": "Kelly Oubre Jr.",
   "team_abbreviation": "IND",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -337556,6 +337848,7 @@
   "player_name": "Kenrich Williams",
   "team_abbreviation": "OKC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -338712,6 +339005,7 @@
   "player_name": "Kentavious Caldwell-Pope",
   "team_abbreviation": "PHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -339868,6 +340162,7 @@
   "player_name": "Keon Ellis",
   "team_abbreviation": "BKN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -341024,6 +341319,7 @@
   "player_name": "Keshad Johnson",
   "team_abbreviation": "MIA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -341034,7 +341330,7 @@
     "home_away": "home",
     "matchup": "MIA vs. MIN",
     "team_abbreviation": "MIA",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -342180,6 +342476,7 @@
   "player_name": "Keshon Gilbert",
   "team_abbreviation": "ATL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -342190,7 +342487,7 @@
     "home_away": "away",
     "matchup": "ATL @ ORL",
     "team_abbreviation": "ATL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -343336,6 +343633,7 @@
   "player_name": "Kevin Durant",
   "team_abbreviation": "HOU",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -344492,6 +344790,7 @@
   "player_name": "Kevin Huerter",
   "team_abbreviation": "DET",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -345648,6 +345947,7 @@
   "player_name": "Kevin McCullar Jr.",
   "team_abbreviation": "NYK",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -345658,7 +345958,7 @@
     "home_away": "home",
     "matchup": "NYK vs. PHI",
     "team_abbreviation": "NYK",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -346804,6 +347104,7 @@
   "player_name": "Kevon Looney",
   "team_abbreviation": "LAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -347960,6 +348261,7 @@
   "player_name": "Keyonte George",
   "team_abbreviation": "UTA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -349116,6 +349418,7 @@
   "player_name": "Khalifa Diop",
   "team_abbreviation": "CLE",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -349126,7 +349429,7 @@
     "home_away": "away",
     "matchup": "CLE @ PHI",
     "team_abbreviation": "CLE",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -350272,6 +350575,7 @@
   "player_name": "Khaman Maluach",
   "team_abbreviation": "PHX",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -351428,6 +351732,7 @@
   "player_name": "Khris Middleton",
   "team_abbreviation": "WAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -352584,6 +352889,7 @@
   "player_name": "Kingston Flemings",
   "team_abbreviation": "ATL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -353740,6 +354046,7 @@
   "player_name": "Klay Thompson",
   "team_abbreviation": "MIA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -354896,6 +355203,7 @@
   "player_name": "Koa Peat",
   "team_abbreviation": "PHX",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -356052,6 +356360,7 @@
   "player_name": "Kobe Brown",
   "team_abbreviation": "IND",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -356062,7 +356371,7 @@
     "home_away": "away",
     "matchup": "IND @ NOP",
     "team_abbreviation": "IND",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -357208,6 +357517,7 @@
   "player_name": "Kobe Sanders",
   "team_abbreviation": "LAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -358364,6 +358674,7 @@
   "player_name": "Kon Knueppel",
   "team_abbreviation": "CHA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -358374,7 +358685,7 @@
     "home_away": "away",
     "matchup": "CHA @ BKN",
     "team_abbreviation": "CHA",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -359520,6 +359831,7 @@
   "player_name": "Kris Dunn",
   "team_abbreviation": "LAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -360676,6 +360988,7 @@
   "player_name": "Kris Murray",
   "team_abbreviation": "MEM",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -360686,7 +360999,7 @@
     "home_away": "home",
     "matchup": "MEM vs. UTA",
     "team_abbreviation": "MEM",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -361832,6 +362145,7 @@
   "player_name": "Kristaps Porziņģis",
   "team_abbreviation": "GSW",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -361842,7 +362156,7 @@
     "home_away": "away",
     "matchup": "GSW @ LAL",
     "team_abbreviation": "GSW",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -362988,6 +363302,7 @@
   "player_name": "Kylan Boswell",
   "team_abbreviation": "CHA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -362998,7 +363313,7 @@
     "home_away": "away",
     "matchup": "CHA @ BKN",
     "team_abbreviation": "CHA",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -364144,6 +364459,7 @@
   "player_name": "Kyle Anderson",
   "team_abbreviation": "TOR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -365300,6 +365616,7 @@
   "player_name": "Kyle Filipowski",
   "team_abbreviation": "UTA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -366456,6 +366773,7 @@
   "player_name": "Kyle Kuzma",
   "team_abbreviation": "MIL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -367612,6 +367930,7 @@
   "player_name": "Kyrie Irving",
   "team_abbreviation": "DAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -368768,6 +369087,7 @@
   "player_name": "Kyshawn George",
   "team_abbreviation": "WAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -369924,6 +370244,7 @@
   "player_name": "LJ Cryer",
   "team_abbreviation": "GSW",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -371080,6 +371401,7 @@
   "player_name": "LaMelo Ball",
   "team_abbreviation": "MIN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -372236,6 +372558,7 @@
   "player_name": "Labaron Philon Jr.",
   "team_abbreviation": "PHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -372246,7 +372569,7 @@
     "home_away": "away",
     "matchup": "PHI @ NYK",
     "team_abbreviation": "PHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -372260,7 +372583,7 @@
     "home_away": "home",
     "matchup": "PHI vs. CLE",
     "team_abbreviation": "PHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -373392,6 +373715,7 @@
   "player_name": "Landry Shamet",
   "team_abbreviation": "NYK",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -374548,6 +374872,7 @@
   "player_name": "Larry Nance Jr.",
   "team_abbreviation": "IND",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -375704,6 +376029,7 @@
   "player_name": "Lauri Markkanen",
   "team_abbreviation": "UTA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -376860,6 +377186,7 @@
   "player_name": "LeBron James",
   "team_abbreviation": "PHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -378016,6 +378343,7 @@
   "player_name": "Leaky Black",
   "team_abbreviation": "SAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -378026,7 +378354,7 @@
     "home_away": "away",
     "matchup": "SAC @ LAC",
     "team_abbreviation": "SAC",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -379172,6 +379500,7 @@
   "player_name": "Leonard Miller",
   "team_abbreviation": "CHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -380328,6 +380657,7 @@
   "player_name": "Liam McNeeley",
   "team_abbreviation": "CHA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -381484,6 +381814,7 @@
   "player_name": "Luguentz Dort",
   "team_abbreviation": "ATL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -382640,6 +382971,7 @@
   "player_name": "Luka Dončić",
   "team_abbreviation": "LAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -383796,6 +384128,7 @@
   "player_name": "Luka Garza",
   "team_abbreviation": "BOS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -384952,6 +385285,7 @@
   "player_name": "Luke Kennard",
   "team_abbreviation": "PHX",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -384962,7 +385296,7 @@
     "home_away": "away",
     "matchup": "PHX @ POR",
     "team_abbreviation": "PHX",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -386108,6 +386442,7 @@
   "player_name": "Luke Kornet",
   "team_abbreviation": "SAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -387264,6 +387599,7 @@
   "player_name": "Malachi Smith",
   "team_abbreviation": "TOR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -387274,7 +387610,7 @@
     "home_away": "home",
     "matchup": "TOR vs. CHI",
     "team_abbreviation": "TOR",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -388420,6 +388756,7 @@
   "player_name": "Malevy Leons",
   "team_abbreviation": "GSW",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -389576,6 +389913,7 @@
   "player_name": "Malik Dia",
   "team_abbreviation": "NOP",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -389586,7 +389924,7 @@
     "home_away": "home",
     "matchup": "NOP vs. IND",
     "team_abbreviation": "NOP",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -390732,6 +391070,7 @@
   "player_name": "Malik Monk",
   "team_abbreviation": "SAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -390742,7 +391081,7 @@
     "home_away": "away",
     "matchup": "SAC @ LAC",
     "team_abbreviation": "SAC",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -391888,6 +392227,7 @@
   "player_name": "Maliq Brown",
   "team_abbreviation": "SAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -393044,6 +393384,7 @@
   "player_name": "Marcus Sasser",
   "team_abbreviation": "DAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -394200,6 +394541,7 @@
   "player_name": "Marcus Smart",
   "team_abbreviation": "HOU",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -395356,6 +395698,7 @@
   "player_name": "Mario Hezonja",
   "team_abbreviation": "CLE",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -396512,6 +396855,7 @@
   "player_name": "Mark Williams",
   "team_abbreviation": "PHX",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -396522,7 +396866,7 @@
     "home_away": "away",
     "matchup": "PHX @ POR",
     "team_abbreviation": "PHX",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -397668,6 +398012,7 @@
   "player_name": "Marvin Bagley III",
   "team_abbreviation": "DEN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -398824,6 +399169,7 @@
   "player_name": "Matas Buzelis",
   "team_abbreviation": "CHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -399980,6 +400326,7 @@
   "player_name": "Matisse Thybulle",
   "team_abbreviation": "LAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -401136,6 +401483,7 @@
   "player_name": "Max Christie",
   "team_abbreviation": "DAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -402292,6 +402640,7 @@
   "player_name": "Max Strus",
   "team_abbreviation": "LAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -402302,7 +402651,7 @@
     "home_away": "home",
     "matchup": "LAC vs. SAC",
     "team_abbreviation": "LAC",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -403448,6 +403797,7 @@
   "player_name": "Maxime Raynaud",
   "team_abbreviation": "SAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -403458,7 +403808,7 @@
     "home_away": "away",
     "matchup": "SAC @ LAC",
     "team_abbreviation": "SAC",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -404604,6 +404954,7 @@
   "player_name": "Meleek Thomas",
   "team_abbreviation": "CLE",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -404614,7 +404965,7 @@
     "home_away": "away",
     "matchup": "CLE @ PHI",
     "team_abbreviation": "CLE",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -405760,6 +406111,7 @@
   "player_name": "Micah Potter",
   "team_abbreviation": "POR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -406916,6 +407268,7 @@
   "player_name": "Michael Ajayi",
   "team_abbreviation": "CHA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -406926,7 +407279,7 @@
     "home_away": "away",
     "matchup": "CHA @ BKN",
     "team_abbreviation": "CHA",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -408072,6 +408425,7 @@
   "player_name": "Michael Porter Jr.",
   "team_abbreviation": "BKN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -409228,6 +409582,7 @@
   "player_name": "Mikal Bridges",
   "team_abbreviation": "NYK",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -410384,6 +410739,7 @@
   "player_name": "Mike Conley",
   "team_abbreviation": "BOS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -410394,7 +410750,7 @@
     "home_away": "away",
     "matchup": "BOS @ DET",
     "team_abbreviation": "BOS",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -411540,6 +411896,7 @@
   "player_name": "Mikel Brown Jr.",
   "team_abbreviation": "BKN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -412696,6 +413053,7 @@
   "player_name": "Miles Bridges",
   "team_abbreviation": "PHX",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -413852,6 +414210,7 @@
   "player_name": "Miles McBride",
   "team_abbreviation": "NYK",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -415008,6 +415367,7 @@
   "player_name": "Mitchell Robinson",
   "team_abbreviation": "BOS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -416164,6 +416524,7 @@
   "player_name": "Mo Bamba",
   "team_abbreviation": "UTA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -416174,7 +416535,7 @@
     "home_away": "away",
     "matchup": "UTA @ MEM",
     "team_abbreviation": "UTA",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -417320,6 +417681,7 @@
   "player_name": "Mohamed Diawara",
   "team_abbreviation": "NYK",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -417330,7 +417692,7 @@
     "home_away": "home",
     "matchup": "NYK vs. PHI",
     "team_abbreviation": "NYK",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -418476,6 +418838,7 @@
   "player_name": "Morez Johnson Jr.",
   "team_abbreviation": "DAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -419632,6 +419995,7 @@
   "player_name": "Moritz Wagner",
   "team_abbreviation": "BKN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -420788,6 +421152,7 @@
   "player_name": "Moses Moody",
   "team_abbreviation": "GSW",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -420798,7 +421163,7 @@
     "home_away": "away",
     "matchup": "GSW @ LAL",
     "team_abbreviation": "GSW",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -421944,6 +422309,7 @@
   "player_name": "Mouhamed Gueye",
   "team_abbreviation": "ATL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -421954,7 +422320,7 @@
     "home_away": "away",
     "matchup": "ATL @ ORL",
     "team_abbreviation": "ATL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -423100,6 +423466,7 @@
   "player_name": "Moussa Cissé",
   "team_abbreviation": "DAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -424256,6 +424623,7 @@
   "player_name": "Moussa Diabaté",
   "team_abbreviation": "CHA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -425412,6 +425780,7 @@
   "player_name": "Myles Turner",
   "team_abbreviation": "MIL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -426568,6 +426937,7 @@
   "player_name": "Myron Gardner",
   "team_abbreviation": "MIA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -427724,6 +428094,7 @@
   "player_name": "Nae'Qwan Tomlin",
   "team_abbreviation": "CLE",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -427734,7 +428105,7 @@
     "home_away": "away",
     "matchup": "CLE @ PHI",
     "team_abbreviation": "CLE",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -428880,6 +429251,7 @@
   "player_name": "Naji Marshall",
   "team_abbreviation": "DAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -430036,6 +430408,7 @@
   "player_name": "Nate Ament",
   "team_abbreviation": "MIL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -430046,7 +430419,7 @@
     "home_away": "away",
     "matchup": "MIL @ WAS",
     "team_abbreviation": "MIL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -431192,6 +431565,7 @@
   "player_name": "Nate Bittle",
   "team_abbreviation": "TOR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -431202,7 +431576,7 @@
     "home_away": "home",
     "matchup": "TOR vs. CHI",
     "team_abbreviation": "TOR",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -432348,6 +432722,7 @@
   "player_name": "Naz Reid",
   "team_abbreviation": "CHA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -433504,6 +433879,7 @@
   "player_name": "Neemias Queta",
   "team_abbreviation": "BOS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -434660,6 +435036,7 @@
   "player_name": "Nic Claxton",
   "team_abbreviation": "CHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -434670,7 +435047,7 @@
     "home_away": "away",
     "matchup": "CHI @ TOR",
     "team_abbreviation": "CHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -435816,6 +436193,7 @@
   "player_name": "Nick Martinelli",
   "team_abbreviation": "LAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -436972,6 +437350,7 @@
   "player_name": "Nick Richards",
   "team_abbreviation": "MIA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -438128,6 +438507,7 @@
   "player_name": "Nickeil Alexander-Walker",
   "team_abbreviation": "ATL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -439284,6 +439664,7 @@
   "player_name": "Nikola Jokić",
   "team_abbreviation": "DEN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -440440,6 +440821,7 @@
   "player_name": "Nikola Jović",
   "team_abbreviation": "MIA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -441596,6 +441978,7 @@
   "player_name": "Nikola Topić",
   "team_abbreviation": "OKC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -441606,7 +441989,7 @@
     "home_away": "away",
     "matchup": "OKC @ SAS",
     "team_abbreviation": "OKC",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -441620,7 +442003,7 @@
     "home_away": "home",
     "matchup": "OKC vs. DEN",
     "team_abbreviation": "OKC",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -442752,6 +443135,7 @@
   "player_name": "Nikola Vučević",
   "team_abbreviation": "ORL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -443908,6 +444292,7 @@
   "player_name": "Nique Clifford",
   "team_abbreviation": "SAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -445064,6 +445449,7 @@
   "player_name": "Noa Essengue",
   "team_abbreviation": "CHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -446220,6 +446606,7 @@
   "player_name": "Noah Clowney",
   "team_abbreviation": "BKN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -447376,6 +447763,7 @@
   "player_name": "Noah Penda",
   "team_abbreviation": "ORL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -447386,7 +447774,7 @@
     "home_away": "home",
     "matchup": "ORL vs. ATL",
     "team_abbreviation": "ORL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -448532,6 +448920,7 @@
   "player_name": "Nolan Traore",
   "team_abbreviation": "BKN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -449688,6 +450077,7 @@
   "player_name": "Norman Powell",
   "team_abbreviation": "CHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -450844,6 +451234,7 @@
   "player_name": "OG Anunoby",
   "team_abbreviation": "NYK",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -452000,6 +452391,7 @@
   "player_name": "Obi Toppin",
   "team_abbreviation": "IND",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -453156,6 +453548,7 @@
   "player_name": "Olivier-Maxence Prosper",
   "team_abbreviation": "MEM",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -453166,7 +453559,7 @@
     "home_away": "home",
     "matchup": "MEM vs. UTA",
     "team_abbreviation": "MEM",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -454312,6 +454705,7 @@
   "player_name": "Onyeka Okongwu",
   "team_abbreviation": "ATL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -455468,6 +455862,7 @@
   "player_name": "Oscar Tshiebwe",
   "team_abbreviation": "HOU",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -455478,7 +455873,7 @@
     "home_away": "home",
     "matchup": "HOU vs. DAL",
     "team_abbreviation": "HOU",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -456624,6 +457019,7 @@
   "player_name": "Oso Ighodaro",
   "team_abbreviation": "PHX",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -457780,6 +458176,7 @@
   "player_name": "Otega Oweh",
   "team_abbreviation": "OKC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -457790,7 +458187,7 @@
     "home_away": "away",
     "matchup": "OKC @ SAS",
     "team_abbreviation": "OKC",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -457804,7 +458201,7 @@
     "home_away": "home",
     "matchup": "OKC vs. DEN",
     "team_abbreviation": "OKC",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -458936,6 +459333,7 @@
   "player_name": "Ousmane Dieng",
   "team_abbreviation": "MIL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -460092,6 +460490,7 @@
   "player_name": "P.J. Washington",
   "team_abbreviation": "DAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -461248,6 +461647,7 @@
   "player_name": "PJ Hall",
   "team_abbreviation": "CHA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -461258,7 +461658,7 @@
     "home_away": "away",
     "matchup": "CHA @ BKN",
     "team_abbreviation": "CHA",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -462404,6 +462804,7 @@
   "player_name": "Pacôme Dadiet",
   "team_abbreviation": "NYK",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -462414,7 +462815,7 @@
     "home_away": "home",
     "matchup": "NYK vs. PHI",
     "team_abbreviation": "NYK",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -463560,6 +463961,7 @@
   "player_name": "Paolo Banchero",
   "team_abbreviation": "ORL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -464716,6 +465118,7 @@
   "player_name": "Pascal Siakam",
   "team_abbreviation": "IND",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -465872,6 +466275,7 @@
   "player_name": "Pat Spencer",
   "team_abbreviation": "PHX",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -467028,6 +467432,7 @@
   "player_name": "Patrick Williams",
   "team_abbreviation": "CHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -467038,7 +467443,7 @@
     "home_away": "away",
     "matchup": "CHI @ TOR",
     "team_abbreviation": "CHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -468184,6 +468589,7 @@
   "player_name": "Paul George",
   "team_abbreviation": "BOS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -469340,6 +469746,7 @@
   "player_name": "Paul Reed",
   "team_abbreviation": "DET",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -470496,6 +470903,7 @@
   "player_name": "Payton Pritchard",
   "team_abbreviation": "BOS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -471652,6 +472060,7 @@
   "player_name": "Pelle Larsson",
   "team_abbreviation": "MIA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -472808,6 +473217,7 @@
   "player_name": "Pete Nance",
   "team_abbreviation": "MIL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -472818,7 +473228,7 @@
     "home_away": "away",
     "matchup": "MIL @ WAS",
     "team_abbreviation": "MIL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -473964,6 +474374,7 @@
   "player_name": "Peyton Watson",
   "team_abbreviation": "CLE",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -475120,6 +475531,7 @@
   "player_name": "Precious Achiuwa",
   "team_abbreviation": "SAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -476276,6 +476688,7 @@
   "player_name": "Quadir Copeland",
   "team_abbreviation": "HOU",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -476286,7 +476699,7 @@
     "home_away": "home",
     "matchup": "HOU vs. DAL",
     "team_abbreviation": "HOU",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -477432,6 +477845,7 @@
   "player_name": "Quentin Grimes",
   "team_abbreviation": "LAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -478588,6 +479002,7 @@
   "player_name": "Quenton Jackson",
   "team_abbreviation": "IND",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -479744,6 +480159,7 @@
   "player_name": "Quinten Post",
   "team_abbreviation": "MEM",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -480900,6 +481316,7 @@
   "player_name": "RJ Barrett",
   "team_abbreviation": "TOR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -482056,6 +482473,7 @@
   "player_name": "Rasheer Fleming",
   "team_abbreviation": "PHX",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -483212,6 +483630,7 @@
   "player_name": "RayJ Dennis",
   "team_abbreviation": "ATL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -483222,7 +483641,7 @@
     "home_away": "away",
     "matchup": "ATL @ ORL",
     "team_abbreviation": "ATL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -484368,6 +484787,7 @@
   "player_name": "Rayan Rupert",
   "team_abbreviation": "PHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -484378,7 +484798,7 @@
     "home_away": "away",
     "matchup": "PHI @ NYK",
     "team_abbreviation": "PHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -484392,7 +484812,7 @@
     "home_away": "home",
     "matchup": "PHI vs. CLE",
     "team_abbreviation": "PHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -485524,6 +485944,7 @@
   "player_name": "Reece Beekman",
   "team_abbreviation": "WAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -485534,7 +485955,7 @@
     "home_away": "home",
     "matchup": "WAS vs. MIL",
     "team_abbreviation": "WAS",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -486680,6 +487101,7 @@
   "player_name": "Reed Sheppard",
   "team_abbreviation": "HOU",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -487836,6 +488258,7 @@
   "player_name": "Riley Minix",
   "team_abbreviation": "CLE",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -487846,7 +488269,7 @@
     "home_away": "away",
     "matchup": "CLE @ PHI",
     "team_abbreviation": "CLE",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -488992,6 +489415,7 @@
   "player_name": "Robert Williams III",
   "team_abbreviation": "POR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -490148,6 +490572,7 @@
   "player_name": "Rocco Zikarsky",
   "team_abbreviation": "MIN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -490158,7 +490583,7 @@
     "home_away": "away",
     "matchup": "MIN @ MIA",
     "team_abbreviation": "MIN",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -491304,6 +491729,7 @@
   "player_name": "Ron Harper Jr.",
   "team_abbreviation": "BOS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -491314,7 +491740,7 @@
     "home_away": "away",
     "matchup": "BOS @ DET",
     "team_abbreviation": "BOS",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -492460,6 +492886,7 @@
   "player_name": "Ronald Holland II",
   "team_abbreviation": "DET",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -493616,6 +494043,7 @@
   "player_name": "Royce O'Neale",
   "team_abbreviation": "CHA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -494772,6 +495200,7 @@
   "player_name": "Rudy Gobert",
   "team_abbreviation": "MIN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -495928,6 +496357,7 @@
   "player_name": "Rui Hachimura",
   "team_abbreviation": "LAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -497084,6 +497514,7 @@
   "player_name": "Ryan Conwell",
   "team_abbreviation": "MIA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -498240,6 +498671,7 @@
   "player_name": "Ryan Dunn",
   "team_abbreviation": "PHX",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -499396,6 +499828,7 @@
   "player_name": "Ryan Kalkbrenner",
   "team_abbreviation": "CHA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -500552,6 +500985,7 @@
   "player_name": "Ryan Nembhard",
   "team_abbreviation": "DEN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -501708,6 +502142,7 @@
   "player_name": "Ryan Rollins",
   "team_abbreviation": "MIL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -502864,6 +503299,7 @@
   "player_name": "Saddiq Bey",
   "team_abbreviation": "NOP",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -504020,6 +504456,7 @@
   "player_name": "Sam Hauser",
   "team_abbreviation": "BOS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -505176,6 +505613,7 @@
   "player_name": "Sam Merrill",
   "team_abbreviation": "CLE",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -506332,6 +506770,7 @@
   "player_name": "Sandro Mamukelashvili",
   "team_abbreviation": "LAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -507488,6 +507927,7 @@
   "player_name": "Santi Aldama",
   "team_abbreviation": "DAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -507498,7 +507938,7 @@
     "home_away": "away",
     "matchup": "DAL @ HOU",
     "team_abbreviation": "DAL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -508644,6 +509084,7 @@
   "player_name": "Scoot Henderson",
   "team_abbreviation": "POR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -509800,6 +510241,7 @@
   "player_name": "Scottie Barnes",
   "team_abbreviation": "TOR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -510956,6 +511398,7 @@
   "player_name": "Scotty Pippen Jr.",
   "team_abbreviation": "MEM",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -512112,6 +512555,7 @@
   "player_name": "Sergio de Larrea",
   "team_abbreviation": "DAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -513268,6 +513712,7 @@
   "player_name": "Shaedon Sharpe",
   "team_abbreviation": "POR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -513278,7 +513723,7 @@
     "home_away": "home",
     "matchup": "POR vs. PHX",
     "team_abbreviation": "POR",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -514424,6 +514869,7 @@
   "player_name": "Shai Gilgeous-Alexander",
   "team_abbreviation": "OKC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -515580,6 +516026,7 @@
   "player_name": "Sidy Cissoko",
   "team_abbreviation": "POR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -516736,6 +517183,7 @@
   "player_name": "Simone Fontecchio",
   "team_abbreviation": "MIA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -517892,6 +518340,7 @@
   "player_name": "Sion James",
   "team_abbreviation": "CHA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -519048,6 +519497,7 @@
   "player_name": "Spencer Jones",
   "team_abbreviation": "DEN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -519058,7 +519508,7 @@
     "home_away": "away",
     "matchup": "DEN @ OKC",
     "team_abbreviation": "DEN",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -520204,6 +520654,7 @@
   "player_name": "Stephen Curry",
   "team_abbreviation": "GSW",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -521360,6 +521811,7 @@
   "player_name": "Stephon Castle",
   "team_abbreviation": "SAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -522516,6 +522968,7 @@
   "player_name": "Steven Adams",
   "team_abbreviation": "HOU",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -522526,7 +522979,7 @@
     "home_away": "home",
     "matchup": "HOU vs. DAL",
     "team_abbreviation": "HOU",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -523672,6 +524125,7 @@
   "player_name": "Svi Mykhailiuk",
   "team_abbreviation": "UTA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -524828,6 +525282,7 @@
   "player_name": "T.J. McConnell",
   "team_abbreviation": "IND",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -524838,7 +525293,7 @@
     "home_away": "away",
     "matchup": "IND @ NOP",
     "team_abbreviation": "IND",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -525984,6 +526439,7 @@
   "player_name": "Tacko Fall",
   "team_abbreviation": "PHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -525994,7 +526450,7 @@
     "home_away": "away",
     "matchup": "PHI @ NYK",
     "team_abbreviation": "PHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -526008,7 +526464,7 @@
     "home_away": "home",
     "matchup": "PHI vs. CLE",
     "team_abbreviation": "PHI",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -527140,6 +527596,7 @@
   "player_name": "Tari Eason",
   "team_abbreviation": "HOU",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -528296,6 +528753,7 @@
   "player_name": "Tarik Biberović",
   "team_abbreviation": "DAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -528306,7 +528764,7 @@
     "home_away": "away",
     "matchup": "DAL @ HOU",
     "team_abbreviation": "DAL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -529452,6 +529910,7 @@
   "player_name": "Tarris Reed Jr.",
   "team_abbreviation": "SAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -530608,6 +531067,7 @@
   "player_name": "Taurean Prince",
   "team_abbreviation": "DET",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -530618,7 +531078,7 @@
     "home_away": "home",
     "matchup": "DET vs. BOS",
     "team_abbreviation": "DET",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -531764,6 +532224,7 @@
   "player_name": "Taylor Hendricks",
   "team_abbreviation": "MEM",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -531774,7 +532235,7 @@
     "home_away": "home",
     "matchup": "MEM vs. UTA",
     "team_abbreviation": "MEM",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -532920,6 +533381,7 @@
   "player_name": "Terance Mann",
   "team_abbreviation": "BKN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -532930,7 +533392,7 @@
     "home_away": "home",
     "matchup": "BKN vs. CHA",
     "team_abbreviation": "BKN",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -534076,6 +534538,7 @@
   "player_name": "Terrence Shannon Jr",
   "team_abbreviation": "MIN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -535232,6 +535695,7 @@
   "player_name": "Thomas Bryant",
   "team_abbreviation": "CLE",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -535242,7 +535706,7 @@
     "home_away": "away",
     "matchup": "CLE @ PHI",
     "team_abbreviation": "CLE",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -536388,6 +536852,7 @@
   "player_name": "Thomas Sorber",
   "team_abbreviation": "OKC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -536398,7 +536863,7 @@
     "home_away": "away",
     "matchup": "OKC @ SAS",
     "team_abbreviation": "OKC",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -536412,7 +536877,7 @@
     "home_away": "home",
     "matchup": "OKC vs. DEN",
     "team_abbreviation": "OKC",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -537544,6 +538009,7 @@
   "player_name": "Tidjane Salaün",
   "team_abbreviation": "CHA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -537554,7 +538020,7 @@
     "home_away": "away",
     "matchup": "CHA @ BKN",
     "team_abbreviation": "CHA",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -538700,6 +539166,7 @@
   "player_name": "Tim Hardaway Jr.",
   "team_abbreviation": "MIA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -539856,6 +540323,7 @@
   "player_name": "Tobe Awaka",
   "team_abbreviation": "CHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -541012,6 +541480,7 @@
   "player_name": "Tobi Lawal",
   "team_abbreviation": "DAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -541022,7 +541491,7 @@
     "home_away": "away",
     "matchup": "DAL @ HOU",
     "team_abbreviation": "DAL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -542168,6 +542637,7 @@
   "player_name": "Tobias Harris",
   "team_abbreviation": "SAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -542178,7 +542648,7 @@
     "home_away": "home",
     "matchup": "SAS vs. OKC",
     "team_abbreviation": "SAS",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -543324,6 +543794,7 @@
   "player_name": "Tolu Smith",
   "team_abbreviation": "DET",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -543334,7 +543805,7 @@
     "home_away": "home",
     "matchup": "DET vs. BOS",
     "team_abbreviation": "DET",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -544480,6 +544951,7 @@
   "player_name": "Tony Bradley",
   "team_abbreviation": "UTA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -544490,7 +544962,7 @@
     "home_away": "away",
     "matchup": "UTA @ MEM",
     "team_abbreviation": "UTA",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -545636,6 +546108,7 @@
   "player_name": "Toumani Camara",
   "team_abbreviation": "POR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -546792,6 +547265,7 @@
   "player_name": "Trae Young",
   "team_abbreviation": "WAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -547948,6 +548422,7 @@
   "player_name": "Trayce Jackson-Davis",
   "team_abbreviation": "TOR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -549104,6 +549579,7 @@
   "player_name": "Tre Donaldson",
   "team_abbreviation": "MIA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -549114,7 +549590,7 @@
     "home_away": "home",
     "matchup": "MIA vs. MIN",
     "team_abbreviation": "MIA",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -550260,6 +550736,7 @@
   "player_name": "Tre Johnson",
   "team_abbreviation": "WAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -551416,6 +551893,7 @@
   "player_name": "Tre Jones",
   "team_abbreviation": "CHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -552572,6 +553050,7 @@
   "player_name": "Tre Mann",
   "team_abbreviation": "WAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -552582,7 +553061,7 @@
     "home_away": "home",
     "matchup": "WAS vs. MIL",
     "team_abbreviation": "WAS",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -553728,6 +554207,7 @@
   "player_name": "Trendon Watford",
   "team_abbreviation": "NOP",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -553738,7 +554218,7 @@
     "home_away": "home",
     "matchup": "NOP vs. IND",
     "team_abbreviation": "NOP",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -554884,6 +555364,7 @@
   "player_name": "Trevon Brazile",
   "team_abbreviation": "DEN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -556040,6 +556521,7 @@
   "player_name": "Trey Alexander",
   "team_abbreviation": "UTA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -556050,7 +556532,7 @@
     "home_away": "away",
     "matchup": "UTA @ MEM",
     "team_abbreviation": "UTA",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -557196,6 +557678,7 @@
   "player_name": "Trey Lyles",
   "team_abbreviation": "MIN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -558352,6 +558835,7 @@
   "player_name": "Trey Murphy III",
   "team_abbreviation": "NOP",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -559508,6 +559992,7 @@
   "player_name": "Tristan Enaruna",
   "team_abbreviation": "CLE",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -559518,7 +560003,7 @@
     "home_away": "away",
     "matchup": "CLE @ PHI",
     "team_abbreviation": "CLE",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -560664,6 +561149,7 @@
   "player_name": "Tristan Vukčević",
   "team_abbreviation": "WAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -560674,7 +561160,7 @@
     "home_away": "home",
     "matchup": "WAS vs. MIL",
     "team_abbreviation": "WAS",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -561820,6 +562306,7 @@
   "player_name": "Tristan da Silva",
   "team_abbreviation": "ORL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -562976,6 +563463,7 @@
   "player_name": "Ty Jerome",
   "team_abbreviation": "MEM",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -564132,6 +564620,7 @@
   "player_name": "Tyler Bilodeau",
   "team_abbreviation": "BKN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -564142,7 +564631,7 @@
     "home_away": "home",
     "matchup": "BKN vs. CHA",
     "team_abbreviation": "BKN",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -565288,6 +565777,7 @@
   "player_name": "Tyler Herro",
   "team_abbreviation": "MIL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -566444,6 +566934,7 @@
   "player_name": "Tyler Kolek",
   "team_abbreviation": "NYK",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -566454,7 +566945,7 @@
     "home_away": "home",
     "matchup": "NYK vs. PHI",
     "team_abbreviation": "NYK",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -567600,6 +568091,7 @@
   "player_name": "Tyler Nickel",
   "team_abbreviation": "NYK",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -567610,7 +568102,7 @@
     "home_away": "home",
     "matchup": "NYK vs. PHI",
     "team_abbreviation": "NYK",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -568756,6 +569248,7 @@
   "player_name": "Tyrese Haliburton",
   "team_abbreviation": "IND",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -569912,6 +570405,7 @@
   "player_name": "Tyrese Maxey",
   "team_abbreviation": "PHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -571068,6 +571562,7 @@
   "player_name": "Tyrese Proctor",
   "team_abbreviation": "CLE",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -572224,6 +572719,7 @@
   "player_name": "Tyus Jones",
   "team_abbreviation": "DEN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -573380,6 +573876,7 @@
   "player_name": "Ugonna Onyenso",
   "team_abbreviation": "DET",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -573390,7 +573887,7 @@
     "home_away": "home",
     "matchup": "DET vs. BOS",
     "team_abbreviation": "DET",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -574536,6 +575033,7 @@
   "player_name": "VJ Edgecombe",
   "team_abbreviation": "PHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -575692,6 +576190,7 @@
   "player_name": "Victor Wembanyama",
   "team_abbreviation": "SAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -576848,6 +577347,7 @@
   "player_name": "Vladislav Goldin",
   "team_abbreviation": "MIA",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -576858,7 +577358,7 @@
     "home_away": "home",
     "matchup": "MIA vs. MIN",
     "team_abbreviation": "MIA",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -578004,6 +578504,7 @@
   "player_name": "Vít Krejčí",
   "team_abbreviation": "POR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -579160,6 +579661,7 @@
   "player_name": "Walker Kessler",
   "team_abbreviation": "LAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -580316,6 +580818,7 @@
   "player_name": "Walter Clayton Jr.",
   "team_abbreviation": "DAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -580326,7 +580829,7 @@
     "home_away": "away",
     "matchup": "DAL @ HOU",
     "team_abbreviation": "DAL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -581472,6 +581975,7 @@
   "player_name": "Wendell Carter Jr.",
   "team_abbreviation": "ORL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -582628,6 +583132,7 @@
   "player_name": "Will Richard",
   "team_abbreviation": "GSW",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -583784,6 +584289,7 @@
   "player_name": "Will Riley",
   "team_abbreviation": "WAS",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -583794,7 +584300,7 @@
     "home_away": "home",
     "matchup": "WAS vs. MIL",
     "team_abbreviation": "WAS",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -584940,6 +585446,7 @@
   "player_name": "Yang Hansen",
   "team_abbreviation": "POR",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -586096,6 +586603,7 @@
   "player_name": "Yanic Konan Niederhäuser",
   "team_abbreviation": "LAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -586106,7 +586614,7 @@
     "home_away": "home",
     "matchup": "LAC vs. SAC",
     "team_abbreviation": "LAC",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -587252,6 +587760,7 @@
   "player_name": "Yaxel Lendeborg",
   "team_abbreviation": "GSW",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -588408,6 +588917,7 @@
   "player_name": "Yves Missi",
   "team_abbreviation": "NOP",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -589564,6 +590074,7 @@
   "player_name": "Zaccharie Risacher",
   "team_abbreviation": "DAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -590720,6 +591231,7 @@
   "player_name": "Zach Collins",
   "team_abbreviation": "CHI",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -591876,6 +592388,7 @@
   "player_name": "Zach Edey",
   "team_abbreviation": "MEM",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -593032,6 +593545,7 @@
   "player_name": "Zach LaVine",
   "team_abbreviation": "SAC",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -594188,6 +594702,7 @@
   "player_name": "Zeke Nnaji",
   "team_abbreviation": "DEN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -594198,7 +594713,7 @@
     "home_away": "away",
     "matchup": "DEN @ OKC",
     "team_abbreviation": "DEN",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -595344,6 +595859,7 @@
   "player_name": "Ziaire Williams",
   "team_abbreviation": "LAL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -596500,6 +597016,7 @@
   "player_name": "Zion Williamson",
   "team_abbreviation": "NOP",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -597656,6 +598173,7 @@
   "player_name": "Zuby Ejiofor",
   "team_abbreviation": "ATL",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -597666,7 +598184,7 @@
     "home_away": "away",
     "matchup": "ATL @ ORL",
     "team_abbreviation": "ATL",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
@@ -598812,6 +599330,7 @@
   "player_name": "Zyon Pullin",
   "team_abbreviation": "MIN",
   "slot_total": 82,
+  "trade_marker": [],
   "games": [
    {
     "game_seq": 1,
@@ -598822,7 +599341,7 @@
     "home_away": "away",
     "matchup": "MIN @ MIA",
     "team_abbreviation": "MIN",
-    "status": "missed",
+    "status": "out",
     "pts": null,
     "minutes": null,
     "is_cup_final": false
