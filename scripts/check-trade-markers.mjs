@@ -7,7 +7,7 @@
 import assert from "node:assert/strict";
 import { loadLib } from "./lib/load-ts.mjs";
 
-const { toTeamGames, loadPlayerSlots, loadPointsRows } = await loadLib("betting");
+const { toTeamGames, loadPlayerSlots, loadPointsRows, SOURCE_FIELD } = await loadLib("betting");
 const { tradeTicks, chartCells, layoutTradeLabels, pickMerge, encodePlayerSlots, decodePlayerSlots, MARKER_BAND_ROWS, exitReasonOf, joinReasonOf } =
   await loadLib("teamGames");
 
@@ -181,6 +181,43 @@ check("wire round-trip keeps joins, reasons, exits and explicit flag", () => {
   assert.deepEqual(back.cur.games, games);
   assert.equal(back.cur.explicitTrades, true);
   assert.deepEqual(tk(back.cur.games), tk(games));
+});
+
+check("row source: normalised, round-trips on the wire as `c`, absent rows add no bytes, not drawn", () => {
+  const raw = player({
+    team: () => "ATL",
+    status: (s) => (s === 12 || s === 13 || s === 14 ? "out" : "played"),
+    extra: (s) =>
+      s === 12 ? { [SOURCE_FIELD]: "Basketball-Reference" }
+      : s === 13 ? { [SOURCE_FIELD]: "  Basketball-Reference  " }
+      : s === 14 ? { [SOURCE_FIELD]: "   " }
+      : s === 15 ? { [SOURCE_FIELD]: 7 }
+      : {},
+  });
+  const games = toTeamGames(raw, []);
+  assert.deepEqual(
+    games.filter((g) => "source" in g).map((g) => [g.seq, g.status, g.source]),
+    [[12, "missed", "Basketball-Reference"], [13, "missed", "Basketball-Reference"]],
+  );
+  const p = { cur: { games, slotTotal: 82, explicitTrades: true }, prev: null };
+  const wire = encodePlayerSlots(p);
+  assert.deepEqual(wire.a.g.flatMap((w, i) => ("c" in w ? [[i + 1, w.c]] : [])), [[12, "Basketball-Reference"], [13, "Basketball-Reference"]]);
+  const back = decodePlayerSlots(JSON.parse(JSON.stringify(wire)));
+  assert.deepEqual(back.cur.games, games);
+  // Same rows without the field encode byte-for-byte as before.
+  const omit = (o, k) => Object.fromEntries(Object.entries(o).filter(([key]) => key !== k));
+  const bare = toTeamGames(raw.map((r) => omit(r, SOURCE_FIELD)), []);
+  const strip = games.map((g) => omit(g, "source"));
+  assert.equal(
+    JSON.stringify(encodePlayerSlots({ cur: { games: bare, slotTotal: 82, explicitTrades: true }, prev: null })),
+    JSON.stringify(encodePlayerSlots({ cur: { games: strip, slotTotal: 82, explicitTrades: true }, prev: null })),
+  );
+  // Data-only: the chart's cells and ticks are the same with or without it.
+  assert.deepEqual(tk(back.cur.games), tk(bare));
+  assert.deepEqual(
+    chartCells(dated(back.cur.games), 82, true).dated.map((g) => [g.slotKey, g.status]),
+    chartCells(dated(bare), 82, true).dated.map((g) => [g.slotKey, g.status]),
+  );
 });
 
 check("short wording (390 only): Traded / Signed / Joined / Waived / Left + team, no dates", () => {

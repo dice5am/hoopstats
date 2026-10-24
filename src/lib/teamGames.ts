@@ -34,6 +34,12 @@ export type TeamGame = {
   joinReason?: JoinReason;
   /** Exit markers drawn before this slot (first Not on team slot after a stint). */
   exits?: ExitMark[];
+  /**
+   * Data-only provenance of this row (e.g. "Basketball-Reference"); never
+   * rendered. Absent when the row has none. Read from the row field named by
+   * SOURCE_FIELD in betting.ts; travels as `c` in /slots/<id>.json.
+   */
+  source?: string;
 };
 
 export type JoinReason = "trade" | "signed";
@@ -531,6 +537,8 @@ export type WireSlot = {
   r?: "t" | "s";
   /** exit markers before this slot: [team, w = waived | l = left] */
   z?: [string, "w" | "l"][];
+  /** source (data-only provenance), only when the row has one */
+  c?: string;
 };
 export type WireSeason = { t: number; g: WireSlot[]; e?: 1 };
 export type WireFile = { v: 1; a: WireSeason; b: WireSeason | null };
@@ -552,6 +560,7 @@ function encodeSeason(s: SeasonSlots): WireSeason {
     if (x.exits?.length) {
       w.z = x.exits.map((e) => [e.team, e.reason === "waived" ? "w" : "l"]);
     }
+    if (x.source) w.c = x.source;
     return w;
   });
   return { t: s.slotTotal, g, ...(s.explicitTrades ? { e: 1 as const } : {}) };
@@ -577,6 +586,7 @@ function decodeSeason(w: WireSeason): SeasonSlots {
     if (x.z?.length) {
       g.exits = x.z.map(([team, r]) => ({ team, reason: r === "w" ? "waived" : "left" }));
     }
+    if (typeof x.c === "string" && x.c) g.source = x.c;
     return g;
   });
   return { games, slotTotal: w.t, ...(w.e ? { explicitTrades: true } : {}) };

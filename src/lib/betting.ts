@@ -99,6 +99,12 @@ const TEAM_GAMES_FILE = path.join(
 const TEAM_GAMES_2025_26_FILE =
   process.env.HOOPSTATS_TEAM_GAMES_2025_26 ||
   path.join(process.cwd(), "data", "player_team_games_2025_26.json");
+/**
+ * Per-row provenance field in the team-games exports (e.g. `"source":
+ * "Basketball-Reference"` on some 2025-26 Out rows). The one place to rename
+ * it if Data settles on another key. Data-only: carried to /slots, never drawn.
+ */
+export const SOURCE_FIELD = "source";
 /** Fallback only while the file has no `slot_total` (v1): 82 regular-season games. */
 const V1_SEASON_GAMES = 82;
 const STATUSES: readonly SlotStatus[] = [
@@ -138,6 +144,7 @@ export function toTeamGames(
     const ha =
       g.home_away === "home" || g.home_away === "away" ? g.home_away : null;
     const seq = num(g.game_seq) ?? out.length + 1;
+    const source = sourceOf(g[SOURCE_FIELD]);
     out.push({
       seq,
       slotKey: str(g.slot_key) ?? str(g.game_id) ?? `slot-${seq}`,
@@ -149,6 +156,7 @@ export function toTeamGames(
       status,
       pts: status === "played" ? num(g.pts) : null,
       ...(g.trade_marker === true ? { tradeMarker: true } : {}),
+      ...(source ? { source } : {}),
     });
   }
   // File order is the season order (tbd slots have no date), so keep it by seq.
@@ -279,6 +287,11 @@ function str(v: unknown): string | null {
   return typeof v === "string" && v.length > 0 ? v : null;
 }
 
+/** Row provenance: trimmed non-empty string, else none. */
+function sourceOf(v: unknown): string | undefined {
+  return typeof v === "string" ? v.trim() || undefined : undefined;
+}
+
 function num(v: unknown): number | null {
   return typeof v === "number" && Number.isFinite(v) ? v : null;
 }
@@ -333,6 +346,14 @@ function shapeOf(s: SeasonSlots | undefined, complete: boolean): ChartShape {
   };
 }
 
+/** The page payload never carries row provenance (it lives in /slots only). */
+function withoutSource<T extends TeamGame>(g: T): T {
+  if (g.source === undefined) return g;
+  const c = { ...g };
+  delete c.source;
+  return c;
+}
+
 const EMPTY_SEASON: SeasonSlots = { games: [], slotTotal: 0 };
 
 /**
@@ -377,7 +398,8 @@ export function loadPointsRows(): PointsRow[] {
       row.last5 = games
         .filter(isPastGame)
         .sort((a, b) => a.date.localeCompare(b.date) || a.seq - b.seq)
-        .slice(-5);
+        .slice(-5)
+        .map(withoutSource);
       const s25 = season2526?.get(row.player_id);
       row.slotTotal2526 = season2526 ? (s25?.slotTotal ?? 0) : null;
       row.shape = {
