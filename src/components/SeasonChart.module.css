@@ -76,6 +76,18 @@
   white-space: nowrap;
 }
 
+/* Marker label knockout (Design Lead lock): a maple pad behind the text,
+   painted above every hairline (.trade is z-index 2), so no line ever
+   crosses a label. Negative margins keep the text exactly where it was:
+   4px from its own tick, same row baseline. Pads match Product Designer's
+   variant-B frames (2px / 1px at 390; 3px / 1px at 1440). */
+.markers span[data-stint] {
+  z-index: 5;
+  padding: 1px 2px;
+  margin: 0 -2px -1px;
+  background: var(--hw-maple);
+}
+
 .plot {
   position: relative;
   height: 118px;
@@ -398,6 +410,10 @@
   .markers span,
   .ticks span {
     font-size: 12px;
+  }
+  .markers span[data-stint] {
+    padding: 1px 3px;
+    margin: 0 -3px -1px;
   }
   /* 12px labels are ~1px taller: keep the top row inside the band. */
   .markers.band {
