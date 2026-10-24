@@ -34,6 +34,12 @@ export type PointsRow = {
   teamGames: TeamGame[];
   /** Columns on the season chart. From Data's `slot_total` (v2+). */
   slotTotal: number;
+  /**
+   * 2025-26 (complete) season slots. `null` = no 2025-26 slot file loaded
+   * (chart hidden); `[]` = file loaded but he has no 2025-26 games.
+   */
+  teamGames2526: TeamGame[] | null;
+  slotTotal2526: number;
   data_as_of_game_date: string | null;
   pulled_at_utc: string | null;
 };
@@ -50,6 +56,15 @@ const TEAM_GAMES_FILE = path.join(
   "data",
   "player_team_games.json",
 );
+/**
+ * 2025-26 team-games export (complete season, same row shape plus
+ * `not_on_team` slots and `trade_marker`). Swap point: drop Data's gated file
+ * here, or point HOOPSTATS_TEAM_GAMES_2025_26 at it at build time. Missing
+ * file ⇒ no 2025-26 chart.
+ */
+const TEAM_GAMES_2025_26_FILE =
+  process.env.HOOPSTATS_TEAM_GAMES_2025_26 ||
+  path.join(process.cwd(), "data", "player_team_games_2025_26.json");
 /** Fallback only while the file has no `slot_total` (v1): 82 regular-season games. */
 const V1_SEASON_GAMES = 82;
 const STATUSES: readonly SlotStatus[] = [
@@ -59,6 +74,11 @@ const STATUSES: readonly SlotStatus[] = [
   "tbd",
   "not_on_team",
 ];
+/** Status aliases seen in draft/gated exports. */
+const STATUS_ALIASES: Record<string, SlotStatus> = {
+  out: "missed",
+  offteam: "not_on_team",
+};
 
 function toTeamGames(raw: unknown): TeamGame[] {
   if (!Array.isArray(raw)) return [];
@@ -67,7 +87,8 @@ function toTeamGames(raw: unknown): TeamGame[] {
     // Regular season only: the NBA Cup final never counts (Cup group and
     // knockout games do). Dropped defensively until Data ships files without it.
     if (g.is_cup_final === true) continue;
-    const status = g.status as SlotStatus;
+    const rawStatus = String(g.status ?? "");
+    const status = (STATUS_ALIASES[rawStatus] ?? rawStatus) as SlotStatus;
     if (!STATUSES.includes(status)) continue;
     const ha =
       g.home_away === "home" || g.home_away === "away" ? g.home_away : null;
@@ -82,6 +103,7 @@ function toTeamGames(raw: unknown): TeamGame[] {
       team: str(g.team_abbreviation),
       status,
       pts: status === "played" ? num(g.pts) : null,
+      ...(g.trade_marker === true ? { tradeMarker: true } : {}),
     });
   }
   // File order is the season order (tbd slots have no date), so keep it by seq.
@@ -89,6 +111,28 @@ function toTeamGames(raw: unknown): TeamGame[] {
 }
 
 type TeamGamesEntry = { games: TeamGame[]; slotTotal: number };
+
+/**
+ * A completed season (2025-26): slots are exactly what Data ships, no
+ * padding. `null` when the file is not there.
+ */
+function loadCompleteSeason(file: string): Map<string, TeamGamesEntry> | null {
+  if (!fs.existsSync(file)) return null;
+  const m = new Map<string, TeamGamesEntry>();
+  const raw = JSON.parse(fs.readFileSync(file, "utf8")) as RawRow[];
+  for (const r of raw) {
+    const games = toTeamGames(r.games).filter(
+      (g) => g.status !== "scheduled" && g.status !== "tbd",
+    );
+    if (games.length === 0) continue;
+    const fromFile = num(r.slot_total);
+    m.set(String(r.player_id), {
+      games,
+      slotTotal: Math.max(fromFile ?? 0, games.length),
+    });
+  }
+  return m;
+}
 
 function loadTeamGames(): Map<string, TeamGamesEntry> {
   const m = new Map<string, TeamGamesEntry>();
@@ -162,6 +206,8 @@ function toRow(r: RawRow): PointsRow {
     last,
     teamGames: [],
     slotTotal: 0,
+    teamGames2526: null,
+    slotTotal2526: 0,
     data_as_of_game_date: str(r.data_as_of_game_date)?.slice(0, 10) ?? null,
     pulled_at_utc: str(r.pulled_at_utc),
   };
@@ -172,12 +218,18 @@ export function loadPointsRows(): PointsRow[] {
   if (!fs.existsSync(DATA_FILE)) return [];
   const raw = JSON.parse(fs.readFileSync(DATA_FILE, "utf8")) as RawRow[];
   const teamGames = loadTeamGames();
+  const season2526 = loadCompleteSeason(TEAM_GAMES_2025_26_FILE);
   return raw
     .map((r) => {
       const row = toRow(r);
       const tg = teamGames.get(row.player_id);
       row.teamGames = tg?.games ?? [];
       row.slotTotal = tg?.slotTotal ?? 0;
+      if (season2526) {
+        const s25 = season2526.get(row.player_id);
+        row.teamGames2526 = s25?.games ?? [];
+        row.slotTotal2526 = s25?.slotTotal ?? 0;
+      }
       return row;
     })
     .filter((r) => r.full_name)

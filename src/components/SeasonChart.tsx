@@ -44,7 +44,8 @@ type Cell = { ci: number; g: TeamGame | null; key: string };
  * 50), no future/tbd slots, sub-header "{n} games · {played} played".
  * `not_on_team` slots (before/after his stint) are empty cells with only a
  * faint court tick under the axis; they count toward the slot total, never
- * as missed.
+ * as missed. The average line spans first → last played slot; trade ticks
+ * follow Data's `trade_marker` when present.
  */
 export function SeasonChart({
   title,
@@ -104,19 +105,35 @@ export function SeasonChart({
   const w = 100 / C;
 
   const lastPastIdx = dated.reduce((acc, g, i) => (isPast(g) ? i : acc), -1);
+  // Complete season: the line spans his played range only (first → last
+  // played slot), so Not on team stretches before/after stay bare.
+  const playedIdx = dated
+    .map((g, i) => (g?.status === "played" ? i : -1))
+    .filter((i) => i >= 0);
+  const avgFrom = complete ? (playedIdx[0] ?? 0) : 0;
+  const avgTo = complete ? (playedIdx.at(-1) ?? -1) + 1 : lastPastIdx + 1;
   const newestCi = !complete && lastPastIdx >= 0 ? lastPastIdx : null;
 
   const showAvg = seasonAvg !== null && playedCount > 0;
   const avgPct = showAvg ? frac(seasonAvg!) : null;
 
-  // Traded tick: a team change between consecutive dated games.
+  // Traded tick: Data's trade marker when the file has one; otherwise a team
+  // change between consecutive dated slots. In a complete season the new
+  // team's Not on team slots (before his debut) already belong to the new
+  // stint, so the tick sits at the stint change, not at his debut.
   const trades: { ci: number; team: string }[] = [];
-  let prevTeam: string | null = null;
-  dated.forEach((g, i) => {
-    if (!g?.team || g.status === "not_on_team") return;
-    if (prevTeam && g.team !== prevTeam) trades.push({ ci: i, team: g.team });
-    prevTeam = g.team;
-  });
+  if (dated.some((g) => g?.tradeMarker)) {
+    dated.forEach((g, i) => {
+      if (g?.tradeMarker && g.team) trades.push({ ci: i, team: g.team });
+    });
+  } else {
+    let prevTeam: string | null = null;
+    dated.forEach((g, i) => {
+      if (!g?.team || (!complete && g.status === "not_on_team")) return;
+      if (prevTeam && g.team !== prevTeam) trades.push({ ci: i, team: g.team });
+      prevTeam = g.team;
+    });
+  }
 
   const notOnText = notOnCount > 0 ? `, ${notOnCount} not on team` : "";
   const summary = [
@@ -207,7 +224,9 @@ export function SeasonChart({
       (playedCount !== pastCount ? ` · ${playedCount} played` : "");
 
   return (
-    <div className={styles.season}>
+    <div
+      className={`${styles.season}${complete ? ` ${styles.complete}` : ""}`}
+    >
       <div className={styles.head}>
         <span className={styles.lab}>{title}</span>
         {showAvg ? (
@@ -260,10 +279,14 @@ export function SeasonChart({
             </span>
           ))}
           {cells.map(column)}
-          {avgPct !== null && lastPastIdx >= 0 ? (
+          {avgPct !== null && avgTo > avgFrom ? (
             <div
               className={styles.avg}
-              style={{ bottom: pct(avgPct), width: pct(pos(lastPastIdx + 1)) }}
+              style={{
+                bottom: pct(avgPct),
+                left: pct(pos(avgFrom)),
+                width: pct(pos(avgTo) - pos(avgFrom)),
+              }}
             />
           ) : null}
           {trades.map((t) => (

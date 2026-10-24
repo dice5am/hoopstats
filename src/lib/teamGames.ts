@@ -26,6 +26,8 @@ export type TeamGame = {
   team: string | null;
   status: SlotStatus;
   pts: number | null; // only when played; a real 0 stays 0
+  /** Data's trade marker: this slot opens a new team stint ("Traded to {team}"). */
+  tradeMarker?: boolean;
 };
 
 /**

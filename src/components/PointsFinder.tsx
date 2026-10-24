@@ -295,6 +295,16 @@ function LastGamesChart({ games }: { games: PastGame[] }) {
   );
 }
 
+/** A season he has no games in: header and one line, no chart. */
+function NoSeasonChart({ title }: { title: string }) {
+  return (
+    <div className={styles.noSeason}>
+      <span className={styles.noSeasonLab}>{title}</span>
+      <p className={styles.noSeasonText}>No 2025-26 games</p>
+    </div>
+  );
+}
+
 function PointsCard({ row }: { row: PointsRow }) {
   const [monthKey, setMonthKey] = useState<string | null>(null);
   useEffect(() => {
@@ -373,6 +383,17 @@ function PointsCard({ row }: { row: PointsRow }) {
           slotTotal={row.slotTotal}
           seasonAvg={seasonAvg}
         />
+        {row.teamGames2526 === null ? null : row.teamGames2526.length > 0 ? (
+          <SeasonChart
+            complete
+            title="2025-26 season · team games"
+            games={row.teamGames2526}
+            slotTotal={row.slotTotal2526}
+            seasonAvg={lastAvg}
+          />
+        ) : (
+          <NoSeasonChart title="2025-26 season · team games" />
+        )}
       </div>
 
       <p className={styles.stamp}>

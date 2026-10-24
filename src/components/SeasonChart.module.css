@@ -116,6 +116,11 @@
   height: 3px;
 }
 
+/* Complete season: a real 0 stays visible over a 0.0 average line. */
+.complete .zero {
+  z-index: 3;
+}
+
 /* 390: newest bar gets a 1.5px ink top cap; 1440: 1.5px inset ink outline. */
 .bar.newest,
 .zero.newest {

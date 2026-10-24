@@ -455,6 +455,28 @@
   opacity: 0.75;
 }
 
+/* A season with no games (2025-26 frame): header + one line, no chart.
+   Same gap above as the season charts (26px / 34px). */
+.noSeason {
+  margin-top: 26px;
+}
+
+.noSeasonLab {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.noSeasonText {
+  margin: 10px 0 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--hw-ink);
+}
+
 @media (min-width: 1000px) {
   .intro {
     flex-direction: row;
@@ -505,6 +527,10 @@
 
   .seasonArea {
     grid-area: season;
+  }
+
+  .noSeason {
+    margin-top: 34px;
   }
 
   .stamp {
