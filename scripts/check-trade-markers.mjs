@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 // Fixture-free check: synthetic players (built inline) through the real
-// loader (toTeamGames) and the chart's tick placement (tradeTicks), plus the
-// /slots wire round-trip. Exits 1 on any failure.
+// loader (toTeamGames) and the chart's tick placement (tradeTicks) and label
+// layout (variant B lock), plus the /slots wire round-trip, plus the label
+// wording of a few real players read from the tracked data files (skipped if
+// absent). Exits 1 on any failure.
 import assert from "node:assert/strict";
 import { loadLib } from "./lib/load-ts.mjs";
 
-const { toTeamGames } = await loadLib("betting");
-const { tradeTicks, layoutTradeLabels, encodePlayerSlots, decodePlayerSlots, MARKER_BAND_ROWS, exitReasonOf, joinReasonOf } =
+const { toTeamGames, loadPlayerSlots, loadPointsRows } = await loadLib("betting");
+const { tradeTicks, chartCells, layoutTradeLabels, pickMerge, encodePlayerSlots, decodePlayerSlots, MARKER_BAND_ROWS, exitReasonOf, joinReasonOf } =
   await loadLib("teamGames");
 
 /** 82 dated slots; team by seq; status by seq (default played, 10 pts). */
@@ -181,69 +183,169 @@ check("wire round-trip keeps joins, reasons, exits and explicit flag", () => {
   assert.deepEqual(tk(back.cur.games), tk(games));
 });
 
-// Pixel metrics: 390 (296px plot, 6px gap) and 1440 (998px plot, 8px gap, 12px type).
-const M390 = { plotPx: 296, gapPx: 6, widthPx: (t) => t.length * 6.4 };
-const M1440 = { plotPx: 998, gapPx: 8, widthPx: (t) => t.length * 7.3 };
-const noOverlap = (labels, C, m) => {
-  const box = (l) => {
-    const x = (l.ci / C) * m.plotPx;
-    const w = m.widthPx(l.text);
-    const a = l.align === "left" ? x + 4 : x - 4 - w;
-    return [a, a + w];
-  };
-  return labels.every((l, i) =>
-    labels.every((o, j) => {
-      if (j <= i || o.row !== l.row) return true;
-      const [a, b] = box(l);
-      const [c, d] = box(o);
-      return a >= d + m.gapPx || c >= b + m.gapPx;
-    }),
+check("short wording (390 only): Traded / Signed / Joined / Waived / Left + team, no dates", () => {
+  const raw = player({
+    team: (s) => (s < 20 ? "ATL" : s < 40 ? "WAS" : s < 60 ? "DEN" : "BOS"),
+    status: (s) => (s === 30 || s === 50 ? "not_on_team" : "played"),
+  });
+  const g = toTeamGames(
+    raw,
+    [J(20, raw, "ATL", "WAS", { reason: "trade" }), J(40, raw, "WAS", "DEN", { reason: "signed" }), J(60, raw, "DEN", "BOS")],
+    [X(30, raw, "WAS", "waived"), X(50, raw, "DEN", "contract_end")],
   );
-};
+  assert.deepEqual(ticks(g, true).map((t) => [t.text, t.short]), [
+    ["Traded to WAS", "Traded WAS"],
+    ["Waived by WAS", "Waived WAS"],
+    ["Signed with DEN", "Signed DEN"],
+    ["Left DEN", "Left DEN"],
+    ["Joined BOS", "Joined BOS"],
+  ]);
+});
 
-check("4-marker Bradley-like stack: lowest free row, 3 rows at 390, no overlap, inside the plot", () => {
+// Pixel metrics: 390 (296px plot, 6px gap, 2px pad, narrow) and 1440 (998px
+// plot, 8px gap, 3px pad, 12px type). Widths are estimates; the browser uses
+// measured ones.
+const M390 = { plotPx: 296, gapPx: 6, narrow: true, padPx: 2, widthPx: (t) => t.length * 6.4 };
+const M1440 = { plotPx: 998, gapPx: 8, narrow: false, padPx: 3, widthPx: (t) => t.length * 7.3 };
+const noOverlap = (labels, m) =>
+  labels.every((l, i) =>
+    labels.every((o, j) => j <= i || o.row !== l.row || l.x0 >= o.x1 + m.gapPx || o.x0 >= l.x1 + m.gapPx),
+  );
+const inside = (labels, m) => labels.every((l) => l.x0 >= 0 && l.x1 <= m.plotPx);
+const sideRow = (L) => L.labels.map((l) => [l.text, l.side, l.row]);
+
+check("4-marker Bradley-like stack: short at 390, full at 1440, right-then-left lowest row, no overlap, inside the plot", () => {
   const t = ticks(bradleyLike(), true);
   assert.deepEqual(t.map((x) => [x.ci + 1, x.text]), [[37, "Waived by IND"], [38, "Signed with IND"], [49, "Left IND"], [79, "Signed with ATL"]]);
   for (const [m, rows] of [[M390, 3], [M1440, 2]]) {
     const L = layoutTradeLabels(t, 82, m);
     assert.equal(L.rows, rows);
-    assert.ok(L.rows <= MARKER_BAND_ROWS && !L.overflow);
-    assert.ok(noOverlap(L.labels, 82, m));
-    for (const l of L.labels) {
-      const x = (l.ci / 82) * m.plotPx, w = m.widthPx(l.text);
-      assert.ok(l.align === "left" ? x + 4 + w <= m.plotPx : x - 4 - w >= 0, `${l.text} inside plot`);
-    }
+    assert.ok(!L.overflow && !L.merged);
+    assert.ok(noOverlap(L.labels, m) && inside(L.labels, m));
   }
-  assert.deepEqual(layoutTradeLabels(t, 82, M390).labels.map((l) => [l.text, l.row, l.align]), [
-    ["Waived by IND", 0, "right"],
-    ["Signed with IND", 1, "right"],
-    ["Left IND", 2, "right"],
-    ["Signed with ATL", 0, "right"],
+  // Rule as written: "Left IND" stays in row 3 (index 2) at 390.
+  assert.deepEqual(sideRow(layoutTradeLabels(t, 82, M390)), [
+    ["Waived IND", "right", 0],
+    ["Signed IND", "right", 1],
+    ["Left IND", "right", 2],
+    ["Signed ATL", "left", 0],
+  ]);
+  assert.deepEqual(sideRow(layoutTradeLabels(t, 82, M1440)), [
+    ["Waived by IND", "right", 0],
+    ["Signed with IND", "right", 1],
+    ["Left IND", "right", 0],
+    ["Signed with ATL", "left", 0],
   ]);
 });
 
-check("Kyle-style two close labels stack — second one row up, both end at their ticks", () => {
-  const L = layoutTradeLabels([{ ci: 51, team: "MEM", text: "Traded to MEM" }, { ci: 62, team: "MIN", text: "Traded to MIN" }], 83, M390);
-  assert.deepEqual(L.labels.map((l) => [l.row, l.align]), [[0, "right"], [1, "right"]]);
+check("text starts 4px right of its tick (right side) / ends 4px left of it (left side); pads 2px/3px", () => {
+  const [r] = layoutTradeLabels([{ ci: 10, team: "PHI" }], 82, M390).labels;
+  const x = (10 / 82) * 296;
+  assert.equal(r.side, "right");
+  assert.ok(Math.abs(r.x0 - (x + 2)) < 1e-9 && Math.abs(r.x1 - (x + 2 + M390.widthPx("Joined PHI") + 4)) < 1e-9);
+  const [l] = layoutTradeLabels([{ ci: 80, team: "PHI" }], 82, M1440).labels;
+  const x2 = (80 / 82) * 998;
+  assert.equal(l.side, "left");
+  assert.ok(Math.abs(l.x1 - (x2 - 1)) < 1e-9);
 });
 
-check("far labels share row 0; lone label near the right edge flips left of its tick", () => {
-  const far = layoutTradeLabels([{ ci: 10, team: "PHI" }, { ci: 50, team: "BOS" }], 82, M390);
-  assert.deepEqual(far.labels.map((l) => [l.row, l.align]), [[0, "left"], [0, "left"]]);
-  assert.equal(far.rows, 1);
+check("right first, then left, lowest row; up a row only if neither side fits", () => {
+  // The second's right side runs past the plot: its left side, same row 0.
+  const a = layoutTradeLabels([{ ci: 10, team: "MEM", text: "Traded to MEM", short: "Traded MEM" }, { ci: 79, team: "MIN", text: "Signed with MIN", short: "Signed MIN" }], 82, M390);
+  assert.deepEqual(a.labels.map((l) => [l.side, l.row]), [["right", 0], ["left", 0]]);
+  // Right side out of the plot and left side taken in row 0 → left side, row 1.
+  const b = layoutTradeLabels([{ ci: 60, team: "MEM", text: "Traded to MEM", short: "Traded MEM" }, { ci: 79, team: "MIN", text: "Signed with MIN", short: "Signed MIN" }], 82, M390);
+  assert.deepEqual(b.labels.map((l) => [l.side, l.row]), [["right", 0], ["left", 1]]);
+  // Kyle-like: second tick just past the first's label start, neither side free in row 0.
+  const k = layoutTradeLabels([{ ci: 51, team: "MEM", text: "Traded to MEM", short: "Traded MEM" }, { ci: 53, team: "MIN", text: "Signed with MIN", short: "Signed MIN" }], 83, M390);
+  assert.deepEqual(k.labels.map((l) => [l.side, l.row]), [["right", 0], ["right", 1]]);
+  // Near the right edge only the left side is inside the plot.
   const lone = layoutTradeLabels([{ ci: 78, team: "ATL" }], 82, M390);
-  assert.deepEqual(lone.labels.map((l) => [l.row, l.align]), [[0, "right"]]);
+  assert.deepEqual(lone.labels.map((l) => [l.side, l.row]), [["left", 0]]);
+  const far = layoutTradeLabels([{ ci: 10, team: "PHI" }, { ci: 50, team: "BOS" }], 82, M390);
+  assert.deepEqual(far.labels.map((l) => [l.side, l.row]), [["right", 0], ["right", 0]]);
+  assert.equal(far.rows, 1);
 });
 
-check("more than 3 rows needed → flagged overflow, clamped to the top band row (no 4th row)", () => {
-  const t = [40, 41, 42, 43, 44].map((ci) => ({ ci, team: "IND", text: "Signed with IND" }));
+/** RayJ-like synthetic: two exit→join pairs crowding one spot. */
+const crowd = [
+  { ci: 20, team: "IND", kind: "exit", text: "Waived by IND", short: "Waived IND" },
+  { ci: 22, team: "LAC", kind: "join", text: "Signed with LAC", short: "Signed LAC" },
+  { ci: 24, team: "LAC", kind: "exit", text: "Waived by LAC", short: "Waived LAC" },
+  { ci: 27, team: "ATL", kind: "join", text: "Signed with ATL", short: "Signed ATL" },
+];
+
+check("4th row at 390 → merge exit + following join on the exit tick, join tick kept unlabelled, ≤3 rows", () => {
+  const plain = layoutTradeLabels(crowd, 80, { ...M390, narrow: false, gapPx: 6, plotPx: 296, widthPx: M390.widthPx });
+  assert.ok(plain.rows > 3, "the crowd needs a 4th row unmerged");
+  const L = layoutTradeLabels(crowd, 80, M390);
+  assert.equal(L.merged, true);
+  assert.ok(L.rows <= MARKER_BAND_ROWS && !L.overflow);
+  assert.ok(noOverlap(L.labels, M390) && inside(L.labels, M390));
+  const m = L.labels.filter((l) => l.merged);
+  assert.equal(m.length, 1);
+  assert.match(m[0].text, /^(Waived IND · Signed LAC|Waived LAC · Signed ATL)$/);
+  assert.equal(m[0].kind, "exit");
+  // Every tick keeps its hairline; exactly the merged join has none.
+  assert.equal(L.ticks.length, 4);
+  assert.equal(L.ticks.filter((t) => t.row === null).length, 1);
+  assert.equal(L.ticks.find((t) => t.row === null).kind, "join");
+});
+
+check("1440 never merges (full wording, even when crowded)", () => {
+  const L = layoutTradeLabels(crowd, 80, { ...M1440, plotPx: 296 });
+  assert.equal(L.merged, false);
+  assert.ok(L.labels.every((l) => !l.merged && !l.text.includes("·")));
+});
+
+check("merge tie-break: closest exit→join ticks, then nearest the overflowing label, then left to right", () => {
+  const ci = (i) => [20, 22, 30, 33, 50, 53][i];
+  const A = [{ exit: 0, join: 1 }]; // gap 2
+  const B = [{ exit: 2, join: 3 }]; // gap 3
+  const C = [{ exit: 4, join: 5 }]; // gap 3
+  assert.equal(pickMerge([B, A], ci, 33), A); // closest wins over nearest-to-overflow
+  assert.equal(pickMerge([C, B], ci, 33), B); // tie on gap → nearest the overflowing label
+  assert.equal(pickMerge([C, B], ci, 41.5), B); // full tie → left to right
+});
+
+check("more than 3 rows with nothing to merge → flagged overflow, clamped to the top band row (no 4th row)", () => {
+  const t = [40, 41, 42, 43, 44].map((ci) => ({ ci, team: "IND", text: "Signed with IND", short: "Signed IND" }));
   const L = layoutTradeLabels(t, 82, M390);
   assert.equal(L.rows, 5);
   assert.equal(L.overflow, true);
+  assert.equal(L.merged, false);
   assert.ok(L.labels.every((l) => l.row <= MARKER_BAND_ROWS - 1));
 });
 
+// Real players (tracked data files): wording at 1440 (full) and 390 (short).
+const slots = loadPlayerSlots();
+if (slots.size) {
+  const byName = new Map(loadPointsRows().map((r) => [r.full_name, r.player_id]));
+  const real = (name) => {
+    const s = slots.get(byName.get(name))?.prev;
+    assert.ok(s, `${name}: no 2025-26 slots`);
+    const { dated } = chartCells(s.games, s.slotTotal, true);
+    return tradeTicks(dated, true, s.explicitTrades);
+  };
+  const expect = {
+    "Georges Niang": [["Traded to MEM", "Traded MEM"], ["Waived by MEM", "Waived MEM"]],
+    "Tony Bradley": [["Waived by IND", "Waived IND"], ["Signed with IND", "Signed IND"], ["Left IND", "Left IND"], ["Signed with ATL", "Signed ATL"]],
+    "Kyle Anderson": [["Traded to MEM", "Traded MEM"], ["Waived by MEM", "Waived MEM"], ["Signed with MIN", "Signed MIN"]],
+    "Luke Kennard": [["Traded to LAL", "Traded LAL"]],
+    "Tyus Jones": [["Traded to CHA", "Traded CHA"], ["Traded to DAL", "Traded DAL"], ["Waived by DAL", "Waived DAL"], ["Signed with DEN", "Signed DEN"]],
+    "RayJ Dennis": [["Waived by IND", "Waived IND"], ["Signed with LAC", "Signed LAC"], ["Waived by LAC", "Waived LAC"], ["Signed with ATL", "Signed ATL"]],
+  };
+  for (const [name, want] of Object.entries(expect)) {
+    check(`real: ${name} labels (1440 full / 390 short)`, () => {
+      assert.deepEqual(real(name).map((t) => [t.text, t.short]), want);
+    });
+  }
+} else {
+  results.push("SKIP real-player wording (no data files)");
+}
+
 console.log(results.join("\n"));
 const failed = results.filter((r) => r.startsWith("FAIL")).length;
-console.log(`${results.length - failed}/${results.length} passed`);
+const ran = results.filter((r) => !r.startsWith("SKIP")).length;
+console.log(`${ran - failed}/${ran} passed`);
 process.exit(failed ? 1 : 0);

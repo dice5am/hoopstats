@@ -4,7 +4,9 @@ import {
   LABEL_METRICS_390,
   layoutTradeLabels,
   MARKER_BAND_ROWS,
+  mergedText,
   tradeTicks,
+  TICK_PAD_PX,
   type LabelMetrics,
   type ChartCell,
   type TeamGame,
@@ -27,13 +29,44 @@ const markerBandStyle = (hasMarkers: boolean) =>
 const useIsoLayoutEffect =
   typeof window === "undefined" ? useEffect : useLayoutEffect;
 
-type Measured = { plotPx: number; gapPx: number; widths: Record<string, number> };
+/** Same split as the band height and the 6px/8px gap: <1000px is the narrow (390) chart. */
+const WIDE_QUERY = "(min-width: 1000px)";
+
+type Measured = {
+  plotPx: number;
+  gapPx: number;
+  narrow: boolean;
+  padPx: number;
+  widths: Record<string, number>;
+};
+
+/**
+ * Every string a label can show on this chart: full and short wording, and
+ * each exit merged with the join right after it (narrow overflow). All are
+ * measured, so the layout can pick wording and merges on real widths.
+ */
+function labelCandidates(
+  trades: { kind: "join" | "exit"; text: string; short: string }[],
+): string[] {
+  const out = new Set<string>();
+  trades.forEach((t, i) => {
+    out.add(t.text);
+    out.add(t.short);
+    const next = trades[i + 1];
+    if (t.kind === "exit" && next?.kind === "join") {
+      out.add(mergedText(t.short, next.short));
+    }
+  });
+  return [...out];
+}
 
 /**
  * Real label metrics for the stacking rule: the marker band's width, the
- * 6px/8px gap for the breakpoint, and each rendered label's width. Measured
- * before paint (and on resize), so the first visible frame is already laid
- * out; the band height is fixed, so re-layout never shifts the page.
+ * breakpoint (6px/8px gap, short wording below 1000px), the maple pad and
+ * each candidate label's text width (hidden measuring spans with the label
+ * CSS). Measured before paint (and on resize), so the first visible frame is
+ * already laid out; the band height is fixed, so re-layout never shifts the
+ * page.
  */
 function useLabelMetrics(
   band: React.RefObject<HTMLDivElement | null>,
@@ -46,18 +79,25 @@ function useLabelMetrics(
     if (!active || !el) return;
     const measure = () => {
       const widths: Record<string, number> = {};
-      el.querySelectorAll<HTMLElement>("span[data-stint]").forEach((sp) => {
-        widths[sp.textContent ?? ""] = sp.getBoundingClientRect().width;
+      let padPx = 0;
+      el.querySelectorAll<HTMLElement>("span[data-measure]").forEach((sp) => {
+        padPx = parseFloat(getComputedStyle(sp).paddingLeft) || 0;
+        widths[sp.textContent ?? ""] = sp.getBoundingClientRect().width - 2 * padPx;
       });
+      const wide = window.matchMedia(WIDE_QUERY).matches;
       const next: Measured = {
         plotPx: el.getBoundingClientRect().width,
-        gapPx: window.matchMedia("(min-width: 1000px)").matches ? 8 : 6,
+        gapPx: wide ? 8 : 6,
+        narrow: !wide,
+        padPx,
         widths,
       };
       setM((prev) =>
         prev &&
         Math.abs(prev.plotPx - next.plotPx) < 0.5 &&
         prev.gapPx === next.gapPx &&
+        prev.narrow === next.narrow &&
+        prev.padPx === next.padPx &&
         Object.keys(next.widths).every(
           (k) => Math.abs((prev.widths[k] ?? -1) - next.widths[k]) < 0.5,
         )
@@ -76,6 +116,8 @@ function useLabelMetrics(
         ? {
             plotPx: m.plotPx,
             gapPx: m.gapPx,
+            narrow: m.narrow,
+            padPx: m.padPx,
             widthPx: (t: string) => m.widths[t] ?? LABEL_METRICS_390.widthPx(t),
           }
         : LABEL_METRICS_390,
@@ -150,13 +192,10 @@ export function SeasonChart({
   // Joins and exits share one label-row stack.
   const trades = tradeTicks(dated, complete, explicitTrades);
   const hasMarkers = trades.length > 0;
+  const candidates = labelCandidates(trades);
   const bandRef = useRef<HTMLDivElement>(null);
-  const metrics = useLabelMetrics(
-    bandRef,
-    hasMarkers,
-    trades.map((t) => `${t.ci}:${t.text}`).join("|"),
-  );
-  const { labels } = layoutTradeLabels(trades, C, metrics);
+  const metrics = useLabelMetrics(bandRef, hasMarkers, candidates.join("|"));
+  const { labels, ticks: markerTicks } = layoutTradeLabels(trades, C, metrics);
   if (C === 0) return null;
 
   const slotCount = cells.length;
@@ -302,14 +341,23 @@ export function SeasonChart({
         >
           {labels.map((t, i) => {
             const x = pos(t.ci);
+            // Text starts (right side) or ends (left side) TICK_PAD_PX from
+            // its tick; the maple pad's negative margins keep it there.
+            const at =
+              t.pin === "end"
+                ? { right: "var(--label-pad)" }
+                : t.pin === "start"
+                  ? { left: "var(--label-pad)" }
+                  : t.side === "right"
+                    ? { left: `calc(${pct(x)} + ${TICK_PAD_PX}px)` }
+                    : { right: `calc(${pct(100 - x)} + ${TICK_PAD_PX}px)` };
             return (
               <span
                 key={`tr-${t.kind}-${t.ci}-${i}`}
                 data-stint={t.kind}
+                data-merged={t.merged ? "" : undefined}
                 style={{
-                  ...(t.align === "left"
-                    ? { left: `calc(${pct(x)} + 4px)` }
-                    : { right: `calc(${pct(100 - x)} + 4px)` }),
+                  ...at,
                   ...(t.row ? { bottom: `${2 + t.row * ROW_PX}px` } : {}),
                 }}
               >
@@ -317,6 +365,13 @@ export function SeasonChart({
               </span>
             );
           })}
+          {hasMarkers
+            ? candidates.map((c) => (
+                <span key={`m-${c}`} data-stint="measure" data-measure="">
+                  {c}
+                </span>
+              ))
+            : null}
           {pairStart !== null ? (
             <span style={{ right: pct(100 - pos(pairStart + T)) }}>
               Cup · TBD
@@ -352,13 +407,21 @@ export function SeasonChart({
               }}
             />
           ) : null}
-          {labels.map((t, i) => (
+          {markerTicks.map((t, i) => (
             <div
               key={`tl-${t.kind}-${t.ci}-${i}`}
               className={styles.trade}
+              data-row={t.row ?? undefined}
               style={{
                 left: pct(pos(t.ci)),
-                ...(t.row ? { top: `${-(16 + t.row * ROW_PX)}px` } : {}),
+                // Labelled: 1px into its label's maple pad (under the
+                // knockout), so no gap at either width; the pad's bottom edge
+                // sits (2px - pad-y) above the row baseline. A join merged
+                // into its exit's label keeps a short tick with no label.
+                top:
+                  t.row === null
+                    ? "calc(var(--plot-gap) / -2)"
+                    : `calc(-1 * (var(--plot-gap) + ${3 + t.row * ROW_PX}px - var(--label-pad-y)))`,
               }}
             />
           ))}
