@@ -410,6 +410,7 @@ function PointsCard({ row }: { row: PointsRow }) {
             slotTotal={slots.slots.prev.slotTotal}
             explicitTrades={slots.slots.prev.explicitTrades}
             seasonAvg={lastAvg}
+            sourceNote={row.shape.prev?.sourceNote}
           />
         ) : (
           <SeasonChartPending
@@ -421,6 +422,7 @@ function PointsCard({ row }: { row: PointsRow }) {
             notOn={row.shape.prev?.notOn ?? false}
             played={row.shape.prev?.played ?? false}
             hasMarkers={row.shape.prev?.hasMarkers ?? false}
+            sourceNote={row.shape.prev?.sourceNote}
           />
         )}
       </div>

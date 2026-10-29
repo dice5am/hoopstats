@@ -7,7 +7,9 @@ import {
   mergedText,
   tradeTicks,
   TICK_PAD_PX,
+  SOURCE_NOTE_TEXT,
   type LabelMetrics,
+  type SourceNote,
   type ChartCell,
   type TeamGame,
 } from "@/lib/teamGames";
@@ -173,6 +175,7 @@ export function SeasonChart({
   seasonAvg,
   complete = false,
   explicitTrades = false,
+  sourceNote,
 }: {
   title: string;
   games: TeamGame[];
@@ -181,6 +184,8 @@ export function SeasonChart({
   complete?: boolean;
   /** Data shipped a per-player trade list: draw only those markers. */
   explicitTrades?: boolean;
+  /** 2025-26 source footnote from the page index (`shape.prev.sourceNote`). */
+  sourceNote?: SourceNote;
 }) {
   const { dated, cells, D, T, pairStart, C } = chartCells(
     games,
@@ -472,6 +477,7 @@ export function SeasonChart({
         notOn={notOnCount > 0}
         showAvg={showAvg}
       />
+      <SourceFootnote note={sourceNote} />
     </div>
   );
 }
@@ -493,6 +499,7 @@ export function SeasonChartPending({
   notOn,
   played,
   hasMarkers = false,
+  sourceNote,
 }: {
   title: string;
   complete?: boolean;
@@ -506,6 +513,8 @@ export function SeasonChartPending({
   played: boolean;
   /** The drawn chart has stint ticks (page index `hasMarkers`) → reserve the band. */
   hasMarkers?: boolean;
+  /** The drawn chart has a source footnote → hold its line (loading and failed). */
+  sourceNote?: SourceNote;
 }) {
   const allOut = complete && !played;
   return (
@@ -565,7 +574,32 @@ export function SeasonChartPending({
         notOn={notOn}
         showAvg={played && avgKey}
       />
+      <SourceFootnote hold note={sourceNote} />
     </div>
+  );
+}
+
+/**
+ * One line under the 2025-26 legend naming a non-default row source. Text
+ * lives in SOURCE_NOTE_TEXT, style in `.sourceNote`. `hold`: the pending
+ * frame keeps the line's box, invisible, so nothing shifts when it lands.
+ */
+function SourceFootnote({
+  note,
+  hold = false,
+}: {
+  note?: SourceNote;
+  hold?: boolean;
+}) {
+  if (!note) return null;
+  return (
+    <p
+      className={`${styles.sourceNote}${hold ? ` ${styles.hold}` : ""}`}
+      data-source-note={note}
+      aria-hidden={hold || undefined}
+    >
+      {SOURCE_NOTE_TEXT[note]}
+    </p>
   );
 }
 

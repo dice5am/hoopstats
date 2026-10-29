@@ -11,6 +11,7 @@ export type PointsGame = {
 
 import {
   DEFAULT_SOURCE,
+  sourceNoteOf,
   chartCells,
   isPastGame,
   exitReasonOf,
@@ -19,6 +20,7 @@ import {
 } from "./teamGames";
 import type {
   PastGame,
+  SourceNote,
   PlayerSlots,
   SeasonSlots,
   SlotStatus,
@@ -77,6 +79,12 @@ export type ChartShape = {
   notOn: boolean;
   /** Draws at least one stint tick → the marker band reserves MARKER_BAND_ROWS. */
   hasMarkers: boolean;
+  /**
+   * 2025-26 only: the chart draws a source footnote under its legend (key
+   * absent for no note, so the payload stays compact). Lets the loading and
+   * failed frames reserve the line.
+   */
+  sourceNote?: SourceNote;
 };
 
 type RawRow = Record<string, unknown>;
@@ -348,6 +356,13 @@ function shapeOf(s: SeasonSlots | undefined, complete: boolean): ChartShape {
   };
 }
 
+/** 2025-26 shape: plus the source footnote flag, only when there is one. */
+function prevShapeOf(s: SeasonSlots): ChartShape {
+  const shape = shapeOf(s, true);
+  const note = sourceNoteOf(s);
+  return note ? { ...shape, sourceNote: note } : shape;
+}
+
 /** The page payload never carries row provenance (it lives in /slots only). */
 function withoutSource<T extends TeamGame>(g: T): T {
   if (g.source === undefined) return g;
@@ -406,7 +421,7 @@ export function loadPointsRows(): PointsRow[] {
       row.slotTotal2526 = season2526 ? (s25?.slotTotal ?? 0) : null;
       row.shape = {
         cur: shapeOf(tg, false),
-        prev: s25 ? shapeOf(s25, true) : null,
+        prev: s25 ? prevShapeOf(s25) : null,
       };
       return row;
     })

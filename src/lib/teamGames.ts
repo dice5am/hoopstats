@@ -36,7 +36,8 @@ export type TeamGame = {
   exits?: ExitMark[];
   /**
    * Data-only provenance of this row (e.g. "basketball-reference"); never
-   * rendered. Read from the row field named by SOURCE_FIELD in betting.ts.
+   * rendered per slot (a 2025-26 chart may carry one SOURCE_NOTE_TEXT
+   * footnote, decided at build time via `sourceNoteOf`). Read from the row field named by SOURCE_FIELD in betting.ts.
    * A missing value means DEFAULT_SOURCE (the loader and the decoder fill it
    * in). On /slots/<id>.json it travels as `c` only when it is not
    * DEFAULT_SOURCE. Optional only so the page payload (last5) can omit it.
@@ -50,6 +51,32 @@ export type TeamGame = {
  * sources are. The one place to change it if Data's default changes.
  */
 export const DEFAULT_SOURCE = "nba.com";
+
+/**
+ * 2025-26 source footnote (one line under that chart's legend). Which line a
+ * player gets is decided at build time from his 2025-26 slots whose source
+ * is not DEFAULT_SOURCE: "roster" if any such slot is Not on team, else
+ * "out" if any is Out; no note otherwise (absent from the page index).
+ */
+export type SourceNote = "out" | "roster";
+
+/** Footnote wording (Design Lead lock 58b4e3c9). The one place to change the text. */
+export const SOURCE_NOTE_TEXT: Record<SourceNote, string> = {
+  out: "Nov 19 Out status: Basketball-Reference",
+  roster: "Nov 19 roster status: Basketball-Reference",
+};
+
+/** Build-time: the footnote a season's slots call for, or undefined. */
+export function sourceNoteOf(
+  s: { games: TeamGame[] } | null | undefined,
+): SourceNote | undefined {
+  const tagged = (s?.games ?? []).filter(
+    (g) => (g.source ?? DEFAULT_SOURCE) !== DEFAULT_SOURCE,
+  );
+  if (tagged.some((g) => g.status === "not_on_team")) return "roster";
+  if (tagged.some((g) => g.status === "missed")) return "out";
+  return undefined;
+}
 
 export type JoinReason = "trade" | "signed";
 export type ExitMark = { team: string; reason: "waived" | "left" };

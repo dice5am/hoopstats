@@ -378,6 +378,19 @@
     0 1px 0 var(--hw-ink);
 }
 
+/* 2025-26 source footnote (lock 58b4e3c9): last line of the 2025-26 section,
+   under the legend at its left edge. Same ink/font/size as the "Updated" line
+   (.stamp): Inter 600 12.5px, ink-2 #5C4128, 15px line box. Adds 8 + 15 = 23px
+   at 390 and 10 + 15 = 25px at 1440 (gap in the media block below). */
+.sourceNote {
+  margin: 8px 0 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 15px;
+  color: var(--hw-ink-2);
+  white-space: nowrap;
+}
+
 @media (min-width: 1000px) {
   .season {
     --inset: 1.5px;
@@ -434,6 +447,9 @@
   .legend {
     font-size: 13px;
     gap: 8px 22px;
+  }
+  .sourceNote {
+    margin-top: 10px;
   }
 }
 
