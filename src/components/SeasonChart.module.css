@@ -541,17 +541,24 @@
   pointer-events: none;
 }
 
+/* Cream card styled like .sourceNote (Inter 600 12.5/15, ink-2). */
 .tip {
   position: absolute;
   top: -6px;
   z-index: 5;
-  transform-origin: bottom;
   translate: 0 -100%;
   padding: 5px 8px;
   white-space: nowrap;
-  font: 600 12.5px/15px var(--font-body);
-  color: var(--hw-line);
-  background: var(--hw-ink);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 15px;
+  color: var(--hw-ink-2);
+  background: var(--hw-line);
+  border: 1px solid var(--hw-ink-2);
   border-radius: 4px;
   pointer-events: none;
+}
+
+.tipLine {
+  display: block;
 }

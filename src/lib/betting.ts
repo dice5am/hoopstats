@@ -164,6 +164,7 @@ export function toTeamGames(
       team: str(g.team_abbreviation),
       status,
       pts: status === "played" ? num(g.pts) : null,
+      ...(status === "played" && num(g.minutes) !== null ? { min: num(g.minutes) } : {}),
       ...(g.trade_marker === true ? { tradeMarker: true } : {}),
       source: sourceOf(g[SOURCE_FIELD]),
     });

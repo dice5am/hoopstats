@@ -26,6 +26,8 @@ export type TeamGame = {
   team: string | null;
   status: SlotStatus;
   pts: number | null; // only when played; a real 0 stays 0
+  /** Minutes played (only when played and known); tooltip only. */
+  min?: number | null;
   /** Join marker: this slot opens a new team stint (list-form `trade_marker`). */
   tradeMarker?: boolean;
   /** Team named on the join marker (list-form `trade_marker.to_team`); else `team`. */
@@ -566,6 +568,8 @@ export type WireSlot = {
   h?: "h" | "a";
   m?: string;
   p?: number;
+  /** minutes, rounded (played rows only, when known) */
+  n?: number;
   x?: 1;
   /** trade-to team, only when it differs from `m` */
   y?: string;
@@ -590,6 +594,7 @@ function encodeSeason(s: SeasonSlots): WireSeason {
     if (x.homeAway) w.h = x.homeAway === "home" ? "h" : "a";
     if (x.team) w.m = x.team;
     if (x.pts !== null) w.p = x.pts;
+    if (x.status === "played" && typeof x.min === "number") w.n = Math.round(x.min);
     if (x.tradeMarker) w.x = 1;
     if (x.tradeTo && x.tradeTo !== x.team) w.y = x.tradeTo;
     if (x.joinReason) w.r = x.joinReason === "trade" ? "t" : "s";
@@ -616,6 +621,7 @@ function decodeSeason(w: WireSeason): SeasonSlots {
       status,
       pts: status === "played" ? (x.p ?? null) : null,
     };
+    if (status === "played" && typeof x.n === "number") g.min = x.n;
     if (x.x) g.tradeMarker = true;
     if (x.y || (x.x && x.m)) g.tradeTo = x.y ?? x.m;
     if (x.r) g.joinReason = x.r === "t" ? "trade" : "signed";

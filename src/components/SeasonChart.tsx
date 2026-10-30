@@ -138,19 +138,23 @@ function tickSlots(dated: number): number[] {
   );
 }
 
-/** Tooltip line: "Oct 24 · vs LAL · Home · 28 pts". */
-function tipText(g: TeamGame | null): string {
-  if (!g) return "";
-  if (g.status === "tbd") return "Cup · TBD";
-  const parts: string[] = [];
-  if (g.date) parts.push(formatPlainDate(g.date));
-  if (g.opp) parts.push(`${g.homeAway === "home" ? "vs" : "@"} ${g.opp}`);
-  if (g.homeAway) parts.push(g.homeAway === "home" ? "Home" : "Away");
-  if (g.status === "played") parts.push(`${Math.round(g.pts ?? 0)} pts`);
-  else if (g.status === "missed") parts.push("Out");
-  else if (g.status === "not_on_team") parts.push("Not on team");
-  else parts.push("Upcoming");
-  return parts.join(" · ");
+/** Tooltip: ["Oct 28 · vs LAL · Home", "24 pts · 33 min"]; 2025-26 dates carry the year. */
+function tipLines(g: TeamGame | null, withYear: boolean): [string, string] {
+  if (!g) return ["", ""];
+  const head: string[] = [];
+  if (g.date) {
+    head.push(formatPlainDate(g.date) + (withYear ? `, ${g.date.slice(0, 4)}` : ""));
+  } else if (g.status === "tbd") head.push("Cup · TBD");
+  if (g.opp) head.push(`${g.homeAway === "home" ? "vs" : "@"} ${g.opp}`);
+  if (g.homeAway) head.push(g.homeAway === "home" ? "Home" : "Away");
+  let body: string;
+  if (g.status === "played") {
+    body = `${Math.round(g.pts ?? 0)} pts`;
+    if (typeof g.min === "number") body += ` · ${Math.round(g.min)} min`;
+  } else if (g.status === "missed") body = "Out";
+  else if (g.status === "not_on_team") body = "Not on team";
+  else body = "Upcoming";
+  return [head.join(" · "), body];
 }
 
 function slotLabel(g: TeamGame): string {
@@ -217,6 +221,16 @@ export function SeasonChart({
   const metrics = useLabelMetrics(bandRef, hasMarkers, candidates.join("|"));
   const { labels, ticks: markerTicks } = layoutTradeLabels(trades, C, metrics);
   const [tip, setTip] = useState<number | null>(null);
+  const plotRef = useRef<HTMLDivElement>(null);
+  // Tap elsewhere closes the tooltip.
+  useEffect(() => {
+    if (tip === null) return;
+    const close = (e: PointerEvent) => {
+      if (!plotRef.current?.contains(e.target as Node)) setTip(null);
+    };
+    document.addEventListener("pointerdown", close);
+    return () => document.removeEventListener("pointerdown", close);
+  }, [tip]);
   if (C === 0) return null;
 
   const slotCount = cells.length;
@@ -400,8 +414,10 @@ export function SeasonChart({
           ) : null}
         </div>
         <div
+          ref={plotRef}
           className={styles.plot}
           onPointerMove={(e) => {
+            if (e.pointerType !== "mouse") return;
             const r = e.currentTarget.getBoundingClientRect();
             const ci = Math.floor(((e.clientX - r.left) / r.width) * C);
             setTip(cells.some((x) => x.ci === ci && x.g) ? ci : null);
@@ -461,7 +477,11 @@ export function SeasonChart({
                       aria-hidden
                     />
                     <div className={styles.tip} style={at} role="status">
-                      {tipText(g)}
+                      {tipLines(g, complete).map((t, i) => (
+                        <span key={i} className={styles.tipLine}>
+                          {t}
+                        </span>
+                      ))}
                     </div>
                   </>
                 );
