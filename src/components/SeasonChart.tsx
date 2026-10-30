@@ -138,6 +138,21 @@ function tickSlots(dated: number): number[] {
   );
 }
 
+/** Tooltip line: "Oct 24 · vs LAL · Home · 28 pts". */
+function tipText(g: TeamGame | null): string {
+  if (!g) return "";
+  if (g.status === "tbd") return "Cup · TBD";
+  const parts: string[] = [];
+  if (g.date) parts.push(formatPlainDate(g.date));
+  if (g.opp) parts.push(`${g.homeAway === "home" ? "vs" : "@"} ${g.opp}`);
+  if (g.homeAway) parts.push(g.homeAway === "home" ? "Home" : "Away");
+  if (g.status === "played") parts.push(`${Math.round(g.pts ?? 0)} pts`);
+  else if (g.status === "missed") parts.push("Out");
+  else if (g.status === "not_on_team") parts.push("Not on team");
+  else parts.push("Upcoming");
+  return parts.join(" · ");
+}
+
 function slotLabel(g: TeamGame): string {
   const where = g.date
     ? `${formatPlainDate(g.date)}${g.opp ? ` ${g.homeAway === "home" ? "vs" : "at"} ${g.opp}` : ""}`
@@ -201,6 +216,7 @@ export function SeasonChart({
   const bandRef = useRef<HTMLDivElement>(null);
   const metrics = useLabelMetrics(bandRef, hasMarkers, candidates.join("|"));
   const { labels, ticks: markerTicks } = layoutTradeLabels(trades, C, metrics);
+  const [tip, setTip] = useState<number | null>(null);
   if (C === 0) return null;
 
   const slotCount = cells.length;
@@ -383,7 +399,22 @@ export function SeasonChart({
             </span>
           ) : null}
         </div>
-        <div className={styles.plot}>
+        <div
+          className={styles.plot}
+          onPointerMove={(e) => {
+            const r = e.currentTarget.getBoundingClientRect();
+            const ci = Math.floor(((e.clientX - r.left) / r.width) * C);
+            setTip(cells.some((x) => x.ci === ci && x.g) ? ci : null);
+          }}
+          onPointerDown={(e) => {
+            const r = e.currentTarget.getBoundingClientRect();
+            const ci = Math.floor(((e.clientX - r.left) / r.width) * C);
+            setTip(cells.some((x) => x.ci === ci && x.g) ? ci : null);
+          }}
+          onPointerLeave={(e) => {
+            if (e.pointerType === "mouse") setTip(null);
+          }}
+        >
           {[25, 50].map((v) => (
             <div
               key={`g${v}`}
@@ -412,6 +443,30 @@ export function SeasonChart({
               }}
             />
           ) : null}
+          {tip !== null
+            ? (() => {
+                const g = cells.find((x) => x.ci === tip)?.g ?? null;
+                const p = pos(tip) + w / 2;
+                const at =
+                  p < 20
+                    ? { left: 0 }
+                    : p > 80
+                      ? { right: 0 }
+                      : { left: pct(p), transform: "translateX(-50%)" };
+                return (
+                  <>
+                    <div
+                      className={styles.hoverCol}
+                      style={{ left: pct(pos(tip)), width: pct(w) }}
+                      aria-hidden
+                    />
+                    <div className={styles.tip} style={at} role="status">
+                      {tipText(g)}
+                    </div>
+                  </>
+                );
+              })()
+            : null}
           {markerTicks.map((t, i) => (
             <div
               key={`tl-${t.kind}-${t.ci}-${i}`}

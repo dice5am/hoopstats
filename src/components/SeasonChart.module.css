@@ -525,3 +525,33 @@
   outline: 2px solid var(--hw-ink);
   outline-offset: 2px;
 }
+
+/* Game tooltip (Cavin 2026-10-30): hover or tap any slot. */
+.plot {
+  cursor: crosshair;
+  touch-action: pan-y;
+}
+
+.hoverCol {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  min-width: 2px;
+  background: rgba(43, 29, 18, 0.12);
+  pointer-events: none;
+}
+
+.tip {
+  position: absolute;
+  top: -6px;
+  z-index: 5;
+  transform-origin: bottom;
+  translate: 0 -100%;
+  padding: 5px 8px;
+  white-space: nowrap;
+  font: 600 12.5px/15px var(--font-body);
+  color: var(--hw-line);
+  background: var(--hw-ink);
+  border-radius: 4px;
+  pointer-events: none;
+}
