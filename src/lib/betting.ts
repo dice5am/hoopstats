@@ -425,6 +425,7 @@ export function loadPointsRows(): PointsRow[] {
       };
       return row;
     })
-    .filter((r) => r.full_name)
+    // Cavin 2026-10-30: only players who have played minutes in 2026-27.
+    .filter((r) => r.full_name && r.has_season_games)
     .sort((a, b) => a.full_name.localeCompare(b.full_name));
 }
