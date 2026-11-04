@@ -86885,8 +86885,8 @@
     "matchup": "DAL vs. OKC",
     "team_abbreviation": "DAL",
     "status": "played",
-    "pts": 8.0,
-    "minutes": 11.781666666666666,
+    "pts": 10.0,
+    "minutes": 13.816666666666666,
     "is_cup_final": false,
     "source": "nba.com"
    },
@@ -259276,7 +259276,7 @@
     "matchup": "ATL vs. CLE",
     "team_abbreviation": "ATL",
     "status": "played",
-    "pts": 16.0,
+    "pts": 17.0,
     "minutes": 34.086666666666666,
     "is_cup_final": false,
     "source": "nba.com"
@@ -497366,7 +497366,7 @@
     "team_abbreviation": "DAL",
     "status": "played",
     "pts": 18.0,
-    "minutes": 26.56,
+    "minutes": 24.533333333333335,
     "is_cup_final": false,
     "source": "nba.com"
    },
