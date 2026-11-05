@@ -1,7 +1,7 @@
-import { PointsFinder } from "@/components/PointsFinder";
-import { loadPointsRows } from "@/lib/betting";
+import { InsightsHome } from "@/components/InsightsHome";
+import { loadInsights } from "@/lib/insights";
 
 export default function Home() {
-  const rows = loadPointsRows();
-  return <PointsFinder rows={rows} />;
+  const data = loadInsights();
+  return <InsightsHome data={data} />;
 }

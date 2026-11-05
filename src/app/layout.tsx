@@ -4,9 +4,9 @@ import "./fonts.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "hoopstats — Player points",
+  title: "hoopstats — Points insights",
   description:
-    "NBA player points: season avg, month avg, 2025-26 avg, last 5 games.",
+    "NBA points: home vs away and back-to-backs, plus player points for betting and fantasy.",
 };
 
 export default function RootLayout({

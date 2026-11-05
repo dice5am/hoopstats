@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .brand {
@@ -14,6 +15,8 @@
   font-size: 30px;
   letter-spacing: -0.01em;
   line-height: 1;
+  color: inherit;
+  text-decoration: none;
 }
 
 .ball {
@@ -24,7 +27,15 @@
   box-shadow: inset 0 0 0 2px var(--hw-ink);
 }
 
-.season {
+.links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.link,
+.linkOn {
   display: flex;
   align-items: center;
   min-height: 36px;
@@ -36,6 +47,13 @@
   font-weight: 700;
   font-size: 15px;
   letter-spacing: 0.06em;
+  text-decoration: none;
+}
+
+.linkOn {
+  background: var(--hw-key);
+  border-color: var(--hw-ink);
+  color: var(--hw-key-ink);
 }
 
 @media (min-width: 1000px) {
