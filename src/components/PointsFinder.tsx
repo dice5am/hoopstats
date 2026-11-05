@@ -12,6 +12,8 @@ import {
   formatPlainDate,
   monthShort,
 } from "@/lib/dates";
+import { useSearchParams } from "next/navigation";
+import { PlayerSplits } from "./PlayerSplits";
 import styles from "./PointsFinder.module.css";
 
 const MAX_RESULTS = 8;
@@ -43,6 +45,7 @@ function gamesText(n: number): string {
 }
 
 export function PointsFinder({ rows }: { rows: PointsRow[] }) {
+  const searchParams = useSearchParams();
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(-1);
@@ -51,6 +54,19 @@ export function PointsFinder({ rows }: { rows: PointsRow[] }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const lastPointer = useRef<string>("mouse");
   const listId = useId();
+  const bootstrapped = useRef(false);
+
+  useEffect(() => {
+    if (bootstrapped.current) return;
+    bootstrapped.current = true;
+    const id = searchParams.get("player");
+    if (!id) return;
+    const row = rows.find((r) => r.player_id === id);
+    if (row) {
+      setPicked(row);
+      setQuery(row.full_name);
+    }
+  }, [rows, searchParams]);
 
   const results = useMemo(() => rankMatches(rows, query), [rows, query]);
   const showList = open && query.trim().length > 0;
@@ -426,6 +442,8 @@ function PointsCard({ row }: { row: PointsRow }) {
           />
         )}
       </div>
+
+      <PlayerSplits playerId={row.player_id} playerName={row.full_name} />
 
       <p className={styles.stamp}>
         Updated {row.pulled_at_utc ? formatLocalDate(row.pulled_at_utc) : "n/a"}

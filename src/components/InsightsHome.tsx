@@ -16,6 +16,8 @@ import {
   type SegmentMap,
 } from "@/lib/insightsTypes";
 import { DotWhisker, type DotRow } from "./DotWhisker";
+import { PlayerSplitsHome } from "./PlayerSplitsHome";
+import type { PlayerSplitsInsights } from "@/lib/playerSplitsTypes";
 import styles from "./InsightsHome.module.css";
 
 type MetricKey = "pts" | "minutes" | "per36";
@@ -85,7 +87,7 @@ function b2bPtsCaption(stats: MetricStats, min: MetricStats | null, per36: Metri
   return `Second night of a back-to-back: ${formatSigned(stats.mean)} pts vs rested (${formatCi(stats.ci95)}; n = ${n}).${driven}`;
 }
 
-export function InsightsHome({ data }: { data: InsightsData }) {
+export function InsightsHome({ data, playerSplits }: { data: InsightsData; playerSplits: PlayerSplitsInsights }) {
   const [scope, setScope] = useState<ScopeKey>("2025-26");
 
   const ha = data.results.home_away.by_scope[scope];
@@ -370,6 +372,8 @@ export function InsightsHome({ data }: { data: InsightsData }) {
           </figure>
         ) : null}
       </section>
+
+      <PlayerSplitsHome data={playerSplits} scope={scope} />
 
       <footer className={styles.method}>
         <p>
