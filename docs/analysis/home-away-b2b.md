@@ -105,3 +105,80 @@ Every segment, season and measure is in the JSON. Each entry lists n, games per 
 - **2025-26 position fallback:** NBA PlayerIndex 2025-26, pulled 2026-10-08.
 - **2026-27 schedule:** NBA ScheduleLeagueV2.
 - File hashes of every input are listed in the JSON under `sources.inputs`.
+
+## Per-player splits (player pages and homepage)
+
+Built by `/workspace/nba-phase1/scripts/analysis_player_splits.py`, which uses the same games, labels and segments as above. It is deterministic: two runs gave byte-identical files.
+
+### What the per-player numbers say
+
+- **Most individual splits are noise.** I estimated how much players *truly* differ from the league average (τ, "tau") with the standard DerSimonian–Laird method:
+  - Home vs away: τ ≈ 0.31 pts (2025-26).
+  - Second night of a back-to-back: τ ≈ 0.06 pts.
+  - First night: τ = 0.
+  - In other words, a player's observed home/away or back-to-back gap is almost entirely game-to-game luck. The shrunk (luck-adjusted) values sit within a few tenths of a point of the league mean.
+- **No player survives a multiple-testing correction.** The best single result is Dillon Brooks, +6.8 pts at home in 2025-26 (z = 3.41), with q = 0.34; "strong" needs q < 0.10.
+- **21 "watch" flags (|z| ≥ 2.5)** across scopes and comparisons, all in 2025-26 or combined. Chance alone would produce about 5 per comparison, so treat these as "worth a look", not as findings. Examples:
+  - Brooks and Kawhi Leonard: +5.3 at home.
+  - Nikola Jović: +7.6 on second nights.
+  - Jaylen Brown: −6.5 on second nights.
+- **2026-27:** only home/away qualifies, for 192 players. No back-to-back comparison qualifies yet.
+
+### `public/splits/<player_id>.json`: one file per player page
+
+- **Coverage:** 523 files, one per player in `data/betting_points.json` (the same players as `public/slots`).
+  - Sizes are 2.5–11.5 KB each, 5.2 MB on disk in total.
+  - Unlike `public/slots`, these files are **committed**, not generated at build time, because the build and app code were left unchanged. Moving generation into prebuild later is a one-line hook.
+- **Top-level fields:** `schema_version` (`player-splits-v1`), `player_id`, `full_name`, `team` (the current app team), `data_as_of` (`{"2025-26","2026-27"}`).
+- **`seasons[scope]`**, where scope is `"2025-26"`, `"2026-27"` or `"combined"` (the player's games from both seasons pooled). It is `null` if the player has no games in that scope; 81 players have no 2025-26 games.
+  - **`conditions[cond]`**: cond is one of `home`, `away`, `b2b_2nd`, `b2b_1st`, `rested`. Each holds `{n, pts, pts_sd, min, per36}`, which are averages over the player's games in that condition.
+  - **`comparisons[cmp]`**: cmp is one of `home_away`, `b2b_second_vs_rested`, `b2b_first_vs_rested`.
+    - If the player doesn't have 3+ games on each side: `{qualifies:false, n_a, n_b}`.
+    - Otherwise `{qualifies:true, n_a, n_b, pts:{…}, minutes:{raw, ci95}, per36:{raw}}`, where `pts` holds `raw, shrunk, shrink_weight, se, ci95, z, p, q, percentile, flag`.
+- **`league[scope]`**: the baseline for a "player vs league" chart, built from **all** players, not only app players.
+  - `league[scope].comparisons[cmp]` = `{n_players, pts_mean, pts_median, tau, min_mean, per36_mean}`.
+  - `league[scope].conditions[cond]` = `{n_players, pts, min, per36}`: the mean of player condition averages, among players with 3+ games in that condition.
+- **`game_fields` + `games`**: compact rows for dot or strip charts, sorted by date. The fields are `season`, `date`, `game_id`, `opp`, `venue`, `rest`, `pts`, `min`.
+  - `venue` is `H`, `A` or `N` (neutral).
+  - `rest` is `2nd`, `1st`, `rested` or `opener`.
+  - To filter by condition, use `venue` or `rest`.
+
+### `data/insights_player_splits.json`: homepage aggregates (about 270 KB)
+
+- **`league`**: the same structure as in the per-player files.
+- **`rankings[cmp][scope]`**:
+  - `n_ranked`: the number of app players who qualify.
+  - `shrunk_is_flat`: true when τ < 0.1. That is currently true for both back-to-back comparisons, where shrunk ordering is essentially meaningless.
+  - `by_shrunk.{top,bottom}` and `by_raw.{top,bottom}`: 25 entries each, already sorted. Each entry is `{player_id, full_name, team, qualifies, n_a, n_b, pts:{…}, minutes:{…}, per36:{…}}`.
+  - For display, **prefer `by_raw` with `ci95`**, plus a flag badge. Use `by_shrunk` only where `shrunk_is_flat` is false.
+- **`heatmaps.segment_x_condition[scope][segment]`**: segment is `position`, `age`, `experience` or `scorer_tier`.
+  - `rows` are the segment levels and `cond_cols` are the 5 conditions.
+  - `pts[row][col]` is the mean of player averages; `n[row][col]` is the number of players.
+  - It also has `cmp_cols` (the 3 comparisons), `cmp_pts_mean` and `cmp_n`, taken from the paired analysis in `insights_home_away_b2b.json`.
+  - Combined uses player-season units.
+- **`heatmaps.player_x_condition[scope]`**:
+  - `rows` is every player in any `by_shrunk` top/bottom list, as `{player_id, full_name, team}`, sorted by name.
+  - `cond_cols` with `pts` (null under 3 games) and `n`.
+  - `cmp_cols` with `raw` and `shrunk`.
+- **`distributions[cmp][scope]`**:
+  - `bin_edges` run from −10 to +10 pts in steps of 0.5.
+  - `raw` and `shrunk` each have `{counts, below_min, above_max, percentiles:{p5…p95}}`.
+  - Values outside the range are clipped into the end bins.
+- **`flagged`**: every app player with a non-null flag, as `{scope, comparison, …entry}`. It is sorted by scope, then comparison, then |z| from largest.
+- **`definitions`, `caveats`, `ranking_note`, `ranking_population`**: text to show next to the charts.
+
+### Per-player definitions
+
+- **raw:** the player's mean in condition A minus his mean in B.
+- **se:** the player's game-to-game points SD over *all* his games in the scope × √(1/n_a + 1/n_b). Using all his games is more stable than per-condition SDs when a side has only 3–5 games.
+- **ci95:** raw ± t(0.975, df = his games in scope − 1) × se.
+- **shrunk:** league mean + w × (raw − league mean), with w = τ² / (τ² + se²).
+- **z:** (raw − league mean) / se. p is two-sided; q is the Benjamini–Hochberg q-value within the same scope and comparison.
+- **percentile:** the rank of the shrunk value among all qualifying league players, from 0 to 100.
+- **flag:**
+  - `above_league_strong` / `below_league_strong` when q < 0.10.
+  - `…_watch` when |z| ≥ 2.5, which is nominal and not adjusted for multiple tests.
+  - Otherwise null.
+- **Minutes and per 36:** raw only, with a CI for minutes. Shrinkage, z and flags apply to points.
+- **Rankings and the flagged list** contain app players only. League baselines, τ and percentiles use every player with games.
+- **Per-player combined vs the summary above:** the per-player files pool a player's games across both seasons. The league summary at the top of this doc instead treats each player-season as one unit, so the combined numbers differ slightly. For example, combined second night is +0.44 here vs +0.40 above.
