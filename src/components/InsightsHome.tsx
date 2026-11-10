@@ -22,6 +22,8 @@ import {
 } from "@/lib/timespans";
 import { DotWhisker, type DotRow } from "./DotWhisker";
 import { PlayerSplitsHome } from "./PlayerSplitsHome";
+import { PointsDrivers } from "./PointsDrivers";
+import type { PointsDriversData } from "@/lib/pointsDriversTypes";
 import type { PlayerSplitsInsights } from "@/lib/playerSplitsTypes";
 import styles from "./InsightsHome.module.css";
 
@@ -159,9 +161,11 @@ function peerNote(label: string, block: ComparisonBlock | null | undefined): str
 export function InsightsHome({
   data,
   playerSplits,
+  pointsDrivers,
 }: {
   data: InsightsData;
   playerSplits: PlayerSplitsInsights;
+  pointsDrivers: PointsDriversData;
 }) {
   const timespans = (data.timespans?.length ? data.timespans : TIMESPAN_ORDER) as TimespanKey[];
   const segments = (data.segments?.length ? data.segments : SEGMENT_ORDER) as SegmentKey[];
@@ -477,6 +481,12 @@ export function InsightsHome({
       </section>
 
       <PlayerSplitsHome data={playerSplits} timespan={timespan} />
+
+      <PointsDrivers
+        data={pointsDrivers}
+        timespan={timespan}
+        segment={segment}
+      />
 
       <footer className={styles.method}>
         <p>
