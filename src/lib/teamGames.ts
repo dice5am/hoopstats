@@ -42,7 +42,7 @@ export type TeamGame = {
    * footnote, decided at build time via `sourceNoteOf`). Read from the row field named by SOURCE_FIELD in betting.ts.
    * A missing value means DEFAULT_SOURCE (the loader and the decoder fill it
    * in). On /slots/<id>.json it travels as `c` only when it is not
-   * DEFAULT_SOURCE. Optional only so the page payload (last5) can omit it.
+   * DEFAULT_SOURCE. Optional only so the page payload (last8) can omit it.
    */
   source?: string;
 };
@@ -141,7 +141,7 @@ export type StintTick = {
 
 /**
  * A dated past game (played or missed) with an opponent and home/away —
- * what the last 5 draws.
+ * what the last 8 draws.
  */
 export type PastGame = TeamGame & {
   status: "played" | "missed";

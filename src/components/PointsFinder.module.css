@@ -282,8 +282,8 @@
 
 .plot {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 4px;
   height: 186px;
   align-items: end;
   padding-top: 30px;
@@ -340,7 +340,7 @@
 
 .outLab {
   font-weight: 700;
-  font-size: 13px;
+  font-size: 11px;
   color: var(--hw-ink-2);
 }
 
@@ -357,7 +357,7 @@
   text-align: center;
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 24px;
+  font-size: 15px;
   line-height: 1;
 }
 
@@ -368,8 +368,8 @@
 
 .caps {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 4px;
   margin: 8px 0 0;
   padding: 0;
   list-style: none;
@@ -386,9 +386,12 @@
 .cap b {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 17px;
-  letter-spacing: 0.03em;
+  font-size: 11px;
+  letter-spacing: 0.02em;
   white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .capOut b {
@@ -396,10 +399,13 @@
 }
 
 .cap span {
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 600;
   color: var(--hw-ink-2);
   white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .noGames {
@@ -595,5 +601,130 @@
   .empty .circle {
     width: 300px;
     height: 300px;
+  }
+}
+
+.back {
+  align-self: flex-start;
+  margin: 8px 0 10px;
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 2.5px solid var(--hw-line);
+  background: rgba(255, 248, 238, 0.35);
+  color: var(--hw-ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.listWrap {
+  margin-top: 8px;
+  min-width: 0;
+}
+
+.listTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.listSub {
+  margin: 6px 0 10px;
+  color: var(--hw-ink-2);
+  font-size: 13px;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 2px solid var(--hw-line);
+}
+
+.listRow {
+  display: grid;
+  grid-template-columns: 2.2em minmax(0, 1fr) 3.2em;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 4px;
+  border: 0;
+  border-bottom: 1px solid rgba(92, 65, 40, 0.18);
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.listRank {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--hw-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.listWho {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.listName {
+  font-weight: 650;
+  font-size: 14px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.listTeam {
+  color: var(--hw-ink-2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.listPpg {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.listEmpty {
+  margin: 16px 0;
+  color: var(--hw-ink-2);
+}
+
+@media (min-width: 1000px) {
+  .plot,
+  .caps {
+    gap: 8px;
+  }
+  .pts {
+    font-size: 22px;
+  }
+  .cap b {
+    font-size: 15px;
+  }
+  .cap span {
+    font-size: 12px;
+  }
+  .outLab {
+    font-size: 13px;
+  }
+  .listTitle {
+    font-size: 28px;
   }
 }

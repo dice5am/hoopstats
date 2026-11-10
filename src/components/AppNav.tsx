@@ -6,8 +6,7 @@ import styles from "./AppNav.module.css";
 
 const LINKS = [
   { href: "/", label: "Insights" },
-  { href: "/betting", label: "Betting" },
-  { href: "/fantasy", label: "Fantasy" },
+  { href: "/players", label: "Players" },
 ] as const;
 
 /** Hardwood top bar: lowercase wordmark + primary links. */

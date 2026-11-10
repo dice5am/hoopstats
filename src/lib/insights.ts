@@ -3,21 +3,19 @@ import path from "node:path";
 import type { InsightsData } from "./insightsTypes";
 
 export type {
-  ScopeKey,
+  TimespanKey,
+  SegmentKey,
   MetricStats,
-  MetricBlock,
-  SegmentMap,
-  ScopeBlock,
-  Comparison,
+  ComparisonBlock,
+  SegmentResult,
   InsightsData,
 } from "./insightsTypes";
 
 export {
-  SCOPE_ORDER,
-  SEGMENT_ORDER,
-  SEGMENT_LABELS,
-  SEGMENT_TITLES,
-  scopeHasMetric,
+  SECONDARY_ORDER,
+  SECONDARY_LABELS,
+  SECONDARY_TITLES,
+  blockHasMetric,
   formatSigned,
   formatCi,
 } from "./insightsTypes";

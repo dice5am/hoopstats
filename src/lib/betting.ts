@@ -54,11 +54,11 @@ export type PointsRow = {
   n_last: number | null;
   last: PointsGame[];
   /**
-   * His team's last 5 dated past games (played or missed) while on the
-   * roster, oldest first — from the 2026-27 slots, precomputed so the last-5
+   * His team's last 8 dated past games (played or missed) while on the
+   * roster, oldest first — from the 2026-27 slots, precomputed so the last-8
    * chart renders with the tiles. The season charts load /slots/<id>.json.
    */
-  last5: PastGame[];
+  last8: PastGame[];
   /** His team has a final 2026-27 game (played or missed) on his chart. */
   teamPlayed: boolean;
   /**
@@ -337,7 +337,7 @@ function toRow(r: RawRow): PointsRow {
     last_season_gp: num(r.last_season_gp),
     n_last: nLast,
     last,
-    last5: [],
+    last8: [],
     teamPlayed: false,
     slotTotal2526: null,
     shape: { cur: { played: false, notOn: false, hasMarkers: false }, prev: null },
@@ -397,7 +397,7 @@ export function loadPlayerSlots(): Map<string, PlayerSlots> {
 }
 
 /**
- * Page payload: search index + tiles + last 5. Season-chart slots are not
+ * Page payload: search index + tiles + last 8. Season-chart slots are not
  * embedded (fetched per player from /slots/<id>.json).
  */
 export function loadPointsRows(): PointsRow[] {
@@ -413,10 +413,10 @@ export function loadPointsRows(): PointsRow[] {
       row.teamPlayed = games.some(
         (g) => g.status === "played" || g.status === "missed",
       );
-      row.last5 = games
+      row.last8 = games
         .filter(isPastGame)
         .sort((a, b) => a.date.localeCompare(b.date) || a.seq - b.seq)
-        .slice(-5)
+        .slice(-8)
         .map(withoutSource);
       const s25 = season2526?.get(row.player_id);
       row.slotTotal2526 = season2526 ? (s25?.slotTotal ?? 0) : null;

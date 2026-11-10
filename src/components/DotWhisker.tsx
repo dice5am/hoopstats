@@ -1,13 +1,12 @@
 "use client";
 
-import type { MetricStats } from "@/lib/insightsTypes";
 import { formatSigned } from "@/lib/insightsTypes";
 import styles from "./DotWhisker.module.css";
 
 export type DotRow = {
   key: string;
   label: string;
-  stats: MetricStats;
+  stats: { mean: number; ci95: [number, number] };
   n: number;
   small_n?: boolean;
 };

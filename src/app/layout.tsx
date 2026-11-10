@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "hoopstats — Points insights",
   description:
-    "NBA points: home vs away and back-to-backs, plus player points for betting and fantasy.",
+    "NBA points: home vs away and back-to-backs, plus a player points finder.",
 };
 
 export default function RootLayout({

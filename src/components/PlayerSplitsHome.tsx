@@ -11,7 +11,8 @@ import {
   type FlaggedEntry,
   type PlayerSplitsInsights,
   type RankEntry,
-  type ScopeKey,
+  type TimespanKey,
+  TIMESPAN_SWITCH_LABEL,
 } from "@/lib/playerSplitsTypes";
 import styles from "./PlayerSplitsHome.module.css";
 
@@ -21,33 +22,37 @@ const CMPS: CmpKey[] = [
   "b2b_first_vs_rested",
 ];
 
-const SEGMENTS = ["position", "age", "experience", "scorer_tier"] as const;
+const SEGMENTS = ["scorer_segment", "position", "age", "experience"] as const;
+
+const HEAT_LABEL: Record<(typeof SEGMENTS)[number], string> = {
+  scorer_segment: "PPG segment",
+  position: "Position",
+  age: "Age",
+  experience: "Experience",
+};
 
 export function PlayerSplitsHome({
   data,
-  scope,
+  timespan,
 }: {
   data: PlayerSplitsInsights;
-  scope: ScopeKey;
+  timespan: TimespanKey;
 }) {
   const [cmp, setCmp] = useState<CmpKey>("home_away");
   const [end, setEnd] = useState<"top" | "bottom">("top");
   const [seg, setSeg] = useState<(typeof SEGMENTS)[number]>("position");
 
-  const ranking = data.rankings[cmp]?.[scope];
+  const ranking = data.rankings[cmp]?.[timespan];
   // Prefer by_raw with ci95; by_shrunk only meaningful when shrunk_is_flat is false
   const entries: RankEntry[] = ranking
     ? ranking.by_raw[end] ?? []
     : [];
 
-  const heatmap = data.heatmaps.segment_x_condition[scope]?.[seg];
+  const heatmap = data.heatmaps.segment_x_condition[timespan]?.[seg];
 
-  const watchList: FlaggedEntry[] =
-    scope === "combined"
-      ? data.flagged.filter((f) => f.scope === "combined").length
-        ? data.flagged.filter((f) => f.scope === "combined")
-        : data.flagged
-      : data.flagged.filter((f) => f.scope === scope);
+  const watchList: FlaggedEntry[] = data.flagged.filter(
+    (f) => f.scope === timespan,
+  );
 
   const flatNote = ranking?.shrunk_is_flat
     ? "Shrunk values are flat here (τ < 0.1) — showing raw gaps with intervals."
@@ -73,7 +78,7 @@ export function PlayerSplitsHome({
       <div className={styles.toolbar}>
         <div className={styles.switch} role="tablist" aria-label="Comparison">
           {CMPS.map((c) => {
-            const block = data.rankings[c]?.[scope];
+            const block = data.rankings[c]?.[timespan];
             const empty = !block || block.n_ranked === 0;
             return (
               <button
@@ -112,7 +117,7 @@ export function PlayerSplitsHome({
 
       {!ranking || ranking.n_ranked === 0 ? (
         <p className={styles.empty}>
-          No qualifying players for this comparison in {scope}.
+          No qualifying players for this comparison in this timespan.
         </p>
       ) : (
         <>
@@ -139,36 +144,36 @@ export function PlayerSplitsHome({
             className={seg === s ? styles.tabOn : styles.tab}
             onClick={() => setSeg(s)}
           >
-            {s === "scorer_tier" ? "Scorer" : s[0].toUpperCase() + s.slice(1)}
+            {HEAT_LABEL[s]}
           </button>
         ))}
       </div>
       {heatmap ? (
         <HeatmapTable hm={heatmap} />
       ) : (
-        <p className={styles.empty}>No heatmap for this scope/segment.</p>
+        <p className={styles.empty}>No heatmap for this timespan/segment.</p>
       )}
 
       {/* Watch list */}
       <h3 className={styles.h3}>Watch list</h3>
       <p className={styles.meta}>
         {watchList.length} flag{watchList.length === 1 ? "" : "s"}
-        {scope === "combined" ? " (all scopes shown if combined empty)" : ` in ${scope}`}
-        . Tap a name to open Betting.
+        {` in ${TIMESPAN_SWITCH_LABEL[timespan] ?? timespan}`}
+        . Tap a name to open Players.
       </p>
       {watchList.length === 0 ? (
-        <p className={styles.empty}>No watch flags in this scope.</p>
+        <p className={styles.empty}>No watch flags in this timespan.</p>
       ) : (
         <ul className={styles.watch}>
           {watchList.map((f) => (
             <li key={`${f.scope}-${f.comparison}-${f.player_id}`}>
               <Link
-                href={`/betting?player=${encodeURIComponent(f.player_id)}`}
+                href={`/players?player=${encodeURIComponent(f.player_id)}`}
                 className={styles.watchLink}
               >
                 <span className={styles.watchName}>{f.full_name}</span>
                 <span className={styles.watchMeta}>
-                  {f.team ?? "FA"} · {f.scope} ·{" "}
+                  {f.team ?? "FA"} · {TIMESPAN_SWITCH_LABEL[f.scope as TimespanKey] ?? f.scope} ·{" "}
                   {CMP_LABELS[f.comparison as CmpKey] ?? f.comparison} ·{" "}
                   {formatSigned(f.pts.raw)} raw
                   {isWatchFlag(f.pts.flag) ? " · watch" : ""}
@@ -212,7 +217,7 @@ function RankBars({ entries }: { entries: RankEntry[] }) {
         return (
           <li key={e.player_id} className={styles.barRow}>
             <Link
-              href={`/betting?player=${encodeURIComponent(e.player_id)}`}
+              href={`/players?player=${encodeURIComponent(e.player_id)}`}
               className={styles.barName}
             >
               <span className={styles.rankNum}>{i + 1}</span>

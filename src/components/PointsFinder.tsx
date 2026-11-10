@@ -12,7 +12,7 @@ import {
   formatPlainDate,
   monthShort,
 } from "@/lib/dates";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { PlayerSplits } from "./PlayerSplits";
 import styles from "./PointsFinder.module.css";
 
@@ -46,6 +46,7 @@ function gamesText(n: number): string {
 
 export function PointsFinder({ rows }: { rows: PointsRow[] }) {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(-1);
@@ -69,6 +70,16 @@ export function PointsFinder({ rows }: { rows: PointsRow[] }) {
   }, [rows, searchParams]);
 
   const results = useMemo(() => rankMatches(rows, query), [rows, query]);
+  const roster = useMemo(() => {
+    return rows
+      .filter((r) => r.pts_season_avg != null)
+      .slice()
+      .sort(
+        (a, b) =>
+          (b.pts_season_avg ?? 0) - (a.pts_season_avg ?? 0) ||
+          a.full_name.localeCompare(b.full_name),
+      );
+  }, [rows]);
   const showList = open && query.trim().length > 0;
 
   useEffect(() => {
@@ -87,6 +98,17 @@ export function PointsFinder({ rows }: { rows: PointsRow[] }) {
     setOpen(false);
     setActive(-1);
     if (lastPointer.current === "touch") inputRef.current?.blur();
+    router.replace(`/players?player=${encodeURIComponent(row.player_id)}`, {
+      scroll: false,
+    });
+  }
+
+  function clearPick() {
+    setPicked(null);
+    setQuery("");
+    setOpen(false);
+    setActive(-1);
+    router.replace("/players", { scroll: false });
   }
 
   function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -129,7 +151,7 @@ export function PointsFinder({ rows }: { rows: PointsRow[] }) {
         <div>
           <h1 className={styles.title}>Player points</h1>
           <p className={styles.subtitle}>
-            Season, month, 2025-26 and last 5 · points only
+            Season, month, 2025-26 and last 8 · points only
           </p>
         </div>
         <div className={styles.search} ref={wrapRef}>
@@ -195,16 +217,14 @@ export function PointsFinder({ rows }: { rows: PointsRow[] }) {
       </section>
 
       {picked ? (
-        <PointsCard row={picked} />
+        <>
+          <button type="button" className={styles.back} onClick={clearPick}>
+            All players
+          </button>
+          <PointsCard row={picked} />
+        </>
       ) : (
-        <section className={`${styles.court} ${styles.empty}`}>
-          <div className={styles.half} aria-hidden />
-          <div className={styles.circle} aria-hidden />
-          <p>
-            Search a player to see season avg, month avg, 2025-26 avg and last 5
-            games
-          </p>
-        </section>
+        <PlayerList rows={roster} onPick={pick} />
       )}
     </main>
   );
@@ -225,8 +245,8 @@ function oppLabel(g: PastGame): string {
 }
 
 /**
- * Team's last 5 games while he was on the roster: fixed 0–50, oldest left →
- * newest right, 5 slots from the left. Missed = dashed "Out" slot (never 0).
+ * Team's last 8 games while he was on the roster: fixed 0–50, oldest left →
+ * newest right, 8 slots from the left. Missed = dashed "Out" slot (never 0).
  */
 function LastGamesChart({ games }: { games: PastGame[] }) {
   if (games.length === 0) {
@@ -237,9 +257,9 @@ function LastGamesChart({ games }: { games: PastGame[] }) {
       </div>
     );
   }
-  const ordered = games.slice(-5); // data is oldest first
+  const ordered = games.slice(-8); // data is oldest first
   const slots: (PastGame | null)[] = Array.from(
-    { length: 5 },
+    { length: 8 },
     (_, i) => ordered[i] ?? null,
   );
   const newestIdx = ordered.length - 1;
@@ -395,7 +415,7 @@ function PointsCard({ row }: { row: PointsRow }) {
         </div>
       </div>
 
-      <LastGamesChart games={row.last5} />
+      <LastGamesChart games={row.last8} />
       <div className={styles.seasonArea}>
         {!teamPlayed ? null : slots.status === "ready" ? (
           <SeasonChart
@@ -452,6 +472,53 @@ function PointsCard({ row }: { row: PointsRow }) {
           ? formatPlainDate(row.data_as_of_game_date)
           : "n/a"}
       </p>
+    </section>
+  );
+}
+
+
+function PlayerList({
+  rows,
+  onPick,
+}: {
+  rows: PointsRow[];
+  onPick: (row: PointsRow) => void;
+}) {
+  if (rows.length === 0) {
+    return (
+      <p className={styles.listEmpty}>No players with minutes this season.</p>
+    );
+  }
+  return (
+    <section className={styles.listWrap} aria-label="2026-27 players by points">
+      <h2 className={styles.listTitle}>2026-27 · by points</h2>
+      <p className={styles.listSub}>
+        {rows.length} players with minutes, highest PPG first
+      </p>
+      <ol className={styles.list}>
+        {rows.map((row, i) => (
+          <li key={row.player_id}>
+            <button
+              type="button"
+              className={styles.listRow}
+              onClick={() => onPick(row)}
+            >
+              <span className={styles.listRank}>{i + 1}</span>
+              <span className={styles.listWho}>
+                <span className={styles.listName}>{row.full_name}</span>
+                <span className={styles.listTeam}>
+                  {row.team_abbreviation ?? "Free agent"}
+                </span>
+              </span>
+              <span className={styles.listPpg}>
+                {row.pts_season_avg != null
+                  ? row.pts_season_avg.toFixed(1)
+                  : "n/a"}
+              </span>
+            </button>
+          </li>
+        ))}
+      </ol>
     </section>
   );
 }

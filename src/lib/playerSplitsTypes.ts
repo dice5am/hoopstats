@@ -1,6 +1,9 @@
-/** Client-safe types for player-splits-v1 / insights-player-splits-v1. */
+/** Client-safe types for player-splits-v2 / insights-player-splits-v2. */
 
-export type ScopeKey = "2025-26" | "2026-27" | "combined";
+import type { TimespanKey, SegmentKey } from "./timespans";
+
+export type { TimespanKey, SegmentKey };
+export type ScopeKey = TimespanKey;
 export type CmpKey =
   | "home_away"
   | "b2b_second_vs_rested"
@@ -45,9 +48,23 @@ export type Condition = {
   per36: number | null;
 };
 
+export type SeasonSegment = {
+  gp: number;
+  ppg: number;
+  ppg_rank: number | null;
+  meets_floor: boolean;
+  min_games_floor: number;
+  segments: string[];
+  segment_league?: Record<
+    string,
+    Record<string, { n_players: number; pts_mean: number; pts_median: number; min_mean: number; per36_mean: number }>
+  >;
+};
+
 export type SeasonBlock = {
   conditions: Record<string, Condition>;
   comparisons: Record<string, Comparison>;
+  segment?: SeasonSegment;
 };
 
 export type LeagueCmp = {
@@ -65,12 +82,16 @@ export type PlayerSplits = {
   full_name: string;
   team: string | null;
   data_as_of: Record<string, string>;
+  timespans?: TimespanKey[];
+  default_timespan?: TimespanKey;
   seasons: Record<string, SeasonBlock | null>;
   league: Record<
     string,
     {
-      comparisons: Record<string, LeagueCmp>;
+      comparisons: Record<string, LeagueCmp & { n_strong_all_players?: number; n_watch_all_players?: number }>;
       conditions: Record<string, { n_players: number; pts: number; min: number; per36: number }>;
+      by_segment?: Record<string, Record<string, { n_players: number; pts_mean: number; pts_median: number; min_mean: number; per36_mean: number }>>;
+      timespan?: string;
     }
   >;
   game_fields: string[];
@@ -98,7 +119,7 @@ export type RankingBlock = {
 };
 
 export type FlaggedEntry = RankEntry & {
-  scope: ScopeKey;
+  scope: string;
   comparison: CmpKey;
 };
 
@@ -115,6 +136,9 @@ export type HeatmapSegment = {
 export type PlayerSplitsInsights = {
   schema_version: string;
   data_as_of: Record<string, string>;
+  default?: { timespan: TimespanKey; segment: SegmentKey };
+  timespans?: TimespanKey[];
+  segments?: SegmentKey[];
   definitions: Record<string, string>;
   ranking_note: string;
   ranking_population: string;
@@ -129,7 +153,9 @@ export type PlayerSplitsInsights = {
   caveats: string[];
 };
 
-export const SCOPE_ORDER: ScopeKey[] = ["2025-26", "2026-27", "combined"];
+export { TIMESPAN_ORDER as SCOPE_ORDER, TIMESPAN_SWITCH_LABEL, SEGMENT_SWITCH_LABEL, gameInTimespan } from "./timespans";
+
+export const LEGACY_SCOPE_ORDER: string[] = ["2025-26", "2026-27", "combined"];
 
 export const CMP_LABELS: Record<CmpKey, string> = {
   home_away: "Home vs away",
@@ -162,6 +188,11 @@ export const SEGMENT_ROW_LABELS: Record<string, string> = {
   "26_50": "26–50",
   "51_100": "51–100",
   rest: "Rest",
+  all: "All",
+  top100: "Top 100",
+  top50: "Top 50",
+  top25: "Top 25",
+  top10: "Top 10",
 };
 
 /** Parse JSON that may contain Python-style NaN (invalid JSON). */

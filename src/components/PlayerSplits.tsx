@@ -4,15 +4,17 @@ import { useEffect, useMemo, useState } from "react";
 import {
   CMP_LABELS,
   SCOPE_ORDER,
+  TIMESPAN_SWITCH_LABEL,
   formatCi,
   formatSigned,
+  gameInTimespan,
   gameRow,
   isWatchFlag,
   parseJsonAllowingNaN,
   type CmpKey,
   type PlayerSplits as PlayerSplitsData,
   type QualifyingCmp,
-  type ScopeKey,
+  type TimespanKey,
 } from "@/lib/playerSplitsTypes";
 import styles from "./PlayerSplits.module.css";
 
@@ -88,8 +90,13 @@ export function PlayerSplits({ playerId, playerName }: Props) {
 }
 
 function PlayerSplitsReady({ data }: { data: PlayerSplitsData }) {
-  const available = SCOPE_ORDER.filter((s) => data.seasons[s] != null);
-  const [scope, setScope] = useState<ScopeKey>(available[0] ?? "2025-26");
+  const order = (data.timespans?.length ? data.timespans : SCOPE_ORDER) as TimespanKey[];
+  const available = order.filter((s) => data.seasons[s] != null);
+  const initial =
+    (data.default_timespan && available.includes(data.default_timespan)
+      ? data.default_timespan
+      : available[0]) ?? "pooled_2023_26";
+  const [scope, setScope] = useState<TimespanKey>(initial);
   const [showRawHome, setShowRawHome] = useState(false);
 
   const season = data.seasons[scope];
@@ -142,7 +149,10 @@ function PlayerSplitsReady({ data }: { data: PlayerSplitsData }) {
             className={scope === s ? styles.tabOn : styles.tab}
             onClick={() => setScope(s)}
           >
-            {s === "combined" ? "Combined" : s}
+            {TIMESPAN_SWITCH_LABEL[s] ?? s}
+            {s === "2026_27" ? (
+              <span className={styles.pill}>early sample</span>
+            ) : null}
           </button>
         ))}
       </div>
@@ -328,15 +338,12 @@ function GameStrip({
 }: {
   fields: string[];
   games: (string | number | null)[][];
-  scope: ScopeKey;
+  scope: TimespanKey;
 }) {
   const rows = useMemo(() => {
     return games
       .map((g) => gameRow(fields, g))
-      .filter((g) => {
-        if (scope === "combined") return true;
-        return g.season === scope;
-      });
+      .filter((g) => gameInTimespan(String(g.season ?? ""), scope));
   }, [fields, games, scope]);
 
   if (rows.length === 0) {
