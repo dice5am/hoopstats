@@ -1,0 +1,312 @@
+{
+ "study": "player_conditions",
+ "built_through": "2026-11-09",
+ "generated_by": "scripts/player_conditions_assemble.py",
+ "tables": {
+  "player_conditions": {
+   "rows": 164740,
+   "cols": 70,
+   "sha256": "66b92594c57a53d31c16cc19a16ef7b52009cc183bbc96f69c46733cad3713fb",
+   "bytes": 5937995
+  },
+  "player_conditions_summary": {
+   "rows": 3785,
+   "cols": 49,
+   "sha256": "06852ef8f661002e4b618598e7b3a8a35bf4f6c4c8d7bcb00c60ae5932835fa8",
+   "bytes": 189864
+  },
+  "player_conditions_persistence": {
+   "rows": 2800,
+   "cols": 52,
+   "sha256": "434068a5648fd89abcd8fcccc3ffb266cebd002e4f9c15491ebc6d00b1acc4e0",
+   "bytes": 187364
+  },
+  "player_conditions_reliability": {
+   "rows": 700,
+   "cols": 95,
+   "sha256": "ca98ac51df8f7316b2ea16aec4e5ce2571c936b1f0106acb35bb80a1ac285762",
+   "bytes": 168764
+  },
+  "player_conditions_responders": {
+   "rows": 7400,
+   "cols": 29,
+   "sha256": "3306d41e845782d8e49a1157db6a4dc20f674c98c11d8710d468ba7f526a7a22",
+   "bytes": 175053
+  },
+  "player_conditions_profiles": {
+   "rows": 3312,
+   "cols": 25,
+   "sha256": "cdd8efe95281eafa00b8e201b78698d7634fd1c2e70e953bf8d8bbddabecb91e",
+   "bytes": 122089
+  },
+  "player_conditions_definitions": {
+   "rows": 28,
+   "cols": 5,
+   "sha256": "3a72972c59e3fbb3a9a669e1dfa045f2fd3d20d3b6b0ba2b899ac221d4104f73",
+   "bytes": 4661
+  }
+ },
+ "thresholds": {
+  "floor_prior_avg_ppg": 8.0,
+  "min_n_both_sides": [
+   10,
+   10
+  ],
+  "min_n_both_sides_2026_27": [
+   3,
+   3
+  ],
+  "min_n_split_half": [
+   5,
+   5
+  ],
+  "min_n_strong": 15,
+  "min_n_rank": 15,
+  "z_strong": 1.96,
+  "z_watch": 1.645,
+  "persistence_bh_q": 0.1,
+  "n_permutations": 200,
+  "n_random_splits": 20,
+  "thin_segment": "< 30 players or < 300 player-games (top25 and top10 are always thin)"
+ },
+ "conditions": [
+  {
+   "id": "home",
+   "group": "venue",
+   "label": "home game",
+   "condition": "home",
+   "reference": "away"
+  },
+  {
+   "id": "b2b_2nd",
+   "group": "rest",
+   "label": "2nd night of a back-to-back (vs rested)",
+   "condition": "b2b_2nd",
+   "reference": "b2b_rested"
+  },
+  {
+   "id": "b2b_1st",
+   "group": "rest",
+   "label": "1st night of a back-to-back (vs rested)",
+   "condition": "b2b_1st",
+   "reference": "b2b_rested"
+  },
+  {
+   "id": "rest_r0",
+   "group": "rest",
+   "label": "0 rest days (vs other rest)",
+   "condition": "rest_r0",
+   "reference": "~"
+  },
+  {
+   "id": "rest_r1",
+   "group": "rest",
+   "label": "1 rest day (vs other rest)",
+   "condition": "rest_r1",
+   "reference": "~"
+  },
+  {
+   "id": "rest_r2",
+   "group": "rest",
+   "label": "2 rest days (vs other rest)",
+   "condition": "rest_r2",
+   "reference": "~"
+  },
+  {
+   "id": "rest_r3plus",
+   "group": "rest",
+   "label": "3+ rest days (vs other rest)",
+   "condition": "rest_r3plus",
+   "reference": "~"
+  },
+  {
+   "id": "def_worst5",
+   "group": "opp_defence",
+   "label": "opponent worst-5 defence",
+   "condition": "def_worst5",
+   "reference": "~"
+  },
+  {
+   "id": "def_worst10",
+   "group": "opp_defence",
+   "label": "opponent worst-10 defence",
+   "condition": "def_worst10",
+   "reference": "~"
+  },
+  {
+   "id": "def_best10",
+   "group": "opp_defence",
+   "label": "opponent best-10 defence",
+   "condition": "def_best10",
+   "reference": "~"
+  },
+  {
+   "id": "def_best5",
+   "group": "opp_defence",
+   "label": "opponent best-5 defence",
+   "condition": "def_best5",
+   "reference": "~"
+  },
+  {
+   "id": "pace_fast10",
+   "group": "opp_pace",
+   "label": "opponent fastest-10 pace",
+   "condition": "pace_fast10",
+   "reference": "~"
+  },
+  {
+   "id": "pace_slow10",
+   "group": "opp_pace",
+   "label": "opponent slowest-10 pace",
+   "condition": "pace_slow10",
+   "reference": "~"
+  },
+  {
+   "id": "opp_leaky_l5",
+   "group": "opp_form",
+   "label": "opponent last-5 DRtg 3+ worse than its season (vs neutral band)",
+   "condition": "opp_leaky_l5",
+   "reference": "not:opp_leaky_l5,opp_tight_l5"
+  },
+  {
+   "id": "opp_tight_l5",
+   "group": "opp_form",
+   "label": "opponent last-5 DRtg 3+ better than its season (vs neutral band)",
+   "condition": "opp_tight_l5",
+   "reference": "not:opp_leaky_l5,opp_tight_l5"
+  },
+  {
+   "id": "opp_leaky_l1",
+   "group": "opp_form",
+   "label": "opponent last-game DRtg 10+ worse (vs neutral band)",
+   "condition": "opp_leaky_l1",
+   "reference": "not:opp_leaky_l1,opp_tight_l1"
+  },
+  {
+   "id": "opp_tight_l1",
+   "group": "opp_form",
+   "label": "opponent last-game DRtg 10+ better (vs neutral band)",
+   "condition": "opp_tight_l1",
+   "reference": "not:opp_leaky_l1,opp_tight_l1"
+  },
+  {
+   "id": "vac_any",
+   "group": "teammates_out",
+   "label": "any regular teammate out (vs none)",
+   "condition": "vac_any",
+   "reference": "vac_none"
+  },
+  {
+   "id": "vac_large",
+   "group": "teammates_out",
+   "label": "regulars out total 20+ prior PPG (vs none)",
+   "condition": "vac_large",
+   "reference": "vac_none"
+  },
+  {
+   "id": "vac_star",
+   "group": "teammates_out",
+   "label": "a 20+ PPG teammate out (vs other)",
+   "condition": "vac_star",
+   "reference": "~"
+  },
+  {
+   "id": "out_top1",
+   "group": "teammates_out",
+   "label": "team's top scorer out (vs other)",
+   "condition": "out_top1",
+   "reference": "~"
+  },
+  {
+   "id": "bb_last1",
+   "group": "bounce_back",
+   "label": "after a weak last game (<0.75x avg)",
+   "condition": "bb_last1",
+   "reference": "~"
+  },
+  {
+   "id": "hot_last1",
+   "group": "hot_game",
+   "label": "after a hot last game (>=1.25x avg)",
+   "condition": "hot_last1",
+   "reference": "~"
+  },
+  {
+   "id": "min_up3",
+   "group": "minutes_role",
+   "label": "recent minutes trend up (last-5 3+ above season)",
+   "condition": "min_up3",
+   "reference": "not:min_up3,min_dn3"
+  },
+  {
+   "id": "min_dn3",
+   "group": "minutes_role",
+   "label": "recent minutes trend down (last-5 3+ below season)",
+   "condition": "min_dn3",
+   "reference": "not:min_up3,min_dn3"
+  },
+  {
+   "id": "role_promoted",
+   "group": "minutes_role",
+   "label": "recently promoted to the starting five",
+   "condition": "role_promoted",
+   "reference": "not:role_promoted,role_demoted"
+  },
+  {
+   "id": "role_demoted",
+   "group": "minutes_role",
+   "label": "recently demoted from the starting five",
+   "condition": "role_demoted",
+   "reference": "not:role_promoted,role_demoted"
+  },
+  {
+   "id": "early_vs_late",
+   "group": "season_phase",
+   "label": "early season (Oct-Nov) vs late season (Mar-Apr)",
+   "condition": "phase_early",
+   "reference": "phase_late"
+  }
+ ],
+ "outcomes": {
+  "dev": "points minus prior average (pts)",
+  "x125": "big night 1.25x (pp rate)",
+  "x150": "big night 1.5x (pp rate)",
+  "x200": "big night 2.0x (pp rate)",
+  "p10": "big night +10 (pp rate)"
+ },
+ "timespans": [
+  "pooled_2023_27",
+  "pooled_2023_26",
+  "2023_24",
+  "2024_25",
+  "2025_26",
+  "2026_27",
+  "pooled_2023_25"
+ ],
+ "segments": [
+  "all",
+  "top100",
+  "top50",
+  "top25",
+  "top10"
+ ],
+ "schemes": {
+  "temporal": "train 2023-24 + 2024-25 -> test 2025-26 (held-out season)",
+  "odd_even": "odd vs even games within seasons (pooled 2023-26; deterministic split by within-season game number)",
+  "random_halves": "random split-half of games (pooled 2023-26; mean of 20 random splits)",
+  "provisional_2026_27": "train 2023-26 -> 2026-27 to date (PROVISIONAL, tiny n)"
+ },
+ "duckdb_views": [
+  "player_conditions",
+  "player_conditions_summary",
+  "player_conditions_persistence",
+  "player_conditions_reliability",
+  "player_conditions_responders",
+  "player_conditions_profiles",
+  "player_conditions_definitions"
+ ],
+ "provisional_timespans": [
+  "2026_27",
+  "pooled_2023_27"
+ ]
+}
