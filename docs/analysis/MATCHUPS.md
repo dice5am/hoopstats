@@ -293,3 +293,8 @@ All top25 and top10 cells are thin (25 and 10 players). 2026-27 top50 is thin to
 - Position is the primary roster position (G / F / C) of the player-season; hybrid players are assigned their first-listed position. Points allowed per 36 to a position group depend on who played that position for the attacking teams.
 - Test lifts are one date-split per cell; the paired player-cluster bootstrap measures sampling noise over players, not over different test periods.
 - The matchup endpoints were checked on a sample only (section 3); no matchup-endpoint data enters any table.
+
+
+## Update 2026-11-10: stars vs weak defences, tails and tiers (see DEEP_ANALYSES.md)
+
+Section 1's "league-average about +0.6 PTS against weak vs strong defences; individual deviations are mostly noise" is refined, not reversed: against the 5 worst defences the excess over the prior average is +0.63 PTS [+0.49, +0.78] for all players and +1.21 [+0.74, +1.68] for the top 50 scorers (vs the other 25 defences); against the best 10 defences -0.57 [-0.67, -0.46] (all) and -0.90 [-1.26, -0.54] (top 50). Relative big-night rates are about 1.2x for both groups, and the adjusted top-50 big-night odds ratio for bottom-10 defences is 1.01 [0.89, 1.16] (the shared effect, not a star-specific one). The star effect is **not stable across seasons** (top-50 vs bottom-5, PTS: 2023-24 +2.10, 2024-25 +1.13, 2025-26 +0.52 [-0.37, +1.42]). Per-player big-night effects have estimated between-player SD 0, so no individual star differs credibly from the pooled effect. Opponent pace is as strong as opponent defence.

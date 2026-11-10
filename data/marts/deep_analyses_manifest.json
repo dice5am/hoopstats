@@ -1,0 +1,457 @@
+{
+ "script": "scripts/deep_analyses.py + deep_data.py + deep_assemble.py",
+ "through": "2026-11-09",
+ "rows": 66592,
+ "rows_by_season": {
+  "2025-26": 22185,
+  "2024-25": 21729,
+  "2023-24": 21268,
+  "2026-27": 1410
+ },
+ "base_rates_all": {
+  "big5": 0.20877883229216723,
+  "big10": 0.07005345987506006,
+  "x125": 0.3274717683805863
+ },
+ "date_cuts": {
+  "pooled_2023_27": "2026-01-15",
+  "pooled_2023_26": "2026-01-03",
+  "2023_24": "2024-03-14",
+  "2024_25": "2025-03-13",
+  "2025_26": "2026-03-11",
+  "2026_27": "2026-11-07"
+ },
+ "floors": {
+  "pooled_2023_27": 50,
+  "pooled_2023_26": 40,
+  "2023_24": 20,
+  "2024_25": 20,
+  "2025_26": 20,
+  "2026_27": 3
+ },
+ "matchup_row_info": {
+  "eligible_pregame_rows": 68059,
+  "dropped_opp_cold_start_lt5_prior": 1467,
+  "dropped_any_null_feature_total": 1467,
+  "dropped_by_season": {
+   "2023-24": 86,
+   "2024-25": 466,
+   "2025-26": 457,
+   "2026-27": 458
+  },
+  "kept_rows": 66592,
+  "kept_by_season": {
+   "2023-24": 21268,
+   "2024-25": 21729,
+   "2025-26": 22185,
+   "2026-27": 1410
+  },
+  "dropped_deep_null": 0
+ },
+ "cells": [
+  {
+   "ts": "pooled_2023_27",
+   "seg": "top50",
+   "n_games": 8431,
+   "n_players": 50,
+   "thin": false,
+   "train": 6916,
+   "test": 1515,
+   "cutoff": "2026-01-15",
+   "notes": []
+  },
+  {
+   "ts": "pooled_2023_27",
+   "seg": "top100",
+   "n_games": 16743,
+   "n_players": 100,
+   "thin": false,
+   "train": 13837,
+   "test": 2906,
+   "cutoff": "2026-01-15",
+   "notes": []
+  },
+  {
+   "ts": "pooled_2023_26",
+   "seg": "top100",
+   "n_games": 16240,
+   "n_players": 100,
+   "thin": false,
+   "train": 13273,
+   "test": 2967,
+   "cutoff": "2026-01-03",
+   "notes": []
+  },
+  {
+   "ts": "pooled_2023_26",
+   "seg": "top50",
+   "n_games": 8228,
+   "n_players": 50,
+   "thin": false,
+   "train": 6701,
+   "test": 1527,
+   "cutoff": "2026-01-03",
+   "notes": []
+  },
+  {
+   "ts": "2023_24",
+   "seg": "all",
+   "n_games": 21258,
+   "n_players": 479,
+   "thin": false,
+   "train": 16689,
+   "test": 4569,
+   "cutoff": "2024-03-14",
+   "notes": []
+  },
+  {
+   "ts": "2024_25",
+   "seg": "all",
+   "n_games": 21702,
+   "n_players": 497,
+   "thin": false,
+   "train": 17006,
+   "test": 4696,
+   "cutoff": "2025-03-13",
+   "notes": []
+  },
+  {
+   "ts": "2025_26",
+   "seg": "all",
+   "n_games": 22104,
+   "n_players": 507,
+   "thin": false,
+   "train": 17259,
+   "test": 4845,
+   "cutoff": "2026-03-11",
+   "notes": []
+  },
+  {
+   "ts": "2025_26",
+   "seg": "top100",
+   "n_games": 5614,
+   "n_players": 100,
+   "thin": false,
+   "train": 4524,
+   "test": 1090,
+   "cutoff": "2026-03-11",
+   "notes": []
+  },
+  {
+   "ts": "2024_25",
+   "seg": "top100",
+   "n_games": 5598,
+   "n_players": 100,
+   "thin": false,
+   "train": 4583,
+   "test": 1015,
+   "cutoff": "2025-03-13",
+   "notes": []
+  },
+  {
+   "ts": "pooled_2023_27",
+   "seg": "top25",
+   "n_games": 4254,
+   "n_players": 25,
+   "thin": true,
+   "train": 3490,
+   "test": 764,
+   "cutoff": "2026-01-15",
+   "notes": []
+  },
+  {
+   "ts": "pooled_2023_27",
+   "seg": "top10",
+   "n_games": 1797,
+   "n_players": 10,
+   "thin": true,
+   "train": 1475,
+   "test": 322,
+   "cutoff": "2026-01-15",
+   "notes": []
+  },
+  {
+   "ts": "pooled_2023_26",
+   "seg": "top10",
+   "n_games": 1751,
+   "n_players": 10,
+   "thin": true,
+   "train": 1429,
+   "test": 322,
+   "cutoff": "2026-01-03",
+   "notes": []
+  },
+  {
+   "ts": "pooled_2023_26",
+   "seg": "top25",
+   "n_games": 4142,
+   "n_players": 25,
+   "thin": true,
+   "train": 3381,
+   "test": 761,
+   "cutoff": "2026-01-03",
+   "notes": []
+  },
+  {
+   "ts": "2025_26",
+   "seg": "top50",
+   "n_games": 2779,
+   "n_players": 50,
+   "thin": false,
+   "train": 2261,
+   "test": 518,
+   "cutoff": "2026-03-11",
+   "notes": []
+  },
+  {
+   "ts": "2023_24",
+   "seg": "top100",
+   "n_games": 6051,
+   "n_players": 100,
+   "thin": false,
+   "train": 4935,
+   "test": 1116,
+   "cutoff": "2024-03-14",
+   "notes": []
+  },
+  {
+   "ts": "2024_25",
+   "seg": "top25",
+   "n_games": 1392,
+   "n_players": 25,
+   "thin": true,
+   "train": 1161,
+   "test": 231,
+   "cutoff": "2025-03-13",
+   "notes": []
+  },
+  {
+   "ts": "2025_26",
+   "seg": "top25",
+   "n_games": 1418,
+   "n_players": 25,
+   "thin": true,
+   "train": 1165,
+   "test": 253,
+   "cutoff": "2026-03-11",
+   "notes": []
+  },
+  {
+   "ts": "2025_26",
+   "seg": "top10",
+   "n_games": 564,
+   "n_players": 10,
+   "thin": true,
+   "train": 461,
+   "test": 103,
+   "cutoff": "2026-03-11",
+   "notes": [
+    "big10: 56 events -> logistic not fitted"
+   ]
+  },
+  {
+   "ts": "2024_25",
+   "seg": "top10",
+   "n_games": 621,
+   "n_players": 10,
+   "thin": true,
+   "train": 514,
+   "test": 107,
+   "cutoff": "2025-03-13",
+   "notes": []
+  },
+  {
+   "ts": "2023_24",
+   "seg": "top10",
+   "n_games": 626,
+   "n_players": 10,
+   "thin": true,
+   "train": 503,
+   "test": 123,
+   "cutoff": "2024-03-14",
+   "notes": [
+    "big10: 57 events -> logistic not fitted"
+   ]
+  },
+  {
+   "ts": "2026_27",
+   "seg": "top100",
+   "n_games": 465,
+   "n_players": 95,
+   "thin": false,
+   "train": 336,
+   "test": 129,
+   "cutoff": "2026-11-07",
+   "notes": [
+    "big10: 48 events -> logistic not fitted"
+   ]
+  },
+  {
+   "ts": "2026_27",
+   "seg": "top50",
+   "n_games": 237,
+   "n_players": 48,
+   "thin": true,
+   "train": 171,
+   "test": 66,
+   "cutoff": "2026-11-07",
+   "notes": [
+    "big10: 25 events -> logistic not fitted",
+    "x125: 54 events -> logistic not fitted"
+   ]
+  },
+  {
+   "ts": "2026_27",
+   "seg": "top25",
+   "n_games": 119,
+   "n_players": 24,
+   "thin": true,
+   "train": 86,
+   "test": 33,
+   "cutoff": "2026-11-07",
+   "notes": [
+    "cell too small: nothing fitted"
+   ]
+  },
+  {
+   "ts": "2026_27",
+   "seg": "top10",
+   "n_games": 45,
+   "n_players": 9,
+   "thin": true,
+   "train": 34,
+   "test": 11,
+   "cutoff": "2026-11-07",
+   "notes": [
+    "cell too small: nothing fitted"
+   ]
+  },
+  {
+   "ts": "2023_24",
+   "seg": "top25",
+   "n_games": 1492,
+   "n_players": 25,
+   "thin": true,
+   "train": 1218,
+   "test": 274,
+   "cutoff": "2024-03-14",
+   "notes": []
+  },
+  {
+   "ts": "2024_25",
+   "seg": "top50",
+   "n_games": 2831,
+   "n_players": 50,
+   "thin": false,
+   "train": 2352,
+   "test": 479,
+   "cutoff": "2025-03-13",
+   "notes": []
+  },
+  {
+   "ts": "2023_24",
+   "seg": "top50",
+   "n_games": 3018,
+   "n_players": 50,
+   "thin": false,
+   "train": 2477,
+   "test": 541,
+   "cutoff": "2024-03-14",
+   "notes": []
+  },
+  {
+   "ts": "2026_27",
+   "seg": "all",
+   "n_games": 1410,
+   "n_players": 327,
+   "thin": false,
+   "train": 998,
+   "test": 412,
+   "cutoff": "2026-11-07",
+   "notes": []
+  },
+  {
+   "ts": "pooled_2023_27",
+   "seg": "all",
+   "n_games": 66399,
+   "n_players": 669,
+   "thin": false,
+   "train": 52987,
+   "test": 13412,
+   "cutoff": "2026-01-15",
+   "notes": []
+  },
+  {
+   "ts": "pooled_2023_26",
+   "seg": "all",
+   "n_games": 65085,
+   "n_players": 668,
+   "thin": false,
+   "train": 51228,
+   "test": 13857,
+   "cutoff": "2026-01-03",
+   "notes": []
+  }
+ ],
+ "tables": {
+  "tier_effects": {
+   "rows": 3144,
+   "sha256": "a12b76ccfd81031fd2f25da5bbfe2f90c9fae8f33be0cf2acaa18927bb4969c1"
+  },
+  "spline_effects": {
+   "rows": 1911,
+   "sha256": "0681a16bb538343cbc9fde140a679bec8947b9241896c8fdce329ccff1149f83"
+  },
+  "tail_models": {
+   "rows": 1905,
+   "sha256": "55290daf15554b4e7c3fc05c0b5d940c5ea5c3aa564e6302f6e9bf0398b4663b"
+  },
+  "tail_performance": {
+   "rows": 420,
+   "sha256": "5d04b3574cb1ef0c00248feb10bf14df953289ca1017ab8469909f7d8102ddb9"
+  },
+  "tail_calibration": {
+   "rows": 735,
+   "sha256": "20f1696f8c548e74cfbd90740bcb8c1c86f8d3fb31c31ef65e384dde2827780a"
+  },
+  "dispersion_effects": {
+   "rows": 224,
+   "sha256": "09885827db26d4f58551dcfc71deff5d359a793882479be683e5c4c04ff0a04d"
+  },
+  "interaction_effects": {
+   "rows": 3276,
+   "sha256": "cfc525381ee8aa8c3764e7ed14c700c5c0b939dbd545a1335e2cc806dc58ffb3"
+  },
+  "player_deep_splits": {
+   "rows": 34788,
+   "sha256": "84f6b47fff31d136505cd369c77a668b3ce95aa4089b555460652fffbe2124a4"
+  },
+  "player_deep_summary": {
+   "rows": 84,
+   "sha256": "6261715f14a67940358822e3d63bde5905c432bce57d705c72e89576a9de8b8a"
+  }
+ },
+ "definitions": {
+  "prior_avg": "season-to-date mean PTS over prior games (>=3 prior this season, >=5 overall; >=5-minute games)",
+  "big5": "PTS >= prior_avg + 5",
+  "big10": "PTS >= prior_avg + 10",
+  "x125": "PTS >= 1.25 * prior_avg",
+  "def_tier": "as-of season-to-date opponent DRtg rank (teams with >=5 games strictly before the date) -> worst5 (ranks 26-30 of 30) / worst6_10 / middle (11-20) / best6_10 / best5; nested worst10 = worst5 + worst6_10",
+  "pace_tier": "same on as-of season-to-date pace (fastest5 ... slowest5)",
+  "usage_tier": "prior season-to-date USG%: <18 / 18-24 / 24-28 / >=28",
+  "min_tier": "prior season-to-date minutes: <20 / 20-28 / 28-34 / >=34",
+  "rest": "own team rest days 0/1/2/3+; b2b_state 2nd/1st/rested from the schedule",
+  "role": "starter if started >= 50% of prior games this season",
+  "bootstrap": {
+   "quantile": 100,
+   "sd_ratio": 500,
+   "ame_draws": 400
+  },
+  "watch_z": 2.5,
+  "fdr_q": 0.1,
+  "thin": [
+   30,
+   300
+  ]
+ }
+}

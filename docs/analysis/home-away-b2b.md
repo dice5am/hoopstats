@@ -105,3 +105,8 @@ Strict JSON (no NaN/Infinity; undefined values are `null`). Numbers rounded to 4
 - **Rosters / ages / experience:** official team rosters (CommonTeamRoster) for each season, PlayerIndex and CommonPlayerInfo for gaps (pulled 2026-11-10).
 - **Schedule:** ScheduleLeagueV2 for each season.
 - Hashes of every input are listed in the JSON under `sources.inputs`.
+
+
+## Update 2026-11-10: tail and tier re-check (see DEEP_ANALYSES.md section 10)
+
+Re-run on pregame-eligible rows with PTS minus the prior season-to-date average, adding big-night outcomes (>= +5, >= +10, >= 1.25 x prior average) and SD ratios. **Conclusions hold.** Back-to-back second night: +0.31 PTS [+0.17, +0.45] for all players (earlier +0.28), x1.25 big-night rate +2.8 pp [+1.7, +3.8]; top 100/50/25: no mean effect and no big-night effect (all CIs include 0). Home: +0.16 PTS [+0.05, +0.26] for all players, no star effect; stars' results are slightly less dispersed at home (SD ratio 0.95 [0.92, 0.99] top 50, 0.93 [0.89, 0.99] top 25). Three or more rest days: -0.33 PTS [-0.53, -0.12] vs one day for all players, null for the top 50. Per-player: the only strong B2B flags among the top 50 are Victor Wembanyama and Joel Embiid (lower big-night rates on the second night) among 800 player-tests, with about 10 watch flags expected by chance. No app number in this document changes.

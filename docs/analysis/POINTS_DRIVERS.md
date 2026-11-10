@@ -361,3 +361,8 @@ Boosting kept (explanatory): 20 of 29 fitted cells; not kept: 2023_24×top10, 20
 - OLS CIs are player-cluster robust; the MixedLM CIs are model-based, and are narrower. The MixedLM test prediction uses the train-period player intercept, which is legitimate prior information but gives it an advantage over plain OLS. Elastic net and boosting have no interval for the effects.
 - Winsorising the predictors at the train 0.5/99.5 percentiles trims the extreme advanced-rate values (ratings, pace) that the source returns for short stints.
 - Players' minutes-weighted pooled rates for USG%, pace, AST%, OREB%, DREB%, TOV%, PIE are approximations of the exact pooled rate (they are not rebuilt from team totals).
+
+
+## Update 2026-11-10: non-linearity caveat (see DEEP_ANALYSES.md sections 4-6)
+
+The standardised effects above are linear, mean-only. Tier, spline and tail checks show that for the top 100/50 scorers the opponent-defence and opponent-pace effects are **not linear** (Wald test of the nonlinear part p < 0.01 for opponent defence in top 100 and top 50 in both pooled windows; p > 0.4 for all players): a bump over the worst ~8 defences, about nothing through the middle, a sharp drop against the best ~6 (top 50: +0.78 PTS at defence rank 1, +0.04 at rank 15, -1.45 at rank 30). The nonlinear forms do not improve out-of-sample MAE over the linear specification (gain vs linear CI above 0 in 1-2 of 16 non-thin cells). Gradient boosting does not beat the additive logistic for big-night probabilities in any of 15 non-thin cells. No number in this document changes.
