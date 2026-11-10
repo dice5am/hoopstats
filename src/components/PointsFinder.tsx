@@ -14,6 +14,7 @@ import {
 } from "@/lib/dates";
 import { useRouter, useSearchParams } from "next/navigation";
 import { PlayerSplits } from "./PlayerSplits";
+import { ConditionsProfile } from "./insights/ConditionsProfile";
 import styles from "./PointsFinder.module.css";
 
 const MAX_RESULTS = 8;
@@ -464,6 +465,7 @@ function PointsCard({ row }: { row: PointsRow }) {
       </div>
 
       <PlayerSplits playerId={row.player_id} playerName={row.full_name} />
+      <ConditionsProfile playerId={row.player_id} />
 
       <p className={styles.stamp}>
         Updated {row.pulled_at_utc ? formatLocalDate(row.pulled_at_utc) : "n/a"}

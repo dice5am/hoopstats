@@ -1,0 +1,47 @@
+/* hoopstats Insights redesign — token layer on top of the live Hardwood tokens (globals.css).
+   Existing --hw-* tokens are unchanged; everything below is NEW and additive. */
+:root {
+  /* ── surfaces ── */
+  --hw-champagne: #f7e7ce;                 /* sticky bars + bottom sheet (opaque) */
+  --s-card: rgba(255, 248, 238, 0.62);     /* insight card (was .42: too faint behind charts) */
+  --s-card-2: rgba(255, 248, 238, 0.85);   /* stat tiles, inset blocks */
+  --s-sunk: rgba(43, 29, 18, 0.06);        /* skeleton, empty plot area */
+  --s-scrim: rgba(43, 29, 18, 0.5);        /* behind sheet */
+
+  /* ── selection / UI state (ink, NOT orange: orange is reserved for data) ── */
+  --sel-bg: var(--hw-ink);
+  --sel-fg: #fff8ee;
+
+  /* ── DATA SEMANTICS (one meaning in every chart) ── */
+  --d-up: var(--hw-key);            /* credible, above baseline  ▲ */
+  --d-down: var(--hw-ink-2);        /* credible, below baseline  ▼ */
+  --d-flat: var(--hw-grain);        /* interval touches baseline: can't tell  ○ */
+  --d-flat-ink: #7a5630;            /* text/outline version of flat, 4.5:1 on card */
+  --d-lead: var(--hw-key);          /* hollow ring only: a lead (nominal), not a finding */
+  --d-thin: rgba(106, 76, 46, 0.55);/* hatch lines: too few games, nothing drawn as estimate */
+  --d-baseline: rgba(43, 29, 18, 0.7);
+  --d-whisker: var(--hw-ink);
+  --d-grid: rgba(106, 76, 46, 0.2);
+  --d-band: rgba(200, 154, 98, 0.38); /* league-wide reference band */
+  --d-noise: var(--hw-grain);         /* "by chance" expectation bars = same tan as can't tell */
+
+  /* ── type ── */
+  --t-display-xl: 800 34px/0.95 var(--font-display);   /* topic title, caps */
+  --t-display-l: 800 24px/1 var(--font-display);       /* card title (eyebrow upgrade) caps */
+  --t-label: 700 12px/1 var(--font-display);           /* micro caps, +.08em */
+  --t-chip: 700 15px/1 var(--font-display);            /* chips, tabs, buttons, +.04em caps */
+  --t-headline: 700 17px/1.3 var(--font-body);         /* the one-sentence finding */
+  --t-body: 400 14px/1.45 var(--font-body);
+  --t-small: 400 12px/1.4 var(--font-body);            /* min text size anywhere (axis ticks too) */
+  --t-value: 800 18px/1 var(--font-display);           /* row value */
+  --num: tabular-nums;                                 /* font-variant-numeric on all numbers */
+
+  /* ── space / size ── */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px; --sp-6: 32px;
+  --page-x: 16px;
+  --tap: 44px;                 /* min touch target */
+  --rail-h: 48px; --filter-h: 52px;   /* sticky stack = 100px */
+  --bw-card: 3px; --bw-ctl: 2.5px;    /* existing border weights */
+  --radius: 0px;               /* hardwood = square corners, keep */
+  --shadow-sheet: 0 -6px 0 rgba(43, 29, 18, 0.12);
+}

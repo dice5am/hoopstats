@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { AppNav } from "@/components/AppNav";
 import "./fonts.css";
 import "./globals.css";
+import "./insight-tokens.css";
 
 export const metadata: Metadata = {
   title: "hoopstats — Points insights",
