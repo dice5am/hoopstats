@@ -18,6 +18,11 @@ export type BarRow = {
   ref?: boolean;
   /** Row belongs to the currently selected segment/season. */
   mark?: boolean;
+  /** Small pill next to the label (e.g. a flag). */
+  badge?: string;
+  badgeStrong?: boolean;
+  /** Link for the label. */
+  href?: string;
 };
 
 function niceStep(span: number): number {
@@ -33,12 +38,13 @@ const LOG_TICKS = [0.4, 0.5, 0.67, 0.8, 1, 1.25, 1.5, 2, 3];
 
 type Axis = { tr: (v: number) => number; min: number; max: number; ticks: number[] };
 
-function buildAxis(rows: BarRow[], log: boolean, ref0: number): Axis {
+function buildAxis(rows: BarRow[], log: boolean, ref0: number, band?: [number, number]): Axis {
   const vals: number[] = [ref0];
   for (const r of rows) {
     if (r.blank || r.ref) continue;
     for (const v of [r.lo, r.hi, r.est]) if (v != null) vals.push(v);
   }
+  if (band) vals.push(band[0], band[1]);
   if (log) {
     const lo = Math.min(...vals) / 1.04;
     const hi = Math.max(...vals) * 1.04;
@@ -68,14 +74,16 @@ export function EffectBars({
   ref0 = log ? 1 : 0,
   tickFmt,
   label,
+  band,
 }: {
+  band?: [number, number];
   rows: BarRow[];
   log?: boolean;
   ref0?: number;
   tickFmt: (v: number) => string;
   label: string;
 }) {
-  const ax = buildAxis(rows, log, ref0);
+  const ax = buildAxis(rows, log, ref0, band);
   const span = ax.max - ax.min || 1;
   const x = (v: number) => ((ax.tr(v) - ax.min) / span) * 100;
   const zero = x(ref0);
@@ -89,10 +97,27 @@ export function EffectBars({
           return (
             <li key={r.key} className={r.mark ? styles.rowMark : styles.row}>
               <span className={styles.lab}>
-                <span className={styles.labMain}>{r.label}</span>
+                <span className={styles.labMain}>
+                  {r.href ? (
+                    <a href={r.href} className={styles.labLink}>
+                      {r.label}
+                    </a>
+                  ) : (
+                    r.label
+                  )}
+                </span>
+                {r.badge ? (
+                  <span className={r.badgeStrong ? styles.badgeStrong : styles.badge}>{r.badge}</span>
+                ) : null}
                 {r.sub ? <span className={styles.labSub}>{r.sub}</span> : null}
               </span>
               <span className={styles.plot} aria-hidden="true">
+                {band ? (
+                  <span
+                    className={styles.band}
+                    style={{ left: `${x(band[0])}%`, width: `${x(band[1]) - x(band[0])}%` }}
+                  />
+                ) : null}
                 {ax.ticks.map((t) => (
                   <span
                     key={t}

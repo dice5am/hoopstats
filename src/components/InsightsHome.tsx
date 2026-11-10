@@ -31,6 +31,7 @@ import {
   PlayerFlagsVsChance,
   RolePositionSection,
 } from "./DeepInsights";
+import { PlayerDeepSplits } from "./PlayerDeepSplits";
 import type { DeepInsightsData } from "@/lib/deepInsightsTypes";
 import type { PointsDriversData } from "@/lib/pointsDriversTypes";
 import type { PlayerSplitsInsights } from "@/lib/playerSplitsTypes";
@@ -505,6 +506,8 @@ export function InsightsHome({
       <BigNightSection data={deep} timespan={timespan} segment={segment} />
 
       <RolePositionSection data={deep} timespan={timespan} />
+
+      <PlayerDeepSplits data={deep} timespan={timespan} segment={segment} />
 
       <PointsDrivers
         data={pointsDrivers}

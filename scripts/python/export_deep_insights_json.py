@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[2]
 M = ROOT / "data" / "marts"
 SUMMARY = ROOT / "data" / "deep_analyses_summary.json"
 OUT = ROOT / "src" / "generated" / "deep_insights.json"
+PLAYERS_DIR = ROOT / "public" / "deep-players"  # fetched on demand, one file per timespan
 
 OUTCOMES = ["dev", "big5", "big10", "x125"]
 TIER_DIMS = {
@@ -194,5 +195,44 @@ def main():
     print("wrote", OUT, OUT.stat().st_size, "bytes; cross-check", n_chk, "ok")
 
 
+def export_players():
+    """Per-player shrunk splits (player_deep_splits), one JSON per non-provisional timespan.
+
+    rows[condition][outcome] = [pid, n_cond, n_ref, raw, shrunk, shrunk_lo, shrunk_hi, z, q, flag, credible]
+    credible: 1 = shrunk interval above the league mean, -1 = below, 0 = neither.
+    big5 is left out of this view (dev, big10 and x125 only)."""
+    d = pd.read_parquet(M / "player_deep_splits.parquet")
+    d = d[d.outcome.isin(["dev", "big10", "x125"])]
+    PLAYERS_DIR.mkdir(parents=True, exist_ok=True)
+    for f in PLAYERS_DIR.glob("*.json"):
+        f.unlink()
+    for ts, g in d.groupby("timespan"):
+        if bool(g.provisional.any()):
+            continue  # 2026-27: UI says "not enough games yet"
+        players = {}
+        for r in g.drop_duplicates("player_id").itertuples():
+            players[str(r.player_id)] = [r.player_name, r.position, int(r.in_top10) + int(r.in_top25) + int(r.in_top50) + int(r.in_top100)]
+        rows, league, floors = {}, {}, {}
+        for (cond, out), gg in g.groupby(["condition", "outcome"]):
+            gg = gg.dropna(subset=["shrunk_diff", "shrunk_ci_low", "shrunk_ci_high", "raw_diff"])
+            f = gg.iloc[0]
+            league.setdefault(cond, {})[out] = [num(f.league_mean_diff), num(f.league_mean_ci_low), num(f.league_mean_ci_high), num(f.tau)]
+            floors[cond] = [int(f.min_cond_games), int(f.min_ref_games)]
+            rows.setdefault(cond, {})[out] = [
+                [
+                    str(r.player_id), int(r.n_cond), int(r.n_ref), num(r.raw_diff), num(r.shrunk_diff), num(r.shrunk_ci_low),
+                    num(r.shrunk_ci_high), num(r.z, 2), num(r.q, 3),
+                    None if pd.isna(r.flag) else str(r.flag),
+                    1 if r.credible_above_league else (-1 if r.credible_below_league else 0),
+                    int(r.in_top10) * 1 + int(r.in_top25) * 2 + int(r.in_top50) * 4 + int(r.in_top100) * 8,
+                ]
+                for r in gg.itertuples()
+            ]
+        out = {"timespan": ts, "floors": floors, "league": league, "players": players, "rows": rows}
+        (PLAYERS_DIR / f"{ts}.json").write_text(json.dumps(out, separators=(",", ":"), allow_nan=False))
+        print("wrote", ts, (PLAYERS_DIR / f"{ts}.json").stat().st_size, "bytes")
+
+
 if __name__ == "__main__":
     main()
+    export_players()

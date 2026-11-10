@@ -23,11 +23,11 @@ type Sel = { data: DeepInsightsData; timespan: TimespanKey; segment: SegmentKey 
 
 /* ---------- formatting ---------- */
 
-const f2 = (n: number) => formatSigned(n, 2);
-const pp = (n: number, d = 1) => formatSigned(n * 100, d);
-const pct = (n: number) => `${(n * 100).toFixed(1)}%`;
-const fmtN = (n: number) => n.toLocaleString("en-US");
-const tickFmt = (t: number) => (t === 0 ? "0" : `${t > 0 ? "" : "−"}${Math.abs(t)}`);
+export const f2 = (n: number) => formatSigned(n, 2);
+export const pp = (n: number, d = 1) => formatSigned(n * 100, d);
+export const pct = (n: number) => `${(n * 100).toFixed(1)}%`;
+export const fmtN = (n: number) => n.toLocaleString("en-US");
+export const tickFmt = (t: number) => (t === 0 ? "0" : `${t > 0 ? "" : "−"}${Math.abs(t)}`);
 const orTick = (t: number) => `${t}`;
 const pText = (p: number | null) =>
   p == null ? "n/a" : p < 0.001 ? "p < 0.001" : `p = ${p.toFixed(3)}`;
@@ -54,7 +54,7 @@ function cellOf(d: DeepInsightsData, ts: string, seg: string): DeepCell | undefi
 
 /* ---------- shared pieces ---------- */
 
-function Switch({
+export function Switch({
   label,
   options,
   value,
@@ -83,7 +83,7 @@ function Switch({
   );
 }
 
-function Thin({ cell, timespan, segment }: { cell: DeepCell | undefined; timespan: TimespanKey; segment: SegmentKey }) {
+export function Thin({ cell, timespan, segment }: { cell: DeepCell | undefined; timespan: TimespanKey; segment: SegmentKey }) {
   const ts = TIMESPAN_SWITCH_LABEL[timespan];
   const seg = SEGMENT_SWITCH_LABEL[segment];
   return (
@@ -99,7 +99,7 @@ function Thin({ cell, timespan, segment }: { cell: DeepCell | undefined; timespa
   );
 }
 
-function Provisional({ timespan, cell }: { timespan: TimespanKey; cell: DeepCell }) {
+export function Provisional({ timespan, cell }: { timespan: TimespanKey; cell: DeepCell }) {
   if (timespan !== "2026_27") return null;
   return (
     <p className={styles.caveat}>
@@ -109,7 +109,7 @@ function Provisional({ timespan, cell }: { timespan: TimespanKey; cell: DeepCell
   );
 }
 
-function Header({ id, title, children }: { id: string; title: string; children?: ReactNode }) {
+export function Header({ id, title, children }: { id: string; title: string; children?: ReactNode }) {
   return (
     <>
       <h2 id={id} className={styles.h2}>

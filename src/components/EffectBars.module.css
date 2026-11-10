@@ -45,6 +45,45 @@
   letter-spacing: 0.02em;
 }
 
+.labLink {
+  color: inherit;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.labLink:hover {
+  text-decoration: underline;
+}
+
+.badge,
+.badgeStrong {
+  align-self: flex-start;
+  margin: 2px 0 1px;
+  padding: 1px 5px;
+  border: 1.5px solid var(--hw-ink-2);
+  color: var(--hw-ink-2);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+.badgeStrong {
+  background: var(--hw-ink);
+  border-color: var(--hw-ink);
+  color: var(--hw-line);
+}
+
+.band {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  background: rgba(200, 154, 98, 0.32);
+  border-left: 1px dotted var(--hw-ink-2);
+  border-right: 1px dotted var(--hw-ink-2);
+}
+
 .labSub {
   color: var(--hw-dim);
   font-size: 10px;
