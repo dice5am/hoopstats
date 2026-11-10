@@ -1,0 +1,376 @@
+{
+ "script": "scripts/python/big_nights_data.py + big_nights_analysis.py + big_nights_players.py + big_nights_assemble.py + big_nights_summary.py + big_nights_report.py",
+ "through": "2026-11-09",
+ "rows": 65518,
+ "rows_by_season": {
+  "2025-26": 21713,
+  "2024-25": 21312,
+  "2023-24": 21268,
+  "2026-27": 1225
+ },
+ "rows_floor8": 42024,
+ "date_cuts": {
+  "pooled_2023_27": "2026-01-15",
+  "pooled_2023_26": "2026-01-03",
+  "2023_24": "2024-03-14",
+  "2024_25": "2025-03-13",
+  "2025_26": "2026-03-11",
+  "2026_27": "2026-11-07"
+ },
+ "floors_games": {
+  "pooled_2023_27": 50,
+  "pooled_2023_26": 40,
+  "2023_24": 20,
+  "2024_25": 20,
+  "2025_26": 20,
+  "2026_27": 3
+ },
+ "matchup_row_info": {
+  "eligible_pregame_rows": 68059,
+  "dropped_opp_cold_start_lt5_prior": 1467,
+  "dropped_any_null_feature_total": 1467,
+  "dropped_by_season": {
+   "2023-24": 86,
+   "2024-25": 466,
+   "2025-26": 457,
+   "2026-27": 458
+  },
+  "kept_rows": 66592,
+  "kept_by_season": {
+   "2023-24": 21268,
+   "2024-25": 21729,
+   "2025-26": 22185,
+   "2026-27": 1410
+  },
+  "dropped_deep_null": 0,
+  "n_after_min_prior5": 65518,
+  "dropped_other_null": 0,
+  "rows_final": 65518
+ },
+ "cell_logs": [
+  {
+   "ts": "2023_24",
+   "seg": "all",
+   "cutoff": "2024-03-14",
+   "notes": []
+  },
+  {
+   "ts": "2023_24",
+   "seg": "top10",
+   "cutoff": "2024-03-14",
+   "notes": [
+    "std:x125: 87 events -> logistic not fitted",
+    "std:x125: e_x125_std: train events 78, test events 9 -> not scored",
+    "std:x150: 30 events -> logistic not fitted",
+    "std:p5: 138 events -> logistic not fitted",
+    "std:p10: 57 events -> logistic not fitted",
+    "std:z15: 40 events -> logistic not fitted",
+    "l10:x150: 41 events -> logistic not fitted",
+    "l10:p10: 69 events -> logistic not fitted",
+    "l10:p10: e_p10_l10: train events 58, test events 11 -> not scored"
+   ]
+  },
+  {
+   "ts": "2023_24",
+   "seg": "top100",
+   "cutoff": "2024-03-14",
+   "notes": []
+  },
+  {
+   "ts": "2023_24",
+   "seg": "top25",
+   "cutoff": "2024-03-14",
+   "notes": []
+  },
+  {
+   "ts": "2023_24",
+   "seg": "top50",
+   "cutoff": "2024-03-14",
+   "notes": []
+  },
+  {
+   "ts": "2024_25",
+   "seg": "all",
+   "cutoff": "2025-03-13",
+   "notes": []
+  },
+  {
+   "ts": "2024_25",
+   "seg": "top10",
+   "cutoff": "2025-03-13",
+   "notes": [
+    "std:x125: 124 events -> logistic not fitted",
+    "std:x150: 41 events -> logistic not fitted",
+    "std:p5: 163 events -> logistic not fitted",
+    "std:p10: 69 events -> logistic not fitted",
+    "std:z15: 54 events -> logistic not fitted",
+    "l10:x150: 37 events -> logistic not fitted",
+    "l10:p10: 76 events -> logistic not fitted"
+   ]
+  },
+  {
+   "ts": "2024_25",
+   "seg": "top100",
+   "cutoff": "2025-03-13",
+   "notes": [
+    "std:x200: e_x200_std: train events 78, test events 14 -> not scored"
+   ]
+  },
+  {
+   "ts": "2024_25",
+   "seg": "top25",
+   "cutoff": "2025-03-13",
+   "notes": [
+    "std:x150: e_x150_std: train events 90, test events 14 -> not scored",
+    "std:z15: logit_same_game failed LinAlgError"
+   ]
+  },
+  {
+   "ts": "2024_25",
+   "seg": "top50",
+   "cutoff": "2025-03-13",
+   "notes": []
+  },
+  {
+   "ts": "2025_26",
+   "seg": "all",
+   "cutoff": "2026-03-11",
+   "notes": []
+  },
+  {
+   "ts": "2025_26",
+   "seg": "top10",
+   "cutoff": "2026-03-11",
+   "notes": [
+    "std:x125: 80 events -> logistic not fitted",
+    "std:x125: e_x125_std: train events 66, test events 14 -> not scored",
+    "std:p5: 120 events -> logistic not fitted",
+    "std:p10: 56 events -> logistic not fitted",
+    "std:z15: 33 events -> logistic not fitted",
+    "l10:x150: 33 events -> logistic not fitted",
+    "l10:p10: 67 events -> logistic not fitted"
+   ]
+  },
+  {
+   "ts": "2025_26",
+   "seg": "top100",
+   "cutoff": "2026-03-11",
+   "notes": []
+  },
+  {
+   "ts": "2025_26",
+   "seg": "top25",
+   "cutoff": "2026-03-11",
+   "notes": [
+    "std:x150: e_x150_std: train events 65, test events 13 -> not scored"
+   ]
+  },
+  {
+   "ts": "2025_26",
+   "seg": "top50",
+   "cutoff": "2026-03-11",
+   "notes": []
+  },
+  {
+   "ts": "2026_27",
+   "seg": "all",
+   "cutoff": "2026-11-07",
+   "notes": []
+  },
+  {
+   "ts": "2026_27",
+   "seg": "top10",
+   "cutoff": "2026-11-07",
+   "notes": []
+  },
+  {
+   "ts": "2026_27",
+   "seg": "top100",
+   "cutoff": "2026-11-07",
+   "notes": [
+    "std:x150: 53 events -> logistic not fitted",
+    "std:p10: 45 events -> logistic not fitted",
+    "std:z15: 58 events -> logistic not fitted",
+    "l10:x150: 59 events -> logistic not fitted",
+    "l10:p10: 44 events -> logistic not fitted"
+   ]
+  },
+  {
+   "ts": "2026_27",
+   "seg": "top25",
+   "cutoff": "2026-11-07",
+   "notes": [
+    "std:p5: 31 events -> logistic not fitted"
+   ]
+  },
+  {
+   "ts": "2026_27",
+   "seg": "top50",
+   "cutoff": "2026-11-07",
+   "notes": [
+    "std:x125: 51 events -> logistic not fitted",
+    "std:p5: 57 events -> logistic not fitted"
+   ]
+  },
+  {
+   "ts": "pooled_2023_26",
+   "seg": "all",
+   "cutoff": "2026-01-03",
+   "notes": []
+  },
+  {
+   "ts": "pooled_2023_26",
+   "seg": "top10",
+   "cutoff": "2026-01-03",
+   "notes": [
+    "std:x125: 301 events -> logistic not fitted",
+    "std:x150: 93 events -> logistic not fitted",
+    "std:x150: e_x150_std: train events 83, test events 10 -> not scored",
+    "std:p5: 433 events -> logistic not fitted",
+    "std:p10: 176 events -> logistic not fitted",
+    "std:z15: 124 events -> logistic not fitted",
+    "l10:x150: 93 events -> logistic not fitted",
+    "l10:x150: e_x150_l10: train events 80, test events 13 -> not scored",
+    "l10:p10: 186 events -> logistic not fitted"
+   ]
+  },
+  {
+   "ts": "pooled_2023_26",
+   "seg": "top100",
+   "cutoff": "2026-01-03",
+   "notes": []
+  },
+  {
+   "ts": "pooled_2023_26",
+   "seg": "top25",
+   "cutoff": "2026-01-03",
+   "notes": []
+  },
+  {
+   "ts": "pooled_2023_26",
+   "seg": "top50",
+   "cutoff": "2026-01-03",
+   "notes": [
+    "std:x200: e_x200_std: train events 71, test events 9 -> not scored"
+   ]
+  },
+  {
+   "ts": "pooled_2023_27",
+   "seg": "all",
+   "cutoff": "2026-01-15",
+   "notes": []
+  },
+  {
+   "ts": "pooled_2023_27",
+   "seg": "top10",
+   "cutoff": "2026-01-15",
+   "notes": [
+    "std:x125: 310 events -> logistic not fitted",
+    "std:x150: 94 events -> logistic not fitted",
+    "std:x150: e_x150_std: train events 83, test events 11 -> not scored",
+    "std:p5: 444 events -> logistic not fitted",
+    "std:p10: 180 events -> logistic not fitted",
+    "std:z15: 128 events -> logistic not fitted",
+    "l10:x150: 95 events -> logistic not fitted",
+    "l10:x150: e_x150_l10: train events 81, test events 14 -> not scored",
+    "l10:p10: 190 events -> logistic not fitted"
+   ]
+  },
+  {
+   "ts": "pooled_2023_27",
+   "seg": "top100",
+   "cutoff": "2026-01-15",
+   "notes": []
+  },
+  {
+   "ts": "pooled_2023_27",
+   "seg": "top25",
+   "cutoff": "2026-01-15",
+   "notes": []
+  },
+  {
+   "ts": "pooled_2023_27",
+   "seg": "top50",
+   "cutoff": "2026-01-15",
+   "notes": [
+    "std:x200: e_x200_std: train events 71, test events 12 -> not scored"
+   ]
+  }
+ ],
+ "tables": {
+  "big_night_counts": {
+   "rows": 1440,
+   "sha256": "160e2c42e1e290ecfd144b6dbd55f6ea27c4b2140a6e95e2598723ef846064a3"
+  },
+  "big_night_models": {
+   "rows": 6996,
+   "sha256": "79f3ea7b3adf1fde65b98731ae6efc9b75a539f325d8780d153eeacd55ffe33b"
+  },
+  "big_night_factor_lift": {
+   "rows": 77695,
+   "sha256": "2a66492c75ab72ad25a159421585baa1b94bc406c61ea84e281f8562ea81c31c"
+  },
+  "big_night_model_performance": {
+   "rows": 691,
+   "sha256": "5d45b75570d3fad38ab8d1fad8a24996477f60170bbef8b76be164476087b049"
+  },
+  "big_night_shap": {
+   "rows": 54,
+   "sha256": "60f4335161b7bc185cc27b9b39b40f191897c72b407f241950517bafda3ddd05"
+  },
+  "big_night_same_game_profile": {
+   "rows": 606,
+   "sha256": "65d414836dacd6cb76f699fcd5fa60bd01691f4f8ea169fd506d98c30a297f1a"
+  },
+  "big_night_stars_vs_nonstars": {
+   "rows": 8872,
+   "sha256": "06071564dc9b0543679ece04d204c59cc054d556ab768e3dfd1c852f57ace12d"
+  },
+  "big_night_stars_interactions": {
+   "rows": 1452,
+   "sha256": "bda1e2b9e9bfd51a5b54f91d4d1bfda5ab452e42c55306f9d0193173c8d2abad"
+  },
+  "big_night_star_base_rates": {
+   "rows": 576,
+   "sha256": "7e753f16211ca005ed31c905945034559640aa80e94b4893e25d37e6e0cdd7bd"
+  },
+  "big_night_player_patterns": {
+   "rows": 25734,
+   "sha256": "7548bc0ac22e865e088d5e1c48629e3ac4739edf15313650b51e7d67fe0e4239"
+  },
+  "big_night_player_summary": {
+   "rows": 111,
+   "sha256": "c9b7b91bed25fd1e9735155ad64f7552b0e8917f2ff70b0a727cabcab1d7e217"
+  },
+  "big_night_events": {
+   "rows": 65518,
+   "sha256": "aa81fceaae55b8068e3caaee5a5ccfd5634114b0e8b14dffcf8299db932afe13"
+  }
+ },
+ "definitions": {
+  "eligibility": ">=5 minutes played; >=5 prior games this season and >=5 overall; opponent with >=5 prior games; regular season (game_id prefix 002, NBA Cup group/knockout included, Cup final excluded)",
+  "baselines": "std = prior season-to-date mean PTS (primary); l10 = mean PTS of the last <=10 prior games (chronological, can span the previous season's end)",
+  "events": "x125/x150/x200: PTS >= 1.25/1.5/2.0 x baseline; p5/p10: PTS >= baseline + 5/10; z15: (PTS - baseline)/prior SD >= 1.5 (prior SD over the same window: std needs >=5 prior games this season, l10 needs a full 10; SD > 0.5)",
+  "floors": "prior average >= floor; floors 8 (default), 12, 5 and none (>0). Sensitivity tables carry every floor",
+  "weak_last": "last game < 0.75 x prior season-to-date average; last2 = both of the last 2 games below 0.75x; l3mean = mean of last 3 below 0.75x; hot_last1 >= 1.25x; bignight_last1 >= 1.5x; hot_l5 = last-5 mean >= 1.15x; cold_l5 < 0.85x",
+  "opp_tiers": "as-of season-to-date opponent DRtg rank (teams with >=5 games strictly before the date): worst5/worst6_10/middle/best6_10/best5; pace tiers likewise (fastest..slowest)",
+  "opp_form": "opponent DRtg over its last 5 (or last 1) games minus its season-to-date DRtg, all prior games; leaky = >= +3 (l5) / +10 (l1), tight = <= -3 / -10",
+  "teammates_out": "a teammate is a REGULAR if before the game: >=5 GP with the team this season, in >=50% of the team's games, >=20 min per game played. 'Out' = inactive list, or DNP for a non-coach reason (injury / illness / rest / personal / suspension / not with team); DNP-coach's-decision is not counted. Vacuum size = sum of the out regulars' prior PPG: none / <10 / 10-20 / 20+. Known at about tip-off (inactive list), not days ahead for late scratches",
+  "minutes_role": "min_up3 / min_dn3: last-5 minutes >= / <= 3 vs season average; role_promoted = started >=2 of last 3 while season start rate < 50%; role_demoted = started 0 of last 3 with season start rate >= 50%",
+  "season_phase": "early Oct-Nov, mid Dec-Feb, late Mar-Apr; cup_game = NBA Cup group or knockout game (game_meta.game_type)",
+  "lens_B": "same game, explains the night and is NOT predictive: minutes +5, FGA +4, FTA +3, 3PA +3, usage +5 pts, TS% +-10 pts vs prior; overtime (team minutes > 48.5); margin/blowout (15+) / close (<=5); combined score; opposing starter with >=5 fouls (box-score PF); exact log decomposition pts = minutes x shot rate x efficiency",
+  "thin": [
+   30,
+   300
+  ],
+  "thin_events": "cells with < 30 events get no lifts; logistic needs >= 60 events; AUC scoring needs >= 30 train and >= 15 test events; a lift is 'reportable' only if the cell and the level are not thin and the level and reference each have >= 10 events",
+  "test_split": "date-based: last ~20% of dates per timespan (same cut-offs as points_drivers / matchups / deep); segment membership from train-period PPG ranks",
+  "boosting": "LightGBM on the pregame inputs, early stopping on the last 15% of train dates; kept (and SHAP computed) only if AUC gain >= 0.005 with paired player-cluster bootstrap CI above 0, log-loss CI below 0 and lower Brier than the pregame logistic",
+  "bootstrap": {
+   "auc": 200,
+   "ame_draws": 400
+  },
+  "watch_z": 2.5,
+  "fdr_q": 0.1
+ }
+}
