@@ -23,6 +23,15 @@ import {
 import { DotWhisker, type DotRow } from "./DotWhisker";
 import { PlayerSplitsHome } from "./PlayerSplitsHome";
 import { PointsDrivers } from "./PointsDrivers";
+import {
+  BigNightLines,
+  BigNightSection,
+  MatchupsSection,
+  OpponentTiersSection,
+  PlayerFlagsVsChance,
+  RolePositionSection,
+} from "./DeepInsights";
+import type { DeepInsightsData } from "@/lib/deepInsightsTypes";
 import type { PointsDriversData } from "@/lib/pointsDriversTypes";
 import type { PlayerSplitsInsights } from "@/lib/playerSplitsTypes";
 import styles from "./InsightsHome.module.css";
@@ -162,10 +171,12 @@ export function InsightsHome({
   data,
   playerSplits,
   pointsDrivers,
+  deep,
 }: {
   data: InsightsData;
   playerSplits: PlayerSplitsInsights;
   pointsDrivers: PointsDriversData;
+  deep: DeepInsightsData;
 }) {
   const timespans = (data.timespans?.length ? data.timespans : TIMESPAN_ORDER) as TimespanKey[];
   const segments = (data.segments?.length ? data.segments : SEGMENT_ORDER) as SegmentKey[];
@@ -343,6 +354,7 @@ export function InsightsHome({
               );
             },
           )}
+        <BigNightLines data={deep} timespan={timespan} segment={segment} kind="home" />
       </section>
 
       <section className={styles.section} aria-labelledby="b2b2-h">
@@ -450,6 +462,7 @@ export function InsightsHome({
               )}
           </>
         ) : null}
+        <BigNightLines data={deep} timespan={timespan} segment={segment} kind="b2b2" />
       </section>
 
       <section className={styles.section} aria-labelledby="b2b1-h">
@@ -478,14 +491,26 @@ export function InsightsHome({
             Not enough units for a confidence interval.
           </p>
         )}
+        <BigNightLines data={deep} timespan={timespan} segment={segment} kind="b2b1" />
       </section>
 
       <PlayerSplitsHome data={playerSplits} timespan={timespan} />
+
+      <PlayerFlagsVsChance data={deep} timespan={timespan} />
+
+      <MatchupsSection data={deep} timespan={timespan} segment={segment} />
+
+      <OpponentTiersSection data={deep} timespan={timespan} segment={segment} />
+
+      <BigNightSection data={deep} timespan={timespan} segment={segment} />
+
+      <RolePositionSection data={deep} timespan={timespan} />
 
       <PointsDrivers
         data={pointsDrivers}
         timespan={timespan}
         segment={segment}
+        deep={deep}
       />
 
       <footer className={styles.method}>

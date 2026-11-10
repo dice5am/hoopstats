@@ -15,6 +15,8 @@ import {
   type SegmentKey,
   type TimespanKey,
 } from "@/lib/timespans";
+import { NonLinearNote } from "./DeepInsights";
+import type { DeepInsightsData } from "@/lib/deepInsightsTypes";
 import styles from "./PointsDrivers.module.css";
 
 const LENS_LABEL: Record<Lens, string> = {
@@ -83,10 +85,12 @@ export function PointsDrivers({
   data,
   timespan,
   segment,
+  deep,
 }: {
   data: PointsDriversData;
   timespan: TimespanKey;
   segment: SegmentKey;
+  deep: DeepInsightsData;
 }) {
   const [lens, setLens] = useState<Lens>("pregame");
   const [modelKey, setModelKey] = useState<ModelKey>("mixedlm");
@@ -290,6 +294,8 @@ export function PointsDrivers({
         </>
       )}
 
+      <NonLinearNote data={deep} timespan={timespan} segment={segment} />
+
       <div className={styles.notes}>
         <p>
           <strong>Left out.</strong> USG% and eFG% were dropped as
@@ -299,9 +305,11 @@ export function PointsDrivers({
           contains the player&apos;s own points.
         </p>
         <p>
-          <strong>Not in the data.</strong> Opponent or matchup, injuries and
-          lineups, and betting lines. Those are what actually move a points
-          prop, so these results describe box-score associations only.
+          <strong>Not in this model.</strong> Opponent inputs (defence, pace),
+          injuries and lineups, and betting lines. Opponent defence and pace
+          are looked at separately in Matchups and Opponent tiers above;
+          injuries, lineups and lines are not in the data. These describe
+          box-score associations only.
         </p>
         <p>
           Data through {data.through ?? "—"}. Test split is by date (last 20%
