@@ -82,48 +82,78 @@ function unitsWord(pooled: boolean, nUnits: number, nPlayers: number): string {
   return `${nPlayers} players`;
 }
 
-function ptsCaption(
-  stats: MetricStats,
-  block: ComparisonBlock,
-  pooled: boolean,
-): string {
-  const n = unitsWord(pooled, block.n_units, block.n_players);
-  const ci = withCi(stats) ? formatCi(stats.ci95) : "CI unavailable";
-  const crosses =
-    withCi(stats) && stats.ci95[0] < 0 && stats.ci95[1] > 0;
-  const edge =
-    Math.abs(stats.mean) < 0.15 && crosses
-      ? "Essentially flat — no real home edge."
-      : crosses
-        ? "The interval includes zero — no clear home edge."
-        : stats.mean > 0
-          ? "Slightly higher at home."
-          : "Slightly higher on the road.";
-  return `${formatSigned(stats.mean)} pts home vs away (${ci}; n = ${n}). ${edge}`;
+type Direction = "up" | "down" | "unclear";
+
+/** Clear only when a CI exists, n is not tiny, and the interval excludes 0. */
+function direction(
+  stats: MetricStats | null | undefined,
+  block?: ComparisonBlock | null,
+): Direction {
+  if (!stats || !withCi(stats)) return "unclear";
+  if (block && (block.small_n || block.n_units < 2)) return "unclear";
+  const [lo, hi] = stats.ci95;
+  if (lo <= 0 && hi >= 0) return "unclear";
+  return stats.mean > 0 ? "up" : "down";
 }
 
-function b2bPtsCaption(
-  stats: MetricStats,
-  min: MetricStats | null,
-  per36: MetricStats | null,
+function attribution(
+  ptsDir: Direction,
+  minutes: MetricStats | null | undefined,
+  per36: MetricStats | null | undefined,
+  block: ComparisonBlock | null,
+): string {
+  if (ptsDir === "unclear") {
+    const minDir = direction(minutes, block);
+    if (minDir === "unclear" || !minutes) return "";
+    const ci = withCi(minutes) ? ` (${formatCi(minutes.ci95)})` : "";
+    return ` Minutes are ${minDir === "up" ? "up" : "down"} ${formatSigned(minutes.mean)}${ci}.`;
+  }
+  const minDir = direction(minutes, block);
+  const rateDir = direction(per36, block);
+  const minSame = minDir === ptsDir;
+  const rateSame = rateDir === ptsDir;
+  const minFlat = minDir === "unclear";
+  const rateFlat = rateDir === "unclear";
+  const minTxt = minutes ? `${formatSigned(minutes.mean)} min` : "";
+  const rateTxt = per36 ? `${formatSigned(per36.mean)} per 36` : "";
+  if (minSame && rateFlat && minutes && per36) {
+    return ` That is driven by minutes (${minTxt}), not scoring rate (${rateTxt}).`;
+  }
+  if (rateSame && minFlat && minutes && per36) {
+    return ` That is driven by scoring rate (${rateTxt}); minutes are about unchanged (${minTxt}).`;
+  }
+  if (minSame && rateSame && minutes && per36) {
+    return ` Both minutes (${minTxt}) and scoring rate (${rateTxt}) move with points.`;
+  }
+  return "";
+}
+
+function comparisonStory(
+  setting: string,
   block: ComparisonBlock,
   pooled: boolean,
 ): string {
+  const pts = block.pts;
+  if (!pts) return "";
   const n = unitsWord(pooled, block.n_units, block.n_players);
-  const ci = withCi(stats) ? formatCi(stats.ci95) : "CI unavailable";
-  let driven = "";
-  if (min && per36) {
-    const minMoves =
-      Math.abs(min.mean) > 0.3 &&
-      (!withCi(min) || min.ci95[0] > 0 || min.ci95[1] < 0);
-    const rateFlat =
-      Math.abs(per36.mean) < 0.2 ||
-      (withCi(per36) && per36.ci95[0] < 0 && per36.ci95[1] > 0);
-    if (minMoves && rateFlat) {
-      driven = ` Driven by minutes (${formatSigned(min.mean)} min), not scoring rate (${formatSigned(per36.mean)} per 36).`;
-    }
+  const ci = withCi(pts) ? formatCi(pts.ci95) : "CI unavailable";
+  const dir = direction(pts, block);
+  const attr = attribution(dir, block.minutes, block.per36, block);
+  if (dir === "unclear") {
+    return `${setting}: ${formatSigned(pts.mean)} pts (${ci}; n = ${n}). No clear change — about the same, within noise.${attr}`;
   }
-  return `Second night of a back-to-back: ${formatSigned(stats.mean)} pts vs rested (${ci}; n = ${n}).${driven}`;
+  const word = dir === "up" ? "more" : "less";
+  return `${setting}: players score ${word}, ${formatSigned(pts.mean)} pts (${ci}; n = ${n}).${attr}`;
+}
+
+function peerNote(label: string, block: ComparisonBlock | null | undefined): string {
+  if (!block?.pts || !withCi(block.pts) || block.n_units < 2) return "";
+  const ci = ` (${formatCi(block.pts.ci95)})`;
+  const dir = direction(block.pts, block);
+  if (dir === "unclear") {
+    return ` ${label}: ${formatSigned(block.pts.mean)} pts${ci} — no clear change.`;
+  }
+  return ` ${label} score ${dir === "up" ? "more" : "less"}: ${formatSigned(block.pts.mean)} pts${ci}.`;
 }
 
 export function InsightsHome({
@@ -169,46 +199,21 @@ export function InsightsHome({
       : 3;
 
   const haStory = ha?.pts
-    ? `${formatSigned(ha.pts.mean)} pts home vs away` +
-      (withCi(ha.pts) ? ` (${formatCi(ha.pts.ci95)})` : "") +
-      " — about zero. No real home edge."
-    : "No real home edge in points. Venue barely moves the needle.";
+    ? comparisonStory("Home vs away", ha, pooled)
+    : "No home vs away points for this cut.";
 
   const b2bStory = (() => {
     if (!b2b2?.pts) return null;
-    const parts = [
-      `Players score a bit more on the second night (${formatSigned(b2b2.pts.mean)} pts)`,
-    ];
-    if (b2b2.minutes && b2b2.per36) {
-      const rateFlat =
-        Math.abs(b2b2.per36.mean) < 0.2 ||
-        (withCi(b2b2.per36) &&
-          b2b2.per36.ci95[0] < 0 &&
-          b2b2.per36.ci95[1] > 0);
-      if (rateFlat) {
-        parts.push(
-          `because they play more minutes (${formatSigned(b2b2.minutes.mean)} min), not because they score faster (${formatSigned(b2b2.per36.mean)} per 36)`,
-        );
-      }
+    let text = comparisonStory(
+      "On the second night of a back-to-back",
+      b2b2,
+      pooled,
+    );
+    if (segment === "all") {
+      text += peerNote("Top 100 scorers", top100B2b);
+      text += peerNote("Top 10", top10B2b);
     }
-    let extra = "";
-    if (segment === "all" && top100B2b?.pts) {
-      extra = ` Top 100 scorers ${formatSigned(top100B2b.pts.mean)} pts`;
-      if (withCi(top100B2b.pts)) extra += ` (${formatCi(top100B2b.pts.ci95)})`;
-      extra += " — they don’t gain.";
-      if (top10B2b?.pts) {
-        extra += ` Top 10: ${formatSigned(top10B2b.pts.mean)}`;
-        if (withCi(top10B2b.pts)) extra += ` (${formatCi(top10B2b.pts.ci95)})`;
-        extra += ".";
-      }
-    } else if (segment !== "all" && b2b2.pts) {
-      const crosses =
-        withCi(b2b2.pts) && b2b2.pts.ci95[0] < 0 && b2b2.pts.ci95[1] > 0;
-      if (crosses || b2b2.pts.mean <= 0) {
-        extra = " Top scorers don’t gain.";
-      }
-    }
-    return parts.join(" — ") + "." + extra;
+    return text;
   })();
 
   return (
@@ -300,7 +305,7 @@ export function InsightsHome({
               <figure className={styles.figure}>
                 <DotWhisker rows={[overallRow(ha, "pts")!]} unitLabel="pts" />
                 <figcaption className={styles.caption}>
-                  {ptsCaption(ha.pts, ha, pooled)}
+                  {comparisonStory("Home vs away", ha, pooled)}
                 </figcaption>
               </figure>
             ) : null}
@@ -391,10 +396,8 @@ export function InsightsHome({
                   <DotWhisker rows={[row]} unitLabel={METRIC_UNIT[metric]} />
                   <figcaption className={styles.caption}>
                     {metric === "pts" && b2b2.pts
-                      ? b2bPtsCaption(
-                          b2b2.pts,
-                          b2b2.minutes,
-                          b2b2.per36,
+                      ? comparisonStory(
+                          "On the second night of a back-to-back",
                           b2b2,
                           pooled,
                         )
@@ -432,11 +435,9 @@ export function InsightsHome({
                           unitLabel={METRIC_UNIT[metric]}
                         />
                         <figcaption className={styles.caption}>
-                          {segKey === "experience" && metric === "minutes"
-                            ? "Younger players and rookies gain the most minutes on second nights."
-                            : `2nd night − rested (${METRIC_UNIT[metric]}) by ${SECONDARY_TITLES[segKey]
-                                .replace(/^By /, "")
-                                .toLowerCase()}.`}
+                          {`2nd night − rested (${METRIC_UNIT[metric]}) by ${SECONDARY_TITLES[segKey]
+                            .replace(/^By /, "")
+                            .toLowerCase()}.`}
                         </figcaption>
                       </figure>
                     );
@@ -461,14 +462,11 @@ export function InsightsHome({
           <figure className={styles.figure}>
             <DotWhisker rows={[overallRow(b2b1, "pts")!]} unitLabel="pts" />
             <figcaption className={styles.caption}>
-              First night vs rested: {formatSigned(b2b1.pts.mean)} pts (
-              {withCi(b2b1.pts) ? `${formatCi(b2b1.pts.ci95)}; ` : ""}
-              n = {unitsWord(pooled, b2b1.n_units, b2b1.n_players)}). Close to
-              a normal game for points
-              {b2b1.minutes
-                ? `, with minutes ${formatSigned(b2b1.minutes.mean)}`
-                : ""}
-              .
+              {comparisonStory(
+                "On the first night of a back-to-back",
+                b2b1,
+                pooled,
+              )}
             </figcaption>
           </figure>
         ) : (
