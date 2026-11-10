@@ -199,7 +199,7 @@ def cluster_gain(abs_lin, abs_gbm, players, seed=SEED):
     return float(d.mean()), float(np.percentile(m, 2.5)), float(np.percentile(m, 97.5))
 
 
-def fit_spec(tr: pd.DataFrame, te: pd.DataFrame, colmap: dict[str, str], lens: str, window: str | None, meta: dict) -> tuple[list[dict], dict]:
+def fit_spec(tr: pd.DataFrame, te: pd.DataFrame, colmap: dict[str, str], lens: str, window: str | None, meta: dict, keep_preds: bool = False) -> tuple[list[dict], dict]:
     """colmap: base name -> dataframe column. Returns tidy rows (without cell keys filled) and a log dict for the manifest."""
     import statsmodels.api as sm
     from sklearn.linear_model import ElasticNetCV
@@ -213,7 +213,7 @@ def fit_spec(tr: pd.DataFrame, te: pd.DataFrame, colmap: dict[str, str], lens: s
     bnote = f"baseline_r2={sb['r2']:.4f}; baseline_rmse={sb['rmse']:.4f}; baseline_l10_mae={float(np.abs(yt - base_l10).mean()):.4f}" if sb["r2"] is not None else \
         f"baseline_rmse={sb['rmse']:.4f}"
     rows: list[dict] = []
-    cand = [b for b in colmap if b in BASE or b == "pts"]
+    cand = list(colmap)   # every key of colmap is a candidate (BASE + pts for points_drivers; plus opponent/context features for matchups.py)
     # --- clip (winsorise train 0.5/99.5 pct) + standardise; constants dropped
     X = tr[[colmap[b] for b in cand]].copy(); X.columns = cand
     Xt = te[[colmap[b] for b in cand]].copy(); Xt.columns = cand
@@ -360,6 +360,8 @@ def fit_spec(tr: pd.DataFrame, te: pd.DataFrame, colmap: dict[str, str], lens: s
         log["gbm_error"] = repr(e)
     for name, mr in model_rows.items():
         rows.extend(mr["rows"])
+    if keep_preds:
+        log["_preds"] = {k: np.asarray(v, dtype=float) for k, v in preds.items()}
     log["scores"] = {k: v["score"] for k, v in model_rows.items()}
     log["baseline"] = {"mae": sb["mae"], "r2": sb["r2"], "rmse": sb["rmse"]}
     return rows, log
