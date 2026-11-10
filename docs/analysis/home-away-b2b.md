@@ -1,184 +1,107 @@
 # Points at home vs away, and on back-to-backs
 
-*Data through 2026-11-02. It covers the full 2025-26 regular season and 2026-27 to date, including the official points/minutes corrections in 88a2676.*
-*Numbers for charts are in `data/insights_home_away_b2b.json`. Script: `/workspace/nba-phase1/scripts/analysis_home_away_b2b.py`. It is deterministic: bootstrap seed 20261104, and two runs gave byte-identical output.*
+*Data through 2026-11-09: full 2023-24, 2024-25 and 2025-26 regular seasons plus 2026-27 to date (154 games).*
+*Numbers for charts: `data/insights_home_away_b2b.json` (league) and `data/insights_player_splits.json` + `public/splits/<player_id>.json` (players). Scripts: `/workspace/nba-phase1/scripts/analysis_home_away_b2b.py` and `analysis_player_splits.py`. Deterministic: bootstrap seed 20261104; two runs gave byte-identical league output.*
+*This version replaces the 2-season (2025-26 + 2026-27) analysis. Scorer tiers are replaced by nested PPG segments (below).*
 
 ## The short version
 
-- **Home vs away makes almost no difference to points.** The typical player scores about the same at home as on the road.
-  - 2025-26: **+0.08 pts** at home (median +0.17), 95% CI −0.08 to +0.23, p = 0.35, from 522 players.
-  - Minutes and points per 36 are flat too.
-  - No position, age, experience or scorer tier shows a home edge that holds up across seasons.
-- **On the second night of a back-to-back, players score slightly *more*, not less.** That is because they play more minutes, not because they score more efficiently.
-  - 2025-26: **+0.40 pts** vs rested games (median +0.44), CI +0.20 to +0.60, p < 0.001, from 489 players.
-  - Minutes rise **+0.84** (CI +0.58 to +1.08). Points per 36 are unchanged (+0.01, CI −0.32 to +0.34).
-  - The gain sits almost entirely with **role players** (players ranked outside the top 100 scorers): **+0.51 pts** and **+1.13 min**, p < 0.001.
-  - The **top 10 scorers** play **1.33 fewer minutes** on second nights (CI −2.19 to −0.49) while their points stay level (+0.24, CI −1.88 to +2.31).
-  - The likely reason is that teams sit or limit stars on back-to-backs and the minutes go to the bench. Players who sit out entirely aren't in the data at all.
-- **The first night of a back-to-back is close to a normal game for points.**
-  - 2025-26: **+0.14 pts** (CI −0.07 to +0.34, p = 0.19), with minutes up **+0.51** (CI +0.25 to +0.78).
-  - Guards are slightly up: +0.43 pts, CI +0.13 to +0.72.
-  - The top 10 scorers lean lower (−1.30 pts), but with only 10 players the CI (−3.17 to +0.57) is wide.
-- **2026-27 is too small to say anything yet.**
-  - Home vs away (192 players, about 3–4 games per side): −0.13 pts, CI −0.76 to +0.49.
-  - No player has 3+ back-to-back games yet, so both back-to-back comparisons have **n = 0** this season. Teams have played only about 1 back-to-back each.
+- **Home vs away makes almost no difference to points, in any season.**
+  - Pooled 2023-24 to 2025-26 (default view): **+0.09 pts** at home, 95% CI −0.00 to +0.18, p = 0.046, 726 players / 1,561 player-seasons. Minutes −0.11, points per 36 +0.15. Not a robust edge: it is borderline p, tiny, and the per-season estimates (+0.06, +0.14, +0.08) are all inside their own CIs of zero.
+  - Adding 2026-27 to date: +0.09 (CI −0.01 to +0.19, p = 0.086). The earlier 2-season result (+0.08 for 2025-26) is unchanged: +0.08, CI −0.08 to +0.23.
+- **Second night of a back-to-back: slightly more points, entirely because of more minutes.**
+  - Pooled 2023-26: **+0.28 pts** (CI +0.16 to +0.41, p < 0.001), minutes **+0.70**, points per 36 **−0.03**. Every season is positive: +0.23 (2023-24), +0.21 (2024-25), +0.40 (2025-26, same as before).
+  - The gain sits with role players and young players. Rookies +0.62 pts / +1.32 min; guards +0.42 / +0.83; centers −0.03.
+  - **Top scorers do not gain.** Top 100 by PPG: −0.12 pts (CI −0.42 to +0.18), minutes −0.19; top 10: +0.47 (CI −0.43 to +1.22), minutes −0.31. The earlier "top 10 play 1.33 fewer minutes in 2025-26" is real in that season (still −1.33) but is not stable across seasons (−0.66 in 2023-24, +0.31 in 2024-25), so treat it as "stars are not helped", not as a fixed effect.
+- **First night of a back-to-back is close to a normal game:** +0.05 pts pooled (CI −0.07 to +0.16), minutes +0.09.
+- **2026-27 is still too small for back-to-backs** (37 and 39 qualifying players; teams have played ≈1 back-to-back each). Home/away: +0.07 (CI −0.35 to +0.48, 302 players), consistent with zero.
+- **Per player:** individual splits are mostly noise. τ (true between-player spread, DerSimonian–Laird): home/away 0.18–0.36 pts per season, 0.26 pooled; second night 0.06–0.54 (0.42 pooled), first night 0.00 in every span except 2026-27 (too few players). **No player is "strong" (BH FDR 10%) in any timespan or comparison, among all league players or app players.** Among all qualifying league players, 0-10 per comparison per timespan cross |z| ≥ 2.5 (2-10 in full seasons and pooled spans; chance alone gives about 1.2%, i.e. ≈ 6 of ~500). The app-player 'watch' list has 62 entries across the 5 non-current timespans (the same players recur across overlapping spans). Earlier 2-season result: no strong flags, 21 watch; unchanged in kind.
+
+### What changed vs the earlier 2-season results
+
+| | earlier (2025-26, 2026-27 to Nov 2) | now |
+|---|---|---|
+| Home vs away, league | +0.08 (2025-26), null | +0.08 (2025-26, unchanged); +0.06 / +0.14 in 2023-24 / 2024-25; pooled +0.09 (borderline p = 0.046), null in practice |
+| 2nd night | +0.40, minutes-driven | +0.40 (2025-26); +0.23, +0.21 in the earlier seasons; pooled +0.28, minutes +0.70, per-36 flat. Same story, a bit smaller |
+| τ home/away | ≈ 0.31 | 0.31 in 2025-26 (unchanged); 0.36, 0.18 in 2023-24, 2024-25; 0.26 pooled |
+| Strong flags | none | none |
+| Watch flags | 21 (2025-26 + combined) | 10 / 12 / 13 per single season, 15 (pooled 2023-26), 12 (pooled 2023-27) |
+| Scorer tiers | top 10 / 11-25 / 26-50 / 51-100 / rest | replaced by nested top100 ⊃ top50 ⊃ top25 ⊃ top10 and all |
+| "combined" | 2025-26 + 2026-27 | now means 2023-24..2025-26 (`pooled_2023_26`) |
+
+## Timespans and segments (spec)
+
+**Six timespans.** `pooled_2023_27` (all four seasons through 2026-11-09), `pooled_2023_26` (three complete seasons, **the default**), `2023_24`, `2024_25`, `2025_26`, `2026_27` (to date, through 2026-11-09).
+
+**Default view = `pooled_2023_26` / `all`** (the old "combined" meaning shifts to three seasons; use the legacy aliases below to read the old keys).
+
+**Five nested segments**, ranked by **PPG within each timespan** (points per game over every game the player played in the timespan; a 0-minute game does not count):
+
+| segment | members |
+|---|---|
+| `all` | every player with games in the timespan (no floor); the comparison itself needs ≥ 3 games per side |
+| `top100` | the 100 highest PPG among players meeting the floor |
+| `top50` ⊂ top100, `top25` ⊂ top50, `top10` ⊂ top25 | the top 50 / 25 / 10 of the same ranking |
+
+- **Minimum-games floor to be ranked** (the same ~24% of an 82-game season everywhere): 20 GP per full season (`2023_24`, `2024_25`, `2025_26`), 40 for `pooled_2023_26`, 50 for `pooled_2023_27`, and for `2026_27` ceil(20/82 × median team games played so far) = **3** at 2026-11-09. The 2026-27 floor is provisional and rises with the schedule; the old 2026-27 floor was 4.
+- **Tiebreak:** PPG (descending), then games played (descending), then lower player_id. Members of the pooled segments are chosen by the player's pooled PPG over the whole span.
+- **Pooled spans use player-season units:** a player contributes one paired difference per season with ≥ 3 games per side, the CI is a **cluster bootstrap by player** (resampling players, keeping a player's seasons together), 10,000 resamples, seed 20261104. Segment membership for a unit comes from the pooled rank. Per-player files (below) instead pool a player's games across the span.
+- **Segment sizes at the default:** all 802 players with games, 562 meeting the 40-GP floor; top100 PPG ≥ 14.83, top50 ≥ 19.49, top25 ≥ 22.87, top10 ≥ 26.34. Segments with n = 1–2 units (2026-27 back-to-backs) have no CI (null).
+- **Secondary cuts (only descriptive, not nested):** position (G / F / C), age bucket (≤23, 24-27, 28-31, 32+), experience bucket (rookie, 1-3, 4-7, 8+). Position and age are complete in every season (0 missing). Experience is missing for 50 players (569 player-games) in 2023-24, 41 (466) in 2024-25, 57 (681) in 2025-26 and 0 in 2026-27: they were on no official roster for that season and the NBA player endpoint only gives current experience. They stay in the overall numbers and drop out of experience cuts. Nothing was estimated.
 
 ## How it was measured
 
-- **Games.** Regular season only (game IDs starting 002).
-  - NBA Cup group and knockout games count. The Cup final (006), playoffs and play-in are excluded.
-  - Only games where the player logged more than 0 minutes; a 0-minute game counts as not played.
-- **Paired, per player.** For each player I took their average in condition A and in condition B, then the difference (A minus B). The summary is the mean and median of those differences across players, not a pooled average of all games.
-  - A player needs **at least 3 games on each side** to be included.
-  - p-values are from a paired (one-sample) t-test against 0.
-  - 95% CIs are from a percentile bootstrap with 10,000 resamples.
-- **Three measures.**
-  - Points per game.
-  - Minutes per game.
-  - Points per 36 minutes, computed as 36 × total points ÷ total minutes within each condition.
-  - If points move but points per 36 don't, the change is about minutes.
-- **Home / away.** Home is "vs." in the matchup, away is "@".
-  - The 5 neutral-site games in 2025-26 are left out: Mexico City, Berlin, London and the two Cup semifinals in Las Vegas, as flagged by the NBA box-score summary.
-  - 2026-27 has had no neutral-site games yet.
-- **Back-to-back labels** come from the dates of the team the player played for.
-  - *2nd night:* the team played the day before.
-  - *1st night:* the team plays the next day and did not play the day before.
-  - *Rested:* at least one day off before the game and no game the next day. Each team's season opener is left out.
-  - There were no three-games-in-three-nights stretches.
-  - The 2025-26 Cup final is counted as a played date, though it had no games on the days either side, so it changed no labels.
-  - For 2026-27, the full official schedule is used, so a game on the cutoff night knows whether the team plays the next day.
-- **Team-game counts.**
-  - 2025-26: 441 second nights, 441 first nights and 1,548 rested games.
-  - 2026-27 to date: 38, 38 and 108.
-- **Combined (both seasons).** Each player-season counts as one unit, so a player can appear twice, each time with that season's segment.
-  - The CI resamples players, so a player's two seasons stay together.
-  - 2026-27 only adds home/away units; there are no back-to-back units yet. So combined back-to-back numbers equal 2025-26.
-  - Combined home vs away: +0.02 pts (CI −0.17 to +0.21) from 714 units (540 players). Minutes are −0.25 at home (CI −0.47 to −0.02, p = 0.03), but points per 36 are flat.
-
-## Segments
-
-- **Position:** first-listed position from that season's official team roster (G-F counts as G, F-C as F, C-F as C).
-  - For 2025-26 players no longer on a roster, I used the NBA player index for 2025-26.
-- **Age:** age on Feb 1 of the season, from birth date. Buckets: 23 or younger, 24–27, 28–31, 32+.
-- **Experience:** the roster's years-of-experience for that season, with rookies as 0. Buckets: rookie, 1–3, 4–7, 8+.
-- **Scorer tier:** rank by that season's points per game among players with at least 20 games (2025-26) or at least 4 games (2026-27).
-  - Tiers are top 10, 11–25, 26–50 and 51–100. "Rest" is everyone else, including players under the games threshold.
-
-Notable 2025-26 back-to-back segments (second night minus rested, points):
-
-- **By position.**
-  - Guards: +0.49 (CI +0.23 to +0.75, n = 239).
-  - Forwards: +0.44 (CI +0.09 to +0.78, n = 186).
-  - Centers: −0.03 (CI −0.60 to +0.54, n = 64).
-  - For every position the minutes rise and points per 36 stay flat.
-- **By experience.** The youngest players gain most:
-  - rookies +0.66 pts and +1.38 min (n = 69);
-  - 1–3 years +0.44 pts and +1.12 min (n = 166);
-  - 8+ years +0.37 pts and +0.32 min, not significant (n = 99).
-- **By scorer tier.**
-  - Top 10: +0.24 pts and −1.33 min (n = 10).
-  - Ranks 11–25: +0.16 (n = 15).
-  - Ranks 26–50: +0.14 (n = 24).
-  - Ranks 51–100: −0.24 (n = 50).
-  - Rest: +0.51 (n = 390).
-  - None of the top-100 tiers is distinguishable from zero.
-
-Every segment, season and measure is in the JSON. Each entry lists n, games per side, mean, median, CI and p.
+- **Games.** Regular season only (game ids starting 002). NBA Cup group and knockout games count. The Cup final (006), play-in and playoffs are excluded. A game counts only if the player logged more than 0 minutes.
+- **Paired, per player.** For each player (or player-season), the average in condition A minus the average in B; the summary is the mean and median of those differences. ≥ 3 games per side. p = paired t-test; 95% CI = percentile bootstrap (10,000).
+- **Three measures.** Points per game; minutes per game; points per 36 = 36 × total points ÷ total minutes within each condition. Points moving while per-36 does not means the change is about minutes.
+- **Home / away.** "vs." = home, "@" = away. **Neutral-site games are excluded from home/away only** (flagged by the NBA box-score summary): 2023-24 none, 2024-25 six, 2025-26 five, 2026-27 one (0022600189). Three 2025-26 games (0022500259-261, 2025-11-19) have no box-score summary in the source, so their neutral flag is unknown; the schedule marks them non-neutral and they are treated as regular home/away.
+- **Back-to-back labels** from the player's team schedule dates (including the Cup final): *2nd night* = team played the day before; *1st night* = team plays the next day and did not play the day before; *rested* = ≥ 1 day off and no game next day. Season openers are excluded. No three-in-three-nights stretches exist in the data. Team-game counts (2nd night / 1st night / rested): 2023-24 422 / 422 / 1,586; 2024-25 450 / 450 / 1,530; 2025-26 441 / 441 / 1,548; 2026-27 51 / 52 / 175.
+- **Position** first-listed position on that season's official roster (G-F → G, F-C → F, C-F → C), PlayerIndex fallback for players not on the roster; **age** on Feb 1 of the season; **experience** the roster's years of experience with rookies = 0.
 
 ## Caveats
 
-- **2026-27 is a tiny sample** (about 6–8 games per team). Treat it as a placeholder until the season builds up.
-- **Observational data.** Venue and rest aren't assigned at random, and players held out on back-to-backs don't appear. So the back-to-back result describes the games that were actually played, not how tired any one player is.
-- **Many comparisons.** The JSON holds several hundred comparisons (3 topics × 3 scopes × 18 groups × 3 measures), so some p < 0.05 results will be chance. The single-season home-vs-away segment results that clear p < 0.05, such as ranks 26–50 at +0.99 at home, don't repeat in 2026-27 or in the combined numbers.
-- **Small tiers.** The top 10 and 11–25 tiers have only 10–25 players, and their CIs are wide.
-- **Missing data.** Experience is missing for **57 players in 2025-26 (681 player-games)**. They were on neither the 2025-26 nor the 2026-27 official team roster, and the NBA's other player endpoint only gives *current* experience. They count in the overall numbers but not in the experience segments. Position and age are complete for both seasons. Nothing was estimated or filled in.
-- **Trades.** For a traded player, rest is judged by the team he played for that night.
+- 2026-27 is a tiny sample (about 12-13 games per team). Its floor is 3 games and most 2026-27 back-to-back segment cells have n ≤ 15.
+- Observational: rest is not assigned at random and players held out do not appear.
+- Multiple comparisons: the JSON holds many hundred comparisons. Only 'strong' flags survive an FDR correction, and there are none. 'watch' (|z| ≥ 2.5, nominal) flags are leads, not findings. Segment cells at n < 30 units have wide CIs.
+- Pooled and 2026-27-inclusive spans reuse the same players across seasons; do not treat season rows and pooled rows as independent evidence.
+- Segment membership depends on that span's PPG, so a player can be top 25 in one season and unranked in another.
+
+## `data/insights_home_away_b2b.json` schema (`insights-home-away-b2b-v2`)
+
+Strict JSON (no NaN/Infinity; undefined values are `null`). Numbers rounded to 4 decimals.
+
+- `schema_version`, `data_as_of` ({season: "full regular season" | date}), `default` = `{timespan: "pooled_2023_26", segment: "all"}`.
+- `timespans` (ordered list of the 6 ids), `segments` (`["all","top100","top50","top25","top10"]`), `comparisons` (`["home_away","b2b_second_vs_rested","b2b_first_vs_rested"]`; in `results` the keys are `home_away`, `b2b_2nd` (= 2nd night minus rested), `b2b_1st` (= 1st night minus rested)).
+- `timespan_info[ts]` = `{label, seasons, pooled, min_games_floor, n_players_with_games, n_ranked, data_as_of}`. `segment_info[seg]` = text.
+- **`results[ts][seg]`** = `{segment_size, ppg_floor_min_games, ppg_rank_max, n_ranked, ppg_range:[min,max] (null for all), home_away, b2b_2nd, b2b_1st}`. Each comparison block = `{n_players, n_units, games_a, games_b, pts:{mean, median, ci95:[lo,hi], p, mean_a, mean_b}, minutes:{…same…}, per36:{…same…}, small_n}`; the block is `null` when no unit qualifies; `ci95`/`p` are `null` when there are fewer than 2 units.
+- **`secondary[ts][position|age|experience][level]`** = `{home_away, b2b_2nd, b2b_1st}` with the same block shape; `_missing_units_home_away` records the missing-attribute counts.
+- `segment_missing[season][position|age|experience]` = `{players, player_games, names}`; `segment_sources_player_seasons`; `team_game_counts_by_rest`; `three_in_three_nights`; `neutral_games_excluded_from_home_away[season]` (game ids); `sources` (inputs and hashes); `definitions`; `caveats`; `metric_note`.
+- **Backward compatibility (hybrid `results`).** The unchanged app reads `results[<comparison>].by_scope[<scope>]`, so `results` holds BOTH shapes side by side (keys cannot collide):
+  - old shape: `results.home_away | b2b_second_vs_rested | b2b_first_vs_rested` = `{label, a, b, by_scope}`, `by_scope["2025-26" | "2026-27" | "combined"]` = `{overall, segments:{position, age, experience, scorer_tier}}`. Scopes are aliases: `legacy_scope_alias` = `{"2025-26":"2025_26","2026-27":"2026_27","combined":"pooled_2023_26"}` (so `combined` now means three seasons, 2023-24..2025-26, not 2025-27).
+  - new shape: `results[<timespan>][<segment>]` as above.
+  - **Deprecated shim:** `segments.scorer_tier` (levels `top_10, 11_25, 26_50, 51_100, rest`, by the unit's own-season PPG rank; floor = that season's floor, 3 games for 2026-27 instead of the old 4) is kept only so the unchanged app keeps rendering. The nested `top100/top50/top25/top10` segments replace it. The same shim lives in `secondary[ts].scorer_tier` for `2025_26`, `2026_27`, `pooled_2023_26` only. App Builder should move to `results[ts][seg]` and drop `scorer_tier`.
+
+## `data/insights_player_splits.json` (`insights-player-splits-v2`) and `public/splits/<player_id>.json` (`player-splits-v2`)
+
+- 526 per-player files (one per player in `data/betting_points.json`, 15.4 MB total, 9.5-51 KB each: each holds every game since 2023-24). Committed (not generated at build time).
+- **Scope keys are the six timespan ids** and also, as aliases to the same objects, the legacy `2025-26`, `2026-27`, `combined` (= `pooled_2023_26`). A player's numbers in a timespan pool his games across the span; `null` when he has no games in it.
+- **Per-player file:** `{schema_version, player_id, full_name, team, data_as_of, timespans, default_timespan, seasons[ts], league[ts], game_fields, games}`.
+  - `seasons[ts] = {conditions, comparisons, segment}`. `conditions[home|away|b2b_2nd|b2b_1st|rested] = {n, pts, pts_sd, min, per36}` (unchanged). `comparisons[cmp]` unchanged (`qualifies`, `n_a`, `n_b`, `pts:{raw, shrunk, shrink_weight, se, ci95, z, p, q, percentile, flag}`, `minutes`, `per36`).
+  - **New `segment`** = `{gp, ppg, ppg_rank, meets_floor, min_games_floor, segments:[ids the player belongs to, always incl. "all"], segment_league:{seg:{cmp:{n_players, pts_mean, pts_median, min_mean, per36_mean}}}}`. `ppg_rank` is null below the floor. `segment_league` is the league baseline (mean raw difference of qualifying players) for each of the player's segments, to compare him against his peers.
+  - `league[ts] = {comparisons, conditions, timespan}` (whole league, as before; `comparisons[cmp]` gains no breaking keys).
+  - `games` rows (`game_fields` = season, date, game_id, opp, venue, rest, pts, min) now cover all four seasons; `season` is the first field, so filter by it for a timespan.
+- **Homepage file:** `{schema_version, data_as_of, default, timespans, segments, definitions, ranking_note, ranking_population, league, rankings, heatmaps, distributions, flagged, players_table, caveats, sources}`.
+  - `league[ts] = {comparisons, conditions, by_segment, timespan}`. `comparisons[cmp]` = `{n_players, pts_mean, pts_median, tau, min_mean, per36_mean, n_strong_all_players, n_watch_all_players}` (new last two: flags among all league players). **New `by_segment[seg][cmp]`** = `{n_players, pts_mean, pts_median, min_mean, per36_mean}`.
+  - `rankings[cmp][ts]`, `distributions[cmp][ts]`: unchanged shape (top/bottom 25 by shrunk and raw, histograms); keyed by timespan (+ legacy aliases). `shrunk_is_flat` is true when τ < 0.1.
+  - `heatmaps.segment_x_condition[ts]` keys: `scorer_segment` (new, rows = the 5 nested segments; **replaces `scorer_tier`**), `position`, `age`, `experience`, plus the deprecated shim `scorer_tier` for `2025_26`, `2026_27`, `pooled_2023_26` only (old levels, kept so the unchanged app renders) (same layout: `rows, cond_cols, pts, n, cmp_cols, cmp_pts_mean, cmp_n`). `heatmaps.player_x_condition[ts]` unchanged.
+  - **New `players_table[ts]`** = `{columns, rows, segment_max_rank:{top100:100,…}, note}`: one row per app player with games (`player_id, full_name, team, gp, ppg, ppg_rank`, then per comparison `_raw, _shrunk, _z, _flag, _n_a, _n_b`). Segment membership = `ppg_rank <= N`.
+  - `flagged` entries carry `scope` = timespan id only (no legacy-alias duplicates); sorted by scope, comparison, |z|.
+- **Per-player definitions** (unchanged): raw = mean A − mean B; se = player's SD over all his games in the span × √(1/n_a + 1/n_b); ci95 = raw ± t(0.975, df = games − 1) × se; shrunk = league + w × (raw − league), w = τ²/(τ²+se²), τ² from DerSimonian–Laird per timespan and comparison; z = (raw − league)/se; q = Benjamini–Hochberg across qualifying players (same span and comparison); flag `…_strong` for q < 0.10, `…_watch` for |z| ≥ 2.5, else null; minutes/per-36 raw only.
 
 ## Sources
 
-- **Box scores:** NBA PlayerGameLogs (curated warehouse).
-- **Neutral-site flag:** NBA BoxScoreSummaryV3.
-- **Rosters:** official NBA team rosters (CommonTeamRoster).
-  - 2025-26 pulled 2026-11-05 03:59 UTC (Nov 4, 10:59 PM Toronto time).
-  - 2026-27 pulled 2026-11-04 22:56 UTC.
-- **Birth dates for 51 players on neither roster:** CommonPlayerInfo, pulled 2026-11-05 04:03 UTC.
-- **2025-26 position fallback:** NBA PlayerIndex 2025-26, pulled 2026-10-08.
-- **2026-27 schedule:** NBA ScheduleLeagueV2.
-- File hashes of every input are listed in the JSON under `sources.inputs`.
-
-## Per-player splits (player pages and homepage)
-
-Built by `/workspace/nba-phase1/scripts/analysis_player_splits.py`, which uses the same games, labels and segments as above. It is deterministic: two runs gave byte-identical files.
-
-### What the per-player numbers say
-
-- **Most individual splits are noise.** I estimated how much players *truly* differ from the league average (τ, "tau") with the standard DerSimonian–Laird method:
-  - Home vs away: τ ≈ 0.31 pts (2025-26).
-  - Second night of a back-to-back: τ ≈ 0.06 pts.
-  - First night: τ = 0.
-  - In other words, a player's observed home/away or back-to-back gap is almost entirely game-to-game luck. The shrunk (luck-adjusted) values sit within a few tenths of a point of the league mean.
-- **No player survives a multiple-testing correction.** The best single result is Dillon Brooks, +6.8 pts at home in 2025-26 (z = 3.41), with q = 0.34; "strong" needs q < 0.10.
-- **21 "watch" flags (|z| ≥ 2.5)** across scopes and comparisons, all in 2025-26 or combined. Chance alone would produce about 5 per comparison, so treat these as "worth a look", not as findings. Examples:
-  - Brooks and Kawhi Leonard: +5.3 at home.
-  - Nikola Jović: +7.6 on second nights.
-  - Jaylen Brown: −6.5 on second nights.
-- **2026-27:** only home/away qualifies, for 192 players. No back-to-back comparison qualifies yet.
-
-### `public/splits/<player_id>.json`: one file per player page
-
-- **Coverage:** 523 files, one per player in `data/betting_points.json` (the same players as `public/slots`).
-  - Sizes are 2.5–11.5 KB each, 5.2 MB on disk in total.
-  - Unlike `public/slots`, these files are **committed**, not generated at build time, because the build and app code were left unchanged. Moving generation into prebuild later is a one-line hook.
-- **Top-level fields:** `schema_version` (`player-splits-v1`), `player_id`, `full_name`, `team` (the current app team), `data_as_of` (`{"2025-26","2026-27"}`).
-- **`seasons[scope]`**, where scope is `"2025-26"`, `"2026-27"` or `"combined"` (the player's games from both seasons pooled). It is `null` if the player has no games in that scope; 81 players have no 2025-26 games.
-  - **`conditions[cond]`**: cond is one of `home`, `away`, `b2b_2nd`, `b2b_1st`, `rested`. Each holds `{n, pts, pts_sd, min, per36}`, which are averages over the player's games in that condition.
-  - **`comparisons[cmp]`**: cmp is one of `home_away`, `b2b_second_vs_rested`, `b2b_first_vs_rested`.
-    - If the player doesn't have 3+ games on each side: `{qualifies:false, n_a, n_b}`.
-    - Otherwise `{qualifies:true, n_a, n_b, pts:{…}, minutes:{raw, ci95}, per36:{raw}}`, where `pts` holds `raw, shrunk, shrink_weight, se, ci95, z, p, q, percentile, flag`.
-- **`league[scope]`**: the baseline for a "player vs league" chart, built from **all** players, not only app players.
-  - `league[scope].comparisons[cmp]` = `{n_players, pts_mean, pts_median, tau, min_mean, per36_mean}`.
-  - `league[scope].conditions[cond]` = `{n_players, pts, min, per36}`: the mean of player condition averages, among players with 3+ games in that condition.
-- **`game_fields` + `games`**: compact rows for dot or strip charts, sorted by date. The fields are `season`, `date`, `game_id`, `opp`, `venue`, `rest`, `pts`, `min`.
-  - `venue` is `H`, `A` or `N` (neutral).
-  - `rest` is `2nd`, `1st`, `rested` or `opener`.
-  - To filter by condition, use `venue` or `rest`.
-
-### `data/insights_player_splits.json`: homepage aggregates (about 270 KB)
-
-- **`league`**: the same structure as in the per-player files.
-- **`rankings[cmp][scope]`**:
-  - `n_ranked`: the number of app players who qualify.
-  - `shrunk_is_flat`: true when τ < 0.1. That is currently true for both back-to-back comparisons, where shrunk ordering is essentially meaningless.
-  - `by_shrunk.{top,bottom}` and `by_raw.{top,bottom}`: 25 entries each, already sorted. Each entry is `{player_id, full_name, team, qualifies, n_a, n_b, pts:{…}, minutes:{…}, per36:{…}}`.
-  - For display, **prefer `by_raw` with `ci95`**, plus a flag badge. Use `by_shrunk` only where `shrunk_is_flat` is false.
-- **`heatmaps.segment_x_condition[scope][segment]`**: segment is `position`, `age`, `experience` or `scorer_tier`.
-  - `rows` are the segment levels and `cond_cols` are the 5 conditions.
-  - `pts[row][col]` is the mean of player averages; `n[row][col]` is the number of players.
-  - It also has `cmp_cols` (the 3 comparisons), `cmp_pts_mean` and `cmp_n`, taken from the paired analysis in `insights_home_away_b2b.json`.
-  - Combined uses player-season units.
-- **`heatmaps.player_x_condition[scope]`**:
-  - `rows` is every player in any `by_shrunk` top/bottom list, as `{player_id, full_name, team}`, sorted by name.
-  - `cond_cols` with `pts` (null under 3 games) and `n`.
-  - `cmp_cols` with `raw` and `shrunk`.
-- **`distributions[cmp][scope]`**:
-  - `bin_edges` run from −10 to +10 pts in steps of 0.5.
-  - `raw` and `shrunk` each have `{counts, below_min, above_max, percentiles:{p5…p95}}`.
-  - Values outside the range are clipped into the end bins.
-- **`flagged`**: every app player with a non-null flag, as `{scope, comparison, …entry}`. It is sorted by scope, then comparison, then |z| from largest.
-- **`definitions`, `caveats`, `ranking_note`, `ranking_population`**: text to show next to the charts.
-
-### Per-player definitions
-
-- **raw:** the player's mean in condition A minus his mean in B.
-- **se:** the player's game-to-game points SD over *all* his games in the scope × √(1/n_a + 1/n_b). Using all his games is more stable than per-condition SDs when a side has only 3–5 games.
-- **ci95:** raw ± t(0.975, df = his games in scope − 1) × se.
-- **shrunk:** league mean + w × (raw − league mean), with w = τ² / (τ² + se²).
-- **z:** (raw − league mean) / se. p is two-sided; q is the Benjamini–Hochberg q-value within the same scope and comparison.
-- **percentile:** the rank of the shrunk value among all qualifying league players, from 0 to 100.
-- **flag:**
-  - `above_league_strong` / `below_league_strong` when q < 0.10.
-  - `…_watch` when |z| ≥ 2.5, which is nominal and not adjusted for multiple tests.
-  - Otherwise null.
-- **Minutes and per 36:** raw only, with a CI for minutes. Shrinkage, z and flags apply to points.
-- **Rankings and the flagged list** contain app players only. League baselines, τ and percentiles use every player with games.
-- **Per-player combined vs the summary above:** the per-player files pool a player's games across both seasons. The league summary at the top of this doc instead treats each player-season as one unit, so the combined numbers differ slightly. For example, combined second night is +0.44 here vs +0.40 above.
+- **Game logs:** NBA PlayerGameLogs (curated warehouse `player_game_logs`), 2023-24 to 2026-27.
+- **Neutral-site flag and box scores:** NBA BoxScoreSummaryV3 / BoxScoreTraditionalV3 (curated `game_meta`, `player_game_box` in the warehouse).
+- **Rosters / ages / experience:** official team rosters (CommonTeamRoster) for each season, PlayerIndex and CommonPlayerInfo for gaps (pulled 2026-11-10).
+- **Schedule:** ScheduleLeagueV2 for each season.
+- Hashes of every input are listed in the JSON under `sources.inputs`.
