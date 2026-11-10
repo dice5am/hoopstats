@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- hoopstats mark: maple basketball on ink tile, hardwood tokens -->
+  <rect width="32" height="32" rx="7" fill="#2b1d12"/>
+  <circle cx="16" cy="16" r="11" fill="#e9c99a"/>
+  <defs>
+    <clipPath id="hs-seams">
+      <circle cx="16" cy="16" r="10.35"/>
+    </clipPath>
+  </defs>
+  <g fill="none" stroke="#2b1d12" stroke-width="2.5" stroke-linecap="butt" clip-path="url(#hs-seams)">
+    <path d="M16 5v22"/>
+    <path d="M5 16h22"/>
+    <path d="M7 7.2c4.2 3.4 4.2 14.2 0 17.6"/>
+    <path d="M25 7.2c-4.2 3.4-4.2 14.2 0 17.6"/>
+  </g>
+</svg>
